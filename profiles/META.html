@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -81,6 +88,8 @@
   <div class="meta">2 条观点 · 2026-10-26 ~ 2026-10-30 · 2 位博主</div>
 </div>
 
+
+
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
@@ -91,6 +100,33 @@
   </div>
   <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 -0.50）</p>
   <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">本周进行一笔融资，未来支出承诺超8000亿（涵盖租赁、设备、能源），本周跌4.3%。属于大科技集体加码AI资本开支的代表，长期债收益率在6%-8%区间，被美银列为「被忽视的科技债」标的之一。</div>
+      <div class="op-q">「Meta也超8千亿，涵盖租赁、设备和能源等」</div>
+      <div class="op-tag"><b>催化：</b>科技债机会（6%-8%收益率）</div>
+      <div class="op-tag"><b>风险：</b>AI资本开支规模巨大</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1140s" class="tslink">19:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/26</span></span><span class="st down">看空/回避·中期</span></div>
+      
+      <div class="op-d">计划通过公开发行普通股和可转换优先股筹集约350亿美元，并计划2027年Q1推出最高600亿美元的场内股票发行，潜在融资总规模达950亿美元，主要用于AI基础设施建设。英伟达、AMD和博通已表示有意认购此次发行的A类普通股，合计最多50亿美元。股价盘前一度跳水超4%后一度拉升涨近3%，盘中多空来回拉锯。博主结论：算了，还是不买了。</div>
+      <div class="op-q">「META股价盘前一度跳水超4%，随后又一度拉升涨近3%，盘中也是多空来回拉锯，算了，我还是不买了」</div>
+      <div class="op-tag"><b>催化：</b>芯片巨头认购50亿</div>
+      <div class="op-tag"><b>风险：</b>950亿美元巨额融资稀释、AI基建烧钱</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=780s" class="tslink">13:00 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">

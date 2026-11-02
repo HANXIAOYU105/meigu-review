@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -78,42 +85,190 @@
 <div class="hero">
   <p class="nm">微软 ⭐</p>
   <div class="tk">MSFT · 软件 · 持仓#5</div>
-  <div class="meta">7 条观点 · 2026-10-28 ~ 2026-10-31 · 3 位博主</div>
+  <div class="meta">14 条观点 · 2026-10-27 ~ 2026-10-31 · 6 位博主</div>
 </div>
+
+
 
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
-    <div class="stat-box"><div class="n">7</div><div class="l">提及次数</div></div>
-    <div class="stat-box up"><div class="n">3</div><div class="l">看多</div></div>
+    <div class="stat-box"><div class="n">14</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">10</div><div class="l">看多</div></div>
     <div class="stat-box down"><div class="n">1</div><div class="l">看空</div></div>
     <div class="stat-box"><div class="n">3</div><div class="l">中性</div></div>
   </div>
-  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 0.29）</p>
-  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">视野环球财经</span><span class="chip">美投侃新闻</span></div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean up">偏多</span>（均分 0.64）</p>
+  <div class="chips"><span class="chip">视野环球财经</span><span class="chip">NaNa说美股</span><span class="chip">老李玩钱</span><span class="chip">阳光财经</span><span class="chip">美投侃新闻</span><span class="chip">The Investor Channel</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean up">偏多</span><span class="ch-meta">4 条 · 看多 4 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/27</span></span><span class="st up">看多/持有·短期</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">530</b>（期权压注）</span><span class="lv lv-r">阻力 <b class="num">557</b>（破前高<b class="num">551</b>新高位）</span><span class="lv lv-s">支撑 <b class="num">490-503</b>（下方支撑）</span></div>
+      <div class="op-d">微软财报期权压注530美元、上下27美元（68%概率），即财报波动约5%-6%。下沿503仍未跌破500、位于490上方，结构没有遭到破坏；往上加27美元到557就是新高（前高551），相对来讲结构最稳。微软在本周三科技财报里相对最安全。</div>
+      <div class="op-q">「微软是530美元上下27美元的波动，往下减一减还没有跌破500，仍旧位于490的上方，结构没有遭到破坏」</div>
+      <div class="op-tag"><b>催化：</b>490支撑未破、财报波动可控</div>
+      <div class="op-tag"><b>风险：</b>财报不及预期</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">20:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/28</span></span><span class="st up">看多/持有·长期</span></div>
+      <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（长线建仓区）</span></div>
+      <div class="op-d">第一财季「AI货币化成功上岸」：营收923亿超预期、EPS 4.89超预期、Azure按固定汇率+48%远超自身44-45%指引、营业利润率49.8%。AI货币化业务单季披露营收332亿美元比市场预期322亿高11亿。自由现金流186亿(-27%)但仍是四大科技里唯一能用运营现金流覆盖所有费用、唯一自由现金流转正的。2027财年承诺保持自由现金流转正并强调每美元资本开支回报提升。博主第一大持仓14%、成本251块，目标仍上看600（当前财年中位536、往后一年中位632），490-534是长线建仓区。600以上才考虑减仓，跌破490短线也不管。</div>
+      <div class="op-q">「他的AI货币化在四大科技中最成功，目前最成功……已经明确自由现金流可以负担支出，所以为什么标题上我写着他的AI货币化成功上岸了」</div>
+      <div class="op-tag"><b>催化：</b>Azure+48%超预期、AI货币化四大最成功、自由现金流转正、营业利润率49.8%</div>
+      <div class="op-tag"><b>风险：</b>商业剩余履约义务环比无增长、Windows OEM收入暴跌22%、365席位增速放缓至7%</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">23:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/29</span></span><span class="st up">看多/持有·长期</span></div>
+      <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（建仓区）</span></div>
+      <div class="op-d">四大AI数据中心公司中唯一自由现金流为正的（微软正、亚马逊/谷歌/Meta都转负），且承诺财年自由现金流为正。250亿美元发债获1150亿认购（4.6倍），利率仅比美债高0.86个百分点，比三年前置换债溢价还低，顶级AAA评级（全美仅微软和强生两家）让融资成本极低。发债是「效率置换」非利空。博主明确持有不动、看600上方，490-534是无仓位者的建仓区（需预留仓位防纳指破位跌到490以下）。</div>
+      <div class="op-q">「它是四大科技里唯一的一家（自由现金流为正）……我个人没有问题，现在仍旧持有，490-534对于没有仓位的朋友来讲就是建仓的地方」</div>
+      <div class="op-tag"><b>催化：</b>自由现金流为正（四大唯一）、AI货币化加速、AAA评级发债成本极低</div>
+      <div class="op-tag"><b>风险：</b>纳指破位后的量化抛压、短期情绪宣泄可能跌破490</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span><span class="st up">看多/持有·长期</span></div>
+      
+      <div class="op-d">作为高质量信贷股票的典型代表，10月逆势上涨1.76%，只是回吐部分涨幅而非崩溃。250亿债券发售认购达4.6倍、利息不高，说明市场对高质量借款人依旧充分认可。博主的长期持仓，是「高质量信贷」逻辑的核心样板。</div>
+      <div class="op-q">「微软这一轮下跌之后，这个月10月份还上涨了1.76%，绝对算不上差，它只是回吐了一部分的涨幅，因为它是高质量的信贷股票」</div>
+      <div class="op-tag"><b>催化：</b>250亿美元债券认购4.6倍、营收与自由现金流稳健</div>
+      
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=360s" class="tslink">6:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean up">偏多</span><span class="ch-meta">2 条 · 看多 2 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/28</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">财报显著超预期：营收922.8亿(+18.8%)超预期906亿、净利366.3亿(+32%)、Azure云+48%超指引45%。云收入332亿、资本支出452亿低于预估510亿，是「正常科技明星股」的样子，各方面优秀。盘后涨3个多点，明天可能创历史新高。</div>
+      <div class="op-q">「微软的财报才是正常科技明星股的样子，各方面优秀」</div>
+      <div class="op-tag"><b>催化：</b>营收净利双超预期、Azure+48%超指引、资本支出低于预估</div>
+      <div class="op-tag"><b>风险：</b>估值偏高</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=xZO-bPVpFRk&amp;t=712s" class="tslink">11:52 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/29</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">微软财报各项指标都过关：收入利润超预期、云增速超预期、资本支出低于原计划，是云巨头里现金流最好的一家。但自由现金流缩水，股价由升转跌，可能因一笔250亿发债计划（期限2-40年、利率约6%以上、3A评级）。微软3A评级债券市场抢着买，财报后没大涨但至少排了雷，博主判断股价应稳定看涨。</div>
+      <div class="op-q">「微软的财报各项指标都过关……云增速超预期……微软是云巨头里面现金流最好的一家」</div>
+      <div class="op-tag"><b>催化：</b>财报全面超预期、3A评级发债抢手、现金流云巨头最好</div>
+      <div class="op-tag"><b>风险：</b>自由现金流缩水、250亿发债计划</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=wCUn2t-uSNc&amp;t=512s" class="tslink">8:32 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">4 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/29</span></span><span class="st up">看多/买入·长期</span></div>
+      
+      <div class="op-d">财报延续稳健风格：营收923亿(+19%)、EPS 4.89(+18%)超预期3.5%、营业利润率49.8%。Azure+48%超预期（受益Foundry平台收入两倍多+工程优化硬件效率提升），供给受限下仍跑出高增速，下季度指引抬到49%-50%说明AI需求端无问题、瓶颈在供给。资本开支452亿低于预期13%、2026年指引下调到1700亿（第三方产能延迟），自由现金流186亿大超预期一倍多，2027财年保持为正。下季度收入中位数966亿超预期。Tim观点：微软是难得Megacap Leader，稳定现金流+稳定AI回报，即便涨了不少仍值得买入。留意：OpenAI贡献约11%收入（依赖未下降）、M365付费席位增速放缓到5%、Copilot付费席位数未更新。</div>
+      <div class="op-q">「这个位置的微软还是很值得买入的」</div>
+      <div class="op-tag"><b>催化：</b>Azure+48%超预期、自由现金流186亿大超预期、下季度指引上调</div>
+      <div class="op-tag"><b>风险：</b>OpenAI单一客户依赖、M365席位增速放缓</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=run9hnLobpM&amp;t=1180s" class="tslink">19:40 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">2017年以来首次在投资级债券市场发债，市场开始怀疑能否消化这么多为AI进行的发债。本周仅跌0.5%，相对抗跌。云业务「和自己比不差、和预期比平平」，AI回报未完整拆出，投资者算不清楚。</div>
+      <div class="op-q">「微软则是2017年来首次发债，大家开始怀疑市场到底能不能消化这么多为AI进行的发债」</div>
+      <div class="op-tag"><b>催化：</b>首次发债（250亿美元）</div>
+      <div class="op-tag"><b>风险：</b>AI发债消化压力、云业务增速平平</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1260s" class="tslink">21:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st flat">中性/持有·中期</span></div>
+      
+      <div class="op-d">启动至少250亿美元美元债发行（9年多来首次投资级发债），预计AAA评级（全市场仅微软和强生两家），40年期利差仅+1.35个百分点（vs谷歌1.55、甲骨文1.95），融资成本优势明显。历史对比：2017年发债后约一年半资本开支增速见顶、之后放缓。若本次认购倍数4倍以上、利差压得住，说明市场仍愿借给顶级信用大科技。关键看2027财年资本开支增速降速（卖方预期65%→36%→16%），若指引只低1-2个百分点可接受、低5个百分点则信号糟糕。发债更可能是为「投资+回购分红」并行。</div>
+      <div class="op-q">「如果微软这次的认购倍数能保持在4倍以上，利差也压得住，就说明市场依然愿意把钱借给顶级信用的大科技」</div>
+      <div class="op-tag"><b>催化：</b>AAA评级融资成本优势、2027财年自由现金流保持为正、季度股息上调8%</div>
+      <div class="op-tag"><b>风险：</b>资本开支增速降速幅度、自由现金流承压（186亿 vs 去年257亿）</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1080s" class="tslink">18:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/31</span></span><span class="st flat">中性/持有·中期</span></div>
+      
+      <div class="op-d">微软与 Anthropic 深度绑定：既是其 130 亿投资的 OpenAI 竞争关系中的老对手，又为 Copilot 里的 Claude 功能每年付超 20 亿，且是其算力供应商（449 亿最低消费承诺）、客户、渠道与投资者。微软的 AI 生态中 Claude 与自有模型并存，招股书揭示微软买 Claude 的钱在 Anthropic 与微软双方财报上都会体现为收入，形成部分互相支撑的增长。</div>
+      <div class="op-q">「微软为了co-pilot里的Cloud功能，每年要付给Anthropic超过20亿」</div>
+      <div class="op-tag"><b>催化：</b>Azure云从Anthropic收取算力租金+渠道费、Copilot接入Claude功能</div>
+      <div class="op-tag"><b>风险：</b>循环交易质疑（收入部分互相支撑）、Anthropic订单缩水风险</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=-eAneK1yPek&amp;t=1322s" class="tslink">22:02 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">老李玩钱</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·10/28</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">551</b>（前高）</span></div>
+      <div class="op-d">财报调整后EPS和营收超预期，营收+19%，Azure云+48%至332亿是亮点。自由现金流-27%但仍为正，是四大云巨头（微软、Meta、谷歌、亚马逊）中唯一守住正自由现金流的一家。盘后涨至540以上、前高551，这一波可能冲新高。但老李不建议追高加仓，因微软估值相对其他科技巨头已偏高，当前位置买入性价比不高。</div>
+      <div class="op-q">「微软的自由现金流依然是正的……这一波可能就直接冲着新高去了」</div>
+      <div class="op-tag"><b>催化：</b>Azure+48%、唯一守住正自由现金流、盘后冲前高551</div>
+      <div class="op-tag"><b>风险：</b>估值相对偏高</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">5:24 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">The Investor Channel</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·10/30</span></span><span class="st up">看多/持有·长期</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">550</b>（历史新高区间）</span></div>
+      <div class="op-d">财报全面超预期：营收920亿、经营利润380亿→460亿（成本控制好，销售/管理费用基本持平）、净利360亿。发债250亿（5.2%-6.25%，投资级）。相对财务审慎：资本开支390亿（vs谷歌/亚马逊），数据中心交付延迟。华尔街奖励其保守。技术面：历史新高附近（550区间），磨过均线后突破是「逢跌买入」的最佳例证，540区间需磨过去。</div>
+      <div class="op-q">「一旦突破这些均线，微软的均线全部转为支撑，这就是为什么这些下跌是绝佳机会」</div>
+      <div class="op-tag"><b>催化：</b>全面超预期、财务审慎获奖励</div>
+      <div class="op-tag"><b>风险：</b>发债250亿、数据中心交付延迟</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1050s" class="tslink">17:30 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 1 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/28</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">2027财年Q1营收923亿+19%、调整后EPS 4.89+18%均好于预期；Azure超预期增长48%至332亿（预期328亿）。当季资本支出452亿低于此前预测的500亿，自由现金流186亿继续持稳且远高于预期85.4亿。在微软/谷歌/Meta/亚马逊四家超大规模云厂商中，是唯一预计明年仍保持现金流为正的公司，市场给予奖励、盘后上涨。</div>
+      <div class="op-q">「在微软、谷歌、META、亚马逊这几家超大规模云服务提供商中，微软是唯一一家预计明年仍将保持现金流为正的公司」</div>
+      <div class="op-tag"><b>催化：</b>Azure增速48%、资本支出低于指引</div>
+      <div class="op-tag"><b>风险：</b>若指数跌破5日均线仍会被拖累</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=180s" class="tslink">3:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span><span class="st down">看空/观望·中期</span></div>
+      
+      <div class="op-d">原本凭强劲云业务逆势上涨，但突然宣布2017年以来首次高评级债券发行、拟筹资至少250亿美元加入AI借债行列，消息后股价转跌。巨头钱多所以可以抱团避险的逻辑已经不成立，基本面变了，不能闭着眼睛随便买。</div>
+      <div class="op-q">「以前外面狂风暴雨的时候机构抱团巨头因为巨头钱多，但这个因素已经不成立了」</div>
+      
+      <div class="op-tag"><b>风险：</b>举债融资、AI资本开支压力</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=240s" class="tslink">4:00 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">
   <div class="sec-h">关键点位演进</div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/29</td><td>视野环球财经</td><td>阻力 <b class="num">600</b>上方（博主目标）<br>买点 <b class="num">490-534</b>（建仓区）</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00</a></td></tr>
+    <tr><td>10/27</td><td>视野环球财经</td><td>目标 <b class="num">530</b>（期权压注）<br>阻力 <b class="num">557</b>（破前高<b class="num">551</b>新高位）<br>支撑 <b class="num">490-503</b>（下方支撑）</td><td><a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">20:00</a></td></tr><tr><td>10/28</td><td>老李玩钱</td><td>阻力 <b class="num">551</b>（前高）</td><td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">5:24</a></td></tr><tr><td>10/28</td><td>视野环球财经</td><td>阻力 <b class="num">600</b>上方（博主目标）<br>买点 <b class="num">490-534</b>（长线建仓区）</td><td><a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td>10/29</td><td>视野环球财经</td><td>阻力 <b class="num">600</b>上方（博主目标）<br>买点 <b class="num">490-534</b>（建仓区）</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>目标 <b class="num">550</b>（历史新高区间）</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1050s" class="tslink">17:30</a></td></tr>
   </table>
 </div>
 
 <div class="sec">
   <div class="sec-h">催化剂（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">Azure增速48%</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">资本支出低于指引</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">自由现金流为正（四大唯一）</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI货币化加速</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AAA评级发债成本极低</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">首次发债（250亿美元）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AAA评级融资成本优势</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">2027财年自由现金流保持为正</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">季度股息上调8%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">250亿美元债券认购4.6倍</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">营收与自由现金流稳健</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Azure云从Anthropic收取算力租金+渠道费</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">Copilot接入Claude功能</span><span class="tag-date">10/31</span></div>
+  <div class="tag-item"><span class="tag-fg">490支撑未破</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">财报波动可控</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">Azure增速48%</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">资本支出低于指引</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">Azure+48%</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">唯一守住正自由现金流</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">盘后冲前高551</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">Azure+48%超预期</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">AI货币化四大最成功</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">自由现金流转正</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">营业利润率49.8%</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">营收净利双超预期</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">Azure+48%超指引</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">资本支出低于预估</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">自由现金流186亿大超预期</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">下季度指引上调</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">自由现金流为正（四大唯一）</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI货币化加速</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AAA评级发债成本极低</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">财报全面超预期</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">3A评级发债抢手</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">现金流云巨头最好</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">全面超预期</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">财务审慎获奖励</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">首次发债（250亿美元）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AAA评级融资成本优势</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">2027财年自由现金流保持为正</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">季度股息上调8%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">250亿美元债券认购4.6倍</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">营收与自由现金流稳健</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Azure云从Anthropic收取算力租金+渠道费</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">Copilot接入Claude功能</span><span class="tag-date">10/31</span></div>
 </div>
 
 <div class="sec">
   <div class="sec-h">风险因素（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">若指数跌破5日均线仍会被拖累</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">举债融资</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI资本开支压力</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">纳指破位后的量化抛压</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">短期情绪宣泄可能跌破490</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI发债消化压力</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">云业务增速平平</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">资本开支增速降速幅度</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">自由现金流承压（186亿 vs 去年257亿）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">循环交易质疑（收入部分互相支撑）</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">Anthropic订单缩水风险</span><span class="tag-date">10/31</span></div>
+  <div class="tag-item"><span class="tag-fg">财报不及预期</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">若指数跌破5日均线仍会被拖累</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">估值相对偏高</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">商业剩余履约义务环比无增长</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">Windows OEM收入暴跌22%</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">365席位增速放缓至7%</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">估值偏高</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">举债融资</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI资本开支压力</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">OpenAI单一客户依赖</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">M365席位增速放缓</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">纳指破位后的量化抛压</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">短期情绪宣泄可能跌破490</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">自由现金流缩水</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">250亿发债计划</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">发债250亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">数据中心交付延迟</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AI发债消化压力</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">云业务增速平平</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">资本开支增速降速幅度</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">自由现金流承压（186亿 vs 去年257亿）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">循环交易质疑（收入部分互相支撑）</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">Anthropic订单缩水风险</span><span class="tag-date">10/31</span></div>
 </div>
 
 <div class="sec">
   <div class="sec-h">观点时间线（按日期）</div>
   <div class="day">
+      <div class="day-h">10/27</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·短期</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">530</b>（期权压注）</span><span class="lv lv-r">阻力 <b class="num">557</b>（破前高<b class="num">551</b>新高位）</span><span class="lv lv-s">支撑 <b class="num">490-503</b>（下方支撑）</span></div>
+          <div class="op-d">微软财报期权压注530美元、上下27美元（68%概率），即财报波动约5%-6%。下沿503仍未跌破500、位于490上方，结构没有遭到破坏；往上加27美元到557就是新高（前高551），相对来讲结构最稳。微软在本周三科技财报里相对最安全。</div>
+          <div class="op-q">「微软是530美元上下27美元的波动，往下减一减还没有跌破500，仍旧位于490的上方，结构没有遭到破坏」</div>
+          <div class="op-tag"><b>催化：</b>490支撑未破、财报波动可控</div>
+          <div class="op-tag"><b>风险：</b>财报不及预期</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">20:00 回看</a></div>
+        </div>
+    </div><div class="day">
       <div class="day-h">10/28</div>
       <div class="op">
           <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st up">看多/持有·中期</span></div>
@@ -123,6 +278,30 @@
           <div class="op-tag"><b>催化：</b>Azure增速48%、资本支出低于指引</div>
           <div class="op-tag"><b>风险：</b>若指数跌破5日均线仍会被拖累</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=180s" class="tslink">3:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">老李玩钱</span><span class="st up">看多/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">551</b>（前高）</span></div>
+          <div class="op-d">财报调整后EPS和营收超预期，营收+19%，Azure云+48%至332亿是亮点。自由现金流-27%但仍为正，是四大云巨头（微软、Meta、谷歌、亚马逊）中唯一守住正自由现金流的一家。盘后涨至540以上、前高551，这一波可能冲新高。但老李不建议追高加仓，因微软估值相对其他科技巨头已偏高，当前位置买入性价比不高。</div>
+          <div class="op-q">「微软的自由现金流依然是正的……这一波可能就直接冲着新高去了」</div>
+          <div class="op-tag"><b>催化：</b>Azure+48%、唯一守住正自由现金流、盘后冲前高551</div>
+          <div class="op-tag"><b>风险：</b>估值相对偏高</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">5:24 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·长期</span></div>
+          <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（长线建仓区）</span></div>
+          <div class="op-d">第一财季「AI货币化成功上岸」：营收923亿超预期、EPS 4.89超预期、Azure按固定汇率+48%远超自身44-45%指引、营业利润率49.8%。AI货币化业务单季披露营收332亿美元比市场预期322亿高11亿。自由现金流186亿(-27%)但仍是四大科技里唯一能用运营现金流覆盖所有费用、唯一自由现金流转正的。2027财年承诺保持自由现金流转正并强调每美元资本开支回报提升。博主第一大持仓14%、成本251块，目标仍上看600（当前财年中位536、往后一年中位632），490-534是长线建仓区。600以上才考虑减仓，跌破490短线也不管。</div>
+          <div class="op-q">「他的AI货币化在四大科技中最成功，目前最成功……已经明确自由现金流可以负担支出，所以为什么标题上我写着他的AI货币化成功上岸了」</div>
+          <div class="op-tag"><b>催化：</b>Azure+48%超预期、AI货币化四大最成功、自由现金流转正、营业利润率49.8%</div>
+          <div class="op-tag"><b>风险：</b>商业剩余履约义务环比无增长、Windows OEM收入暴跌22%、365席位增速放缓至7%</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">23:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">财报显著超预期：营收922.8亿(+18.8%)超预期906亿、净利366.3亿(+32%)、Azure云+48%超指引45%。云收入332亿、资本支出452亿低于预估510亿，是「正常科技明星股」的样子，各方面优秀。盘后涨3个多点，明天可能创历史新高。</div>
+          <div class="op-q">「微软的财报才是正常科技明星股的样子，各方面优秀」</div>
+          <div class="op-tag"><b>催化：</b>营收净利双超预期、Azure+48%超指引、资本支出低于预估</div>
+          <div class="op-tag"><b>风险：</b>估值偏高</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=xZO-bPVpFRk&amp;t=712s" class="tslink">11:52 回看</a></div>
         </div>
     </div><div class="day">
       <div class="day-h">10/29</div>
@@ -135,6 +314,14 @@
           <div class="op-tag"><b>风险：</b>举债融资、AI资本开支压力</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=240s" class="tslink">4:00 回看</a></div>
         </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/买入·长期</span></div>
+          
+          <div class="op-d">财报延续稳健风格：营收923亿(+19%)、EPS 4.89(+18%)超预期3.5%、营业利润率49.8%。Azure+48%超预期（受益Foundry平台收入两倍多+工程优化硬件效率提升），供给受限下仍跑出高增速，下季度指引抬到49%-50%说明AI需求端无问题、瓶颈在供给。资本开支452亿低于预期13%、2026年指引下调到1700亿（第三方产能延迟），自由现金流186亿大超预期一倍多，2027财年保持为正。下季度收入中位数966亿超预期。Tim观点：微软是难得Megacap Leader，稳定现金流+稳定AI回报，即便涨了不少仍值得买入。留意：OpenAI贡献约11%收入（依赖未下降）、M365付费席位增速放缓到5%、Copilot付费席位数未更新。</div>
+          <div class="op-q">「这个位置的微软还是很值得买入的」</div>
+          <div class="op-tag"><b>催化：</b>Azure+48%超预期、自由现金流186亿大超预期、下季度指引上调</div>
+          <div class="op-tag"><b>风险：</b>OpenAI单一客户依赖、M365席位增速放缓</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=run9hnLobpM&amp;t=1180s" class="tslink">19:40 回看</a></div>
+        </div><div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·长期</span></div>
           <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（建仓区）</span></div>
           <div class="op-d">四大AI数据中心公司中唯一自由现金流为正的（微软正、亚马逊/谷歌/Meta都转负），且承诺财年自由现金流为正。250亿美元发债获1150亿认购（4.6倍），利率仅比美债高0.86个百分点，比三年前置换债溢价还低，顶级AAA评级（全美仅微软和强生两家）让融资成本极低。发债是「效率置换」非利空。博主明确持有不动、看600上方，490-534是无仓位者的建仓区（需预留仓位防纳指破位跌到490以下）。</div>
@@ -142,10 +329,26 @@
           <div class="op-tag"><b>催化：</b>自由现金流为正（四大唯一）、AI货币化加速、AAA评级发债成本极低</div>
           <div class="op-tag"><b>风险：</b>纳指破位后的量化抛压、短期情绪宣泄可能跌破490</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">微软财报各项指标都过关：收入利润超预期、云增速超预期、资本支出低于原计划，是云巨头里现金流最好的一家。但自由现金流缩水，股价由升转跌，可能因一笔250亿发债计划（期限2-40年、利率约6%以上、3A评级）。微软3A评级债券市场抢着买，财报后没大涨但至少排了雷，博主判断股价应稳定看涨。</div>
+          <div class="op-q">「微软的财报各项指标都过关……云增速超预期……微软是云巨头里面现金流最好的一家」</div>
+          <div class="op-tag"><b>催化：</b>财报全面超预期、3A评级发债抢手、现金流云巨头最好</div>
+          <div class="op-tag"><b>风险：</b>自由现金流缩水、250亿发债计划</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=wCUn2t-uSNc&amp;t=512s" class="tslink">8:32 回看</a></div>
         </div>
     </div><div class="day">
       <div class="day-h">10/30</div>
       <div class="op">
+          <div class="op-h"><span class="op-c">The Investor Channel</span><span class="st up">看多/持有·长期</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">550</b>（历史新高区间）</span></div>
+          <div class="op-d">财报全面超预期：营收920亿、经营利润380亿→460亿（成本控制好，销售/管理费用基本持平）、净利360亿。发债250亿（5.2%-6.25%，投资级）。相对财务审慎：资本开支390亿（vs谷歌/亚马逊），数据中心交付延迟。华尔街奖励其保守。技术面：历史新高附近（550区间），磨过均线后突破是「逢跌买入」的最佳例证，540区间需磨过去。</div>
+          <div class="op-q">「一旦突破这些均线，微软的均线全部转为支撑，这就是为什么这些下跌是绝佳机会」</div>
+          <div class="op-tag"><b>催化：</b>全面超预期、财务审慎获奖励</div>
+          <div class="op-tag"><b>风险：</b>发债250亿、数据中心交付延迟</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1050s" class="tslink">17:30 回看</a></div>
+        </div><div class="op">
           <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/观望·中期</span></div>
           
           <div class="op-d">2017年以来首次在投资级债券市场发债，市场开始怀疑能否消化这么多为AI进行的发债。本周仅跌0.5%，相对抗跌。云业务「和自己比不差、和预期比平平」，AI回报未完整拆出，投资者算不清楚。</div>

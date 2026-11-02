@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -78,26 +85,74 @@
 <div class="hero">
   <p class="nm">波音</p>
   <div class="tk">BA · 工业</div>
-  <div class="meta">3 条观点 · 2026-10-27 ~ 2026-10-30 · 2 位博主</div>
+  <div class="meta">4 条观点 · 2026-10-27 ~ 2026-10-30 · 3 位博主</div>
 </div>
+
+
 
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
-    <div class="stat-box"><div class="n">3</div><div class="l">提及次数</div></div>
+    <div class="stat-box"><div class="n">4</div><div class="l">提及次数</div></div>
     <div class="stat-box up"><div class="n">0</div><div class="l">看多</div></div>
-    <div class="stat-box down"><div class="n">3</div><div class="l">看空</div></div>
+    <div class="stat-box down"><div class="n">4</div><div class="l">看空</div></div>
     <div class="stat-box"><div class="n">0</div><div class="l">中性</div></div>
   </div>
   <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean down">偏空</span>（均分 -1.00）</p>
-  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span></div>
+  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">视野环球财经</span><span class="chip">美投侃新闻</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/27</span></span><span class="st down">看空/回避·中期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">164-178</b>（近期强支撑）</span><span class="lv lv-t">触发 <b class="num">149-159</b>（跌破后更大空头）</span></div>
+      <div class="op-d">波音三季报现金流和营收强于预期，但前景预警掩盖利好：核心每股亏损34美分（预期亏21美分），营收增长4%到242亿。因需要更多时间达到可持续生产速度，大幅下调商用飞机交付预期，无法实现全年500架737生产目标、只能交付约90架787梦想客机（指导范围最低值）。股价盘中跌10%。技术面：164-178是最近强支撑，跌破149-159有更大空头趋势，目前价格已跌破200日均且偏离较远，弱势明显。明年前瞻仅100块出头且会继续下调。</div>
+      <div class="op-q">「尽管波音公司的现金流和营收都是强于预期，但是它的前景预警去掩盖了这些利好」</div>
+      
+      <div class="op-tag"><b>风险：</b>交付预期大幅下调、737生产目标无法实现、跌破200日均</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=180s" class="tslink">3:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st down">看空/观望·短期</span></div>
+      
+      <div class="op-d">本周下跌8.9%，民用飞机业务的利润率偏弱。</div>
+      <div class="op-q">「波音本周下跌8.9%，民用飞机业务的利润率偏弱」</div>
+      
+      <div class="op-tag"><b>风险：</b>民机业务利润率偏弱</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1500s" class="tslink">25:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean down">偏空</span><span class="ch-meta">2 条 · 看多 0 / 看空 2</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/27</span></span><span class="st down">看空/回避·中期</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">150</b>（<b class="num">250</b>月均线）</span></div>
+      <div class="op-d">财报后股价大跌差点把道指带崩。Q3营收241.9亿+4%超预期238.4亿，净亏损从去年53.4亿收窄至1.16亿，但每股亏损-0.34高于预期-0.21。至关重要的商用飞机业务营收下滑3%，营业利润率仅6.5%（交付机型结构不及预期、产能调整成本上升、供应链成本走高）。最惨的是管理层表态一个比一个悲观：CEO称明年之前都无法实现当前737生产率目标，CFO称遗留项目拖累现金流、2027年自由现金流将下降，737又延迟到明年才能实现月产47架完全稳定。</div>
+      <div class="op-q">「短期或许有死猫跳，但中期可能要再去250月均线大约是150美元附近踩一脚了」</div>
+      
+      <div class="op-tag"><b>风险：</b>737产能目标一再延后、2027年自由现金流下降</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=480s" class="tslink">8:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/30</span></span><span class="st down">看空/回避·中期</span></div>
+      
+      <div class="op-d">被形容为「废太子」，与英特尔并列，指被白宫扶持后又失宠的公司。属于顺带评价，无独立逻辑展开。</div>
+      <div class="op-q">「这个白宫亲手扶持起来的新帝国长子被市场给飞起一脚踹入冷宫，与废太子波音作伴去了」</div>
+      
+      
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=60s" class="tslink">1:00 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">
   <div class="sec-h">关键点位演进</div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/27</td><td>NaNa说美股</td><td>目标 <b class="num">150</b>（<b class="num">250</b>月均线）</td><td><a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=480s" class="tslink">8:00</a></td></tr>
+    <tr><td>10/27</td><td>NaNa说美股</td><td>目标 <b class="num">150</b>（<b class="num">250</b>月均线）</td><td><a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=480s" class="tslink">8:00</a></td></tr><tr><td>10/27</td><td>视野环球财经</td><td>支撑 <b class="num">164-178</b>（近期强支撑）<br>触发 <b class="num">149-159</b>（跌破后更大空头）</td><td><a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=180s" class="tslink">3:00</a></td></tr>
   </table>
 </div>
 
@@ -108,7 +163,7 @@
 
 <div class="sec">
   <div class="sec-h">风险因素（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">737产能目标一再延后</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">2027年自由现金流下降</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">民机业务利润率偏弱</span><span class="tag-date">10/30</span></div>
+  <div class="tag-item"><span class="tag-fg">737产能目标一再延后</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">2027年自由现金流下降</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">交付预期大幅下调</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">737生产目标无法实现</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">跌破200日均</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">民机业务利润率偏弱</span><span class="tag-date">10/30</span></div>
 </div>
 
 <div class="sec">
@@ -123,6 +178,14 @@
           
           <div class="op-tag"><b>风险：</b>737产能目标一再延后、2027年自由现金流下降</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=480s" class="tslink">8:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st down">看空/回避·中期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">164-178</b>（近期强支撑）</span><span class="lv lv-t">触发 <b class="num">149-159</b>（跌破后更大空头）</span></div>
+          <div class="op-d">波音三季报现金流和营收强于预期，但前景预警掩盖利好：核心每股亏损34美分（预期亏21美分），营收增长4%到242亿。因需要更多时间达到可持续生产速度，大幅下调商用飞机交付预期，无法实现全年500架737生产目标、只能交付约90架787梦想客机（指导范围最低值）。股价盘中跌10%。技术面：164-178是最近强支撑，跌破149-159有更大空头趋势，目前价格已跌破200日均且偏离较远，弱势明显。明年前瞻仅100块出头且会继续下调。</div>
+          <div class="op-q">「尽管波音公司的现金流和营收都是强于预期，但是它的前景预警去掩盖了这些利好」</div>
+          
+          <div class="op-tag"><b>风险：</b>交付预期大幅下调、737生产目标无法实现、跌破200日均</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=180s" class="tslink">3:00 回看</a></div>
         </div>
     </div><div class="day">
       <div class="day-h">10/30</div>

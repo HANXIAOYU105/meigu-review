@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -78,34 +85,88 @@
 <div class="hero">
   <p class="nm">Reddit</p>
   <div class="tk">RDDT · 互联网</div>
-  <div class="meta">3 条观点 · 2026-10-30 ~ 2026-10-30 · 3 位博主</div>
+  <div class="meta">4 条观点 · 2026-10-30 ~ 2026-10-30 · 4 位博主</div>
 </div>
+
+
 
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
-    <div class="stat-box"><div class="n">3</div><div class="l">提及次数</div></div>
+    <div class="stat-box"><div class="n">4</div><div class="l">提及次数</div></div>
     <div class="stat-box up"><div class="n">0</div><div class="l">看多</div></div>
-    <div class="stat-box down"><div class="n">3</div><div class="l">看空</div></div>
+    <div class="stat-box down"><div class="n">4</div><div class="l">看空</div></div>
     <div class="stat-box"><div class="n">0</div><div class="l">中性</div></div>
   </div>
-  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean down">偏空</span>（均分 -1.33）</p>
-  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span><span class="chip">阳光财经</span></div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean down">偏空</span>（均分 -1.25）</p>
+  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">The Trading Apologist</span><span class="chip">美投侃新闻</span><span class="chip">阳光财经</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/30</span></span><span class="st down">看空/回避·中期</span></div>
+      
+      <div class="op-d">股价暴跌近30%，Q3业绩虽强（营收+53%、净利2.83亿+75%）但Q4指引不及预期；更关键的是搜索引擎导流持续减少、美国用户增长放缓，AI直接给答案让用户不再点击外部链接，而计划推进的登录墙可能进一步压制用户增长。多家机构下调评级。</div>
+      <div class="op-q">「其它很多更好的股票都打骨折了，没必要买这支」</div>
+      
+      <div class="op-tag"><b>风险：</b>搜索导流下滑、登录限制压制增长、52周高点回撤约68%</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=900s" class="tslink">15:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">The Trading Apologist</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/30</span></span><span class="st down">看空/回避·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">70-80</b>（第一支撑）</span><span class="lv lv-s">支撑 <b class="num">50-60</b>（下一支撑）</span></div>
+      <div class="op-d">上市以来最差单日，一周跌约37%、财报当日跌近31%。财报本身强劲：营收+53%至8.95亿、现金30.3亿、无债务、自由现金流3.63亿。但Q4指引弱（营收10亿 vs 预期10.5亿）。真正问题是谷歌AI模式切断推荐流量（每周减少超100万点击），美国日活首次自IPO以来下降2%至5070万。Reddit不是因融资测试失败被抛售，而是AI阻断流量引发增长放缓担忧。博主：喜欢其收入、认为公司有潜力，但跌破主要趋势线，即便V型反弹也大概率是lower high+横盘。支撑70-80，下一支撑50-60。</div>
+      <div class="op-q">「AI模式不给任何人导流——包括我们，也包括Reddit」</div>
+      <div class="op-tag"><b>催化：</b>营收+53%、无债务、现金流健康</div>
+      <div class="op-tag"><b>风险：</b>谷歌AI切断推荐流量、美国日活首次下降、Q4指引弱</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2720s" class="tslink">45:20 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st down">看空/观望·短期</span></div>
+      
+      <div class="op-d">三季度收入8.95亿超预期，但四季度收入指引10亿至10.3亿低于预期，美国日活用户同比下滑2%，CEO宣布限制未登录用户访问，盘后大跌约18%。</div>
+      <div class="op-q">「Reddit三季度收入8.95亿美元超预期，但四季度收入指引低于预期，美国日活用户同比下滑2%，股价盘后大跌约18%」</div>
+      
+      <div class="op-tag"><b>风险：</b>Q4指引低于预期、日活用户下滑2%、限制未登录用户访问</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1320s" class="tslink">22:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/30</span></span><span class="st down">强烈看空/卖出·长期</span></div>
+      
+      <div class="op-d">之前盈利清仓的Reddit今天爆大雷，跌了三分之一，收盘只剩91美元。Reddit在AI时代前景不乐观——它是美版贴吧，靠用户贴帖提问找答案，但现在大家直接问AI了。谷歌是Reddit的流量来源，而谷歌自己都置顶AI概要，用户无需再点进贴吧找答案。明确表示不会买回，甚至可能移出自选股。</div>
+      <div class="op-q">「Reddit在AI时代前景不乐观……我不会买回这只股，甚至我有可能就移出自选股了」</div>
+      
+      <div class="op-tag"><b>风险：</b>搜索导流被AI截断、用户增长见顶</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=900s" class="tslink">15:00 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">
   <div class="sec-h">关键点位演进</div>
-  <p class="empty">暂无价位观点</p>
+  <table>
+    <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
+    <tr><td>10/30</td><td>The Trading Apologist</td><td>支撑 <b class="num">70-80</b>（第一支撑）<br>支撑 <b class="num">50-60</b>（下一支撑）</td><td><a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2720s" class="tslink">45:20</a></td></tr>
+  </table>
 </div>
 
 <div class="sec">
   <div class="sec-h">催化剂（按首见日期）</div>
-  <span class="empty">—</span>
+  <div class="tag-item"><span class="tag-fg">营收+53%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">无债务、现金流健康</span><span class="tag-date">10/30</span></div>
 </div>
 
 <div class="sec">
   <div class="sec-h">风险因素（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">搜索导流下滑</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">登录限制压制增长</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">52周高点回撤约68%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Q4指引低于预期</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">日活用户下滑2%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">限制未登录用户访问</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">搜索导流被AI截断</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">用户增长见顶</span><span class="tag-date">10/30</span></div>
+  <div class="tag-item"><span class="tag-fg">搜索导流下滑</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">登录限制压制增长</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">52周高点回撤约68%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">谷歌AI切断推荐流量</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">美国日活首次下降</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Q4指引弱</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Q4指引低于预期</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">日活用户下滑2%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">限制未登录用户访问</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">搜索导流被AI截断</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">用户增长见顶</span><span class="tag-date">10/30</span></div>
 </div>
 
 <div class="sec">
@@ -120,6 +181,14 @@
           
           <div class="op-tag"><b>风险：</b>搜索导流下滑、登录限制压制增长、52周高点回撤约68%</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=900s" class="tslink">15:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">70-80</b>（第一支撑）</span><span class="lv lv-s">支撑 <b class="num">50-60</b>（下一支撑）</span></div>
+          <div class="op-d">上市以来最差单日，一周跌约37%、财报当日跌近31%。财报本身强劲：营收+53%至8.95亿、现金30.3亿、无债务、自由现金流3.63亿。但Q4指引弱（营收10亿 vs 预期10.5亿）。真正问题是谷歌AI模式切断推荐流量（每周减少超100万点击），美国日活首次自IPO以来下降2%至5070万。Reddit不是因融资测试失败被抛售，而是AI阻断流量引发增长放缓担忧。博主：喜欢其收入、认为公司有潜力，但跌破主要趋势线，即便V型反弹也大概率是lower high+横盘。支撑70-80，下一支撑50-60。</div>
+          <div class="op-q">「AI模式不给任何人导流——包括我们，也包括Reddit」</div>
+          <div class="op-tag"><b>催化：</b>营收+53%、无债务、现金流健康</div>
+          <div class="op-tag"><b>风险：</b>谷歌AI切断推荐流量、美国日活首次下降、Q4指引弱</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2720s" class="tslink">45:20 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st down">看空/观望·短期</span></div>
           

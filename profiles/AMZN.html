@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -78,42 +85,174 @@
 <div class="hero">
   <p class="nm">亚马逊</p>
   <div class="tk">AMZN · 电商云计算</div>
-  <div class="meta">7 条观点 · 2026-10-29 ~ 2026-10-31 · 3 位博主</div>
+  <div class="meta">12 条观点 · 2026-10-27 ~ 2026-10-31 · 6 位博主</div>
 </div>
+
+
 
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
-    <div class="stat-box"><div class="n">7</div><div class="l">提及次数</div></div>
-    <div class="stat-box up"><div class="n">1</div><div class="l">看多</div></div>
-    <div class="stat-box down"><div class="n">2</div><div class="l">看空</div></div>
-    <div class="stat-box"><div class="n">4</div><div class="l">中性</div></div>
+    <div class="stat-box"><div class="n">12</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">2</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">5</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">5</div><div class="l">中性</div></div>
   </div>
-  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 -0.14）</p>
-  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">视野环球财经</span><span class="chip">美投侃新闻</span></div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 -0.25）</p>
+  <div class="chips"><span class="chip">视野环球财经</span><span class="chip">NaNa说美股</span><span class="chip">The Trading Apologist</span><span class="chip">阳光财经</span><span class="chip">The Investor Channel</span><span class="chip">美投侃新闻</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">10-Q文件藏一笔最高800亿美元的担保贷款（供应商融资安排），拿AI设备做抵押、浮动利率5年期，2027Q1-2028Q3可自行决定借多少。分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来5年现金流偿还，能省眼前现金流并缓解评级压力。但信号含义是「连信用最好的大科技都开始拿设备抵押借钱」，反映AI花钱速度之快。AWS增速未达偏高市场预期，本周跌3.1%。</div>
+      <div class="op-q">「如果连信用最好的大科技也开始拿设备做抵押来借钱，那就说明AI的花钱速度已经快到连最赚钱的公司都要想办法省现金了」</div>
+      <div class="op-tag"><b>催化：</b>800亿美元担保贷款融资安排、2027资本开支明显增加</div>
+      <div class="op-tag"><b>风险：</b>AWS增速不及市场预期、现金资本开支飙升（三季度759亿）、债务从688亿飙至1809亿</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=480s" class="tslink">8:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st up">看多/买入·中期</span></div>
+      
+      <div class="op-d">分析师Steven认为：财报最大问题在广告（本季+12%大幅miss、下季指引也miss，且个人agent兴起冲击广告），AWS 39%增长虽符合预期但买方预期早到40%+算miss。但CEO明确表示2027-2028年AWS都能增40%以上（大幅高于市场38%/30%预期），未来两年AWS收入可预见性很高、股价当下合理，「这个位置的亚马逊很可能是一个不错的机会」。资本开支（含融资租赁）773亿大超预期31%，自由现金流-424亿创纪录。</div>
+      <div class="op-q">「由于未来两年AWS收入可预见性很高，股价当下又比较合理，这个位置的亚马逊很可能是一个不错的机会」</div>
+      <div class="op-tag"><b>催化：</b>AWS 2027-2028增长40%+指引、积压订单5780亿同比三位数、Trainium芯片2027年底对外销售</div>
+      <div class="op-tag"><b>风险：</b>广告业务miss（个人agent冲击）、自由现金流-424亿创纪录、AI业务利润率低</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=480s" class="tslink">8:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/31</span></span><span class="st flat">中性/持有·中期</span></div>
+      
+      <div class="op-d">亚马逊是 Anthropic 最重要的算力供应商之一，从 Anthropic 身上通过算力租赁、渠道费、研发算力三条路径获利，最低消费承诺 1100 亿（不可撤销），AWS 订单达 5000 亿级。招股书揭示亚马逊既是投资者、供应商、客户、渠道又是竞争对手，Anthropic 的资本开支是其 AWS 增长的重要来源。</div>
+      <div class="op-q">「亚马逊1100亿……都是最低消费，不管用没用都得付」</div>
+      <div class="op-tag"><b>催化：</b>AWS承接Anthropic算力需求、1100亿最低消费承诺</div>
+      <div class="op-tag"><b>风险：</b>Anthropic收入/融资跟不上导致订单延后、循环交易依赖</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=-eAneK1yPek&amp;t=1729s" class="tslink">28:49 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">The Investor Channel</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·10/30</span></span><span class="st up">看多/持有·长期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 低<b class="num">200</b>（支撑）</span></div>
+      <div class="op-d">财报双miss（营收2020亿、EPS、Q4指引偏弱），但AWS+39%（Q2+37%加速）、电商与AWS未来5-10年各达万亿营收。资本开支季度770亿（史上罕见），是下跌主因。博主认为作为股东需「系好安全带」等待AWS万亿营收兑现。技术面：暴跌至230后收盘反弹至240（200日均线245下方），低200有充足支撑，仍是higher highs/higher lows结构，希望在此企稳。</div>
+      <div class="op-q">「作为亚马逊股东，你基本上只需要系好安全带，等待这些收入最终兑现」</div>
+      <div class="op-tag"><b>催化：</b>AWS+39%加速、两大业务各冲万亿营收</div>
+      <div class="op-tag"><b>风险：</b>电商/广告增速放缓、资本开支770亿</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">9:10 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/27</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">255</b>（期权压注）</span><span class="lv">目标 <b class="num">275</b>（破近期高点）</span><span class="lv lv-s">支撑 <b class="num">235</b>（强支撑）</span></div>
+      <div class="op-d">亚马逊财报（周四）期权压注255美元、上下20美元（68%概率），即7%-8%的涨跌。往上加20到275直接破近期高点265附近、确认上行趋势；往下减20到235仍是较强支撑位置，不算太紧张。看点是有没有破近期高点打新高的机会。</div>
+      <div class="op-q">「亚马逊是255美元上下20美元的波动，往上加20是275直接破近期高点……往下减到235仍旧是较强的支撑位置」</div>
+      <div class="op-tag"><b>催化：</b>破265近期高点确认上行</div>
+      <div class="op-tag"><b>风险：</b>财报波动7-8%</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">23:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/29</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">三季报AWS收入460亿+39.3%近五年最快、超预期，零售利润改善，但问题在广告（+12%明显放缓、低于预期208亿）和前瞻（Q4营收终值2345亿低于预期2421亿）。自由现金流-424亿大幅恶化，本季新增481亿长期债务、利息支出增长超3倍。博主认为亚马逊整体没有重大意外，只是自由现金流支出偏多且Q4会减（总额2200亿不变），综合排序「微软最好、亚马逊第二、谷歌最差」。价格已跌至技术面强支撑，此位置不是杀跌点，需看QQQ是否破位。</div>
+      <div class="op-q">「亚马逊本身并没有出现所谓的重大意外，只有自由现金流的支出稍微多一些」</div>
+      <div class="op-tag"><b>催化：</b>AWS+39.3%近五年最快、零售利润改善、维持2026年2200亿资本开支</div>
+      <div class="op-tag"><b>风险：</b>广告收入疲软、自由现金流-424亿创纪录、长期债务9个月翻倍至1731亿、利息支出增长超3倍</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1080s" class="tslink">18:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">与谷歌类似，AI营收快速增长且超预期，但自营广告略有疲软。480亿美元新债是关注AI债券市场能否重新打开的关键信号。广告疲软是偶发还是趋势需等四季度财报确认。</div>
+      <div class="op-q">「亚马逊480亿美元的新债……需要关注超大规模数据中心的利差，看债券市场是否会重新开放以承销AI项目」</div>
+      <div class="op-tag"><b>催化：</b>480亿美元新债发行</div>
+      <div class="op-tag"><b>风险：</b>广告业务疲软、AI资本开支与回报担忧</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1560s" class="tslink">26:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/29</span></span><span class="st down">看空/回避·短期</span></div>
+      
+      <div class="op-d">盘后暴雷：三季度营收2019.4亿（预期2023.1亿）、EPS 1.89（预期1.96）双不及预期，与谷歌「难兄难弟」。2026资本支出维持2200亿美元，大笔投资导致负现金流，已连续两季自由现金流为负。</div>
+      <div class="op-q">「亚马逊也折价10%啊，和谷歌简直是难兄难弟啊」</div>
+      
+      <div class="op-tag"><b>风险：</b>营收利润双miss、连续两季自由现金流为负、资本支出2200亿</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=wCUn2t-uSNc&amp;t=630s" class="tslink">10:30 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean down">偏空</span><span class="ch-meta">2 条 · 看多 0 / 看空 2</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span><span class="st down">看空/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低）</span></div>
+      <div class="op-d">盘后闪崩12%。Q3营收2019亿+12%但净利润同比-2%均不及预期，Q4指引中规中矩。AWS增速39%为近五年最快且预计27/28年超40%，但今年资本开支约2200亿美元，自由现金流被干成-335亿（市场预期-99亿），连续第二季度为负，过去12个月-424亿。在手订单近5000亿也无济于事。</div>
+      <div class="op-q">「财务状况是不需要担忧，但是亚马逊已经从靠自由现金流投资变成靠举债投资」</div>
+      <div class="op-tag"><b>催化：</b>AWS增速指引强劲</div>
+      <div class="op-tag"><b>风险：</b>自由现金流大幅为负、资本开支侵蚀利润</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/30</span></span><span class="st down">看空/观望·中期</span></div>
+      
+      <div class="op-d">被称作「祸头子」，昨天盘后跳水11%但今天低开高走只收跌1.4%，说明还有抄底买盘。与谷歌类似，老登业务（电商、广告）被AI蚕食、增长乏力，只靠云业务撑门面，烧钱搞AI到现金流为负。但股价相对位置低（去年涨5%、今年涨4%），跌幅小于谷歌。</div>
+      <div class="op-q">「它的财报和谷歌本质上都差不多，都是原来的老登业务被AI蚕食了」</div>
+      
+      <div class="op-tag"><b>风险：</b>AI资本支出侵蚀现金流、电商与广告增长乏力</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=0s" class="tslink">0:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">The Trading Apologist</span><span class="lean down">偏空</span><span class="ch-meta">2 条 · 看多 0 / 看空 2</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/29</span></span><span class="st down">看空/回避·中期</span></div>
+      <div class="op-lv"><span class="lv">目标 时间投影磨底至<b class="num">2027-2029</b></span></div>
+      <div class="op-d">财报勉强miss：EPS 1.89 vs 预期1.97、营收2019亿 vs 预期2022亿，但市场不给余地。亮点是AWS+39%近5年最快、2027-2028增长指引超40%，但12个月自由现金流从+148亿转-424亿，超大规模云厂商融资方式转变市场仍在适应。技术面跌破2023年1月以来主要周线趋势线（下影线跌破），是决定性的性格转变。博主用时间测算：趋势低点到高点189根K线，1/3（63根）对应2027年10月、1/2对应2028年5月、2/3对应2029年1月，暗示即便反弹也可能是漫长的磨底/漂移下行，为未来一年提供逢低吸纳机会。</div>
+      <div class="op-q">「即便反弹，我感觉也会是一个漫长的磨底期，超大规模厂商未来一年可能只是反复提供逢低吸纳的机会」</div>
+      <div class="op-tag"><b>催化：</b>AWS+39%近5年最快、2027-2028增长指引超40%、周五反弹5.5%</div>
+      <div class="op-tag"><b>风险：</b>自由现金流转负424亿、跌破主要周线趋势线、融资方式转变</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">22:10 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/30</span></span><span class="st down">看空/回避·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b></span></div>
+      <div class="op-d">财报有亮点但市场不买账：AWS+39%近5年最快、积压订单5780亿、营业利润281亿创新高、2027-2028增长指引超40%。但资本开支773亿（同比翻倍、超预期200亿）、自由现金流12个月从+148亿转-424亿、长期债务从年初660亿增至1730亿，Jassy称2027资本开支显著提高。股价跌约12%，与谷歌类似但市场周五更愿意买亚马逊（反弹5.5%）。技术面跌破200日均线、跌破2023年1月以来的主要周线趋势线，博主用时间测算：从趋势低点到高点的1/3/1/2/2/3时间投影分别在2027年10月、2028年5月、2029年1月，暗示可能长期磨底/漂移下行。</div>
+      <div class="op-q">「即使反弹，我感觉也会是一个漫长的磨底期」</div>
+      <div class="op-tag"><b>催化：</b>AWS+39%、积压订单5780亿、周五反弹5.5%</div>
+      <div class="op-tag"><b>风险：</b>自由现金流转负424亿、长期债务激增至1730亿、跌破主要周线趋势线</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">37:20 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">
   <div class="sec-h">关键点位演进</div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/29</td><td>NaNa说美股</td><td>支撑 补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低）</td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00</a></td></tr>
+    <tr><td>10/27</td><td>视野环球财经</td><td>目标 <b class="num">255</b>（期权压注）<br>目标 <b class="num">275</b>（破近期高点）<br>支撑 <b class="num">235</b>（强支撑）</td><td><a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td>10/29</td><td>NaNa说美股</td><td>支撑 补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低）</td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00</a></td></tr><tr><td>10/29</td><td>The Trading Apologist</td><td>目标 时间投影磨底至<b class="num">2027-2029</b></td><td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">22:10</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>支撑 低<b class="num">200</b>（支撑）</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">9:10</a></td></tr><tr><td>10/30</td><td>The Trading Apologist</td><td>触发 跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b></td><td><a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">37:20</a></td></tr>
   </table>
 </div>
 
 <div class="sec">
   <div class="sec-h">催化剂（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">AWS增速指引强劲</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AWS+39.3%近五年最快</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">零售利润改善</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">维持2026年2200亿资本开支</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">800亿美元担保贷款融资安排</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">2027资本开支明显增加</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS 2027-2028增长40%+指引</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">积压订单5780亿同比三位数</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Trainium芯片2027年底对外销售</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">480亿美元新债发行</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS承接Anthropic算力需求</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">1100亿最低消费承诺</span><span class="tag-date">10/31</span></div>
+  <div class="tag-item"><span class="tag-fg">破265近期高点确认上行</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">AWS增速指引强劲</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AWS+39%近5年最快</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">2027-2028增长指引超40%</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">周五反弹5.5%</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AWS+39.3%近五年最快</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">零售利润改善</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">维持2026年2200亿资本开支</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AWS+39%加速</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">两大业务各冲万亿营收</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS+39%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">积压订单5780亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">800亿美元担保贷款融资安排</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">2027资本开支明显增加</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS 2027-2028增长40%+指引</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">积压订单5780亿同比三位数</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Trainium芯片2027年底对外销售</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">480亿美元新债发行</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS承接Anthropic算力需求</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">1100亿最低消费承诺</span><span class="tag-date">10/31</span></div>
 </div>
 
 <div class="sec">
   <div class="sec-h">风险因素（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">自由现金流大幅为负</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">资本开支侵蚀利润</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">广告收入疲软</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">自由现金流-424亿创纪录</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">长期债务9个月翻倍至1731亿</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">利息支出增长超3倍</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI资本支出侵蚀现金流</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">电商与广告增长乏力</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS增速不及市场预期</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">现金资本开支飙升（三季度759亿）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">债务从688亿飙至1809亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">广告业务miss（个人agent冲击）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AI业务利润率低</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">广告业务疲软</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AI资本开支与回报担忧</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Anthropic收入/融资跟不上导致订单延后</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">循环交易依赖</span><span class="tag-date">10/31</span></div>
+  <div class="tag-item"><span class="tag-fg">财报波动7-8%</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">自由现金流大幅为负</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">资本开支侵蚀利润</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">自由现金流转负424亿</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">跌破主要周线趋势线</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">融资方式转变</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">广告收入疲软</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">自由现金流-424亿创纪录</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">长期债务9个月翻倍至1731亿</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">利息支出增长超3倍</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">营收利润双miss</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">连续两季自由现金流为负</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">资本支出2200亿</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI资本支出侵蚀现金流</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">电商与广告增长乏力</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">电商/广告增速放缓</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">资本开支770亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">长期债务激增至1730亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS增速不及市场预期</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">现金资本开支飙升（三季度759亿）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">债务从688亿飙至1809亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">广告业务miss（个人agent冲击）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AI业务利润率低</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">广告业务疲软</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AI资本开支与回报担忧</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Anthropic收入/融资跟不上导致订单延后</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">循环交易依赖</span><span class="tag-date">10/31</span></div>
 </div>
 
 <div class="sec">
   <div class="sec-h">观点时间线（按日期）</div>
   <div class="day">
+      <div class="day-h">10/27</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·短期</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">255</b>（期权压注）</span><span class="lv">目标 <b class="num">275</b>（破近期高点）</span><span class="lv lv-s">支撑 <b class="num">235</b>（强支撑）</span></div>
+          <div class="op-d">亚马逊财报（周四）期权压注255美元、上下20美元（68%概率），即7%-8%的涨跌。往上加20到275直接破近期高点265附近、确认上行趋势；往下减20到235仍是较强支撑位置，不算太紧张。看点是有没有破近期高点打新高的机会。</div>
+          <div class="op-q">「亚马逊是255美元上下20美元的波动，往上加20是275直接破近期高点……往下减到235仍旧是较强的支撑位置」</div>
+          <div class="op-tag"><b>催化：</b>破265近期高点确认上行</div>
+          <div class="op-tag"><b>风险：</b>财报波动7-8%</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">23:00 回看</a></div>
+        </div>
+    </div><div class="day">
       <div class="day-h">10/29</div>
       <div class="op">
           <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">看空/观望·短期</span></div>
@@ -124,6 +263,14 @@
           <div class="op-tag"><b>风险：</b>自由现金流大幅为负、资本开支侵蚀利润</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00 回看</a></div>
         </div><div class="op">
+          <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">看空/回避·中期</span></div>
+          <div class="op-lv"><span class="lv">目标 时间投影磨底至<b class="num">2027-2029</b></span></div>
+          <div class="op-d">财报勉强miss：EPS 1.89 vs 预期1.97、营收2019亿 vs 预期2022亿，但市场不给余地。亮点是AWS+39%近5年最快、2027-2028增长指引超40%，但12个月自由现金流从+148亿转-424亿，超大规模云厂商融资方式转变市场仍在适应。技术面跌破2023年1月以来主要周线趋势线（下影线跌破），是决定性的性格转变。博主用时间测算：趋势低点到高点189根K线，1/3（63根）对应2027年10月、1/2对应2028年5月、2/3对应2029年1月，暗示即便反弹也可能是漫长的磨底/漂移下行，为未来一年提供逢低吸纳机会。</div>
+          <div class="op-q">「即便反弹，我感觉也会是一个漫长的磨底期，超大规模厂商未来一年可能只是反复提供逢低吸纳的机会」</div>
+          <div class="op-tag"><b>催化：</b>AWS+39%近5年最快、2027-2028增长指引超40%、周五反弹5.5%</div>
+          <div class="op-tag"><b>风险：</b>自由现金流转负424亿、跌破主要周线趋势线、融资方式转变</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">22:10 回看</a></div>
+        </div><div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·中期</span></div>
           
           <div class="op-d">三季报AWS收入460亿+39.3%近五年最快、超预期，零售利润改善，但问题在广告（+12%明显放缓、低于预期208亿）和前瞻（Q4营收终值2345亿低于预期2421亿）。自由现金流-424亿大幅恶化，本季新增481亿长期债务、利息支出增长超3倍。博主认为亚马逊整体没有重大意外，只是自由现金流支出偏多且Q4会减（总额2200亿不变），综合排序「微软最好、亚马逊第二、谷歌最差」。价格已跌至技术面强支撑，此位置不是杀跌点，需看QQQ是否破位。</div>
@@ -131,6 +278,14 @@
           <div class="op-tag"><b>催化：</b>AWS+39.3%近五年最快、零售利润改善、维持2026年2200亿资本开支</div>
           <div class="op-tag"><b>风险：</b>广告收入疲软、自由现金流-424亿创纪录、长期债务9个月翻倍至1731亿、利息支出增长超3倍</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1080s" class="tslink">18:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st down">看空/回避·短期</span></div>
+          
+          <div class="op-d">盘后暴雷：三季度营收2019.4亿（预期2023.1亿）、EPS 1.89（预期1.96）双不及预期，与谷歌「难兄难弟」。2026资本支出维持2200亿美元，大笔投资导致负现金流，已连续两季自由现金流为负。</div>
+          <div class="op-q">「亚马逊也折价10%啊，和谷歌简直是难兄难弟啊」</div>
+          
+          <div class="op-tag"><b>风险：</b>营收利润双miss、连续两季自由现金流为负、资本支出2200亿</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=wCUn2t-uSNc&amp;t=630s" class="tslink">10:30 回看</a></div>
         </div>
     </div><div class="day">
       <div class="day-h">10/30</div>
@@ -142,6 +297,22 @@
           
           <div class="op-tag"><b>风险：</b>AI资本支出侵蚀现金流、电商与广告增长乏力</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=0s" class="tslink">0:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">The Investor Channel</span><span class="st up">看多/持有·长期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 低<b class="num">200</b>（支撑）</span></div>
+          <div class="op-d">财报双miss（营收2020亿、EPS、Q4指引偏弱），但AWS+39%（Q2+37%加速）、电商与AWS未来5-10年各达万亿营收。资本开支季度770亿（史上罕见），是下跌主因。博主认为作为股东需「系好安全带」等待AWS万亿营收兑现。技术面：暴跌至230后收盘反弹至240（200日均线245下方），低200有充足支撑，仍是higher highs/higher lows结构，希望在此企稳。</div>
+          <div class="op-q">「作为亚马逊股东，你基本上只需要系好安全带，等待这些收入最终兑现」</div>
+          <div class="op-tag"><b>催化：</b>AWS+39%加速、两大业务各冲万亿营收</div>
+          <div class="op-tag"><b>风险：</b>电商/广告增速放缓、资本开支770亿</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">9:10 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">看空/回避·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b></span></div>
+          <div class="op-d">财报有亮点但市场不买账：AWS+39%近5年最快、积压订单5780亿、营业利润281亿创新高、2027-2028增长指引超40%。但资本开支773亿（同比翻倍、超预期200亿）、自由现金流12个月从+148亿转-424亿、长期债务从年初660亿增至1730亿，Jassy称2027资本开支显著提高。股价跌约12%，与谷歌类似但市场周五更愿意买亚马逊（反弹5.5%）。技术面跌破200日均线、跌破2023年1月以来的主要周线趋势线，博主用时间测算：从趋势低点到高点的1/3/1/2/2/3时间投影分别在2027年10月、2028年5月、2029年1月，暗示可能长期磨底/漂移下行。</div>
+          <div class="op-q">「即使反弹，我感觉也会是一个漫长的磨底期」</div>
+          <div class="op-tag"><b>催化：</b>AWS+39%、积压订单5780亿、周五反弹5.5%</div>
+          <div class="op-tag"><b>风险：</b>自由现金流转负424亿、长期债务激增至1730亿、跌破主要周线趋势线</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">37:20 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/观望·中期</span></div>
           

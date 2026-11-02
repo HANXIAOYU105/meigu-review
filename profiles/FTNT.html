@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -81,6 +88,8 @@
   <div class="meta">2 条观点 · 2026-10-28 ~ 2026-10-29 · 1 位博主</div>
 </div>
 
+
+
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
@@ -91,6 +100,30 @@
   </div>
   <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 -0.50）</p>
   <div class="chips"><span class="chip">NaNa说美股</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/28</span></span><span class="st flat">中性/观望·短期</span></div>
+      
+      <div class="op-d">盘后狂泻22%，但业绩并没暴雷：Q3收入20.8亿+20%、调整后EPS 0.91+23%均好于预期，全年指引也乐观。属于市场情绪与估值问题而非基本面问题。</div>
+      <div class="op-q">「业绩也没暴雷啊，Q3收入20.8亿美元同比+20%，调整后每股收益0.91美元同比+23%，都好于预期」</div>
+      
+      <div class="op-tag"><b>风险：</b>估值透支、AI跨界颠覆担忧</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=1020s" class="tslink">17:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span><span class="st down">看空/观望·短期</span></div>
+      
+      <div class="op-d">财报后重挫20%，但股价好歹在年线上站住没直接掉下去。华尔街砸盘原因是估值透支、营收增速放缓及服务业务表现不及预期；另一原因是谷歌Gemini 4 Carbon据称具备极强代码编写和漏洞挖掘能力，加剧市场对巨头跨界颠覆的担忧。</div>
+      <div class="op-q">「华尔街砸盘的原因是估值透支，以及营收增速放缓及服务业务板块表现不及预期」</div>
+      
+      <div class="op-tag"><b>风险：</b>Gemini 4 Carbon的跨界颠覆威胁、估值透支</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=840s" class="tslink">14:00 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">

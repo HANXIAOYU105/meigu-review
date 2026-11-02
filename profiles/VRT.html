@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -81,6 +88,8 @@
   <div class="meta">2 条观点 · 2026-10-28 ~ 2026-10-30 · 2 位博主</div>
 </div>
 
+
+
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
@@ -91,6 +100,33 @@
   </div>
   <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean up">偏多</span>（均分 1.00）</p>
   <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/28</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv">目标 止损参考<b class="num">225</b>（月均线）</span></div>
+      <div class="op-d">液冷龙头，Q3业绩大幅超预期并上调全年展望：营收43.1亿+61%，调整后EPS 2.21+78%，有机订单同比翻倍以上，调整后FCF 6.52亿+50%。2026年调整后EPS预期上调至7.15（原6.73），全年营收146.5亿超预期139.9亿。和高负债的新云不同，VRT的财报显示巨大基础设施需求正转化为实际收入、更高利润率和真实现金流，属于AI基建潮中的赢家阵营。今日上涨前股价已较5月高点腰斩，说明这轮下跌是杀估值而非杀业绩。</div>
+      <div class="op-q">「和那些高负债的新云不同，VRT的财报显示出巨大的基础设施需求正在转化为实际收入、更高的利润率和真实的现金流，属于AI基建潮中的赢家阵营」</div>
+      <div class="op-tag"><b>催化：</b>订单翻倍、上调全年指引</div>
+      <div class="op-tag"><b>风险：</b>上方50日均线是下跌趋势主要阻力、若回踩跌破月均线225需离场</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=660s" class="tslink">11:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st up">看多/买入·中期</span></div>
+      
+      <div class="op-d">本周逆势大涨19.7%，凭借强劲的需求能见度上调了指引。数据中心电力设备是AI算力扩张的确定性受益方向，在AI资本开支大潮中需求能见度最清晰。</div>
+      <div class="op-q">「数据中心电力设备公司Vertiv本周上涨19.7%，凭借强劲的需求能见度上调了指引」</div>
+      <div class="op-tag"><b>催化：</b>上调指引、数据中心电力需求强劲</div>
+      <div class="op-tag"><b>风险：</b>AI资本开支若放缓</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1440s" class="tslink">24:00 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">

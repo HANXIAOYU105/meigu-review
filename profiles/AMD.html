@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -81,6 +88,8 @@
   <div class="meta">3 条观点 · 2026-10-29 ~ 2026-10-31 · 3 位博主</div>
 </div>
 
+
+
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
@@ -91,6 +100,44 @@
   </div>
   <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 0.00）</p>
   <div class="chips"><span class="chip">视野环球财经</span><span class="chip">阳光财经</span><span class="chip">美投侃新闻</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/29</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">英特尔PC疲软（延续到2027上半年）对AMD影响没那么大，因为AMD增长主要来自数据中心、芯片和AI服务器相关组件而非PC市场。但博主提醒AMD情况也要引起重视（价格在那摆着）。相对英特尔，博主对AMD/英伟达逢低有不错机会的看法更乐观。</div>
+      <div class="op-q">「AMD现在的PC市场的总体情况不是它主要的增长来源，主要还是来自数据中心、芯片和AI服务器相关的组件」</div>
+      <div class="op-tag"><b>催化：</b>数据中心/AI服务器需求</div>
+      <div class="op-tag"><b>风险：</b>PC市场疲软的间接影响、价格高企</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=480s" class="tslink">8:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·短期</span></div>
+      
+      <div class="op-d">半导体核心个股之一，股价今天跌破半年线，下周二发布财报。如果财报后不能收回半年线，方向就转弱。苏妈完成了600美元目标价的梦想、1万亿市值给她看了一眼，但博主认为苏妈要的是持续1万亿而不是曾经有过。</div>
+      <div class="op-q">「股价今天是跌破半年线了，下周财报如果不收回半年线，方向就转弱了」</div>
+      <div class="op-tag"><b>催化：</b>下周二财报</div>
+      <div class="op-tag"><b>风险：</b>跌破半年线、财报不及预期则趋势转弱</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=840s" class="tslink">14:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/31</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">Anthropic 与 AMD 有超过 200 亿的合作，但因金额未定未计入 8500 亿承诺总额，说明 AMD 在 AI 算力供应上的份额在扩大，但具体兑现仍有不确定性。</div>
+      <div class="op-q">「以及和AMD超过200亿的合作，因为金额还没有定下来，招股书并没有算进去」</div>
+      <div class="op-tag"><b>催化：</b>与Anthropic超200亿合作</div>
+      <div class="op-tag"><b>风险：</b>合作金额未定、兑现不确定</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=-eAneK1yPek&amp;t=1732s" class="tslink">28:52 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">

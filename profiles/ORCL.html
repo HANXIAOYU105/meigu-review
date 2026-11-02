@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -78,37 +85,104 @@
 <div class="hero">
   <p class="nm">甲骨文</p>
   <div class="tk">ORCL · 软件云计算</div>
-  <div class="meta">2 条观点 · 2026-10-28 ~ 2026-10-30 · 2 位博主</div>
+  <div class="meta">6 条观点 · 2026-10-28 ~ 2026-10-30 · 4 位博主</div>
 </div>
+
+
 
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
-    <div class="stat-box"><div class="n">2</div><div class="l">提及次数</div></div>
-    <div class="stat-box up"><div class="n">1</div><div class="l">看多</div></div>
+    <div class="stat-box"><div class="n">6</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">5</div><div class="l">看多</div></div>
     <div class="stat-box down"><div class="n">1</div><div class="l">看空</div></div>
     <div class="stat-box"><div class="n">0</div><div class="l">中性</div></div>
   </div>
-  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 0.00）</p>
-  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span></div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean up">偏多</span>（均分 0.67）</p>
+  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span><span class="chip">老李玩钱</span><span class="chip">阳光财经</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 2 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/28</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">年度AI大会宣布多项重磅合作：扩大英伟达Vera Rubin部署（数吉瓦规模）、2027年起OCI提供谷歌TPU（谷歌首次供给别家云大厂）、引入OpenAI芯片及Cerebras/SambaNova推理芯片。多元化供应有两好处：不惧单一供应商卡脖子、吸引不同需求客户（训练/推理/速度成本）；芯片选择变多有机会降低资本开支（自用更便宜芯片+吸引代卡/预付款客户）。与OpenAI合作推AI Workspace和App Composer，软件业务或与Snowflake竞争。Justine对软件业务谨慎（公司多年惯性难迅速改头换面），但OCI云更看好（降芯片成本+减前期投入改善盈利）。今日定价基于软件SaaS提振+OCI利润率期待两头。今年股价跌约33%，期待投资者日OCI指引、毛利率和资本开支细节。</div>
+      <div class="op-q">「今天宣布的一系列合作，让市场看到了甲骨文扩大客户群增强算力的能力」</div>
+      <div class="op-tag"><b>催化：</b>多元化芯片供应、OCI利润率改善预期、与OpenAI合作软件业务</div>
+      <div class="op-tag"><b>风险：</b>软件业务惯性难改、Jupiter数据中心社区反对、融资压力</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=VLj5YKi-Jig&amp;t=255s" class="tslink">4:15 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/29</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">投资者日长期指引大超预期，一则信息解决市场一年来的担忧。融资：2027-2029财年额外融资最多200亿（股权债务各100亿）设明确上限，削弱资本可得性担忧。资本开支：2027-2028财年见顶、2029财年回落，是六大云+四小云里第一个明确披露见顶时间的公司，最快下季度、更可能2027年某季见顶，比预期快1-2个季度。自由现金流：2028财年下半年转正、2029财年超300亿（市场原预期-2.5亿、2030财年230亿、2031才550亿），改善速度更快。杠杆：净杠杆从当前4.3倍以上（危险/可能降级区域）降到3.5倍以下，大幅缓解降级风险。收入：2030财年2250亿+（+35% CAGR）、经营利润率40%+，是用更少资产拿到不弱于预期的收入，资产利用率大幅改善。结合看好的下季度OCI业绩，即便今日上涨也有机会继续回补股价。</div>
+      <div class="op-q">「甲骨文今天一则信息，就解决了市场一年来的担忧」</div>
+      <div class="op-tag"><b>催化：</b>资本开支见顶时间明确、自由现金流2028财年转正、净杠杆降至3.5倍以下、2030财年收入2250亿+</div>
+      <div class="op-tag"><b>风险：</b>与OpenAI高度绑定、股价一年近乎腰斩</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=run9hnLobpM&amp;t=400s" class="tslink">6:40 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st down">看空/观望·中期</span></div>
+      
+      <div class="op-d">作为信用相对较弱、利差更高的公司代表：长端利差高到+1.95个百分点（vs微软+1.35），发债认购倍数从2月的5倍多明显降温。利差每高0.1个百分点、借250亿一年多付2500万利息；长端比微软高0.6个百分点、借40年利息差累积60亿。利差走阔对其是利息+估值（WACC上升）双重压力。</div>
+      <div class="op-q">「甲骨文的长端更是高到1.95个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力」</div>
+      
+      <div class="op-tag"><b>风险：</b>利差走阔、负债加重、WACC上升压低估值</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1140s" class="tslink">19:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/28</span></span><span class="st up">看多/持有·短期</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">170</b>（短期）</span></div>
+      <div class="op-d">投资者日公布2030财年财务目标：2028财年下半年实现正自由现金流，2029财年FCF至少300亿美元，资本支出2027-2028财年见顶后2029年开始下降；2030财年总营收超2250亿、CAGR超35%；承诺2030财年前额外融资限制在200亿以内（股权100亿+债务100亿），2029财年起靠自有资金支撑增长。发言极大刺激股价，盘中原地起飞。</div>
+      <div class="op-q">「如果大盘情绪好的话，还可能继续涨2-3天拉到170美元附近，然后大家开始冷静下来对高管的大饼算账质疑」</div>
+      <div class="op-tag"><b>催化：</b>投资者日2030财年目标、FCF转正时间表明确</div>
+      <div class="op-tag"><b>风险：</b>市场后续会对指引真实性算账、高负债标签未消</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">10:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">老李玩钱</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·10/28</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">130</b> / <b class="num">115</b></span></div>
+      <div class="op-d">发布长期增长与资本配置计划，直接回应市场三大担忧（AI资本支出、自由现金流、债务）。资本支出2027-2028财年见顶、2029财年下降；自由现金流2028财年下半年转正、2029财年增至300亿以上；承诺2030财年前新增外部融资限200亿内；净债务/调整后EBITDA降至3.5倍以下；重申2027财年营收900亿、EPS 8.10。今日大涨10%。但计划归根结底未落实、有画饼嫌疑，对提振股价有效果。甲骨文是老李账户唯一亏损股。风险在于与OpenAI高度绑定（3000亿大合同），OpenAI掉链子则股价受打压。操作：130附近适当开仓、115进一步加仓，严格控制仓位。</div>
+      <div class="op-q">「甲骨文这份计划书效果还是挺明显的，直接回应目前市场上对甲骨文这家公司的三大担忧」</div>
+      <div class="op-tag"><b>催化：</b>自由现金流转正指引、资本支出见顶下降指引、债务约束承诺</div>
+      <div class="op-tag"><b>风险：</b>与OpenAI高度绑定、计划尚未落实有画饼嫌疑</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=108s" class="tslink">1:48 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/28</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">年度大会指引大超预期，直接回应市场三大担忧（AI资本支出、自由现金流、债务）。受益OpenAI等大客户，2028财年末实现正自由现金流、2029财年300亿美元自由现金流。CDS信用违约互换降价、债券保险成本降低，股价放量大涨。自由现金流转正意味着还债无虞、可回购分红。</div>
+      <div class="op-q">「甲骨文今天传来了利好……将在二零二八年财年末实现正的自由现金流」</div>
+      <div class="op-tag"><b>催化：</b>2028财年自由现金流转正指引、2029财年300亿自由现金流、CDS降价</div>
+      <div class="op-tag"><b>风险：</b>财务杠杆高、AI巨额支出担忧</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=xZO-bPVpFRk&amp;t=470s" class="tslink">7:50 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">
   <div class="sec-h">关键点位演进</div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/28</td><td>NaNa说美股</td><td>目标 <b class="num">170</b>（短期）</td><td><a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">10:00</a></td></tr>
+    <tr><td>10/28</td><td>NaNa说美股</td><td>目标 <b class="num">170</b>（短期）</td><td><a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td>10/28</td><td>老李玩钱</td><td>支撑 <b class="num">130</b> / <b class="num">115</b></td><td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=108s" class="tslink">1:48</a></td></tr>
   </table>
 </div>
 
 <div class="sec">
   <div class="sec-h">催化剂（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">投资者日2030财年目标</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">FCF转正时间表明确</span><span class="tag-date">10/28</span></div>
+  <div class="tag-item"><span class="tag-fg">投资者日2030财年目标</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">FCF转正时间表明确</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">多元化芯片供应</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">OCI利润率改善预期</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">与OpenAI合作软件业务</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">自由现金流转正指引</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">资本支出见顶下降指引</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">债务约束承诺</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">2028财年自由现金流转正指引</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">2029财年300亿自由现金流</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">CDS降价</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">资本开支见顶时间明确</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">自由现金流2028财年转正</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">净杠杆降至3.5倍以下</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">2030财年收入2250亿+</span><span class="tag-date">10/29</span></div>
 </div>
 
 <div class="sec">
   <div class="sec-h">风险因素（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">市场后续会对指引真实性算账</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">高负债标签未消</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">利差走阔</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">负债加重</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">WACC上升压低估值</span><span class="tag-date">10/30</span></div>
+  <div class="tag-item"><span class="tag-fg">市场后续会对指引真实性算账</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">高负债标签未消</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">软件业务惯性难改</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">Jupiter数据中心社区反对</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">融资压力</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">与OpenAI高度绑定</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">计划尚未落实有画饼嫌疑</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">财务杠杆高</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">AI巨额支出担忧</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">股价一年近乎腰斩</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">利差走阔</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">负债加重</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">WACC上升压低估值</span><span class="tag-date">10/30</span></div>
 </div>
 
 <div class="sec">
@@ -123,6 +197,41 @@
           <div class="op-tag"><b>催化：</b>投资者日2030财年目标、FCF转正时间表明确</div>
           <div class="op-tag"><b>风险：</b>市场后续会对指引真实性算账、高负债标签未消</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">10:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">年度AI大会宣布多项重磅合作：扩大英伟达Vera Rubin部署（数吉瓦规模）、2027年起OCI提供谷歌TPU（谷歌首次供给别家云大厂）、引入OpenAI芯片及Cerebras/SambaNova推理芯片。多元化供应有两好处：不惧单一供应商卡脖子、吸引不同需求客户（训练/推理/速度成本）；芯片选择变多有机会降低资本开支（自用更便宜芯片+吸引代卡/预付款客户）。与OpenAI合作推AI Workspace和App Composer，软件业务或与Snowflake竞争。Justine对软件业务谨慎（公司多年惯性难迅速改头换面），但OCI云更看好（降芯片成本+减前期投入改善盈利）。今日定价基于软件SaaS提振+OCI利润率期待两头。今年股价跌约33%，期待投资者日OCI指引、毛利率和资本开支细节。</div>
+          <div class="op-q">「今天宣布的一系列合作，让市场看到了甲骨文扩大客户群增强算力的能力」</div>
+          <div class="op-tag"><b>催化：</b>多元化芯片供应、OCI利润率改善预期、与OpenAI合作软件业务</div>
+          <div class="op-tag"><b>风险：</b>软件业务惯性难改、Jupiter数据中心社区反对、融资压力</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=VLj5YKi-Jig&amp;t=255s" class="tslink">4:15 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">老李玩钱</span><span class="st up">看多/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">130</b> / <b class="num">115</b></span></div>
+          <div class="op-d">发布长期增长与资本配置计划，直接回应市场三大担忧（AI资本支出、自由现金流、债务）。资本支出2027-2028财年见顶、2029财年下降；自由现金流2028财年下半年转正、2029财年增至300亿以上；承诺2030财年前新增外部融资限200亿内；净债务/调整后EBITDA降至3.5倍以下；重申2027财年营收900亿、EPS 8.10。今日大涨10%。但计划归根结底未落实、有画饼嫌疑，对提振股价有效果。甲骨文是老李账户唯一亏损股。风险在于与OpenAI高度绑定（3000亿大合同），OpenAI掉链子则股价受打压。操作：130附近适当开仓、115进一步加仓，严格控制仓位。</div>
+          <div class="op-q">「甲骨文这份计划书效果还是挺明显的，直接回应目前市场上对甲骨文这家公司的三大担忧」</div>
+          <div class="op-tag"><b>催化：</b>自由现金流转正指引、资本支出见顶下降指引、债务约束承诺</div>
+          <div class="op-tag"><b>风险：</b>与OpenAI高度绑定、计划尚未落实有画饼嫌疑</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=108s" class="tslink">1:48 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">年度大会指引大超预期，直接回应市场三大担忧（AI资本支出、自由现金流、债务）。受益OpenAI等大客户，2028财年末实现正自由现金流、2029财年300亿美元自由现金流。CDS信用违约互换降价、债券保险成本降低，股价放量大涨。自由现金流转正意味着还债无虞、可回购分红。</div>
+          <div class="op-q">「甲骨文今天传来了利好……将在二零二八年财年末实现正的自由现金流」</div>
+          <div class="op-tag"><b>催化：</b>2028财年自由现金流转正指引、2029财年300亿自由现金流、CDS降价</div>
+          <div class="op-tag"><b>风险：</b>财务杠杆高、AI巨额支出担忧</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=xZO-bPVpFRk&amp;t=470s" class="tslink">7:50 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">10/29</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">投资者日长期指引大超预期，一则信息解决市场一年来的担忧。融资：2027-2029财年额外融资最多200亿（股权债务各100亿）设明确上限，削弱资本可得性担忧。资本开支：2027-2028财年见顶、2029财年回落，是六大云+四小云里第一个明确披露见顶时间的公司，最快下季度、更可能2027年某季见顶，比预期快1-2个季度。自由现金流：2028财年下半年转正、2029财年超300亿（市场原预期-2.5亿、2030财年230亿、2031才550亿），改善速度更快。杠杆：净杠杆从当前4.3倍以上（危险/可能降级区域）降到3.5倍以下，大幅缓解降级风险。收入：2030财年2250亿+（+35% CAGR）、经营利润率40%+，是用更少资产拿到不弱于预期的收入，资产利用率大幅改善。结合看好的下季度OCI业绩，即便今日上涨也有机会继续回补股价。</div>
+          <div class="op-q">「甲骨文今天一则信息，就解决了市场一年来的担忧」</div>
+          <div class="op-tag"><b>催化：</b>资本开支见顶时间明确、自由现金流2028财年转正、净杠杆降至3.5倍以下、2030财年收入2250亿+</div>
+          <div class="op-tag"><b>风险：</b>与OpenAI高度绑定、股价一年近乎腰斩</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=run9hnLobpM&amp;t=400s" class="tslink">6:40 回看</a></div>
         </div>
     </div><div class="day">
       <div class="day-h">10/30</div>

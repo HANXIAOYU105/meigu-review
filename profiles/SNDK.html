@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -81,6 +88,8 @@
   <div class="meta">3 条观点 · 2026-10-28 ~ 2026-10-30 · 1 位博主</div>
 </div>
 
+
+
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
@@ -91,6 +100,38 @@
   </div>
   <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean up">偏多</span>（均分 0.67）</p>
   <div class="chips"><span class="chip">NaNa说美股</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean up">偏多</span><span class="ch-meta">3 条 · 看多 2 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/28</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">跟随SK海力士带动的存储板块走高，自身财报也强（后续财报已验证各项指标超预期并上调指引）。存储短缺的结构性逻辑支撑。</div>
+      <div class="op-q">「MU、SNDK等其它存储股也集体跟随走高」</div>
+      <div class="op-tag"><b>催化：</b>存储行业景气</div>
+      <div class="op-tag"><b>风险：</b>板块情绪波动</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=420s" class="tslink">7:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">财报各项指标均超华尔街预期并上调近期业绩指引，数据强到空头都挑不出刺。资本回报力度强劲，本季动用50亿美元完成约320万股回购，并宣布8比1正向拆股于11月19日生效，继续推进回购。盘后涨幅虽温和但在股指期货大跌背景下已很不错。希望其财报能给存储板块带来支撑。</div>
+      <div class="op-q">「希望SNDK的财报能给存储板块带来些许支撑」</div>
+      <div class="op-tag"><b>催化：</b>11月19日8:1拆股、50亿美元回购</div>
+      <div class="op-tag"><b>风险：</b>若整个半导体情绪恶化，存储也独木难支</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=480s" class="tslink">8:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·短期</span></div>
+      
+      <div class="op-d">业绩已经强到这个程度但还是被砸，属于小身板扛不住整个市场冲击被彻底压倒，不是公司自身问题，是可以关注的对象。</div>
+      <div class="op-q">「隔壁的闪迪已经尽力了，业绩已经强到这个程度但还是被砸，这也不能怪他」</div>
+      
+      <div class="op-tag"><b>风险：</b>跟随大盘系统性下跌</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=780s" class="tslink">13:00 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">

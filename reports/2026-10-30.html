@@ -26,6 +26,14 @@
   .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;}
   .hero h1{margin:0 0 6px;font-size:19px;font-weight:700;color:#fff;}
   .hero .sub{font-size:12.5px;color:#dbe4f0;}
+  .mkt{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;}
+  .mkt-h{font-size:13px;font-weight:700;color:var(--text-strong);margin:0 0 8px;}
+  .mkt-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .mkt-grid{display:flex;gap:8px;flex-wrap:wrap;}
+  .mkt-item{flex:1 1 30%;min-width:100px;background:var(--bg);border:1px solid var(--border-soft);border-radius:8px;padding:8px 10px;}
+  .mkt-name{font-size:11.5px;color:var(--muted);font-weight:600;}
+  .mkt-val{font-size:16px;font-weight:800;color:var(--text-strong);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:2px;}
+  .mkt-pct{font-size:13px;font-weight:700;margin-top:1px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
   .tone{display:inline-block;padding:1px 9px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
@@ -34,6 +42,7 @@
   .tone.flat{background:var(--flat-bg);color:var(--flat-fg);}
   .hd{padding:12px 0;border-bottom:1px dashed var(--border);}
   .hd:last-child{border-bottom:none;padding-bottom:0;}
+  .hd-key{background:linear-gradient(90deg,var(--accent-soft),transparent);border-left:3px solid var(--accent);padding-left:10px;border-radius:6px;margin:6px 0;}
   .hd-h{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;flex-wrap:wrap;}
   .hd-name{font-weight:700;font-size:16px;color:var(--text-strong);}
   .hd-tk{color:var(--muted);font-size:12px;font-weight:500;}
@@ -84,6 +93,23 @@
   <div class="sub">2026年10月30日 · 5 位博主 · 63 条观点 · 大盘<span class="tone down">偏空</span></div>
 </div>
 
+<div class="mkt">
+    <div class="mkt-h">📈 前一日美股指数<span class="asof">截至 2026-10-30 美东收盘</span></div>
+    <div class="mkt-grid"><div class="mkt-item">
+        <div class="mkt-name">标普500</div>
+        <div class="mkt-val">7,580.07</div>
+        <div class="mkt-pct c-down">▼ -1.82%</div>
+      </div><div class="mkt-item">
+        <div class="mkt-name">纳斯达克综合</div>
+        <div class="mkt-val">25,437</div>
+        <div class="mkt-pct c-down">▼ -2.86%</div>
+      </div><div class="mkt-item">
+        <div class="mkt-name">道琼斯</div>
+        <div class="mkt-val">51,770.31</div>
+        <div class="mkt-pct c-down">▼ -1.09%</div>
+      </div></div>
+  </div>
+
 <div class="sec">
   <div class="sec-h">📌 一、我的持仓</div>
   <div class="hd">
@@ -92,7 +118,7 @@
         <span class="lean flat">分歧</span></div>
         <div class="hd-meta">1 次提及 · 看多 0 / 看空 0</div>
         <div class="op">
-    <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span>
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-flat">中性/持有·中期</span></div>
     
     <div class="op-d">基本面依旧稳固，从高点回撤仅约3%，属于历史常态回撤。大盘回撤是机会，但要「个股区别对待」，只选信贷高质量且市价不超过一年前瞻估值上限的股票。若AI真被证伪则标普至少跌20%起步，应清仓持债券现金。</div>
@@ -106,7 +132,7 @@
         <span class="lean flat">分歧</span></div>
         <div class="hd-meta">2 次提及 · 看多 0 / 看空 0</div>
         <div class="op">
-    <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span>
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-flat">中性/观望·短期</span></div>
     <div class="op-lv"><span class="lv lv-e">买点 <b class="num">610</b>附近（极限回撤/上车区间）</span></div>
     <div class="op-d">跌破696强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨。200日均约678-679是量化重要触发位置需重点观察；下方极限回撤看610附近（再跌约10%），对做QQQ指数的人来说这是每年靠大跌一两波赚超额收益的上车机会。</div>
@@ -128,7 +154,7 @@
         <span class="lean flat">分歧</span></div>
         <div class="hd-meta">3 次提及 · 看多 1 / 看空 1</div>
         <div class="op">
-    <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span>
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-flat">中性/观望·短期</span></div>
     
     <div class="op-d">针对想马上做多费半SOXX/SMH的朋友：在中期选举这个风险事件前「在压路机面前捡钱不是轻松的事」，建议先观望冷静，不要随便抄底。</div>
@@ -158,7 +184,7 @@
         <span class="lean flat">分歧</span></div>
         <div class="hd-meta">5 次提及 · 看多 0 / 看空 2</div>
         <div class="op">
-    <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span>
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-flat">中性/观望·中期</span></div>
     
     <div class="op-d">回撤最大，股价回到3月份价格。AI营收快速增长且超预期，但自有业务（尤其广告）略有疲软。博主认为一个季度的广告疲软说明不了问题，需等四季度财报确认是偶发性还是趋势性——若连续变差则是趋势性改变，基本面需重新计价。</div>
@@ -204,7 +230,7 @@
         <span class="lean flat">分歧</span></div>
         <div class="hd-meta">3 次提及 · 看多 1 / 看空 0</div>
         <div class="op">
-    <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span>
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-up">看多/持有·长期</span></div>
     
     <div class="op-d">作为高质量信贷股票的典型代表，10月逆势上涨1.76%，只是回吐部分涨幅而非崩溃。250亿债券发售认购达4.6倍、利息不高，说明市场对高质量借款人依旧充分认可。博主的长期持仓，是「高质量信贷」逻辑的核心样板。</div>
@@ -234,7 +260,7 @@
         <span class="lean flat">分歧</span></div>
         <div class="hd-meta">3 次提及 · 看多 0 / 看空 0</div>
         <div class="op">
-    <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span>
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-flat">中性/持有·长期</span></div>
     
     <div class="op-d">信贷质量没有微软那么高，但相对仍是低风险梯队，10月跌10%只是吃掉8-9月部分涨幅，未出现崩溃式下跌。博主2025年4月加仓后高位再未加仓，属于低位建仓的利润回吐。11月财报是整个半导体情绪与AI资本开支预期的关键节点。</div>
@@ -264,7 +290,7 @@
         <span class="lean up">偏多</span></div>
         <div class="hd-meta">1 次提及 · 看多 1 / 看空 0</div>
         <div class="op">
-    <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span>
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-up">看多/增持·长期</span></div>
     
     <div class="op-d">博主2025年就曾减仓、更早建仓，本月跌10%只是吃掉6月以来涨幅，持仓成本低。明确表示「再跌一跌准备加仓」，是博主下一批加仓的首选标的。</div>
@@ -278,7 +304,7 @@
         <span class="lean flat">分歧</span></div>
         <div class="hd-meta">4 次提及 · 看多 2 / 看空 0</div>
         <div class="op">
-    <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span>
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-up">看多/持有·长期</span></div>
     
     <div class="op-d">博主加仓时间最早（100多美元时），200美元以上即不再加仓。本月月线级别逆势上涨12%，是其持仓中表现最强者之一，验证了「低位建仓、不追高」的纪律。</div>
@@ -351,8 +377,8 @@
 
 <div class="sec">
   <div class="sec-h">🎬 四、各博主视频要点</div>
-  <div class="hd">
-        <div class="hd-h"><span class="hd-name">视野环球财经</span><span class="hd-tk">10/30</span><span class="st flat">中性</span></div>
+  <div class="hd hd-key">
+        <div class="hd-h"><span class="hd-name">⭐ 视野环球财经</span><span class="hd-tk">10/30</span><span class="st flat">中性</span></div>
         <div class="op-title">美股 天塌了？应该买还是卖？11月三大风险事件！</div>
         <div class="op-d">四大指数10月收官遭遇重挫：纳指100大跌3.4%，费城半导体跌近8%，双双破位；标普相对抗跌（228涨275跌），消费与能源板块成为资金避风港（消费品+1.41%，布伦特原油突破110美元）。美联储三位官员（洛根、穆萨勒姆、巴尔金）释放鹰派信号。博主核心判断：这一轮下跌是「信贷问题」而非「需求问题」或「AI证伪」——高质量借款人融资依旧通畅（微软250亿债券认购4.6倍），市场只是对高风险的AI数据中心信贷说不。</div>
         <div class="op-tag"><b>宏观：</b>判断当前是正常回撤而非崩盘：标普从高点回撤约3%、纳指100跌9%，从25年初至今已发生三次同级别下跌，属于历史常态。关键是区分「正常回撤」与「AI续命证伪崩盘」——10月起AI定价从「谁愿意投多少钱」转为「谁会借钱、借钱价格多少」。市场缺的不是钱（微软债券4.6倍认购），而是对高风险借款人的信心。高质量信贷股票离崩盘十万八千里，低质量信贷（小数据中心、资金缺口大、CDS极高）需警惕。博主自曝持仓（微软10月+1.76%、特斯拉+12%、SMR+6%连涨3月、TRV翻倍等）多在下跌中的低估值安全位置买入，从不追高。11月三大风险：中期选举（11/3，两党分治中性、两院横扫对AI情绪利空）、伊朗战争、AI债券市场能否重开（关注微软250亿/亚马逊480亿新债后利差）。若认定AI被证伪，应清仓只持债券现金（标普至少跌20%）；判断不了就观望。</div>

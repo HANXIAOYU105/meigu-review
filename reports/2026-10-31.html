@@ -26,6 +26,16 @@
   .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;}
   .hero h1{margin:0 0 6px;font-size:19px;font-weight:700;color:#fff;}
   .hero .sub{font-size:12.5px;color:#dbe4f0;}
+  .mkt{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;}
+  .mkt-h{font-size:13px;font-weight:700;color:var(--text-strong);margin:0 0 8px;}
+  .mkt-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .mkt-grid{display:flex;gap:8px;flex-wrap:nowrap;}
+  .mkt-item{flex:1 1 0;min-width:0;background:var(--bg);border:1px solid var(--border-soft);border-radius:8px;padding:8px 10px;}
+  .mkt-name{font-size:11.5px;color:var(--muted);font-weight:600;white-space:nowrap;}
+  .mkt-val{font-size:16px;font-weight:800;color:var(--text-strong);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:2px;white-space:nowrap;}
+  .mkt-pct{font-size:13px;font-weight:700;margin-top:1px;white-space:nowrap;}
+  .mkt-dd{font-size:11px;color:var(--muted);margin-top:3px;white-space:nowrap;}
+  .mkt-dd b{color:var(--down-fg);font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
   .tone{display:inline-block;padding:1px 9px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
@@ -34,6 +44,7 @@
   .tone.flat{background:var(--flat-bg);color:var(--flat-fg);}
   .hd{padding:12px 0;border-bottom:1px dashed var(--border);}
   .hd:last-child{border-bottom:none;padding-bottom:0;}
+  .hd-key{background:linear-gradient(90deg,var(--accent-soft),transparent);border-left:3px solid var(--accent);padding-left:10px;border-radius:6px;margin:6px 0;}
   .hd-h{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;flex-wrap:wrap;}
   .hd-name{font-weight:700;font-size:16px;color:var(--text-strong);}
   .hd-tk{color:var(--muted);font-size:12px;font-weight:500;}
@@ -83,6 +94,26 @@
   <h1>美股复盘日报</h1>
   <div class="sub">2026年10月31日 · 1 位博主 · 7 条观点 · 大盘<span class="tone flat">中性</span></div>
 </div>
+
+<div class="mkt">
+    <div class="mkt-h">📈 前一日美股指数<span class="asof">截至 2026-10-30 美东收盘</span></div>
+    <div class="mkt-grid"><div class="mkt-item">
+        <div class="mkt-name">道琼斯</div>
+        <div class="mkt-val">51,770.31</div>
+        <div class="mkt-pct c-down">▼ -1.09%</div>
+        <div class="mkt-dd">距高点 <b>-5.43%</b></div>
+      </div><div class="mkt-item">
+        <div class="mkt-name">标普500</div>
+        <div class="mkt-val">7,580.07</div>
+        <div class="mkt-pct c-down">▼ -1.82%</div>
+        <div class="mkt-dd">距高点 <b>-3.37%</b></div>
+      </div><div class="mkt-item">
+        <div class="mkt-name">纳斯达克</div>
+        <div class="mkt-val">25,437</div>
+        <div class="mkt-pct c-down">▼ -2.86%</div>
+        <div class="mkt-dd">距高点 <b>-8.25%</b></div>
+      </div></div>
+  </div>
 
 <div class="sec">
   <div class="sec-h">📌 一、我的持仓</div>

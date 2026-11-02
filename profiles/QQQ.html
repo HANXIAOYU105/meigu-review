@@ -27,6 +27,12 @@
   .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
   .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
   .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
@@ -50,6 +56,7 @@
   .op:last-child{border-bottom:none;}
   .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
   .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
   .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
   .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
   .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
@@ -78,37 +85,98 @@
 <div class="hero">
   <p class="nm">纳指100ETF ⭐</p>
   <div class="tk">QQQ · 宽基ETF · 持仓#2</div>
-  <div class="meta">5 条观点 · 2026-10-26 ~ 2026-10-30 · 2 位博主</div>
+  <div class="meta">6 条观点 · 2026-10-26 ~ 2026-10-30 · 2 位博主</div>
 </div>
+
+
 
 <div class="sec">
   <div class="sec-h">多空总览</div>
   <div class="stat">
-    <div class="stat-box"><div class="n">5</div><div class="l">提及次数</div></div>
+    <div class="stat-box"><div class="n">6</div><div class="l">提及次数</div></div>
     <div class="stat-box up"><div class="n">0</div><div class="l">看多</div></div>
     <div class="stat-box down"><div class="n">1</div><div class="l">看空</div></div>
-    <div class="stat-box"><div class="n">4</div><div class="l">中性</div></div>
+    <div class="stat-box"><div class="n">5</div><div class="l">中性</div></div>
   </div>
-  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 -0.20）</p>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 -0.17）</p>
   <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">视野环球财经</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析</div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/28</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">504</b>（正常回撤位置）</span></div>
+      <div class="op-d">纳指盘后下跌不代表方向，多空两头都压了期权（往上突破、往下吃掉周一旗掌链）。不到周五收盘看不清真实方向。即使跌到504块也只是把昨天的吃掉、前天还有增量，属正常位置。10月大波动最后两个交易日，要耐心等亚马逊财报和周五收盘见分晓。</div>
+      <div class="op-q">「你不到周五你搞不清楚的，你要看那个收盘最后……现在就算跌到504块，也是个正常的位置」</div>
+      <div class="op-tag"><b>催化：</b>周五期权结算、亚马逊财报待出</div>
+      <div class="op-tag"><b>风险：</b>多空双压期权波动大、10月大波动尾部</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1950s" class="tslink">32:30 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/29</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 <b class="num">696-698</b>（关键位）/ 破位则技术性下跌空间打开</span></div>
+      <div class="op-d">QQQ仍在696-698关键位之上未破（博主微调后设696），压在10月26日周一旗掌点附近。明天周五期权结算日收盘价定方向：跌破周一低点则空头胜、技术性下跌空间打开；守住则可能平仓反弹甚至V型反转。此阶段是「闹妖镜」行情，不要做多空判断，等波动甩完看收盘方向。</div>
+      <div class="op-q">「空头没有完全取胜……这是一个闹妖镜的行情，所以你现在一定要判断它的多和空，你都判断不了，明天收盘看位置」</div>
+      <div class="op-tag"><b>催化：</b>696-698关键支撑、期权结算日平仓反弹机会</div>
+      <div class="op-tag"><b>风险：</b>破位后量化集体抛压、中期选举前不确定性</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=2100s" class="tslink">35:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-e">买点 <b class="num">610</b>附近（极限回撤/上车区间）</span></div>
+      <div class="op-d">跌破696强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨。200日均约678-679是量化重要触发位置需重点观察；下方极限回撤看610附近（再跌约10%），对做QQQ指数的人来说这是每年靠大跌一两波赚超额收益的上车机会。</div>
+      <div class="op-q">「从现在开始往下10个点，跌10%一直到下方大概610左右，这是做指数QQQ的朋友要注意的上车机会」</div>
+      <div class="op-tag"><b>催化：</b>200日均678-679关键支撑</div>
+      <div class="op-tag"><b>风险：</b>两院横扫对AI情绪利空、信贷紧张进一步升级</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1380s" class="tslink">23:00 回看</a></div>
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/26</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">705</b>（关键支撑）</span></div>
+      <div class="op-d">今天仍收在5日均线下方，只要价格处于今天的低点705以上就继续看反弹；若跌破705趋势就可能进一步下行。也许明天还会涨一天把上方缺口回补掉，周三可能要小心一些，行情还是会有反复。</div>
+      <div class="op-q">「只要价格处于今天的低点705以上，就继续看反弹，若跌破705，趋势就可能进一步下行」</div>
+      <div class="op-tag"><b>催化：</b>中期选举历史规律</div>
+      <div class="op-tag"><b>风险：</b>周三后行情反复</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=480s" class="tslink">8:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span><span class="st down">看空/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">700</b>（支撑）</span></div>
+      <div class="op-d">跳空低开，收盘已跌破5日均线，日K收阴线十字星。谷歌财报打断科技股短期反弹节奏，原本期待亚马逊财报托市结果盘后期指直接跪了，明天大概率再次考验700附近支撑。</div>
+      <div class="op-q">「明天大概率要再次考验700附近的支撑了」</div>
+      
+      <div class="op-tag"><b>风险：</b>巨头财报对指数拖累太大</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=600s" class="tslink">10:00 回看</a></div>
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">660-680</b>（抄底区间）</span></div>
+      <div class="op-d">低开在700下方全天未能站回，日线连续两个向下跳空缺口，空头强势同时也消耗了空头动能。若跌到680附近或出现第三个跳空缺口，很可能出现反抽。这一轮杀跌的极限在660-680区间，对应纳指100的0.382和0.5分割线。</div>
+      <div class="op-q">「目前我认为这一轮调整的极限不会超出660-680这个区域，现在市场并不是真的要走熊，而是去杠杆」</div>
+      <div class="op-tag"><b>催化：</b>11月企业回购窗口回归</div>
+      <div class="op-tag"><b>风险：</b>对冲基金QQQ空头仓位10年高位</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=420s" class="tslink">7:00 回看</a></div>
+    </div>
+    </div>
 </div>
 
 <div class="sec">
   <div class="sec-h">关键点位演进</div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/26</td><td>NaNa说美股</td><td>支撑 <b class="num">705</b>（关键支撑）</td><td><a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=480s" class="tslink">8:00</a></td></tr><tr><td>10/29</td><td>NaNa说美股</td><td>支撑 <b class="num">700</b>（支撑）</td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td>10/29</td><td>视野环球财经</td><td>触发 <b class="num">696-698</b>（关键位）/ 破位则技术性下跌空间打开</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=2100s" class="tslink">35:00</a></td></tr><tr><td>10/30</td><td>NaNa说美股</td><td>目标 <b class="num">660-680</b>（抄底区间）</td><td><a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=420s" class="tslink">7:00</a></td></tr><tr><td>10/30</td><td>视野环球财经</td><td>买点 <b class="num">610</b>附近（极限回撤/上车区间）</td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1380s" class="tslink">23:00</a></td></tr>
+    <tr><td>10/26</td><td>NaNa说美股</td><td>支撑 <b class="num">705</b>（关键支撑）</td><td><a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=480s" class="tslink">8:00</a></td></tr><tr><td>10/28</td><td>视野环球财经</td><td>目标 <b class="num">504</b>（正常回撤位置）</td><td><a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1950s" class="tslink">32:30</a></td></tr><tr><td>10/29</td><td>NaNa说美股</td><td>支撑 <b class="num">700</b>（支撑）</td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td>10/29</td><td>视野环球财经</td><td>触发 <b class="num">696-698</b>（关键位）/ 破位则技术性下跌空间打开</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=2100s" class="tslink">35:00</a></td></tr><tr><td>10/30</td><td>NaNa说美股</td><td>目标 <b class="num">660-680</b>（抄底区间）</td><td><a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=420s" class="tslink">7:00</a></td></tr><tr><td>10/30</td><td>视野环球财经</td><td>买点 <b class="num">610</b>附近（极限回撤/上车区间）</td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1380s" class="tslink">23:00</a></td></tr>
   </table>
 </div>
 
 <div class="sec">
   <div class="sec-h">催化剂（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">中期选举历史规律</span><span class="tag-date">10/26</span></div><div class="tag-item"><span class="tag-fg">696-698关键支撑</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">期权结算日平仓反弹机会</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">11月企业回购窗口回归</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">200日均678-679关键支撑</span><span class="tag-date">10/30</span></div>
+  <div class="tag-item"><span class="tag-fg">中期选举历史规律</span><span class="tag-date">10/26</span></div><div class="tag-item"><span class="tag-fg">周五期权结算</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">亚马逊财报待出</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">696-698关键支撑</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">期权结算日平仓反弹机会</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">11月企业回购窗口回归</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">200日均678-679关键支撑</span><span class="tag-date">10/30</span></div>
 </div>
 
 <div class="sec">
   <div class="sec-h">风险因素（按首见日期）</div>
-  <div class="tag-item"><span class="tag-fg">周三后行情反复</span><span class="tag-date">10/26</span></div><div class="tag-item"><span class="tag-fg">巨头财报对指数拖累太大</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">破位后量化集体抛压</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">中期选举前不确定性</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">对冲基金QQQ空头仓位10年高位</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">两院横扫对AI情绪利空</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">信贷紧张进一步升级</span><span class="tag-date">10/30</span></div>
+  <div class="tag-item"><span class="tag-fg">周三后行情反复</span><span class="tag-date">10/26</span></div><div class="tag-item"><span class="tag-fg">多空双压期权波动大</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">10月大波动尾部</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">巨头财报对指数拖累太大</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">破位后量化集体抛压</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">中期选举前不确定性</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">对冲基金QQQ空头仓位10年高位</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">两院横扫对AI情绪利空</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">信贷紧张进一步升级</span><span class="tag-date">10/30</span></div>
 </div>
 
 <div class="sec">
@@ -123,6 +191,17 @@
           <div class="op-tag"><b>催化：</b>中期选举历史规律</div>
           <div class="op-tag"><b>风险：</b>周三后行情反复</div>
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=480s" class="tslink">8:00 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">10/28</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·短期</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">504</b>（正常回撤位置）</span></div>
+          <div class="op-d">纳指盘后下跌不代表方向，多空两头都压了期权（往上突破、往下吃掉周一旗掌链）。不到周五收盘看不清真实方向。即使跌到504块也只是把昨天的吃掉、前天还有增量，属正常位置。10月大波动最后两个交易日，要耐心等亚马逊财报和周五收盘见分晓。</div>
+          <div class="op-q">「你不到周五你搞不清楚的，你要看那个收盘最后……现在就算跌到504块，也是个正常的位置」</div>
+          <div class="op-tag"><b>催化：</b>周五期权结算、亚马逊财报待出</div>
+          <div class="op-tag"><b>风险：</b>多空双压期权波动大、10月大波动尾部</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1950s" class="tslink">32:30 回看</a></div>
         </div>
     </div><div class="day">
       <div class="day-h">10/29</div>
