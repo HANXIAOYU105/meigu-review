@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -121,20 +126,20 @@
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
   <div class="lvg"><div class="lvg-h">🔺 压力位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">725.71</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">⏱0:09</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">725.71</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">⏱0:09</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>NaNa说美股</td><td>10/29</td><td><b class="num">700</b>（支撑） <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=600s" class="tslink">⏱10:00</a></td></tr><tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">706.58</b> / <b class="num">608</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">⏱0:09</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>10/29</td><td><b class="num">700</b>（支撑） <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=600s" class="tslink">⏱10:00</a></td><td class="vfy vfy-bad" title="跌破 700，最低 683.45">❌</td></tr><tr><td>视野环球财经</td><td>10/30</td><td>跌破<b class="num">696</b>强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨 <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">706.58</b> / <b class="num">608</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">⏱0:09</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>视野环球财经</td><td>10/30</td><td><b class="num">610</b>附近（极限回撤/上车区间） <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1380s" class="tslink">⏱23:00</a></td></tr><tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">706.58</b> 有效收复后补多仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">⏱0:09</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/30</td><td><b class="num">610</b>附近（极限回撤/上车区间） <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">706.58</b> 有效收复后补多仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">⏱0:09</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>视野环球财经</td><td>10/28</td><td><b class="num">504</b>（正常回撤位置） <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1950s" class="tslink">⏱32:30</a></td></tr><tr><td>NaNa说美股</td><td>10/30</td><td><b class="num">660-680</b>（抄底区间） <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=420s" class="tslink">⏱7:00</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/28</td><td><b class="num">504</b>（正常回撤位置） <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1950s" class="tslink">⏱32:30</a></td><td class="vfy vfy-ok" title="已到达 504（已过 2/5 日）">🎯</td></tr><tr><td>NaNa说美股</td><td>10/30</td><td><b class="num">660-680</b>（抄底区间） <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=420s" class="tslink">⏱7:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>视野环球财经</td><td>10/29</td><td><b class="num">696-698</b>（关键位）/ 破位则技术性下跌空间打开 <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=2100s" class="tslink">⏱35:00</a></td></tr><tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">706.58</b> 收回→进多仓；<b class="num">608</b> 有效跌破→全面防守 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">⏱0:09</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>10/29</td><td>跳空低开，收盘已跌破<b class="num">5</b>日均线，日K收阴线十字星 <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=600s" class="tslink">⏱10:00</a></td><td class="vfy vfy-ok" title="观察期触及 5（已过 1/5 日）">⚡</td></tr><tr><td>视野环球财经</td><td>10/29</td><td><b class="num">696-698</b>（关键位）/ 破位则技术性下跌空间打开 <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=2100s" class="tslink">⏱35:00</a></td><td class="vfy vfy-ok" title="观察期触及 696（已过 1/5 日）">⚡</td></tr><tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">706.58</b> 收回→进多仓；<b class="num">608</b> 有效跌破→全面防守 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">⏱0:09</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div>
 </div>
 
@@ -162,7 +167,7 @@
       
     </div><div class="op">
       <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·短期</span></div>
-      <div class="op-lv"><span class="lv lv-e">买点 <b class="num">610</b>附近（极限回撤/上车区间）</span></div>
+      <div class="op-lv"><span class="lv lv-e">买点 <b class="num">610</b>附近（极限回撤/上车区间）</span><span class="lv lv-s">支撑 跌破<b class="num">696</b>强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨</span></div>
       <div class="op-d">跌破696强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨。200日均约678-679是量化重要触发位置需重点观察；下方极限回撤看610附近（再跌约10%），对做QQQ指数的人来说这是每年靠大跌一两波赚超额收益的上车机会。</div>
       <div class="op-q">「从现在开始往下10个点，跌10%一直到下方大概610左右，这是做指数QQQ的朋友要注意的上车机会」</div>
       <div class="op-tag"><b>催化：</b>200日均678-679关键支撑</div>
@@ -186,7 +191,7 @@
       <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 0 / 看空 1</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span><span class="st down">看空/观望·短期</span></div>
-      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">700</b>（支撑）</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">700</b>（支撑）</span><span class="lv lv-t">触发 跳空低开，收盘已跌破<b class="num">5</b>日均线，日K收阴线十字星</span></div>
       <div class="op-d">跳空低开，收盘已跌破5日均线，日K收阴线十字星。谷歌财报打断科技股短期反弹节奏，原本期待亚马逊财报托市结果盘后期指直接跪了，明天大概率再次考验700附近支撑。</div>
       <div class="op-q">「明天大概率要再次考验700附近的支撑了」</div>
       
@@ -210,7 +215,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/26</td><td>NaNa说美股</td><td>支撑 <b class="num">705</b>（关键支撑）</td><td><a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=480s" class="tslink">8:00</a></td></tr><tr><td>10/28</td><td>视野环球财经</td><td>目标 <b class="num">504</b>（正常回撤位置）</td><td><a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1950s" class="tslink">32:30</a></td></tr><tr><td>10/29</td><td>NaNa说美股</td><td>支撑 <b class="num">700</b>（支撑）</td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td>10/29</td><td>视野环球财经</td><td>触发 <b class="num">696-698</b>（关键位）/ 破位则技术性下跌空间打开</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=2100s" class="tslink">35:00</a></td></tr><tr><td>10/30</td><td>NaNa说美股</td><td>目标 <b class="num">660-680</b>（抄底区间）</td><td><a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=420s" class="tslink">7:00</a></td></tr><tr><td>10/30</td><td>视野环球财经</td><td>买点 <b class="num">610</b>附近（极限回撤/上车区间）</td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td>10/31</td><td>XTrader猫姐美股</td><td>支撑 <b class="num">706.58</b> / <b class="num">608</b><br>阻力 <b class="num">725.71</b><br>买点 <b class="num">706.58</b> 有效收复后补多仓<br>触发 <b class="num">706.58</b> 收回→进多仓；<b class="num">608</b> 有效跌破→全面防守</td><td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">0:09</a></td></tr>
+    <tr><td>10/26</td><td>NaNa说美股</td><td>支撑 <b class="num">705</b>（关键支撑）</td><td><a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=480s" class="tslink">8:00</a></td></tr><tr><td>10/28</td><td>视野环球财经</td><td>目标 <b class="num">504</b>（正常回撤位置）</td><td><a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1950s" class="tslink">32:30</a></td></tr><tr><td>10/29</td><td>NaNa说美股</td><td>支撑 <b class="num">700</b>（支撑）<br>触发 跳空低开，收盘已跌破<b class="num">5</b>日均线，日K收阴线十字星</td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td>10/29</td><td>视野环球财经</td><td>触发 <b class="num">696-698</b>（关键位）/ 破位则技术性下跌空间打开</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=2100s" class="tslink">35:00</a></td></tr><tr><td>10/30</td><td>NaNa说美股</td><td>目标 <b class="num">660-680</b>（抄底区间）</td><td><a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=420s" class="tslink">7:00</a></td></tr><tr><td>10/30</td><td>视野环球财经</td><td>买点 <b class="num">610</b>附近（极限回撤/上车区间）<br>支撑 跌破<b class="num">696</b>强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨</td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td>10/31</td><td>XTrader猫姐美股</td><td>支撑 <b class="num">706.58</b> / <b class="num">608</b><br>阻力 <b class="num">725.71</b><br>买点 <b class="num">706.58</b> 有效收复后补多仓<br>触发 <b class="num">706.58</b> 收回→进多仓；<b class="num">608</b> 有效跌破→全面防守</td><td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">0:09</a></td></tr>
   </table>
 </div>
 
@@ -241,7 +246,7 @@
       <div class="day-h">10/29</div>
       <div class="op">
           <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">看空/观望·短期</span></div>
-          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">700</b>（支撑）</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">700</b>（支撑）</span><span class="lv lv-t">触发 跳空低开，收盘已跌破<b class="num">5</b>日均线，日K收阴线十字星</span></div>
           <div class="op-d">跳空低开，收盘已跌破5日均线，日K收阴线十字星。谷歌财报打断科技股短期反弹节奏，原本期待亚马逊财报托市结果盘后期指直接跪了，明天大概率再次考验700附近支撑。</div>
           <div class="op-q">「明天大概率要再次考验700附近的支撑了」</div>
           
@@ -268,7 +273,7 @@
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=420s" class="tslink">7:00 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·短期</span></div>
-          <div class="op-lv"><span class="lv lv-e">买点 <b class="num">610</b>附近（极限回撤/上车区间）</span></div>
+          <div class="op-lv"><span class="lv lv-e">买点 <b class="num">610</b>附近（极限回撤/上车区间）</span><span class="lv lv-s">支撑 跌破<b class="num">696</b>强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨</span></div>
           <div class="op-d">跌破696强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨。200日均约678-679是量化重要触发位置需重点观察；下方极限回撤看610附近（再跌约10%），对做QQQ指数的人来说这是每年靠大跌一两波赚超额收益的上车机会。</div>
           <div class="op-q">「从现在开始往下10个点，跌10%一直到下方大概610左右，这是做指数QQQ的朋友要注意的上车机会」</div>
           <div class="op-tag"><b>催化：</b>200日均678-679关键支撑</div>

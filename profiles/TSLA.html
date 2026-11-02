@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -121,17 +126,20 @@
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
   <div class="lvg"><div class="lvg-h">🔺 压力位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>The Trading Apologist</td><td>10/27</td><td><b class="num">430</b>（下一阻力） <a href="https://www.youtube.com/watch?v=SUAyPFxaUI4&amp;t=1350s" class="tslink">⏱22:30</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>The Trading Apologist</td><td>10/27</td><td><b class="num">430</b>（下一阻力） <a href="https://www.youtube.com/watch?v=SUAyPFxaUI4&amp;t=1350s" class="tslink">⏱22:30</a></td><td class="vfy vfy-pending" title="最高 410.85，未到 430（已过 3/5 日）">⏳</td></tr><tr><td>The Investor Channel</td><td>10/30</td><td>技术面：收于所有均线上方、站上<b class="num">200</b>日均线，但仍处<b class="num">2025</b>年高点以来的下降结构（lower highs/lower lo <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1280s" class="tslink">⏱21:20</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>The Trading Apologist</td><td>10/27</td><td><b class="num">390-400</b>（回踩支撑） <a href="https://www.youtube.com/watch?v=SUAyPFxaUI4&amp;t=1350s" class="tslink">⏱22:30</a></td></tr><tr><td>The Investor Channel</td><td>10/30</td><td><b class="num">400</b>区间（收购支撑） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1280s" class="tslink">⏱21:20</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>The Trading Apologist</td><td>10/27</td><td><b class="num">390-400</b>（回踩支撑） <a href="https://www.youtube.com/watch?v=SUAyPFxaUI4&amp;t=1350s" class="tslink">⏱22:30</a></td><td class="vfy vfy-bad" title="跌破 390，最低 387.52">❌</td></tr><tr><td>The Trading Apologist</td><td>10/29</td><td>突破后回踩，主要阻力在<b class="num">380-400</b>，博主希望<b class="num">395</b>转支撑、收盘站上<b class="num">400-405</b>（最好<b class="num">403</b>） <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=2050s" class="tslink">⏱34:10</a></td><td class="vfy vfy-bad" title="跌破 400，最低 387.52">❌</td></tr><tr><td>The Investor Channel</td><td>10/30</td><td><b class="num">400</b>区间（收购支撑） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1280s" class="tslink">⏱21:20</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/30</td><td>博主加仓时间最早（<b class="num">100</b>多美元时），<b class="num">200</b>美元以上即不再加仓 <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=620s" class="tslink">⏱10:20</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>The Trading Apologist</td><td>10/27</td><td><b class="num">555-565</b>（主要目标） <a href="https://www.youtube.com/watch?v=SUAyPFxaUI4&amp;t=1350s" class="tslink">⏱22:30</a></td></tr><tr><td>美投侃新闻</td><td>10/28</td><td><b class="num">450</b>（巴克莱目标价） <a href="https://www.youtube.com/watch?v=VLj5YKi-Jig&amp;t=515s" class="tslink">⏱8:35</a></td></tr><tr><td>The Investor Channel</td><td>10/30</td><td><b class="num">450</b>（需突破） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1280s" class="tslink">⏱21:20</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>The Trading Apologist</td><td>10/27</td><td><b class="num">555-565</b>（主要目标） <a href="https://www.youtube.com/watch?v=SUAyPFxaUI4&amp;t=1350s" class="tslink">⏱22:30</a></td><td class="vfy vfy-pending" title="最高 410.85，未到 555（已过 3/5 日）">⏳</td></tr><tr><td>美投侃新闻</td><td>10/28</td><td><b class="num">450</b>（巴克莱目标价） <a href="https://www.youtube.com/watch?v=VLj5YKi-Jig&amp;t=515s" class="tslink">⏱8:35</a></td><td class="vfy vfy-pending" title="最高 406.98，未到 450（已过 2/5 日）">⏳</td></tr><tr><td>美投侃新闻</td><td>10/28</td><td>巴克莱上调评级至超配、目标价<b class="num">370</b>→<b class="num">450</b>美元，核心看好特斯拉与SpaceX合并的战略价值（股东或获收购溢价） <a href="https://www.youtube.com/watch?v=VLj5YKi-Jig&amp;t=515s" class="tslink">⏱8:35</a></td><td class="vfy vfy-ok" title="已到达 370（已过 2/5 日）">🎯</td></tr><tr><td>The Investor Channel</td><td>10/30</td><td><b class="num">450</b>（需突破） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1280s" class="tslink">⏱21:20</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>The Trading Apologist</td><td>10/29</td><td><b class="num">400-405</b>（需站上） <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=2050s" class="tslink">⏱34:10</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>The Trading Apologist</td><td>10/29</td><td><b class="num">400-405</b>（需站上） <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=2050s" class="tslink">⏱34:10</a></td><td class="vfy vfy-ok" title="观察期触及 400（已过 1/5 日）">⚡</td></tr>
         </table></div>
 </div>
 
@@ -150,7 +158,7 @@
       
     </div><div class="op">
       <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/29</span></span><span class="st up">看多/持有·中期</span></div>
-      <div class="op-lv"><span class="lv lv-t">触发 <b class="num">400-405</b>（需站上）</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 <b class="num">400-405</b>（需站上）</span><span class="lv lv-s">支撑 突破后回踩，主要阻力在<b class="num">380-400</b>，博主希望<b class="num">395</b>转支撑、收盘站上<b class="num">400-405</b>（最好<b class="num">403</b>）</span></div>
       <div class="op-d">周线RSI突破，走势强于其他科技股。突破后回踩，主要阻力在380-400，博主希望395转支撑、收盘站上400-405（最好403）。日线偏延伸但周线仍非常有意思。周五虽下跌但守住200日均线、收出较强劲的K线。</div>
       <div class="op-q">「特斯拉周线RSI突破，走势比其他科技股强得多」</div>
       <div class="op-tag"><b>催化：</b>周线RSI突破、守住200日均线</div>
@@ -162,7 +170,7 @@
       <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 1 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/28</span></span><span class="st flat">中性/观望·中期</span></div>
-      <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（巴克莱目标价）</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（巴克莱目标价）</span><span class="lv">目标 巴克莱上调评级至超配、目标价<b class="num">370</b>→<b class="num">450</b>美元，核心看好特斯拉与SpaceX合并的战略价值（股东或获收购溢价）</span></div>
       <div class="op-d">巴克莱上调评级至超配、目标价370→450美元，核心看好特斯拉与SpaceX合并的战略价值（股东或获收购溢价）。马斯克证实双方成立特别委员会研究合并但未达成协议。业务本身改善：汽车连续两年下滑后今年恢复增长，能源业务受益AI数据中心（2027储能产能几乎预订一空、出货或增超50%），Robotaxi与Waymo竞争。Tim观点：决定股价最核心因素是SpaceX合并溢价，溢价大概率在可控范围，短期股价难有大波动——涨不上去也跌不下来，直到收购方案出现。这与很多投资者期待快速暴涨的逻辑不同，需重新审视特斯拉是否还适合自己。</div>
       <div class="op-q">「从今往后，特斯拉的股价就很难发生大的波动，涨也涨不太上去，跌也跌不下去，直到收购方案出现」</div>
       <div class="op-tag"><b>催化：</b>SpaceX合并溢价预期、能源业务受益AI数据中心、汽车销量恢复增长</div>
@@ -192,7 +200,7 @@
       <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span><span class="st up">看多/持有·长期</span></div>
-      
+      <div class="op-lv"><span class="lv lv-e">买点 博主加仓时间最早（<b class="num">100</b>多美元时），<b class="num">200</b>美元以上即不再加仓</span></div>
       <div class="op-d">博主加仓时间最早（100多美元时），200美元以上即不再加仓。本月月线级别逆势上涨12%，是其持仓中表现最强者之一，验证了「低位建仓、不追高」的纪律。</div>
       <div class="op-q">「特斯拉更不用说了，加仓时间更早了，100多块钱的时候……现在月线级别这个月还涨了12个点」</div>
       
@@ -204,7 +212,7 @@
       <div class="ch-h"><span class="ch-name">The Investor Channel</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·10/30</span></span><span class="st flat">中性偏多/持有·中期</span></div>
-      <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（需突破）</span><span class="lv lv-s">支撑 <b class="num">400</b>区间（收购支撑）</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（需突破）</span><span class="lv lv-s">支撑 <b class="num">400</b>区间（收购支撑）</span><span class="lv lv-r">阻力 技术面：收于所有均线上方、站上<b class="num">200</b>日均线，但仍处<b class="num">2025</b>年高点以来的下降结构（lower highs/lower lo</span></div>
       <div class="op-d">本周涨超7%至372（几乎无新闻）。核心是SpaceX收购的「隐形买盘」——特斯拉下跌会降低SpaceX收购价，所以存在隐形需求支撑，使特斯拉停留在400区间。马斯克可能以420.69价格收购特斯拉（并入SpaceX）。技术面：收于所有均线上方、站上200日均线，但仍处2025年高点以来的下降结构（lower highs/lower lows），需突破450确认。</div>
       <div class="op-q">「如果特斯拉下跌，就会降低SpaceX收购需要支付的价格，所以股票下方有隐形需求」</div>
       <div class="op-tag"><b>催化：</b>SpaceX收购隐形买盘、收于所有均线上方</div>
@@ -231,7 +239,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/27</td><td>The Trading Apologist</td><td>阻力 <b class="num">430</b>（下一阻力）<br>目标 <b class="num">555-565</b>（主要目标）<br>支撑 <b class="num">390-400</b>（回踩支撑）</td><td><a href="https://www.youtube.com/watch?v=SUAyPFxaUI4&amp;t=1350s" class="tslink">22:30</a></td></tr><tr><td>10/28</td><td>美投侃新闻</td><td>目标 <b class="num">450</b>（巴克莱目标价）</td><td><a href="https://www.youtube.com/watch?v=VLj5YKi-Jig&amp;t=515s" class="tslink">8:35</a></td></tr><tr><td>10/29</td><td>The Trading Apologist</td><td>触发 <b class="num">400-405</b>（需站上）</td><td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=2050s" class="tslink">34:10</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>目标 <b class="num">450</b>（需突破）<br>支撑 <b class="num">400</b>区间（收购支撑）</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1280s" class="tslink">21:20</a></td></tr><tr><td>10/30</td><td>视野环球财经</td><td></td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=620s" class="tslink">10:20</a></td></tr>
+    <tr><td>10/27</td><td>The Trading Apologist</td><td>阻力 <b class="num">430</b>（下一阻力）<br>目标 <b class="num">555-565</b>（主要目标）<br>支撑 <b class="num">390-400</b>（回踩支撑）</td><td><a href="https://www.youtube.com/watch?v=SUAyPFxaUI4&amp;t=1350s" class="tslink">22:30</a></td></tr><tr><td>10/28</td><td>美投侃新闻</td><td>目标 <b class="num">450</b>（巴克莱目标价）<br>目标 巴克莱上调评级至超配、目标价<b class="num">370</b>→<b class="num">450</b>美元，核心看好特斯拉与SpaceX合并的战略价值（股东或获收购溢价）</td><td><a href="https://www.youtube.com/watch?v=VLj5YKi-Jig&amp;t=515s" class="tslink">8:35</a></td></tr><tr><td>10/29</td><td>The Trading Apologist</td><td>触发 <b class="num">400-405</b>（需站上）<br>支撑 突破后回踩，主要阻力在<b class="num">380-400</b>，博主希望<b class="num">395</b>转支撑、收盘站上<b class="num">400-405</b>（最好<b class="num">403</b>）</td><td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=2050s" class="tslink">34:10</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>目标 <b class="num">450</b>（需突破）<br>支撑 <b class="num">400</b>区间（收购支撑）<br>阻力 技术面：收于所有均线上方、站上<b class="num">200</b>日均线，但仍处<b class="num">2025</b>年高点以来的下降结构（lower highs/lower lo</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1280s" class="tslink">21:20</a></td></tr><tr><td>10/30</td><td>视野环球财经</td><td>买点 博主加仓时间最早（<b class="num">100</b>多美元时），<b class="num">200</b>美元以上即不再加仓</td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=620s" class="tslink">10:20</a></td></tr>
   </table>
 </div>
 
@@ -262,7 +270,7 @@
       <div class="day-h">10/28</div>
       <div class="op">
           <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/观望·中期</span></div>
-          <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（巴克莱目标价）</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（巴克莱目标价）</span><span class="lv">目标 巴克莱上调评级至超配、目标价<b class="num">370</b>→<b class="num">450</b>美元，核心看好特斯拉与SpaceX合并的战略价值（股东或获收购溢价）</span></div>
           <div class="op-d">巴克莱上调评级至超配、目标价370→450美元，核心看好特斯拉与SpaceX合并的战略价值（股东或获收购溢价）。马斯克证实双方成立特别委员会研究合并但未达成协议。业务本身改善：汽车连续两年下滑后今年恢复增长，能源业务受益AI数据中心（2027储能产能几乎预订一空、出货或增超50%），Robotaxi与Waymo竞争。Tim观点：决定股价最核心因素是SpaceX合并溢价，溢价大概率在可控范围，短期股价难有大波动——涨不上去也跌不下来，直到收购方案出现。这与很多投资者期待快速暴涨的逻辑不同，需重新审视特斯拉是否还适合自己。</div>
           <div class="op-q">「从今往后，特斯拉的股价就很难发生大的波动，涨也涨不太上去，跌也跌不下去，直到收购方案出现」</div>
           <div class="op-tag"><b>催化：</b>SpaceX合并溢价预期、能源业务受益AI数据中心、汽车销量恢复增长</div>
@@ -273,7 +281,7 @@
       <div class="day-h">10/29</div>
       <div class="op">
           <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st up">看多/持有·中期</span></div>
-          <div class="op-lv"><span class="lv lv-t">触发 <b class="num">400-405</b>（需站上）</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 <b class="num">400-405</b>（需站上）</span><span class="lv lv-s">支撑 突破后回踩，主要阻力在<b class="num">380-400</b>，博主希望<b class="num">395</b>转支撑、收盘站上<b class="num">400-405</b>（最好<b class="num">403</b>）</span></div>
           <div class="op-d">周线RSI突破，走势强于其他科技股。突破后回踩，主要阻力在380-400，博主希望395转支撑、收盘站上400-405（最好403）。日线偏延伸但周线仍非常有意思。周五虽下跌但守住200日均线、收出较强劲的K线。</div>
           <div class="op-q">「特斯拉周线RSI突破，走势比其他科技股强得多」</div>
           <div class="op-tag"><b>催化：</b>周线RSI突破、守住200日均线</div>
@@ -284,7 +292,7 @@
       <div class="day-h">10/30</div>
       <div class="op">
           <div class="op-h"><span class="op-c">The Investor Channel</span><span class="st flat">中性偏多/持有·中期</span></div>
-          <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（需突破）</span><span class="lv lv-s">支撑 <b class="num">400</b>区间（收购支撑）</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（需突破）</span><span class="lv lv-s">支撑 <b class="num">400</b>区间（收购支撑）</span><span class="lv lv-r">阻力 技术面：收于所有均线上方、站上<b class="num">200</b>日均线，但仍处<b class="num">2025</b>年高点以来的下降结构（lower highs/lower lo</span></div>
           <div class="op-d">本周涨超7%至372（几乎无新闻）。核心是SpaceX收购的「隐形买盘」——特斯拉下跌会降低SpaceX收购价，所以存在隐形需求支撑，使特斯拉停留在400区间。马斯克可能以420.69价格收购特斯拉（并入SpaceX）。技术面：收于所有均线上方、站上200日均线，但仍处2025年高点以来的下降结构（lower highs/lower lows），需突破450确认。</div>
           <div class="op-q">「如果特斯拉下跌，就会降低SpaceX收购需要支付的价格，所以股票下方有隐形需求」</div>
           <div class="op-tag"><b>催化：</b>SpaceX收购隐形买盘、收于所有均线上方</div>
@@ -308,7 +316,7 @@
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=480s" class="tslink">8:00 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·长期</span></div>
-          
+          <div class="op-lv"><span class="lv lv-e">买点 博主加仓时间最早（<b class="num">100</b>多美元时），<b class="num">200</b>美元以上即不再加仓</span></div>
           <div class="op-d">博主加仓时间最早（100多美元时），200美元以上即不再加仓。本月月线级别逆势上涨12%，是其持仓中表现最强者之一，验证了「低位建仓、不追高」的纪律。</div>
           <div class="op-q">「特斯拉更不用说了，加仓时间更早了，100多块钱的时候……现在月线级别这个月还涨了12个点」</div>
           

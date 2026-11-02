@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -121,17 +126,20 @@
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
   <div class="lvg"><div class="lvg-h">🔺 压力位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">606-607</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">⏱14:00</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">606-607</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">⏱14:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">600</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">⏱14:00</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">600</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">⏱14:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">606-607</b> 站回且有力度时补仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">⏱14:00</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">606-607</b> 站回且有力度时补仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">⏱14:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div><div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td>财报触发后一开盘就止损离场（纪律坚决），股价从 <b class="num">608</b> 附近跌到 <b class="num">600</b> 出头 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">⏱14:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">⏱14:00</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">⏱14:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div>
 </div>
 
@@ -153,7 +161,7 @@
       <div class="ch-h"><span class="ch-name">XTrader猫姐美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="op-date">·10/31</span></span><span class="st flat">中性/持有·短期</span></div>
-      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">600</b></span><span class="lv lv-r">阻力 <b class="num">606-607</b></span><span class="lv lv-e">买点 <b class="num">606-607</b> 站回且有力度时补仓</span><span class="lv lv-t">触发 <b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">600</b></span><span class="lv lv-r">阻力 <b class="num">606-607</b></span><span class="lv lv-e">买点 <b class="num">606-607</b> 站回且有力度时补仓</span><span class="lv lv-t">触发 <b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓</span><span class="lv">目标 财报触发后一开盘就止损离场（纪律坚决），股价从 <b class="num">608</b> 附近跌到 <b class="num">600</b> 出头</span></div>
       <div class="op-d">目前处于极左侧位置。财报触发后一开盘就止损离场（纪律坚决），股价从 608 附近跌到 600 出头。周五因为防守得很好，小仓位进了一点点。下周的关键是 600 必须守住：失守将陷入周线级别震荡（至少三个月），资金效率太低不值得纠缠。600 既是止损线也是下一波进场后的止损线；右侧加仓信号是站回 606-607 且要有力度。</div>
       <div class="op-q">「下周重点看什么，600 一定要防守住了，因为 600 如果不防守住的话，它下面很麻烦……它会陷入一个周线级别的一个震荡期，那样的震荡起码要有三个月……600 是我的止损线，也是这波出清掉之后再进场的止损线。」</div>
       <div class="op-tag"><b>催化：</b>站稳 606-607 可右侧补仓</div>
@@ -168,7 +176,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/31</td><td>XTrader猫姐美股</td><td>支撑 <b class="num">600</b><br>阻力 <b class="num">606-607</b><br>买点 <b class="num">606-607</b> 站回且有力度时补仓<br>触发 <b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓</td><td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">14:00</a></td></tr>
+    <tr><td>10/31</td><td>XTrader猫姐美股</td><td>支撑 <b class="num">600</b><br>阻力 <b class="num">606-607</b><br>买点 <b class="num">606-607</b> 站回且有力度时补仓<br>触发 <b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓<br>目标 财报触发后一开盘就止损离场（纪律坚决），股价从 <b class="num">608</b> 附近跌到 <b class="num">600</b> 出头</td><td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">14:00</a></td></tr>
   </table>
 </div>
 
@@ -199,7 +207,7 @@
       <div class="day-h">10/31</div>
       <div class="op">
           <div class="op-h"><span class="op-c">XTrader猫姐美股</span><span class="st flat">中性/持有·短期</span></div>
-          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">600</b></span><span class="lv lv-r">阻力 <b class="num">606-607</b></span><span class="lv lv-e">买点 <b class="num">606-607</b> 站回且有力度时补仓</span><span class="lv lv-t">触发 <b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">600</b></span><span class="lv lv-r">阻力 <b class="num">606-607</b></span><span class="lv lv-e">买点 <b class="num">606-607</b> 站回且有力度时补仓</span><span class="lv lv-t">触发 <b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓</span><span class="lv">目标 财报触发后一开盘就止损离场（纪律坚决），股价从 <b class="num">608</b> 附近跌到 <b class="num">600</b> 出头</span></div>
           <div class="op-d">目前处于极左侧位置。财报触发后一开盘就止损离场（纪律坚决），股价从 608 附近跌到 600 出头。周五因为防守得很好，小仓位进了一点点。下周的关键是 600 必须守住：失守将陷入周线级别震荡（至少三个月），资金效率太低不值得纠缠。600 既是止损线也是下一波进场后的止损线；右侧加仓信号是站回 606-607 且要有力度。</div>
           <div class="op-q">「下周重点看什么，600 一定要防守住了，因为 600 如果不防守住的话，它下面很麻烦……它会陷入一个周线级别的一个震荡期，那样的震荡起码要有三个月……600 是我的止损线，也是这波出清掉之后再进场的止损线。」</div>
           <div class="op-tag"><b>催化：</b>站稳 606-607 可右侧补仓</div>

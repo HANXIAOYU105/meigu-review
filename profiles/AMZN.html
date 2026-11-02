@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -120,15 +125,18 @@
 
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
-  <div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">235</b>（强支撑） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td></tr><tr><td>NaNa说美股</td><td>10/29</td><td>补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低） <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">⏱0:00</a></td></tr><tr><td>The Investor Channel</td><td>10/30</td><td>低<b class="num">200</b>（支撑） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">⏱9:10</a></td></tr>
+  <div class="lvg"><div class="lvg-h">🔺 压力位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>美投侃新闻</td><td>10/30</td><td>分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来<b class="num">5</b>年现金流偿还，能省眼前现金流并缓解评级压力 <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=480s" class="tslink">⏱8:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">235</b>（强支撑） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-bad" title="跌破 235，最低 229.36">❌</td></tr><tr><td>视野环球财经</td><td>10/27</td><td>往下减<b class="num">20</b>到<b class="num">235</b>仍是较强支撑位置，不算太紧张 <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-bad" title="跌破 235，最低 229.36">❌</td></tr><tr><td>NaNa说美股</td><td>10/29</td><td>补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低） <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">⏱0:00</a></td><td class="vfy vfy-ok" title="守住 225（已过 1/5 日）">✅</td></tr><tr><td>The Investor Channel</td><td>10/30</td><td>低<b class="num">200</b>（支撑） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">⏱9:10</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>The Investor Channel</td><td>10/30</td><td>技术面：暴跌至<b class="num">230</b>后收盘反弹至<b class="num">240</b>（<b class="num">200</b>日均线<b class="num">245</b>下方），低<b class="num">200</b>有充足支撑，仍是higher highs/hi <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">⏱9:10</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">255</b>（期权压注） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td></tr><tr><td>视野环球财经</td><td>10/27</td><td><b class="num">275</b>（破近期高点） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td></tr><tr><td>The Trading Apologist</td><td>10/29</td><td>时间投影磨底至<b class="num">2027-2029</b> <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">⏱22:10</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">255</b>（期权压注） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-ok" title="已到达 255（已过 3/5 日）">🎯</td></tr><tr><td>视野环球财经</td><td>10/27</td><td><b class="num">275</b>（破近期高点） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-pending" title="最高 255.36，未到 275（已过 3/5 日）">⏳</td></tr><tr><td>The Trading Apologist</td><td>10/29</td><td>时间投影磨底至<b class="num">2027-2029</b> <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">⏱22:10</a></td><td class="vfy vfy-pending" title="最高 241.55，未到 2027（已过 1/5 日）">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>The Trading Apologist</td><td>10/30</td><td>跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b> <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">⏱37:20</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>The Trading Apologist</td><td>10/29</td><td>技术面跌破<b class="num">2023</b>年<b class="num">1</b>月以来主要周线趋势线（下影线跌破），是决定性的性格转变 <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">⏱22:10</a></td><td class="vfy vfy-ok" title="观察期触及 1（已过 1/5 日）">⚡</td></tr><tr><td>The Trading Apologist</td><td>10/30</td><td>跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b> <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">⏱37:20</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div>
 </div>
 
@@ -138,7 +146,7 @@
       <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 1 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·中期</span></div>
-      
+      <div class="op-lv"><span class="lv lv-r">阻力 分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来<b class="num">5</b>年现金流偿还，能省眼前现金流并缓解评级压力</span></div>
       <div class="op-d">10-Q文件藏一笔最高800亿美元的担保贷款（供应商融资安排），拿AI设备做抵押、浮动利率5年期，2027Q1-2028Q3可自行决定借多少。分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来5年现金流偿还，能省眼前现金流并缓解评级压力。但信号含义是「连信用最好的大科技都开始拿设备抵押借钱」，反映AI花钱速度之快。AWS增速未达偏高市场预期，本周跌3.1%。</div>
       <div class="op-q">「如果连信用最好的大科技也开始拿设备做抵押来借钱，那就说明AI的花钱速度已经快到连最赚钱的公司都要想办法省现金了」</div>
       <div class="op-tag"><b>催化：</b>800亿美元担保贷款融资安排、2027资本开支明显增加</div>
@@ -168,7 +176,7 @@
       <div class="ch-h"><span class="ch-name">The Investor Channel</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·10/30</span></span><span class="st up">看多/持有·长期</span></div>
-      <div class="op-lv"><span class="lv lv-s">支撑 低<b class="num">200</b>（支撑）</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 低<b class="num">200</b>（支撑）</span><span class="lv lv-s">支撑 技术面：暴跌至<b class="num">230</b>后收盘反弹至<b class="num">240</b>（<b class="num">200</b>日均线<b class="num">245</b>下方），低<b class="num">200</b>有充足支撑，仍是higher highs/hi</span></div>
       <div class="op-d">财报双miss（营收2020亿、EPS、Q4指引偏弱），但AWS+39%（Q2+37%加速）、电商与AWS未来5-10年各达万亿营收。资本开支季度770亿（史上罕见），是下跌主因。博主认为作为股东需「系好安全带」等待AWS万亿营收兑现。技术面：暴跌至230后收盘反弹至240（200日均线245下方），低200有充足支撑，仍是higher highs/higher lows结构，希望在此企稳。</div>
       <div class="op-q">「作为亚马逊股东，你基本上只需要系好安全带，等待这些收入最终兑现」</div>
       <div class="op-tag"><b>催化：</b>AWS+39%加速、两大业务各冲万亿营收</div>
@@ -180,7 +188,7 @@
       <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 0 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/27</span></span><span class="st flat">中性/观望·短期</span></div>
-      <div class="op-lv"><span class="lv">目标 <b class="num">255</b>（期权压注）</span><span class="lv">目标 <b class="num">275</b>（破近期高点）</span><span class="lv lv-s">支撑 <b class="num">235</b>（强支撑）</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">255</b>（期权压注）</span><span class="lv">目标 <b class="num">275</b>（破近期高点）</span><span class="lv lv-s">支撑 <b class="num">235</b>（强支撑）</span><span class="lv lv-s">支撑 往下减<b class="num">20</b>到<b class="num">235</b>仍是较强支撑位置，不算太紧张</span></div>
       <div class="op-d">亚马逊财报（周四）期权压注255美元、上下20美元（68%概率），即7%-8%的涨跌。往上加20到275直接破近期高点265附近、确认上行趋势；往下减20到235仍是较强支撑位置，不算太紧张。看点是有没有破近期高点打新高的机会。</div>
       <div class="op-q">「亚马逊是255美元上下20美元的波动，往上加20是275直接破近期高点……往下减到235仍旧是较强的支撑位置」</div>
       <div class="op-tag"><b>催化：</b>破265近期高点确认上行</div>
@@ -243,7 +251,7 @@
       <div class="ch-h"><span class="ch-name">The Trading Apologist</span><span class="lean down">偏空</span><span class="ch-meta">2 条 · 看多 0 / 看空 2</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/29</span></span><span class="st down">看空/回避·中期</span></div>
-      <div class="op-lv"><span class="lv">目标 时间投影磨底至<b class="num">2027-2029</b></span></div>
+      <div class="op-lv"><span class="lv">目标 时间投影磨底至<b class="num">2027-2029</b></span><span class="lv lv-t">触发 技术面跌破<b class="num">2023</b>年<b class="num">1</b>月以来主要周线趋势线（下影线跌破），是决定性的性格转变</span></div>
       <div class="op-d">财报勉强miss：EPS 1.89 vs 预期1.97、营收2019亿 vs 预期2022亿，但市场不给余地。亮点是AWS+39%近5年最快、2027-2028增长指引超40%，但12个月自由现金流从+148亿转-424亿，超大规模云厂商融资方式转变市场仍在适应。技术面跌破2023年1月以来主要周线趋势线（下影线跌破），是决定性的性格转变。博主用时间测算：趋势低点到高点189根K线，1/3（63根）对应2027年10月、1/2对应2028年5月、2/3对应2029年1月，暗示即便反弹也可能是漫长的磨底/漂移下行，为未来一年提供逢低吸纳机会。</div>
       <div class="op-q">「即便反弹，我感觉也会是一个漫长的磨底期，超大规模厂商未来一年可能只是反复提供逢低吸纳的机会」</div>
       <div class="op-tag"><b>催化：</b>AWS+39%近5年最快、2027-2028增长指引超40%、周五反弹5.5%</div>
@@ -267,7 +275,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/27</td><td>视野环球财经</td><td>目标 <b class="num">255</b>（期权压注）<br>目标 <b class="num">275</b>（破近期高点）<br>支撑 <b class="num">235</b>（强支撑）</td><td><a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td>10/29</td><td>NaNa说美股</td><td>支撑 补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低）</td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00</a></td></tr><tr><td>10/29</td><td>The Trading Apologist</td><td>目标 时间投影磨底至<b class="num">2027-2029</b></td><td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">22:10</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>支撑 低<b class="num">200</b>（支撑）</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">9:10</a></td></tr><tr><td>10/30</td><td>The Trading Apologist</td><td>触发 跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b></td><td><a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">37:20</a></td></tr><tr><td>10/30</td><td>美投侃新闻</td><td></td><td><a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=480s" class="tslink">8:00</a></td></tr>
+    <tr><td>10/27</td><td>视野环球财经</td><td>目标 <b class="num">255</b>（期权压注）<br>目标 <b class="num">275</b>（破近期高点）<br>支撑 <b class="num">235</b>（强支撑）<br>支撑 往下减<b class="num">20</b>到<b class="num">235</b>仍是较强支撑位置，不算太紧张</td><td><a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td>10/29</td><td>NaNa说美股</td><td>支撑 补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低）</td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00</a></td></tr><tr><td>10/29</td><td>The Trading Apologist</td><td>目标 时间投影磨底至<b class="num">2027-2029</b><br>触发 技术面跌破<b class="num">2023</b>年<b class="num">1</b>月以来主要周线趋势线（下影线跌破），是决定性的性格转变</td><td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">22:10</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>支撑 低<b class="num">200</b>（支撑）<br>支撑 技术面：暴跌至<b class="num">230</b>后收盘反弹至<b class="num">240</b>（<b class="num">200</b>日均线<b class="num">245</b>下方），低<b class="num">200</b>有充足支撑，仍是higher highs/hi</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">9:10</a></td></tr><tr><td>10/30</td><td>The Trading Apologist</td><td>触发 跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b></td><td><a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">37:20</a></td></tr><tr><td>10/30</td><td>美投侃新闻</td><td>阻力 分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来<b class="num">5</b>年现金流偿还，能省眼前现金流并缓解评级压力</td><td><a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=480s" class="tslink">8:00</a></td></tr>
   </table>
 </div>
 
@@ -287,7 +295,7 @@
       <div class="day-h">10/27</div>
       <div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·短期</span></div>
-          <div class="op-lv"><span class="lv">目标 <b class="num">255</b>（期权压注）</span><span class="lv">目标 <b class="num">275</b>（破近期高点）</span><span class="lv lv-s">支撑 <b class="num">235</b>（强支撑）</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">255</b>（期权压注）</span><span class="lv">目标 <b class="num">275</b>（破近期高点）</span><span class="lv lv-s">支撑 <b class="num">235</b>（强支撑）</span><span class="lv lv-s">支撑 往下减<b class="num">20</b>到<b class="num">235</b>仍是较强支撑位置，不算太紧张</span></div>
           <div class="op-d">亚马逊财报（周四）期权压注255美元、上下20美元（68%概率），即7%-8%的涨跌。往上加20到275直接破近期高点265附近、确认上行趋势；往下减20到235仍是较强支撑位置，不算太紧张。看点是有没有破近期高点打新高的机会。</div>
           <div class="op-q">「亚马逊是255美元上下20美元的波动，往上加20是275直接破近期高点……往下减到235仍旧是较强的支撑位置」</div>
           <div class="op-tag"><b>催化：</b>破265近期高点确认上行</div>
@@ -306,7 +314,7 @@
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">看空/回避·中期</span></div>
-          <div class="op-lv"><span class="lv">目标 时间投影磨底至<b class="num">2027-2029</b></span></div>
+          <div class="op-lv"><span class="lv">目标 时间投影磨底至<b class="num">2027-2029</b></span><span class="lv lv-t">触发 技术面跌破<b class="num">2023</b>年<b class="num">1</b>月以来主要周线趋势线（下影线跌破），是决定性的性格转变</span></div>
           <div class="op-d">财报勉强miss：EPS 1.89 vs 预期1.97、营收2019亿 vs 预期2022亿，但市场不给余地。亮点是AWS+39%近5年最快、2027-2028增长指引超40%，但12个月自由现金流从+148亿转-424亿，超大规模云厂商融资方式转变市场仍在适应。技术面跌破2023年1月以来主要周线趋势线（下影线跌破），是决定性的性格转变。博主用时间测算：趋势低点到高点189根K线，1/3（63根）对应2027年10月、1/2对应2028年5月、2/3对应2029年1月，暗示即便反弹也可能是漫长的磨底/漂移下行，为未来一年提供逢低吸纳机会。</div>
           <div class="op-q">「即便反弹，我感觉也会是一个漫长的磨底期，超大规模厂商未来一年可能只是反复提供逢低吸纳的机会」</div>
           <div class="op-tag"><b>催化：</b>AWS+39%近5年最快、2027-2028增长指引超40%、周五反弹5.5%</div>
@@ -341,7 +349,7 @@
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=0s" class="tslink">0:00 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">The Investor Channel</span><span class="st up">看多/持有·长期</span></div>
-          <div class="op-lv"><span class="lv lv-s">支撑 低<b class="num">200</b>（支撑）</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 低<b class="num">200</b>（支撑）</span><span class="lv lv-s">支撑 技术面：暴跌至<b class="num">230</b>后收盘反弹至<b class="num">240</b>（<b class="num">200</b>日均线<b class="num">245</b>下方），低<b class="num">200</b>有充足支撑，仍是higher highs/hi</span></div>
           <div class="op-d">财报双miss（营收2020亿、EPS、Q4指引偏弱），但AWS+39%（Q2+37%加速）、电商与AWS未来5-10年各达万亿营收。资本开支季度770亿（史上罕见），是下跌主因。博主认为作为股东需「系好安全带」等待AWS万亿营收兑现。技术面：暴跌至230后收盘反弹至240（200日均线245下方），低200有充足支撑，仍是higher highs/higher lows结构，希望在此企稳。</div>
           <div class="op-q">「作为亚马逊股东，你基本上只需要系好安全带，等待这些收入最终兑现」</div>
           <div class="op-tag"><b>催化：</b>AWS+39%加速、两大业务各冲万亿营收</div>
@@ -357,7 +365,7 @@
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">37:20 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/观望·中期</span></div>
-          
+          <div class="op-lv"><span class="lv lv-r">阻力 分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来<b class="num">5</b>年现金流偿还，能省眼前现金流并缓解评级压力</span></div>
           <div class="op-d">10-Q文件藏一笔最高800亿美元的担保贷款（供应商融资安排），拿AI设备做抵押、浮动利率5年期，2027Q1-2028Q3可自行决定借多少。分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来5年现金流偿还，能省眼前现金流并缓解评级压力。但信号含义是「连信用最好的大科技都开始拿设备抵押借钱」，反映AI花钱速度之快。AWS增速未达偏高市场预期，本周跌3.1%。</div>
           <div class="op-q">「如果连信用最好的大科技也开始拿设备做抵押来借钱，那就说明AI的花钱速度已经快到连最赚钱的公司都要想办法省现金了」</div>
           <div class="op-tag"><b>催化：</b>800亿美元担保贷款融资安排、2027资本开支明显增加</div>

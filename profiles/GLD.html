@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -120,7 +125,10 @@
 
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
-  <p class="empty">暂无价位观点</p>
+  <div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>美投侃新闻</td><td>10/30</td><td>黄金跌至一年低点<b class="num">3876</b>美元、<b class="num">10</b>月累跌超<b class="num">6</b>%（<b class="num">2008</b>年以来最差<b class="num">10</b>月），但Jason认为在科技股下跌+通胀上升+美元 <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1080s" class="tslink">⏱18:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div>
 </div>
 
 <div class="sec">
@@ -129,7 +137,7 @@
       <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st up">看多/持有·长期</span></div>
-      
+      <div class="op-lv"><span class="lv lv-s">支撑 黄金跌至一年低点<b class="num">3876</b>美元、<b class="num">10</b>月累跌超<b class="num">6</b>%（<b class="num">2008</b>年以来最差<b class="num">10</b>月），但Jason认为在科技股下跌+通胀上升+美元</span></div>
       <div class="op-d">黄金跌至一年低点3876美元、10月累跌超6%（2008年以来最差10月），但Jason认为在科技股下跌+通胀上升+美元走强+美联储加息多重利空下只跌10%出头，说明底层支撑顽强，且「水分可能还没挤干净」（还有下跌空间）。长期看多，除非中国大量增持美债或美国出现强人政治改善财政纪律才会减仓。</div>
       <div class="op-q">「黄金的底层支撑力还是很顽强的……我对黄金是长期看好的，短期的波动我并不在意」</div>
       <div class="op-tag"><b>催化：</b>地缘风险（伊朗）、央行购金</div>
@@ -144,7 +152,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/30</td><td>美投侃新闻</td><td></td><td><a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1080s" class="tslink">18:00</a></td></tr>
+    <tr><td>10/30</td><td>美投侃新闻</td><td>支撑 黄金跌至一年低点<b class="num">3876</b>美元、<b class="num">10</b>月累跌超<b class="num">6</b>%（<b class="num">2008</b>年以来最差<b class="num">10</b>月），但Jason认为在科技股下跌+通胀上升+美元</td><td><a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1080s" class="tslink">18:00</a></td></tr>
   </table>
 </div>
 
@@ -164,7 +172,7 @@
       <div class="day-h">10/30</div>
       <div class="op">
           <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/持有·长期</span></div>
-          
+          <div class="op-lv"><span class="lv lv-s">支撑 黄金跌至一年低点<b class="num">3876</b>美元、<b class="num">10</b>月累跌超<b class="num">6</b>%（<b class="num">2008</b>年以来最差<b class="num">10</b>月），但Jason认为在科技股下跌+通胀上升+美元</span></div>
           <div class="op-d">黄金跌至一年低点3876美元、10月累跌超6%（2008年以来最差10月），但Jason认为在科技股下跌+通胀上升+美元走强+美联储加息多重利空下只跌10%出头，说明底层支撑顽强，且「水分可能还没挤干净」（还有下跌空间）。长期看多，除非中国大量增持美债或美国出现强人政治改善财政纪律才会减仓。</div>
           <div class="op-q">「黄金的底层支撑力还是很顽强的……我对黄金是长期看好的，短期的波动我并不在意」</div>
           <div class="op-tag"><b>催化：</b>地缘风险（伊朗）、央行购金</div>

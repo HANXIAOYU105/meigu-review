@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>命中率追踪 · 美股博主复盘</title>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--text-strong:#111;--muted:#5b6472;--muted-2:#6b7280;--border:#e5e8ee;--border-soft:#f0f2f5;--accent:#1e3a5f;--accent-soft:#eef2ff;--link:#2c5282;--up:#c53030;--up-bg:#fde8e8;--down:#1e7d43;--down-bg:#e6f6ec;--flat-bg:#eef1f5;--flat-fg:#4a5568;--warn:#b45309;--warn-bg:#fef3e2;}
+  @media (prefers-color-scheme: dark){:root{--bg:#0f1115;--card:#171a21;--text:#e8eaf0;--text-strong:#fff;--muted:#a7aebc;--muted-2:#8b93a3;--border:#2a2f3a;--border-soft:#232833;--accent:#7fa3d9;--accent-soft:#1e2a44;--link:#7fb0ff;--up:#ff8f8f;--up-bg:#3a1d1d;--down:#5fd08a;--down-bg:#123526;--flat-bg:#232833;--flat-fg:#a7aebc;--warn:#e8b06a;--warn-bg:#3a2a16;}}
+  *{box-sizing:border-box;} body{margin:0;padding:12px;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.6;}
+  .wrap{max-width:680px;margin:0 auto;} a{color:inherit;} a:focus-visible,button:focus-visible{outline:2px solid var(--link);outline-offset:2px;}
+  .back{display:inline-block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;font-size:13px;font-weight:600;color:var(--link);text-decoration:none;margin-bottom:10px;}
+  .back:hover{border-color:var(--accent);}
+  h1{font-size:19px;font-weight:800;color:var(--text-strong);margin:8px 0 2px;} .sub{font-size:12.5px;color:var(--muted);margin:0 0 14px;}
+  .bcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px 15px;margin-bottom:9px;}
+  .bcard:hover{border-color:var(--accent);}
+  .b-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .b-name{font-size:15px;font-weight:800;color:var(--text-strong);}
+  .b-tag{font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:5px;flex:none;}
+  .b-tag.en{color:var(--link);background:var(--accent-soft);}
+  .b-tag.wk{color:var(--warn);background:var(--warn-bg);}
+  .b-meta{margin-left:auto;font-size:11.5px;color:var(--muted);}
+  .vbar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:9px 0 5px;background:var(--flat-bg);}
+  .vbar .bu{background:var(--up);} .vbar .bn{background:#9aa2ad;} .vbar .be{background:var(--down);}
+  .vlegend{display:flex;gap:12px;font-size:11.5px;color:var(--muted);}
+  .vlegend b{color:var(--text-strong);}
+  .b-latest{margin-top:8px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--border-soft);padding-top:7px;}
+  .b-latest b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .legend-tip{font-size:12px;color:var(--muted-2);background:var(--accent-soft);border-radius:8px;padding:8px 11px;margin-bottom:12px;line-height:1.7;}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  th{text-align:left;padding:9px 8px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;white-space:nowrap;}
+  td{padding:9px 8px;border-bottom:1px solid var(--border-soft);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .num{font-family:ui-monospace,Menlo,monospace;font-weight:700;color:var(--text-strong);font-variant-numeric:tabular-nums;}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:20px;white-space:nowrap;}
+  .bg-ok{background:var(--up-bg);color:var(--up);} .bg-bad{background:var(--down-bg);color:var(--down);}
+  .bg-pend{background:var(--flat-bg);color:var(--flat-fg);}
+  .trk-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 13px;margin-bottom:7px;}
+  .trk-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;}
+  .trk-tk{font-weight:800;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .trk-ch{color:var(--muted);font-size:12px;} .trk-d{color:var(--muted-2);font-size:11.5px;margin-left:auto;}
+  .trk-lv{margin-top:6px;display:flex;flex-direction:column;gap:3px;font-size:12px;}
+  .trk-lv span{color:var(--muted);}
+  .empty{color:var(--muted);font-size:13px;padding:14px 0;}
+  footer{text-align:center;color:var(--muted-2);font-size:11.5px;padding:20px 0 10px;margin-top:20px;border-top:1px solid var(--border);}
+</style></head><body><div class="wrap">
+<a class="back" href="/">← 返回首页</a>
+<h1>命中率追踪</h1>
+<p class="sub">博主说过的话，用实际走势来验证 · 方向 / 支撑 / 目标 / 买点</p>
+
+    <p class="legend-tip">口径：观点发布后 <b>5 个交易日</b>，用日K实际行情判定。「方向对」= 看多/看空方向与实际涨跌一致；「守住/跌破」= 支撑位 vs 观察期最低价；「到达」= 目标价 vs 观察期最高价。行情由 tdx 日K缓存驱动，每日自动化更新后自动重算。</p>
+    <div class="sec-sub" style="font-size:14.5px;font-weight:700;color:var(--text-strong);margin:0 0 8px">📊 博主排行（可验证观点累计）</div>
+    <table><tr><th>博主</th><th>方向判定</th><th>支撑守住</th><th>目标达成</th><th>最近</th></tr><tr>
+      <td style="font-weight:700">NaNa说美股</td>
+      <td><span class="num">18/34</span>（53%）</td>
+      <td>—</td>
+      <td><span class="num">11/18</span>（61%）</td>
+      <td>2026.10.30</td>
+    </tr><tr>
+      <td style="font-weight:700">视野环球财经</td>
+      <td><span class="num">4/8</span>（50%）</td>
+      <td>—</td>
+      <td><span class="num">13/14</span>（93%）</td>
+      <td>2026.10.30</td>
+    </tr><tr>
+      <td style="font-weight:700">阳光财经</td>
+      <td><span class="num">4/8</span>（50%）</td>
+      <td>—</td>
+      <td><span class="num">0/1</span>（0%）</td>
+      <td>2026.10.30</td>
+    </tr><tr>
+      <td style="font-weight:700">The Trading Apologist</td>
+      <td><span class="num">2/6</span>（33%）</td>
+      <td>—</td>
+      <td><span class="num">7/13</span>（54%）</td>
+      <td>2026.10.30</td>
+    </tr><tr>
+      <td style="font-weight:700">美投侃新闻</td>
+      <td><span class="num">1/4</span>（25%）</td>
+      <td>—</td>
+      <td><span class="num">0/2</span>（0%）</td>
+      <td>2026.10.29</td>
+    </tr><tr>
+      <td style="font-weight:700">XTrader猫姐美股</td>
+      <td>—</td>
+      <td><span class="num">1/9</span>（11%）</td>
+      <td>—</td>
+      <td>2026.10.31</td>
+    </tr><tr>
+      <td style="font-weight:700">The Investor Channel</td>
+      <td>—</td>
+      <td><span class="num">0/1</span>（0%）</td>
+      <td><span class="num">0/4</span>（0%）</td>
+      <td>2026.10.30</td>
+    </tr><tr>
+      <td style="font-weight:700">老李玩钱</td>
+      <td><span class="num">0/3</span>（0%）</td>
+      <td><span class="num">0/2</span>（0%）</td>
+      <td>—</td>
+      <td>2026.10.28</td>
+    </tr></table>
+    <div class="sec-sub" style="font-size:14.5px;font-weight:700;color:var(--text-strong);margin:18px 0 8px">🔍 最近验证（最多 24 条）</div>
+    <div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">INTC</span><span>英特尔</span>
+        <span class="badge bg-bad">看空</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.31</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 阻力 122 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 买点 100 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">QQQ</span><span>纳指100ETF</span>
+        <span class="badge bg-pend">中性</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.31 · ⭐持仓</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 支撑 706.58 / 608 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 阻力 725.71 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 买点 706.58 有效收复后补多仓 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 触发 706.58 收回→进多仓；608 有效跌破→全面防守 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">INTC</span><span>英特尔</span>
+        <span class="badge bg-bad">看空</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.31</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 支撑 62 / 50 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 阻力 122（前次离场位） <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 触发 62 跌破→直接看 50；INTC 起稳→视为大盘转好信号 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">META</span><span>Meta</span>
+        <span class="badge bg-pend">中性</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.31</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 支撑 600 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 阻力 606-607 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 买点 606-607 站回且有力度时补仓 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 触发 600 跌破→止损；606-607 有力站回→补仓 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">BTC</span><span>比特币</span>
+        <span class="badge bg-pend">中性</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.31</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 支撑 75000-76000 / 64000 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 阻力 80000 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 触发 拉回 8 万→进入右侧；跌破 7.5 万→看 6.4 万 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">NOW</span><span>ServiceNow</span>
+        <span class="badge bg-bad">看空</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.31</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 支撑 111（已失守） <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 阻力 120 / 155 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 买点 回到 120 以上再考虑 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 触发 站稳 120 之上才重新评估，否则远离 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">LITE</span><span>Lumentum</span>
+        <span class="badge bg-ok">看多</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.31</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 支撑 800 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 阻力 889.8 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 买点 重回 889.8 补仓 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 触发 800 跌破→跑路；站回 889.8→补仓 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">COIN</span><span>Coinbase</span>
+        <span class="badge bg-bad">看空</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.31</div>
+      <div class="trk-lv"><div><span class="badge bg-ok">✅ 守住</span> 支撑 137 <span>· 守住 137（已过 1/5 日）</span></div><div><span class="badge bg-ok">⚡ 触发</span> 触发 跌破 137 离场 <span>· 观察期触及 137（已过 1/5 日）</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">CRCL</span><span>Circle</span>
+        <span class="badge bg-pend">中性</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.31</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 支撑 80 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 阻力 89 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 触发 关注 80 / 89 两个位置的得失 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">GOOGL</span><span>谷歌</span>
+        <span class="badge bg-ok">看多</span></div>
+      <div class="trk-ch">The Investor Channel · 2026.10.30 · ⭐持仓</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 支撑 270-275 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">AMZN</span><span>亚马逊</span>
+        <span class="badge bg-ok">看多</span></div>
+      <div class="trk-ch">The Investor Channel · 2026.10.30</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 低200（支撑） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">MSFT</span><span>微软</span>
+        <span class="badge bg-ok">看多</span></div>
+      <div class="trk-ch">The Investor Channel · 2026.10.30 · ⭐持仓</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 550（历史新高区间） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">NVDA</span><span>英伟达</span>
+        <span class="badge bg-pend">中性</span></div>
+      <div class="trk-ch">The Investor Channel · 2026.10.30 · ⭐持仓</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 205（200日均线） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">TSLA</span><span>特斯拉</span>
+        <span class="badge bg-ok">中性偏多</span></div>
+      <div class="trk-ch">The Investor Channel · 2026.10.30 · ⭐持仓</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 450（需突破）/ 400区间（收购支撑） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">QQQ</span><span>纳指100ETF</span>
+        <span class="badge bg-pend">中性</span></div>
+      <div class="trk-ch">视野环球财经 · 2026.10.30 · ⭐持仓</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 610附近（极限回撤/上车区间） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">GOOGL</span><span>谷歌</span>
+        <span class="badge bg-bad">看空</span></div>
+      <div class="trk-ch">The Trading Apologist · 2026.10.30 · ⭐持仓</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 240-250（黄金口袋支撑）/ 200-250（未来数月） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">AMZN</span><span>亚马逊</span>
+        <span class="badge bg-bad">看空</span></div>
+      <div class="trk-ch">The Trading Apologist · 2026.10.30</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 跌破200日均线，时间投影磨底至2028-2029 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">INTC</span><span>英特尔</span>
+        <span class="badge bg-bad">看空</span></div>
+      <div class="trk-ch">The Trading Apologist · 2026.10.30</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 55（目标下行）/ 40多（估值支撑位） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">RDDT</span><span>Reddit</span>
+        <span class="badge bg-bad">看空</span></div>
+      <div class="trk-ch">The Trading Apologist · 2026.10.30</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 70-80（第一支撑）/ 50-60（下一支撑） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">SMH</span><span>费城半导体ETF</span>
+        <span class="badge bg-ok">看多</span></div>
+      <div class="trk-ch">阳光财经 · 2026.10.30 · ⭐持仓</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 10000（强支撑） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">NOW</span><span>ServiceNow</span>
+        <span class="badge bg-bad">看空</span></div>
+      <div class="trk-ch">XTrader猫姐美股 · 2026.10.30</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 支撑 111 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 阻力 155 <span>· 观察期尚未开始</span></div><div><span class="badge bg-pend">⏳ 进行中</span> 触发 等几天市场共识出来后再考虑是否介入；111 需稳住 <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">INTC</span><span>英特尔</span>
+        <span class="badge bg-bad">强烈看空</span></div>
+      <div class="trk-ch">NaNa说美股 · 2026.10.30</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 55（下行目标） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">QQQ</span><span>纳指100ETF</span>
+        <span class="badge bg-pend">中性</span></div>
+      <div class="trk-ch">NaNa说美股 · 2026.10.30 · ⭐持仓</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 660-680（抄底区间） <span>· 观察期尚未开始</span></div></div>
+    </div><div class="trk-item">
+      <div class="trk-h"><span class="trk-tk">^VIX</span><span>VIX恐慌指数</span>
+        <span class="badge bg-pend">中性</span></div>
+      <div class="trk-ch">NaNa说美股 · 2026.10.30</div>
+      <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 25-30（抄底触发区间） <span>· 观察期尚未开始</span></div></div>
+    </div>
+<footer>生成于 11.02 21:31 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+</div></body></html>

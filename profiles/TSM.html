@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -120,7 +125,10 @@
 
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
-  <p class="empty">暂无价位观点</p>
+  <div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/30</td><td>博主<b class="num">2025</b>年就曾减仓、更早建仓，本月跌<b class="num">10</b>%只是吃掉<b class="num">6</b>月以来涨幅，持仓成本低 <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1560s" class="tslink">⏱26:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div>
 </div>
 
 <div class="sec">
@@ -129,7 +137,7 @@
       <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span><span class="st up">看多/增持·长期</span></div>
-      
+      <div class="op-lv"><span class="lv lv-e">买点 博主<b class="num">2025</b>年就曾减仓、更早建仓，本月跌<b class="num">10</b>%只是吃掉<b class="num">6</b>月以来涨幅，持仓成本低</span></div>
       <div class="op-d">博主2025年就曾减仓、更早建仓，本月跌10%只是吃掉6月以来涨幅，持仓成本低。明确表示「再跌一跌准备加仓」，是博主下一批加仓的首选标的。</div>
       <div class="op-q">「台积电我更早就加仓了……再跌一跌，我准备要加仓了」</div>
       <div class="op-tag"><b>催化：</b>低位加仓计划</div>
@@ -144,7 +152,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/30</td><td>视野环球财经</td><td></td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1560s" class="tslink">26:00</a></td></tr>
+    <tr><td>10/30</td><td>视野环球财经</td><td>买点 博主<b class="num">2025</b>年就曾减仓、更早建仓，本月跌<b class="num">10</b>%只是吃掉<b class="num">6</b>月以来涨幅，持仓成本低</td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1560s" class="tslink">26:00</a></td></tr>
   </table>
 </div>
 
@@ -164,7 +172,7 @@
       <div class="day-h">10/30</div>
       <div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/增持·长期</span></div>
-          
+          <div class="op-lv"><span class="lv lv-e">买点 博主<b class="num">2025</b>年就曾减仓、更早建仓，本月跌<b class="num">10</b>%只是吃掉<b class="num">6</b>月以来涨幅，持仓成本低</span></div>
           <div class="op-d">博主2025年就曾减仓、更早建仓，本月跌10%只是吃掉6月以来涨幅，持仓成本低。明确表示「再跌一跌准备加仓」，是博主下一批加仓的首选标的。</div>
           <div class="op-q">「台积电我更早就加仓了……再跌一跌，我准备要加仓了」</div>
           <div class="op-tag"><b>催化：</b>低位加仓计划</div>

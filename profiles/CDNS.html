@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -120,7 +125,10 @@
 
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
-  <p class="empty">暂无价位观点</p>
+  <div class="lvg"><div class="lvg-h">🔺 压力位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>10/27</td><td>若能守住半年线则继续持仓待涨，等股价超过<b class="num">10</b>月波段前高后再提高止盈止损 <a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=300s" class="tslink">⏱5:00</a></td><td class="vfy vfy-bad" title="有效突破 10（最高收 342.75）">❌</td></tr>
+        </table></div>
 </div>
 
 <div class="sec">
@@ -129,7 +137,7 @@
       <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/27</span></span><span class="st up">看多/持有·短期</span></div>
-      
+      <div class="op-lv"><span class="lv lv-r">阻力 若能守住半年线则继续持仓待涨，等股价超过<b class="num">10</b>月波段前高后再提高止盈止损</span></div>
       <div class="op-d">Q3营收+22%，AI驱动芯片设计需求强劲，上调2026全年业绩指引至63.87-64.17亿美元（+约21%），股价涨6.5%。前几次波段都在半年线见顶回落，若这次能成功站上半年线，建议手动把半年线设为止盈止损位，万一再掉下来自动离场避免利润大幅回吐；若能守住半年线则继续持仓待涨，等股价超过10月波段前高后再提高止盈止损。</div>
       <div class="op-q">「如果这次股价能成功站上半年线，手里有仓位的话最好手动将半年线位置设置为止盈止损位」</div>
       <div class="op-tag"><b>催化：</b>上调全年指引、AI芯片设计需求</div>
@@ -144,7 +152,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/27</td><td>NaNa说美股</td><td></td><td><a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=300s" class="tslink">5:00</a></td></tr>
+    <tr><td>10/27</td><td>NaNa说美股</td><td>阻力 若能守住半年线则继续持仓待涨，等股价超过<b class="num">10</b>月波段前高后再提高止盈止损</td><td><a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=300s" class="tslink">5:00</a></td></tr>
   </table>
 </div>
 
@@ -164,7 +172,7 @@
       <div class="day-h">10/27</div>
       <div class="op">
           <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st up">看多/持有·短期</span></div>
-          
+          <div class="op-lv"><span class="lv lv-r">阻力 若能守住半年线则继续持仓待涨，等股价超过<b class="num">10</b>月波段前高后再提高止盈止损</span></div>
           <div class="op-d">Q3营收+22%，AI驱动芯片设计需求强劲，上调2026全年业绩指引至63.87-64.17亿美元（+约21%），股价涨6.5%。前几次波段都在半年线见顶回落，若这次能成功站上半年线，建议手动把半年线设为止盈止损位，万一再掉下来自动离场避免利润大幅回吐；若能守住半年线则继续持仓待涨，等股价超过10月波段前高后再提高止盈止损。</div>
           <div class="op-q">「如果这次股价能成功站上半年线，手里有仓位的话最好手动将半年线位置设置为止盈止损位」</div>
           <div class="op-tag"><b>催化：</b>上调全年指引、AI芯片设计需求</div>

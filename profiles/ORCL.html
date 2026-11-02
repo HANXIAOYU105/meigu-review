@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -120,12 +125,15 @@
 
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
-  <div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>老李玩钱</td><td>10/28</td><td><b class="num">130</b> / <b class="num">115</b> <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=108s" class="tslink">⏱1:48</a></td></tr>
+  <div class="lvg"><div class="lvg-h">🔺 压力位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>美投侃新闻</td><td>10/30</td><td>甲骨文的长端更是高到<b class="num">1.95</b>个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力 <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1140s" class="tslink">⏱19:00</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr>
+        </table></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>10/28</td><td>承诺<b class="num">2030</b>财年前额外融资限制在<b class="num">200</b>亿以内（股权<b class="num">100</b>亿+债务<b class="num">100</b>亿），<b class="num">2029</b>财年起靠自有资金支撑增长 <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">⏱10:00</a></td><td class="vfy vfy-bad" title="跌破 200，最低 129">❌</td></tr><tr><td>老李玩钱</td><td>10/28</td><td><b class="num">130</b> / <b class="num">115</b> <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=108s" class="tslink">⏱1:48</a></td><td class="vfy vfy-bad" title="跌破 130，最低 129">❌</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>NaNa说美股</td><td>10/28</td><td><b class="num">170</b>（短期） <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">⏱10:00</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>10/28</td><td><b class="num">170</b>（短期） <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">⏱10:00</a></td><td class="vfy vfy-pending" title="最高 144.61，未到 170（已过 2/5 日）">⏳</td></tr><tr><td>NaNa说美股</td><td>10/28</td><td>投资者日公布<b class="num">2030</b>财年财务目标：<b class="num">2028</b>财年下半年实现正自由现金流，<b class="num">2029</b>财年FCF至少<b class="num">300</b>亿美元，资本支出<b class="num">202</b> <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">⏱10:00</a></td><td class="vfy vfy-pending" title="最高 144.61，未到 300（已过 2/5 日）">⏳</td></tr>
         </table></div>
 </div>
 
@@ -153,7 +161,7 @@
       
     </div><div class="op">
       <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st down">看空/观望·中期</span></div>
-      
+      <div class="op-lv"><span class="lv lv-r">阻力 甲骨文的长端更是高到<b class="num">1.95</b>个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力</span></div>
       <div class="op-d">作为信用相对较弱、利差更高的公司代表：长端利差高到+1.95个百分点（vs微软+1.35），发债认购倍数从2月的5倍多明显降温。利差每高0.1个百分点、借250亿一年多付2500万利息；长端比微软高0.6个百分点、借40年利息差累积60亿。利差走阔对其是利息+估值（WACC上升）双重压力。</div>
       <div class="op-q">「甲骨文的长端更是高到1.95个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力」</div>
       
@@ -165,7 +173,7 @@
       <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/28</span></span><span class="st up">看多/持有·短期</span></div>
-      <div class="op-lv"><span class="lv">目标 <b class="num">170</b>（短期）</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">170</b>（短期）</span><span class="lv">目标 投资者日公布<b class="num">2030</b>财年财务目标：<b class="num">2028</b>财年下半年实现正自由现金流，<b class="num">2029</b>财年FCF至少<b class="num">300</b>亿美元，资本支出<b class="num">202</b></span><span class="lv lv-s">支撑 承诺<b class="num">2030</b>财年前额外融资限制在<b class="num">200</b>亿以内（股权<b class="num">100</b>亿+债务<b class="num">100</b>亿），<b class="num">2029</b>财年起靠自有资金支撑增长</span></div>
       <div class="op-d">投资者日公布2030财年财务目标：2028财年下半年实现正自由现金流，2029财年FCF至少300亿美元，资本支出2027-2028财年见顶后2029年开始下降；2030财年总营收超2250亿、CAGR超35%；承诺2030财年前额外融资限制在200亿以内（股权100亿+债务100亿），2029财年起靠自有资金支撑增长。发言极大刺激股价，盘中原地起飞。</div>
       <div class="op-q">「如果大盘情绪好的话，还可能继续涨2-3天拉到170美元附近，然后大家开始冷静下来对高管的大饼算账质疑」</div>
       <div class="op-tag"><b>催化：</b>投资者日2030财年目标、FCF转正时间表明确</div>
@@ -204,7 +212,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/28</td><td>NaNa说美股</td><td>目标 <b class="num">170</b>（短期）</td><td><a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td>10/28</td><td>老李玩钱</td><td>支撑 <b class="num">130</b> / <b class="num">115</b></td><td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=108s" class="tslink">1:48</a></td></tr><tr><td>10/30</td><td>美投侃新闻</td><td></td><td><a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1140s" class="tslink">19:00</a></td></tr>
+    <tr><td>10/28</td><td>NaNa说美股</td><td>目标 <b class="num">170</b>（短期）<br>目标 投资者日公布<b class="num">2030</b>财年财务目标：<b class="num">2028</b>财年下半年实现正自由现金流，<b class="num">2029</b>财年FCF至少<b class="num">300</b>亿美元，资本支出<b class="num">202</b><br>支撑 承诺<b class="num">2030</b>财年前额外融资限制在<b class="num">200</b>亿以内（股权<b class="num">100</b>亿+债务<b class="num">100</b>亿），<b class="num">2029</b>财年起靠自有资金支撑增长</td><td><a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td>10/28</td><td>老李玩钱</td><td>支撑 <b class="num">130</b> / <b class="num">115</b></td><td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=108s" class="tslink">1:48</a></td></tr><tr><td>10/30</td><td>美投侃新闻</td><td>阻力 甲骨文的长端更是高到<b class="num">1.95</b>个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力</td><td><a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1140s" class="tslink">19:00</a></td></tr>
   </table>
 </div>
 
@@ -224,7 +232,7 @@
       <div class="day-h">10/28</div>
       <div class="op">
           <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st up">看多/持有·短期</span></div>
-          <div class="op-lv"><span class="lv">目标 <b class="num">170</b>（短期）</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">170</b>（短期）</span><span class="lv">目标 投资者日公布<b class="num">2030</b>财年财务目标：<b class="num">2028</b>财年下半年实现正自由现金流，<b class="num">2029</b>财年FCF至少<b class="num">300</b>亿美元，资本支出<b class="num">202</b></span><span class="lv lv-s">支撑 承诺<b class="num">2030</b>财年前额外融资限制在<b class="num">200</b>亿以内（股权<b class="num">100</b>亿+债务<b class="num">100</b>亿），<b class="num">2029</b>财年起靠自有资金支撑增长</span></div>
           <div class="op-d">投资者日公布2030财年财务目标：2028财年下半年实现正自由现金流，2029财年FCF至少300亿美元，资本支出2027-2028财年见顶后2029年开始下降；2030财年总营收超2250亿、CAGR超35%；承诺2030财年前额外融资限制在200亿以内（股权100亿+债务100亿），2029财年起靠自有资金支撑增长。发言极大刺激股价，盘中原地起飞。</div>
           <div class="op-q">「如果大盘情绪好的话，还可能继续涨2-3天拉到170美元附近，然后大家开始冷静下来对高管的大饼算账质疑」</div>
           <div class="op-tag"><b>催化：</b>投资者日2030财年目标、FCF转正时间表明确</div>
@@ -270,7 +278,7 @@
       <div class="day-h">10/30</div>
       <div class="op">
           <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st down">看空/观望·中期</span></div>
-          
+          <div class="op-lv"><span class="lv lv-r">阻力 甲骨文的长端更是高到<b class="num">1.95</b>个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力</span></div>
           <div class="op-d">作为信用相对较弱、利差更高的公司代表：长端利差高到+1.95个百分点（vs微软+1.35），发债认购倍数从2月的5倍多明显降温。利差每高0.1个百分点、借250亿一年多付2500万利息；长端比微软高0.6个百分点、借40年利息差累积60亿。利差走阔对其是利息+估值（WACC上升）双重压力。</div>
           <div class="op-q">「甲骨文的长端更是高到1.95个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力」</div>
           

@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -120,7 +125,10 @@
 
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
-  <p class="empty">暂无价位观点</p>
+  <div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>阳光财经</td><td>10/30</td><td>苏妈完成了<b class="num">600</b>美元目标价的梦想、<b class="num">1</b>万亿市值给她看了一眼，但博主认为苏妈要的是持续<b class="num">1</b>万亿而不是曾经有过 <a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=840s" class="tslink">⏱14:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div>
 </div>
 
 <div class="sec">
@@ -141,7 +149,7 @@
       <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·短期</span></div>
-      
+      <div class="op-lv"><span class="lv">目标 苏妈完成了<b class="num">600</b>美元目标价的梦想、<b class="num">1</b>万亿市值给她看了一眼，但博主认为苏妈要的是持续<b class="num">1</b>万亿而不是曾经有过</span></div>
       <div class="op-d">半导体核心个股之一，股价今天跌破半年线，下周二发布财报。如果财报后不能收回半年线，方向就转弱。苏妈完成了600美元目标价的梦想、1万亿市值给她看了一眼，但博主认为苏妈要的是持续1万亿而不是曾经有过。</div>
       <div class="op-q">「股价今天是跌破半年线了，下周财报如果不收回半年线，方向就转弱了」</div>
       <div class="op-tag"><b>催化：</b>下周二财报</div>
@@ -168,7 +176,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/30</td><td>阳光财经</td><td></td><td><a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=840s" class="tslink">14:00</a></td></tr>
+    <tr><td>10/30</td><td>阳光财经</td><td>目标 苏妈完成了<b class="num">600</b>美元目标价的梦想、<b class="num">1</b>万亿市值给她看了一眼，但博主认为苏妈要的是持续<b class="num">1</b>万亿而不是曾经有过</td><td><a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=840s" class="tslink">14:00</a></td></tr>
   </table>
 </div>
 
@@ -199,7 +207,7 @@
       <div class="day-h">10/30</div>
       <div class="op">
           <div class="op-h"><span class="op-c">阳光财经</span><span class="st flat">中性/观望·短期</span></div>
-          
+          <div class="op-lv"><span class="lv">目标 苏妈完成了<b class="num">600</b>美元目标价的梦想、<b class="num">1</b>万亿市值给她看了一眼，但博主认为苏妈要的是持续<b class="num">1</b>万亿而不是曾经有过</span></div>
           <div class="op-d">半导体核心个股之一，股价今天跌破半年线，下周二发布财报。如果财报后不能收回半年线，方向就转弱。苏妈完成了600美元目标价的梦想、1万亿市值给她看了一眼，但博主认为苏妈要的是持续1万亿而不是曾经有过。</div>
           <div class="op-q">「股价今天是跌破半年线了，下周财报如果不收回半年线，方向就转弱了」</div>
           <div class="op-tag"><b>催化：</b>下周二财报</div>

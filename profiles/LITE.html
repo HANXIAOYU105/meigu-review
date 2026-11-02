@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -121,17 +126,17 @@
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
   <div class="lvg"><div class="lvg-h">🔺 压力位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">889.8</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1204s" class="tslink">⏱20:04</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">889.8</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1204s" class="tslink">⏱20:04</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">800</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1204s" class="tslink">⏱20:04</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">800</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1204s" class="tslink">⏱20:04</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>XTrader猫姐美股</td><td>10/31</td><td>重回 <b class="num">889.8</b> 补仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1204s" class="tslink">⏱20:04</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td>重回 <b class="num">889.8</b> 补仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1204s" class="tslink">⏱20:04</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">800</b> 跌破→跑路；站回 <b class="num">889.8</b>→补仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1204s" class="tslink">⏱20:04</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">800</b> 跌破→跑路；站回 <b class="num">889.8</b>→补仓 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1204s" class="tslink">⏱20:04</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div>
 </div>
 

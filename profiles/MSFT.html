@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -121,17 +126,17 @@
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
   <div class="lvg"><div class="lvg-h">🔺 压力位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">557</b>（破前高<b class="num">551</b>新高位） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">⏱20:00</a></td></tr><tr><td>老李玩钱</td><td>10/28</td><td><b class="num">551</b>（前高） <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">⏱5:24</a></td></tr><tr><td>视野环球财经</td><td>10/28</td><td><b class="num">600</b>上方（博主目标） <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">⏱23:00</a></td></tr><tr><td>视野环球财经</td><td>10/29</td><td><b class="num">600</b>上方（博主目标） <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">⏱29:00</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">557</b>（破前高<b class="num">551</b>新高位） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">⏱20:00</a></td><td class="vfy vfy-pending" title="最高 541.29，未到 557（已过 3/5 日）">⏳</td></tr><tr><td>视野环球财经</td><td>10/27</td><td>往上加<b class="num">27</b>美元到<b class="num">557</b>就是新高（前高<b class="num">551</b>），相对来讲结构最稳 <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">⏱20:00</a></td><td class="vfy vfy-bad" title="有效突破 27（最高收 531.01）">❌</td></tr><tr><td>老李玩钱</td><td>10/28</td><td><b class="num">551</b>（前高） <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">⏱5:24</a></td><td class="vfy vfy-pending" title="最高 541.29，未到 551（已过 2/5 日）">⏳</td></tr><tr><td>老李玩钱</td><td>10/28</td><td>盘后涨至<b class="num">540</b>以上、前高<b class="num">551</b>，这一波可能冲新高 <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">⏱5:24</a></td><td class="vfy vfy-ok" title="触及 540 后未有效突破（已过 2/5 日）">✅</td></tr><tr><td>视野环球财经</td><td>10/28</td><td><b class="num">600</b>上方（博主目标） <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-pending" title="最高 541.29，未到 600（已过 2/5 日）">⏳</td></tr><tr><td>视野环球财经</td><td>10/29</td><td><b class="num">600</b>上方（博主目标） <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">⏱29:00</a></td><td class="vfy vfy-pending" title="最高 526，未到 600（已过 1/5 日）">⏳</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">490-503</b>（下方支撑） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">⏱20:00</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">490-503</b>（下方支撑） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">⏱20:00</a></td><td class="vfy vfy-ok" title="守住 490（已过 3/5 日）">✅</td></tr><tr><td>视野环球财经</td><td>10/27</td><td>下沿<b class="num">503</b>仍未跌破<b class="num">500</b>、位于<b class="num">490</b>上方，结构没有遭到破坏 <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">⏱20:00</a></td><td class="vfy vfy-ok" title="守住 503（已过 3/5 日）">✅</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>视野环球财经</td><td>10/28</td><td><b class="num">490-534</b>（长线建仓区） <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">⏱23:00</a></td></tr><tr><td>视野环球财经</td><td>10/29</td><td><b class="num">490-534</b>（建仓区） <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">⏱29:00</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/28</td><td><b class="num">490-534</b>（长线建仓区） <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-ok" title="观察期触及 534（已过 2/5 日）">🎯</td></tr><tr><td>视野环球财经</td><td>10/28</td><td>博主第一大持仓<b class="num">14</b>%、成本<b class="num">251</b>块，目标仍上看<b class="num">600</b>（当前财年中位<b class="num">536</b>、往后一年中位<b class="num">632</b>），<b class="num">490-534</b>是长线建仓 <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-ok" title="观察期触及 600（已过 2/5 日）">🎯</td></tr><tr><td>视野环球财经</td><td>10/29</td><td><b class="num">490-534</b>（建仓区） <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">⏱29:00</a></td><td class="vfy vfy-ok" title="观察期触及 534（已过 1/5 日）">🎯</td></tr>
         </table></div><div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">530</b>（期权压注） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">⏱20:00</a></td></tr><tr><td>The Investor Channel</td><td>10/30</td><td><b class="num">550</b>（历史新高区间） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1050s" class="tslink">⏱17:30</a></td></tr>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">530</b>（期权压注） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">⏱20:00</a></td><td class="vfy vfy-ok" title="已到达 530（已过 3/5 日）">🎯</td></tr><tr><td>The Investor Channel</td><td>10/30</td><td><b class="num">550</b>（历史新高区间） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1050s" class="tslink">⏱17:30</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div>
 </div>
 
@@ -141,7 +146,7 @@
       <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean up">偏多</span><span class="ch-meta">4 条 · 看多 4 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/27</span></span><span class="st up">看多/持有·短期</span></div>
-      <div class="op-lv"><span class="lv">目标 <b class="num">530</b>（期权压注）</span><span class="lv lv-r">阻力 <b class="num">557</b>（破前高<b class="num">551</b>新高位）</span><span class="lv lv-s">支撑 <b class="num">490-503</b>（下方支撑）</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">530</b>（期权压注）</span><span class="lv lv-r">阻力 <b class="num">557</b>（破前高<b class="num">551</b>新高位）</span><span class="lv lv-s">支撑 <b class="num">490-503</b>（下方支撑）</span><span class="lv lv-s">支撑 下沿<b class="num">503</b>仍未跌破<b class="num">500</b>、位于<b class="num">490</b>上方，结构没有遭到破坏</span><span class="lv lv-r">阻力 往上加<b class="num">27</b>美元到<b class="num">557</b>就是新高（前高<b class="num">551</b>），相对来讲结构最稳</span></div>
       <div class="op-d">微软财报期权压注530美元、上下27美元（68%概率），即财报波动约5%-6%。下沿503仍未跌破500、位于490上方，结构没有遭到破坏；往上加27美元到557就是新高（前高551），相对来讲结构最稳。微软在本周三科技财报里相对最安全。</div>
       <div class="op-q">「微软是530美元上下27美元的波动，往下减一减还没有跌破500，仍旧位于490的上方，结构没有遭到破坏」</div>
       <div class="op-tag"><b>催化：</b>490支撑未破、财报波动可控</div>
@@ -150,7 +155,7 @@
       
     </div><div class="op">
       <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/28</span></span><span class="st up">看多/持有·长期</span></div>
-      <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（长线建仓区）</span></div>
+      <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（长线建仓区）</span><span class="lv lv-e">买点 博主第一大持仓<b class="num">14</b>%、成本<b class="num">251</b>块，目标仍上看<b class="num">600</b>（当前财年中位<b class="num">536</b>、往后一年中位<b class="num">632</b>），<b class="num">490-534</b>是长线建仓</span></div>
       <div class="op-d">第一财季「AI货币化成功上岸」：营收923亿超预期、EPS 4.89超预期、Azure按固定汇率+48%远超自身44-45%指引、营业利润率49.8%。AI货币化业务单季披露营收332亿美元比市场预期322亿高11亿。自由现金流186亿(-27%)但仍是四大科技里唯一能用运营现金流覆盖所有费用、唯一自由现金流转正的。2027财年承诺保持自由现金流转正并强调每美元资本开支回报提升。博主第一大持仓14%、成本251块，目标仍上看600（当前财年中位536、往后一年中位632），490-534是长线建仓区。600以上才考虑减仓，跌破490短线也不管。</div>
       <div class="op-q">「他的AI货币化在四大科技中最成功，目前最成功……已经明确自由现金流可以负担支出，所以为什么标题上我写着他的AI货币化成功上岸了」</div>
       <div class="op-tag"><b>催化：</b>Azure+48%超预期、AI货币化四大最成功、自由现金流转正、营业利润率49.8%</div>
@@ -240,7 +245,7 @@
       <div class="ch-h"><span class="ch-name">老李玩钱</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·10/28</span></span><span class="st up">看多/持有·中期</span></div>
-      <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">551</b>（前高）</span></div>
+      <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">551</b>（前高）</span><span class="lv lv-r">阻力 盘后涨至<b class="num">540</b>以上、前高<b class="num">551</b>，这一波可能冲新高</span></div>
       <div class="op-d">财报调整后EPS和营收超预期，营收+19%，Azure云+48%至332亿是亮点。自由现金流-27%但仍为正，是四大云巨头（微软、Meta、谷歌、亚马逊）中唯一守住正自由现金流的一家。盘后涨至540以上、前高551，这一波可能冲新高。但老李不建议追高加仓，因微软估值相对其他科技巨头已偏高，当前位置买入性价比不高。</div>
       <div class="op-q">「微软的自由现金流依然是正的……这一波可能就直接冲着新高去了」</div>
       <div class="op-tag"><b>催化：</b>Azure+48%、唯一守住正自由现金流、盘后冲前高551</div>
@@ -300,7 +305,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/27</td><td>视野环球财经</td><td>目标 <b class="num">530</b>（期权压注）<br>阻力 <b class="num">557</b>（破前高<b class="num">551</b>新高位）<br>支撑 <b class="num">490-503</b>（下方支撑）</td><td><a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">20:00</a></td></tr><tr><td>10/28</td><td>老李玩钱</td><td>阻力 <b class="num">551</b>（前高）</td><td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">5:24</a></td></tr><tr><td>10/28</td><td>视野环球财经</td><td>阻力 <b class="num">600</b>上方（博主目标）<br>买点 <b class="num">490-534</b>（长线建仓区）</td><td><a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td>10/29</td><td>视野环球财经</td><td>阻力 <b class="num">600</b>上方（博主目标）<br>买点 <b class="num">490-534</b>（建仓区）</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>目标 <b class="num">550</b>（历史新高区间）</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1050s" class="tslink">17:30</a></td></tr>
+    <tr><td>10/27</td><td>视野环球财经</td><td>目标 <b class="num">530</b>（期权压注）<br>阻力 <b class="num">557</b>（破前高<b class="num">551</b>新高位）<br>支撑 <b class="num">490-503</b>（下方支撑）<br>支撑 下沿<b class="num">503</b>仍未跌破<b class="num">500</b>、位于<b class="num">490</b>上方，结构没有遭到破坏<br>阻力 往上加<b class="num">27</b>美元到<b class="num">557</b>就是新高（前高<b class="num">551</b>），相对来讲结构最稳</td><td><a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1200s" class="tslink">20:00</a></td></tr><tr><td>10/28</td><td>老李玩钱</td><td>阻力 <b class="num">551</b>（前高）<br>阻力 盘后涨至<b class="num">540</b>以上、前高<b class="num">551</b>，这一波可能冲新高</td><td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">5:24</a></td></tr><tr><td>10/28</td><td>视野环球财经</td><td>阻力 <b class="num">600</b>上方（博主目标）<br>买点 <b class="num">490-534</b>（长线建仓区）<br>买点 博主第一大持仓<b class="num">14</b>%、成本<b class="num">251</b>块，目标仍上看<b class="num">600</b>（当前财年中位<b class="num">536</b>、往后一年中位<b class="num">632</b>），<b class="num">490-534</b>是长线建仓</td><td><a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td>10/29</td><td>视野环球财经</td><td>阻力 <b class="num">600</b>上方（博主目标）<br>买点 <b class="num">490-534</b>（建仓区）</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>目标 <b class="num">550</b>（历史新高区间）</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1050s" class="tslink">17:30</a></td></tr>
   </table>
 </div>
 
@@ -320,7 +325,7 @@
       <div class="day-h">10/27</div>
       <div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·短期</span></div>
-          <div class="op-lv"><span class="lv">目标 <b class="num">530</b>（期权压注）</span><span class="lv lv-r">阻力 <b class="num">557</b>（破前高<b class="num">551</b>新高位）</span><span class="lv lv-s">支撑 <b class="num">490-503</b>（下方支撑）</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">530</b>（期权压注）</span><span class="lv lv-r">阻力 <b class="num">557</b>（破前高<b class="num">551</b>新高位）</span><span class="lv lv-s">支撑 <b class="num">490-503</b>（下方支撑）</span><span class="lv lv-s">支撑 下沿<b class="num">503</b>仍未跌破<b class="num">500</b>、位于<b class="num">490</b>上方，结构没有遭到破坏</span><span class="lv lv-r">阻力 往上加<b class="num">27</b>美元到<b class="num">557</b>就是新高（前高<b class="num">551</b>），相对来讲结构最稳</span></div>
           <div class="op-d">微软财报期权压注530美元、上下27美元（68%概率），即财报波动约5%-6%。下沿503仍未跌破500、位于490上方，结构没有遭到破坏；往上加27美元到557就是新高（前高551），相对来讲结构最稳。微软在本周三科技财报里相对最安全。</div>
           <div class="op-q">「微软是530美元上下27美元的波动，往下减一减还没有跌破500，仍旧位于490的上方，结构没有遭到破坏」</div>
           <div class="op-tag"><b>催化：</b>490支撑未破、财报波动可控</div>
@@ -339,7 +344,7 @@
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=180s" class="tslink">3:00 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">老李玩钱</span><span class="st up">看多/持有·中期</span></div>
-          <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">551</b>（前高）</span></div>
+          <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">551</b>（前高）</span><span class="lv lv-r">阻力 盘后涨至<b class="num">540</b>以上、前高<b class="num">551</b>，这一波可能冲新高</span></div>
           <div class="op-d">财报调整后EPS和营收超预期，营收+19%，Azure云+48%至332亿是亮点。自由现金流-27%但仍为正，是四大云巨头（微软、Meta、谷歌、亚马逊）中唯一守住正自由现金流的一家。盘后涨至540以上、前高551，这一波可能冲新高。但老李不建议追高加仓，因微软估值相对其他科技巨头已偏高，当前位置买入性价比不高。</div>
           <div class="op-q">「微软的自由现金流依然是正的……这一波可能就直接冲着新高去了」</div>
           <div class="op-tag"><b>催化：</b>Azure+48%、唯一守住正自由现金流、盘后冲前高551</div>
@@ -347,7 +352,7 @@
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">5:24 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·长期</span></div>
-          <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（长线建仓区）</span></div>
+          <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（长线建仓区）</span><span class="lv lv-e">买点 博主第一大持仓<b class="num">14</b>%、成本<b class="num">251</b>块，目标仍上看<b class="num">600</b>（当前财年中位<b class="num">536</b>、往后一年中位<b class="num">632</b>），<b class="num">490-534</b>是长线建仓</span></div>
           <div class="op-d">第一财季「AI货币化成功上岸」：营收923亿超预期、EPS 4.89超预期、Azure按固定汇率+48%远超自身44-45%指引、营业利润率49.8%。AI货币化业务单季披露营收332亿美元比市场预期322亿高11亿。自由现金流186亿(-27%)但仍是四大科技里唯一能用运营现金流覆盖所有费用、唯一自由现金流转正的。2027财年承诺保持自由现金流转正并强调每美元资本开支回报提升。博主第一大持仓14%、成本251块，目标仍上看600（当前财年中位536、往后一年中位632），490-534是长线建仓区。600以上才考虑减仓，跌破490短线也不管。</div>
           <div class="op-q">「他的AI货币化在四大科技中最成功，目前最成功……已经明确自由现金流可以负担支出，所以为什么标题上我写着他的AI货币化成功上岸了」</div>
           <div class="op-tag"><b>催化：</b>Azure+48%超预期、AI货币化四大最成功、自由现金流转正、营业利润率49.8%</div>

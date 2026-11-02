@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>博主速览 · 美股博主复盘</title>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--text-strong:#111;--muted:#5b6472;--muted-2:#6b7280;--border:#e5e8ee;--border-soft:#f0f2f5;--accent:#1e3a5f;--accent-soft:#eef2ff;--link:#2c5282;--up:#c53030;--up-bg:#fde8e8;--down:#1e7d43;--down-bg:#e6f6ec;--flat-bg:#eef1f5;--flat-fg:#4a5568;--warn:#b45309;--warn-bg:#fef3e2;}
+  @media (prefers-color-scheme: dark){:root{--bg:#0f1115;--card:#171a21;--text:#e8eaf0;--text-strong:#fff;--muted:#a7aebc;--muted-2:#8b93a3;--border:#2a2f3a;--border-soft:#232833;--accent:#7fa3d9;--accent-soft:#1e2a44;--link:#7fb0ff;--up:#ff8f8f;--up-bg:#3a1d1d;--down:#5fd08a;--down-bg:#123526;--flat-bg:#232833;--flat-fg:#a7aebc;--warn:#e8b06a;--warn-bg:#3a2a16;}}
+  *{box-sizing:border-box;} body{margin:0;padding:12px;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.6;}
+  .wrap{max-width:680px;margin:0 auto;} a{color:inherit;} a:focus-visible,button:focus-visible{outline:2px solid var(--link);outline-offset:2px;}
+  .back{display:inline-block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;font-size:13px;font-weight:600;color:var(--link);text-decoration:none;margin-bottom:10px;}
+  .back:hover{border-color:var(--accent);}
+  h1{font-size:19px;font-weight:800;color:var(--text-strong);margin:8px 0 2px;} .sub{font-size:12.5px;color:var(--muted);margin:0 0 14px;}
+  .bcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px 15px;margin-bottom:9px;}
+  .bcard:hover{border-color:var(--accent);}
+  .b-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .b-name{font-size:15px;font-weight:800;color:var(--text-strong);}
+  .b-tag{font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:5px;flex:none;}
+  .b-tag.en{color:var(--link);background:var(--accent-soft);}
+  .b-tag.wk{color:var(--warn);background:var(--warn-bg);}
+  .b-meta{margin-left:auto;font-size:11.5px;color:var(--muted);}
+  .vbar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:9px 0 5px;background:var(--flat-bg);}
+  .vbar .bu{background:var(--up);} .vbar .bn{background:#9aa2ad;} .vbar .be{background:var(--down);}
+  .vlegend{display:flex;gap:12px;font-size:11.5px;color:var(--muted);}
+  .vlegend b{color:var(--text-strong);}
+  .b-latest{margin-top:8px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--border-soft);padding-top:7px;}
+  .b-latest b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .legend-tip{font-size:12px;color:var(--muted-2);background:var(--accent-soft);border-radius:8px;padding:8px 11px;margin-bottom:12px;line-height:1.7;}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  th{text-align:left;padding:9px 8px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;white-space:nowrap;}
+  td{padding:9px 8px;border-bottom:1px solid var(--border-soft);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .num{font-family:ui-monospace,Menlo,monospace;font-weight:700;color:var(--text-strong);font-variant-numeric:tabular-nums;}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:20px;white-space:nowrap;}
+  .bg-ok{background:var(--up-bg);color:var(--up);} .bg-bad{background:var(--down-bg);color:var(--down);}
+  .bg-pend{background:var(--flat-bg);color:var(--flat-fg);}
+  .trk-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 13px;margin-bottom:7px;}
+  .trk-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;}
+  .trk-tk{font-weight:800;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .trk-ch{color:var(--muted);font-size:12px;} .trk-d{color:var(--muted-2);font-size:11.5px;margin-left:auto;}
+  .trk-lv{margin-top:6px;display:flex;flex-direction:column;gap:3px;font-size:12px;}
+  .trk-lv span{color:var(--muted);}
+  .empty{color:var(--muted);font-size:13px;padding:14px 0;}
+  footer{text-align:center;color:var(--muted-2);font-size:11.5px;padding:20px 0 10px;margin-top:20px;border-top:1px solid var(--border);}
+</style></head><body><div class="wrap">
+<a class="back" href="/">← 返回首页</a>
+<h1>博主速览</h1>
+<p class="sub">8 位博主近 5 日多空倾向一览 · 红看多 / 绿看空（红涨绿跌同色系）</p>
+<div class="bcard">
+    <div class="b-h"><span class="b-name">视野环球财经</span>
+      
+      
+      <span class="b-meta">近5日 4 视频 · 32 观点</span></div>
+    <div class="vbar"><div class="bu" style="width:25%"></div><div class="bn" style="width:53%"></div><div class="be" style="width:22%"></div></div>
+  <div class="vlegend"><span>🔴 看多 <b>8</b></span><span>⚪ 中性 <b>17</b></span><span>🟢 看空 <b>7</b></span></div>
+    <div class="b-latest">最新 <b>^TNX</b> 看空 · 美联储三位官员（洛根、穆萨勒姆、巴尔金）讲话偏鹰派，暗示需进一步收紧货币政策；市场已大幅计价12月加息。高盛信贷策略师预…</div>
+  </div><div class="bcard">
+    <div class="b-h"><span class="b-name">NaNa说美股</span>
+      
+      
+      <span class="b-meta">近5日 5 视频 · 61 观点</span></div>
+    <div class="vbar"><div class="bu" style="width:25%"></div><div class="bn" style="width:34%"></div><div class="be" style="width:41%"></div></div>
+  <div class="vlegend"><span>🔴 看多 <b>15</b></span><span>⚪ 中性 <b>21</b></span><span>🟢 看空 <b>25</b></span></div>
+    <div class="b-latest">最新 <b>BA</b> 看空 · 被形容为「废太子」，与英特尔并列，指被白宫扶持后又失宠的公司。属于顺带评价，无独立逻辑展开。…</div>
+  </div><div class="bcard">
+    <div class="b-h"><span class="b-name">阳光财经</span>
+      
+      
+      <span class="b-meta">近5日 3 视频 · 22 观点</span></div>
+    <div class="vbar"><div class="bu" style="width:32%"></div><div class="bn" style="width:36%"></div><div class="be" style="width:32%"></div></div>
+  <div class="vlegend"><span>🔴 看多 <b>7</b></span><span>⚪ 中性 <b>8</b></span><span>🟢 看空 <b>7</b></span></div>
+    <div class="b-latest">最新 <b>MCD</b> 中性 · 周三盘前财报。股价已深度回调，目前是不是抄底机会，财报会给出答案。…</div>
+  </div><div class="bcard">
+    <div class="b-h"><span class="b-name">老李玩钱</span>
+      
+      
+      <span class="b-meta">近5日 1 视频 · 3 观点</span></div>
+    <div class="vbar"><div class="bu" style="width:100%"></div><div class="bn" style="width:0%"></div><div class="be" style="width:0%"></div></div>
+  <div class="vlegend"><span>🔴 看多 <b>3</b></span><span>⚪ 中性 <b>0</b></span><span>🟢 看空 <b>0</b></span></div>
+    <div class="b-latest">最新 <b>GOOGL</b> 看多 · 财报爆雷：调整后EPS 2.67（预期3.02）、营收1275.8亿（预期1282.2亿）双miss，自由现金流-90.…</div>
+  </div><div class="bcard">
+    <div class="b-h"><span class="b-name">美投侃新闻</span>
+      
+      
+      <span class="b-meta">近5日 5 视频 · 41 观点</span></div>
+    <div class="vbar"><div class="bu" style="width:32%"></div><div class="bn" style="width:48%"></div><div class="be" style="width:20%"></div></div>
+  <div class="vlegend"><span>🔴 看多 <b>13</b></span><span>⚪ 中性 <b>20</b></span><span>🟢 看空 <b>8</b></span></div>
+    <div class="b-latest">最新 <b>ANT</b> 中性 · Anthropic 拟于 11 月 16 日当周上市（代码 ANT），估值从约 2 万亿下调至 1.4-1.5 万亿。机…</div>
+  </div><div class="bcard">
+    <div class="b-h"><span class="b-name">The Trading Apologist</span>
+      <span class="b-tag en">EN</span>
+      
+      <span class="b-meta">近5日 3 视频 · 14 观点</span></div>
+    <div class="vbar"><div class="bu" style="width:29%"></div><div class="bn" style="width:21%"></div><div class="be" style="width:50%"></div></div>
+  <div class="vlegend"><span>🔴 看多 <b>4</b></span><span>⚪ 中性 <b>3</b></span><span>🟢 看空 <b>7</b></span></div>
+    <div class="b-latest">最新 <b>RDDT</b> 看空 · 上市以来最差单日，一周跌约37%、财报当日跌近31%。财报本身强劲：营收+53%至8.95亿、现金30.3亿、无债务、自…</div>
+  </div><div class="bcard">
+    <div class="b-h"><span class="b-name">The Investor Channel</span>
+      <span class="b-tag en">EN</span>
+      
+      <span class="b-meta">近5日 1 视频 · 6 观点</span></div>
+    <div class="vbar"><div class="bu" style="width:50%"></div><div class="bn" style="width:33%"></div><div class="be" style="width:17%"></div></div>
+  <div class="vlegend"><span>🔴 看多 <b>3</b></span><span>⚪ 中性 <b>2</b></span><span>🟢 看空 <b>1</b></span></div>
+    <div class="b-latest">最新 <b>SPACEX</b> 看空 · 本周跌9%至135。为AI扩建融资400亿+，Anthropic成最大数据中心客户（90天内可取消合同）。SpaceX原…</div>
+  </div><div class="bcard">
+    <div class="b-h"><span class="b-name">XTrader猫姐美股</span>
+      
+      <span class="b-tag wk">周更</span>
+      <span class="b-meta">近5日 5 视频 · 19 观点</span></div>
+    <div class="vbar"><div class="bu" style="width:21%"></div><div class="bn" style="width:42%"></div><div class="be" style="width:37%"></div></div>
+  <div class="vlegend"><span>🔴 看多 <b>4</b></span><span>⚪ 中性 <b>8</b></span><span>🟢 看空 <b>7</b></span></div>
+    <div class="b-latest">最新 <b>XLE</b> 看多 · 能源板块同样属于前期提示的方向，当前继续持有。…</div>
+  </div>
+<footer>生成于 11.02 21:31 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+</div></body></html>

@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -120,7 +125,10 @@
 
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
-  <p class="empty">暂无价位观点</p>
+  <div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>10/27</td><td>但股价日内剧烈震荡最后收跌<b class="num">1.13</b>%，日K上方有大缺口阻力，股价已在缺口下方横盘整理<b class="num">4</b>天 <a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=240s" class="tslink">⏱4:00</a></td><td class="vfy vfy-ok" title="守住 4（已过 3/5 日）">✅</td></tr>
+        </table></div>
 </div>
 
 <div class="sec">
@@ -129,7 +137,7 @@
       <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/27</span></span><span class="st flat">中性/观望·中期</span></div>
-      
+      <div class="op-lv"><span class="lv lv-s">支撑 但股价日内剧烈震荡最后收跌<b class="num">1.13</b>%，日K上方有大缺口阻力，股价已在缺口下方横盘整理<b class="num">4</b>天</span></div>
       <div class="op-d">业绩指引双超预期：Q3销售额+19%、EPS+36%，光通信业务销售额同比大增44%，预计Q4利润超华尔街预期，受益于AI数据中心光学连接产品需求攀升。但股价日内剧烈震荡最后收跌1.13%，日K上方有大缺口阻力，股价已在缺口下方横盘整理4天。较7月峰值272美元已腰斩，但估值仍然偏高。</div>
       <div class="op-q">「目前股价较7月峰值272美元已经腰斩了，但估值仍然偏高」</div>
       <div class="op-tag"><b>催化：</b>AI数据中心光连接需求</div>
@@ -144,7 +152,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/27</td><td>NaNa说美股</td><td></td><td><a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=240s" class="tslink">4:00</a></td></tr>
+    <tr><td>10/27</td><td>NaNa说美股</td><td>支撑 但股价日内剧烈震荡最后收跌<b class="num">1.13</b>%，日K上方有大缺口阻力，股价已在缺口下方横盘整理<b class="num">4</b>天</td><td><a href="https://www.youtube.com/watch?v=QQfF7ZvBQAM&amp;t=240s" class="tslink">4:00</a></td></tr>
   </table>
 </div>
 
@@ -164,7 +172,7 @@
       <div class="day-h">10/27</div>
       <div class="op">
           <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性/观望·中期</span></div>
-          
+          <div class="op-lv"><span class="lv lv-s">支撑 但股价日内剧烈震荡最后收跌<b class="num">1.13</b>%，日K上方有大缺口阻力，股价已在缺口下方横盘整理<b class="num">4</b>天</span></div>
           <div class="op-d">业绩指引双超预期：Q3销售额+19%、EPS+36%，光通信业务销售额同比大增44%，预计Q4利润超华尔街预期，受益于AI数据中心光学连接产品需求攀升。但股价日内剧烈震荡最后收跌1.13%，日K上方有大缺口阻力，股价已在缺口下方横盘整理4天。较7月峰值272美元已腰斩，但估值仍然偏高。</div>
           <div class="op-q">「目前股价较7月峰值272美元已经腰斩了，但估值仍然偏高」</div>
           <div class="op-tag"><b>催化：</b>AI数据中心光连接需求</div>

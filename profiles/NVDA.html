@@ -82,6 +82,11 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
 </style><style>
@@ -120,9 +125,15 @@
 
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
-  <div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
-          <tr><td>The Trading Apologist</td><td>10/29</td><td><b class="num">200</b>（下偏差带目标） <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1980s" class="tslink">⏱33:00</a></td></tr><tr><td>The Investor Channel</td><td>10/30</td><td><b class="num">205</b>（<b class="num">200</b>日均线） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1580s" class="tslink">⏱26:20</a></td></tr>
+  <div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>The Trading Apologist</td><td>10/29</td><td>跌破支撑（第<b class="num">4</b>次突破区间失败后跌破），目标下看<b class="num">200</b>美元（下偏差带） <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1980s" class="tslink">⏱33:00</a></td><td class="vfy vfy-ok" title="守住 4（已过 1/5 日）">✅</td></tr>
+        </table></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/30</td><td>博主<b class="num">2025</b>年<b class="num">4</b>月加仓后高位再未加仓，属于低位建仓的利润回吐 <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=360s" class="tslink">⏱6:00</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div><div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>The Trading Apologist</td><td>10/29</td><td><b class="num">200</b>（下偏差带目标） <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1980s" class="tslink">⏱33:00</a></td><td class="vfy vfy-ok" title="已到达 200（已过 1/5 日）">🎯</td></tr><tr><td>The Investor Channel</td><td>10/30</td><td><b class="num">205</b>（<b class="num">200</b>日均线） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1580s" class="tslink">⏱26:20</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
         </table></div>
 </div>
 
@@ -153,7 +164,7 @@
       <div class="ch-h"><span class="ch-name">The Trading Apologist</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/29</span></span><span class="st flat">中性偏空/分批买入·中期</span></div>
-      <div class="op-lv"><span class="lv">目标 <b class="num">200</b>（下偏差带目标）</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">200</b>（下偏差带目标）</span><span class="lv lv-s">支撑 跌破支撑（第<b class="num">4</b>次突破区间失败后跌破），目标下看<b class="num">200</b>美元（下偏差带）</span></div>
       <div class="op-d">跌破支撑（第4次突破区间失败后跌破），目标下看200美元（下偏差带）。博主已开始小幅回补英伟达仓位，计划在200附近分批加仓（layering in）。技术面处于收紧区间、可能测试区间下沿，接近200。</div>
       <div class="op-q">「英伟达正在演绎我们之前讨论的下探下偏差带200美元的剧本」</div>
       <div class="op-tag"><b>催化：</b>接近200下偏差带支撑</div>
@@ -189,7 +200,7 @@
       <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
       <div class="op">
       <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span><span class="st flat">中性/持有·长期</span></div>
-      
+      <div class="op-lv"><span class="lv lv-e">买点 博主<b class="num">2025</b>年<b class="num">4</b>月加仓后高位再未加仓，属于低位建仓的利润回吐</span></div>
       <div class="op-d">信贷质量没有微软那么高，但相对仍是低风险梯队，10月跌10%只是吃掉8-9月部分涨幅，未出现崩溃式下跌。博主2025年4月加仓后高位再未加仓，属于低位建仓的利润回吐。11月财报是整个半导体情绪与AI资本开支预期的关键节点。</div>
       <div class="op-q">「英伟达的信贷质量就没有微软那么高，但是相对来讲仍旧是低风险梯队，它在10月份跌了10个点，也只是把9月份和8月份的部分涨幅吃掉」</div>
       <div class="op-tag"><b>催化：</b>11月财报是AI资本开支关键信号</div>
@@ -204,7 +215,7 @@
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
   <table>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
-    <tr><td>10/29</td><td>The Trading Apologist</td><td>目标 <b class="num">200</b>（下偏差带目标）</td><td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1980s" class="tslink">33:00</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>目标 <b class="num">205</b>（<b class="num">200</b>日均线）</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1580s" class="tslink">26:20</a></td></tr><tr><td>10/30</td><td>视野环球财经</td><td></td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=360s" class="tslink">6:00</a></td></tr>
+    <tr><td>10/29</td><td>The Trading Apologist</td><td>目标 <b class="num">200</b>（下偏差带目标）<br>支撑 跌破支撑（第<b class="num">4</b>次突破区间失败后跌破），目标下看<b class="num">200</b>美元（下偏差带）</td><td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1980s" class="tslink">33:00</a></td></tr><tr><td>10/30</td><td>The Investor Channel</td><td>目标 <b class="num">205</b>（<b class="num">200</b>日均线）</td><td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1580s" class="tslink">26:20</a></td></tr><tr><td>10/30</td><td>视野环球财经</td><td>买点 博主<b class="num">2025</b>年<b class="num">4</b>月加仓后高位再未加仓，属于低位建仓的利润回吐</td><td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=360s" class="tslink">6:00</a></td></tr>
   </table>
 </div>
 
@@ -224,7 +235,7 @@
       <div class="day-h">10/29</div>
       <div class="op">
           <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st flat">中性偏空/分批买入·中期</span></div>
-          <div class="op-lv"><span class="lv">目标 <b class="num">200</b>（下偏差带目标）</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">200</b>（下偏差带目标）</span><span class="lv lv-s">支撑 跌破支撑（第<b class="num">4</b>次突破区间失败后跌破），目标下看<b class="num">200</b>美元（下偏差带）</span></div>
           <div class="op-d">跌破支撑（第4次突破区间失败后跌破），目标下看200美元（下偏差带）。博主已开始小幅回补英伟达仓位，计划在200附近分批加仓（layering in）。技术面处于收紧区间、可能测试区间下沿，接近200。</div>
           <div class="op-q">「英伟达正在演绎我们之前讨论的下探下偏差带200美元的剧本」</div>
           <div class="op-tag"><b>催化：</b>接近200下偏差带支撑</div>
@@ -259,7 +270,7 @@
           <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=480s" class="tslink">8:00 回看</a></div>
         </div><div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/持有·长期</span></div>
-          
+          <div class="op-lv"><span class="lv lv-e">买点 博主<b class="num">2025</b>年<b class="num">4</b>月加仓后高位再未加仓，属于低位建仓的利润回吐</span></div>
           <div class="op-d">信贷质量没有微软那么高，但相对仍是低风险梯队，10月跌10%只是吃掉8-9月部分涨幅，未出现崩溃式下跌。博主2025年4月加仓后高位再未加仓，属于低位建仓的利润回吐。11月财报是整个半导体情绪与AI资本开支预期的关键节点。</div>
           <div class="op-q">「英伟达的信贷质量就没有微软那么高，但是相对来讲仍旧是低风险梯队，它在10月份跌了10个点，也只是把9月份和8月份的部分涨幅吃掉」</div>
           <div class="op-tag"><b>催化：</b>11月财报是AI资本开支关键信号</div>
