@@ -18,10 +18,19 @@
   .b-tag.en{color:var(--link);background:var(--accent-soft);}
   .b-tag.wk{color:var(--warn);background:var(--warn-bg);}
   .b-meta{margin-left:auto;font-size:11.5px;color:var(--muted);}
-  .vbar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:9px 0 5px;background:var(--flat-bg);}
-  .vbar .bu{background:var(--up);} .vbar .bn{background:#9aa2ad;} .vbar .be{background:var(--down);}
-  .vlegend{display:flex;gap:12px;font-size:11.5px;color:var(--muted);}
-  .vlegend b{color:var(--text-strong);}
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .b-sec{margin-top:9px;}
+  .b-lab{font-size:11.5px;font-weight:700;color:var(--muted-2);margin-bottom:3px;}
+  .b-fwd,.b-sum{margin:0 0 4px;font-size:13px;line-height:1.7;color:var(--text);}
+  .b-sum{color:var(--muted);font-size:12.5px;}
+  .b-traj{margin-top:9px;padding-top:8px;border-top:1px dashed var(--border-soft);font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
+  .tj{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none;}
+  .d-up{background:var(--up);} .d-dn{background:var(--down);} .d-fl{background:#9aa2ad;}
+  .arr{color:var(--muted-2);}
+  .tone-strip{display:flex;flex-wrap:wrap;gap:5px 14px;font-size:12.5px;color:var(--muted);}
+  .tone-strip b{color:var(--text-strong);}
+  @media (max-width:420px){ table{font-size:12px;} th,td{padding:7px 6px;} .b-traj{font-size:11.5px;} .bcard{padding:11px 12px;} }
   .b-latest{margin-top:8px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--border-soft);padding-top:7px;}
   .b-latest b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   .legend-tip{font-size:12px;color:var(--muted-2);background:var(--accent-soft);border-radius:8px;padding:8px 11px;margin-bottom:12px;line-height:1.7;}
@@ -48,7 +57,7 @@
 
     <p class="legend-tip">口径：观点发布后 <b>5 个交易日</b>，用日K实际行情判定。「方向对」= 看多/看空方向与实际涨跌一致；「守住/跌破」= 支撑位 vs 观察期最低价；「到达」= 目标价 vs 观察期最高价。行情由 tdx 日K缓存驱动，每日自动化更新后自动重算。</p>
     <div class="sec-sub" style="font-size:14.5px;font-weight:700;color:var(--text-strong);margin:0 0 8px">📊 博主排行（可验证观点累计）</div>
-    <table><tr><th>博主</th><th>方向判定</th><th>支撑守住</th><th>目标达成</th><th>最近</th></tr><tr>
+    <div class="tbl-wrap"><table><tr><th>博主</th><th>方向判定</th><th>支撑守住</th><th>目标达成</th><th>最近</th></tr><tr>
       <td style="font-weight:700">NaNa说美股</td>
       <td><span class="num">18/34</span>（53%）</td>
       <td>—</td>
@@ -96,7 +105,7 @@
       <td><span class="num">0/2</span>（0%）</td>
       <td>—</td>
       <td>2026.10.28</td>
-    </tr></table>
+    </tr></table></div>
     <div class="sec-sub" style="font-size:14.5px;font-weight:700;color:var(--text-strong);margin:18px 0 8px">🔍 最近验证（最多 24 条）</div>
     <div class="trk-item">
       <div class="trk-h"><span class="trk-tk">INTC</span><span>英特尔</span>
@@ -219,5 +228,5 @@
       <div class="trk-ch">NaNa说美股 · 2026.10.30</div>
       <div class="trk-lv"><div><span class="badge bg-pend">⏳ 进行中</span> 目标 25-30（抄底触发区间） <span>· 观察期尚未开始</span></div></div>
     </div>
-<footer>生成于 11.02 21:31 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.02 21:49 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>
