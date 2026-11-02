@@ -44,6 +44,11 @@
     .mkt-dd{font-size:10px;}
   }
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .toc{display:flex;gap:6px;overflow-x:auto;margin:0 0 12px;padding:2px 0 4px;scrollbar-width:none;}
+  .toc::-webkit-scrollbar{display:none;}
+  .toc a{flex:none;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:4px 11px;text-decoration:none;white-space:nowrap;transition:.15s;}
+  .toc a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+  .sec{scroll-margin-top:58px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
   .tone{display:inline-block;padding:1px 9px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
   .tone.up{background:var(--up-bg);color:var(--up-fg);}
@@ -97,7 +102,17 @@
   .ch-name{font-weight:700;font-size:14px;color:var(--text-strong);margin-bottom:4px;}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
-</style></head><body><div class="wrap">
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">美股复盘日报 · 10.27</span><span class="rt"><a href="/reports/2026-10-28.html" title="更新一期">← 10.28</a></span></nav>
 <div class="hero">
   <h1>美股复盘日报</h1>
   <div class="sub">2026年10月27日 · 3 位博主 · 23 条观点 · 大盘<span class="tone flat">中性</span></div>
@@ -122,8 +137,9 @@
         <div class="mkt-dd">距高点 <b>-4.49%</b></div>
       </div></div>
   </div>
+<nav class="toc"><a href="#s1">📌 持仓</a><a href="#s2">🌐 大盘</a><a href="#s3">📊 其他标的</a><a href="#s4">🎬 博主要点</a><a href="#s5">🎯 关键价位</a></nav>
 
-<div class="sec">
+<div class="sec" id="s1">
   <div class="sec-h">📌 一、我的持仓</div>
   <div class="hd">
         <div class="hd-h"><span class="hd-name">标普500ETF</span>
@@ -212,14 +228,14 @@
       </div>
 </div>
 
-<div class="sec">
+<div class="sec" id="s2">
   <div class="sec-h">🌐 二、大盘情况</div>
   <p style="margin:0 0 8px;"><span class="tone flat" style="margin-left:0;">中性</span>
   <span style="font-size:12.5px;color:var(--muted);margin-left:8px;">中性 1 · 偏多 1 · 中性偏多 1</span></p>
   <div class="op"><div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性</span></div><div class="op-d">美国宏观数据全面超预期（耐用品订单、房屋销售、房价、消费者信心指数），推动宏观意外指数升至7个月最高，油价也下降，纳指和半导体连续第二天大涨，两天基本收回上周全部跌幅。但市场广度一般——标普11个板块5涨6跌，AI板块从上周低点反弹5%而剔除AI的板块下跌30个基点，呈现「AI独涨、其他疲软」的分裂格局。大摩Michael Wilson给出好消息+坏消息：好消息是6月以来的调整已进入尾声（10月27日是历史统计的波动周期低点）；坏消息是前方还有三次清算事件，指数可能先跌至7100-7200（略微跌破200日均）再反弹，年底标普8000、12个月8300的目标不变。本周多空或见分晓，关键看美联储议息会议措辞 + 微软/谷歌/亚马逊三大科技财报。大盘基调中性偏谨慎，博主强调靠系统纪律而非赌方向。</div></div><div class="op"><div class="op-h"><span class="op-c">NaNa说美股</span><span class="st up">偏多</span></div><div class="op-d">三大股指集体收涨，半导体带动纳指领涨，道指被波音拖累几乎平收。标普11大板块6涨5跌，信息科技最强、非必需消费品次之；最差依次为能源、房地产、必需消费品、金融、医疗保健。费城半导体延续反弹收涨3.6%。</div></div><div class="op"><div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st up">中性偏多</span></div><div class="op-d">10月27日（周二）复盘。上周五大跌后，两个交易日内市场强势反转，多个指数与个股收复跌破的支撑区，部分个股单日反弹17%-25%（非正常波动）。做空ETF录得创纪录资金流入，显示市场极度恐慌、对冲力度空前。但博主提醒：反弹多伴随成交量萎缩，低量反弹是潜在lower high预警信号；且明日（周三）有FOMC、周三四有科技财报，仍未脱离险境。板块轮动：资金从防御股（XLP冲高后回落）回流DRAM/半导体（SK海力士财报强劲领涨）。博主整体短线偏乐观，但强调时间维度（从高点的时间测算指向11月第一/二周潜在低点）与缩量让他保持警惕，提醒注意lower high风险。</div></div>
 </div>
 
-<div class="sec"><div class="sec-h">📊 三、其他标的共识</div><table>
+<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><table>
       <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
       <tr><td>亚马逊 <span class="tk">AMZN</span></td>
         <td style="text-align:center">1</td>
@@ -248,7 +264,7 @@
         <td style="text-align:right" class="flat">分歧</td></tr>
     </table></div>
 
-<div class="sec">
+<div class="sec" id="s4">
   <div class="sec-h">🎬 四、各博主视频要点</div>
   <div class="hd hd-key">
         <div class="hd-h"><span class="hd-name">⭐ 视野环球财经</span><span class="hd-tk">10/27</span><span class="st flat">中性</span></div>
@@ -274,7 +290,7 @@
       </div>
 </div>
 
-<div class="sec"><div class="sec-h">🎯 五、关键价位一览</div><table>
+<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><table>
       <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
       <tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SMH</span></td>
           <td>视野环球财经</td>
@@ -326,5 +342,5 @@
 
 
 
-<div class="foot">AI 自动整理自 YouTube 公开视频 · 价位数字已高亮标注 · 时间戳可点击回看 · 不构成投资建议</div>
-</div></body></html>
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 价位数字已高亮标注 · 时间戳可点击回看 · 不构成投资建议</div>
+</div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>

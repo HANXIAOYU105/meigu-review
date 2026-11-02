@@ -44,6 +44,11 @@
     .mkt-dd{font-size:10px;}
   }
   .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .toc{display:flex;gap:6px;overflow-x:auto;margin:0 0 12px;padding:2px 0 4px;scrollbar-width:none;}
+  .toc::-webkit-scrollbar{display:none;}
+  .toc a{flex:none;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:4px 11px;text-decoration:none;white-space:nowrap;transition:.15s;}
+  .toc a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+  .sec{scroll-margin-top:58px;}
   .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
   .tone{display:inline-block;padding:1px 9px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
   .tone.up{background:var(--up-bg);color:var(--up-fg);}
@@ -97,7 +102,17 @@
   .ch-name{font-weight:700;font-size:14px;color:var(--text-strong);margin-bottom:4px;}
   .empty{color:var(--muted);font-size:13px;}
   .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
-</style></head><body><div class="wrap">
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">美股复盘日报 · 10.31</span><span class="rt"><a href="/reports/2026-10-30.html" title="更早一期">10.30 →</a></span></nav>
 <div class="hero">
   <h1>美股复盘日报</h1>
   <div class="sub">2026年10月31日 · 5 位博主 · 25 条观点 · 大盘<span class="tone flat">中性</span></div>
@@ -122,8 +137,9 @@
         <div class="mkt-dd">距高点 <b>-8.25%</b></div>
       </div></div>
   </div>
+<nav class="toc"><a href="#s1">📌 持仓</a><a href="#s2">🌐 大盘</a><a href="#s3">📊 其他标的</a><a href="#s4">🎬 博主要点</a><a href="#s5">🎯 关键价位</a><a href="#s6">⚠️ 分歧</a></nav>
 
-<div class="sec">
+<div class="sec" id="s1">
   <div class="sec-h">📌 一、我的持仓</div>
   <div class="hd">
         <div class="hd-h"><span class="hd-name">标普500ETF</span>
@@ -254,14 +270,14 @@
       </div>
 </div>
 
-<div class="sec">
+<div class="sec" id="s2">
   <div class="sec-h">🌐 二、大盘情况</div>
   <p style="margin:0 0 8px;"><span class="tone flat" style="margin-left:0;">中性</span>
   <span style="font-size:12.5px;color:var(--muted);margin-left:8px;">中性 3 · 偏空 2</span></p>
   <div class="op"><div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性</span></div><div class="op-d">本期为 Anthropic 招股书专题（非大盘复盘）。Anthropic 于 2026-10-26 递交 S-1，是首家公布完整财务细节的美国前沿模型实验室，计划 11 月 16 日当周上市（股票代码 ANT），估值已从约 2 万亿下调至 1.4-1.5 万亿。核心叙事：收入从 25Q1 的 3.76 亿暴增至 26Q2 的 116 亿（同比约 15 倍，Q1/Q2 增速 132%/144%），Q2 首次实现经营盈利；但公司对外承诺付款约 8500 亿（为半年收入 163 亿的 50 多倍）且大部分不可撤销，与三大云（谷歌/亚马逊/微软）、博通、英伟达构成多层杠杆的资金/算力循环。博主判断：机会在于产品真实有大量企业付费、从「工具预算」走向「人力预算」；风险在于承诺远超现金、收入能否跟上、安全争议（与美政府冲突、出口限制）以及上市后分档解禁带来的抛压。本片无具体价位观点，主要为产业链各环节公司（云厂商、芯片商）的关系与风险梳理。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st down">偏空</span></div><div class="op-d">猫姐复盘 INTC 操作：122 一线已了结，上上周五在 100 附近再次进场，周五盘中跌近 30% 触发止损离场。她再次强调半导体板块虽然挂着强 AI 叙事，但波动极端、风险极大，必须小心。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st down">偏空</span></div><div class="op-d">猫姐连续提示不要盲目抄底：当日大盘再度大跌，她判断下跌还没有结束，明确让等待、不要急。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st flat">中性</span></div><div class="op-d">猫姐复盘周五盘面：尾盘由空头回补推动几乎单边拉起。她在美东时间 12:16 就提示当日只能靠空头回补，最后一小时开始时再次提示确认。她认为市场信号与成因已经很明确，本周末的 YouTube 视频会详细分析。结论是「又跌才有涨，跌是为了更好的涨」，不必恐慌。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股</span><span class="st flat">中性</span></div><div class="op-d">本周大盘跌得非常惨烈，核心是 QQQ 跌破 706.58 触发程序性抛售（量化/机器交易只管触发不管方向），周五盘中几乎毫无反弹，直到最后一小时由空头回补 + 做市商 Delta 对冲把全天约一半涨幅拉回来。猫姐判断：市场中期真正看空的人很少，短线都是墙头草，这些都是偏积极的信号，不必过度恐慌；但点位上 706.58 下周必须收回，否则危险，608 若被有效跌破则是「万丈深渊」，会触发更大一轮抛售。她仍保留一部分多仓，同时用少量期权做黑天鹅保险，但不敢在此位裸空。</div></div>
 </div>
 
-<div class="sec"><div class="sec-h">📊 三、其他标的共识</div><table>
+<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><table>
       <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
       <tr><td>亚马逊 <span class="tk">AMZN</span></td>
         <td style="text-align:center">1</td>
@@ -290,7 +306,7 @@
         <td style="text-align:right" class="flat">分歧</td></tr>
     </table></div>
 
-<div class="sec">
+<div class="sec" id="s4">
   <div class="sec-h">🎬 四、各博主视频要点</div>
   <div class="hd">
         <div class="hd-h"><span class="hd-name">美投侃新闻</span><span class="hd-tk">10/31</span><span class="st flat">中性</span></div>
@@ -330,7 +346,7 @@
       </div>
 </div>
 
-<div class="sec"><div class="sec-h">🎯 五、关键价位一览</div><table>
+<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><table>
       <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
       <tr><td><b>英特尔</b> <span class="tk">INTC</span></td>
           <td>XTrader猫姐美股</td>
@@ -383,9 +399,9 @@
           <td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1326s" class="tslink">22:06</a></td></tr>
     </table></div>
 
-<div class="sec"><div class="sec-h">⚠️ 六、分歧标的</div><div class="ch"><div class="ch-name">谷歌 <span class="tk">GOOGL</span></div>
+<div class="sec" id="s6"><div class="sec-h">⚠️ 六、分歧标的</div><div class="ch"><div class="ch-name">谷歌 <span class="tk">GOOGL</span></div>
       <div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">美投侃新闻<span class="op-date">·10/31</span></span></div><div class="op-d">谷歌财报后第二天大跌 13%，博主认为看起来可怕但或许带来难得的抄底机会，并已发布深度分析。作为 Anthropic 供应商与客户双重身份，谷歌从 Anthropic 身上通过算力租金、渠道费、TPU 采购（追加 1250-1500 亿）多条路径获利，且是其重要算力来源之一。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">XTrader猫姐美股<span class="op-date">·10/31</span></span></div><div class="op-d">财报后大跌，周四一天蒸发 5000 亿美元市值。核心原因是现金流变差——市场对 AI 板块的估值逻辑正在从「现金流充裕+轻资产+回购」转向审视「重资产+借钱搞 AI」，谷歌的现金流表现让市场最恐慌。这属于 AI 估值重构的一部分，不是单次财报的偶发反应。</div></div>
     </div></div>
 
-<div class="foot">AI 自动整理自 YouTube 公开视频 · 价位数字已高亮标注 · 时间戳可点击回看 · 不构成投资建议</div>
-</div></body></html>
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 价位数字已高亮标注 · 时间戳可点击回看 · 不构成投资建议</div>
+</div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>

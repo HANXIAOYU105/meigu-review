@@ -1,383 +1,518 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b0e14">
+<meta name="theme-color" content="#1e3a5f">
 <base href="/">
-<title>美股博主复盘</title>
+<title>美股博主复盘 · 日报与个股档案</title>
+<meta name="description" content="每日自动整理 8 位 YouTube 美股博主（6 中文 + 2 英文）与猫姐 X 帖文的核心观点、关键价位与多空倾向，附美股指数速览与个股档案。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="美股博主复盘 · 日报与个股档案">
+<meta property="og:description" content="每日自动跟踪 8 位博主，整理核心观点、关键价位与多空倾向。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
 <style>
-  :root{--bg:#0b0e14;--card:#141924;--card2:#1b2230;--line:#232b3a;--text:#e7ecf5;--muted:#8b97ab;--up:#ff5c5c;--down:#21c07a;--accent:#4d8dff;--warn:#ffb020;}
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --accent-soft:#eef2ff; --link:#2c5282;
+    --up:#c53030; --up-bg:#fde8e8; --down:#1e7d43; --down-bg:#e6f6ec; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --warn:#b45309; --warn-bg:#fef3e2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --accent-soft:#1e2a44; --link:#7fb0ff;
+      --up:#ff8f8f; --up-bg:#3a1d1d; --down:#5fd08a; --down-bg:#123526; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --warn:#e8b06a; --warn-bg:#3a2a16;
+    }
+  }
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.6;}
-  .wrap{max-width:720px;margin:0 auto;padding:0 16px 40px;}
-  header{padding:24px 0 16px;border-bottom:1px solid var(--line);margin-bottom:20px;}
-  h1{font-size:20px;font-weight:600;margin:0;color:var(--text);}
-  header p{font-size:13px;color:var(--muted);margin:6px 0 0;}
-  .sec-title{font-size:15px;font-weight:600;color:var(--text);margin:28px 0 12px;display:flex;align-items:center;gap:8px;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;padding:12px;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.6;}
+  .wrap{max-width:680px;margin:0 auto;}
+  a{color:inherit;}
+  .hero{background:linear-gradient(135deg,#1e3a5f 0%,#274b78 100%);color:#fff;border-radius:14px;padding:20px 18px;margin-bottom:12px;position:relative;overflow:hidden;}
+  .hero::after{content:"";position:absolute;right:-40px;top:-60px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.06);}
+  .hero h1{margin:0;font-size:21px;font-weight:800;letter-spacing:.3px;color:#fff;}
+  .hero .sub{font-size:12.5px;color:#d6e2f2;margin-top:6px;line-height:1.7;}
+  .hero .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:#c9d8ec;}
+  .hero .stats b{color:#fff;font-size:15px;font-weight:800;margin-right:3px;font-family:ui-monospace,Menlo,monospace;}
+  .hero .stamp{position:absolute;right:16px;bottom:14px;font-size:11px;color:#a9c0dc;}
+  .mkt{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;}
+  .mkt-h{font-size:13px;font-weight:700;color:var(--text-strong);margin:0 0 8px;}
+  .mkt-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .mkt-grid{display:flex;gap:8px;flex-wrap:nowrap;}
+  .mkt-item{flex:1 1 0;min-width:0;background:var(--bg);border:1px solid var(--border-soft);border-radius:8px;padding:8px 10px;}
+  .mkt-name{font-size:11.5px;color:var(--muted);font-weight:600;white-space:nowrap;}
+  .mkt-val{font-size:16px;font-weight:800;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;margin-top:2px;white-space:nowrap;}
+  .mkt-pct{font-size:13px;font-weight:700;margin-top:1px;white-space:nowrap;}
+  .mkt-pct.up{color:var(--up);} .mkt-pct.down{color:var(--down);} .mkt-pct.flat{color:var(--flat-fg);}
+  .mkt-dd{font-size:11px;color:var(--muted);margin-top:3px;white-space:nowrap;}
+  .mkt-dd b{color:var(--down);font-weight:700;font-family:ui-monospace,Menlo,monospace;}
+  @media (max-width:420px){ .mkt-item{padding:7px;} .mkt-name{font-size:10.5px;} .mkt-val{font-size:13px;} .mkt-pct{font-size:11.5px;} .mkt-dd{font-size:10px;} }
+  .tabs{display:flex;gap:8px;position:sticky;top:8px;z-index:10;padding:6px 0;margin-bottom:6px;backdrop-filter:blur(6px);}
+  .tabs a{flex:1;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 0;font-size:13px;font-weight:600;color:var(--muted);text-decoration:none;transition:.15s;}
+  .tabs a:hover,.tabs a:active{color:var(--accent);border-color:var(--accent);}
+  .sec-title{font-size:15px;font-weight:700;color:var(--text-strong);margin:26px 0 10px;display:flex;align-items:center;gap:8px;}
   .sec-title::before{content:"";width:4px;height:16px;background:var(--accent);border-radius:2px;}
   .sec-title .cnt{font-size:12px;color:var(--muted);font-weight:400;}
-  .rpt{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:var(--text);transition:border-color .15s;}
-  .rpt:hover{border-color:var(--accent);}
-  .rpt-date{font-size:13px;color:var(--muted);white-space:nowrap;min-width:64px;}
-  .rpt-main{flex:1;}
-  .rpt-title{font-size:15px;font-weight:600;}
+  .sec-title .more{margin-left:auto;font-size:12px;color:var(--link);text-decoration:none;font-weight:500;}
+  .rpt{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:8px;text-decoration:none;color:var(--text);transition:.15s;}
+  .rpt:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:0 4px 14px rgba(30,58,95,.08);}
+  .rpt-date{display:flex;flex-direction:column;align-items:center;min-width:52px;}
+  .rpt-date b{font-size:15px;font-weight:800;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .rpt-date span{font-size:11px;color:var(--muted);}
+  .rpt-main{flex:1;min-width:0;}
+  .rpt-title{font-size:14.5px;font-weight:700;}
   .rpt-meta{font-size:12px;color:var(--muted);margin-top:2px;}
-  .tone{font-size:12px;font-weight:600;padding:2px 10px;border-radius:20px;white-space:nowrap;}
-  .tone.up{background:rgba(255,92,92,.12);color:var(--up);}
-  .tone.down{background:rgba(33,192,122,.12);color:var(--down);}
-  .tone.flat{background:rgba(139,151,171,.12);color:var(--muted);}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
-  .pf{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .15s;}
-  .pf:hover{border-color:var(--accent);}
-  .pf-name{font-size:14px;font-weight:600;display:flex;align-items:center;gap:6px;}
-  .pf-star{font-size:11px;font-weight:600;color:var(--warn);background:rgba(255,176,32,.12);padding:1px 6px;border-radius:6px;}
-  .pf-tk{font-size:11px;color:var(--muted);margin-top:2px;font-family:ui-monospace,Menlo,monospace;}
-  .pf-meta{font-size:11.5px;color:var(--muted);margin-top:4px;}
+  .tone{font-size:12px;font-weight:700;padding:2px 10px;border-radius:20px;white-space:nowrap;}
+  .tone.up{background:var(--up-bg);color:var(--up);}
+  .tone.down{background:var(--down-bg);color:var(--down);}
+  .tone.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .note{font-size:11.5px;color:var(--muted-2);background:var(--accent-soft);border-radius:8px;padding:8px 10px;margin:2px 0 0;line-height:1.6;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:9px;}
+  .pf{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 13px;text-decoration:none;color:var(--text);transition:.15s;}
+  .pf:hover{border-color:var(--accent);transform:translateY(-1px);}
+  .pf-name{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;line-height:1.35;}
+  .pf-star{font-size:10.5px;font-weight:700;color:var(--warn);background:var(--warn-bg);padding:1px 5px;border-radius:5px;flex:none;}
+  .pf-tk{font-size:11px;color:var(--muted);margin-top:2px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.3px;}
+  .pf-meta{font-size:11.5px;color:var(--muted);margin-top:3px;}
+  .search{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-size:14px;color:var(--text);margin-bottom:9px;outline:none;}
+  .search:focus{border-color:var(--accent);}
+  .search::placeholder{color:var(--muted-2);}
   .empty{color:var(--muted);font-size:13px;padding:12px 0;}
-  footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 0 0;margin-top:20px;border-top:1px solid var(--line);}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--link);outline-offset:2px;}
+  [id]{scroll-margin-top:72px;}
+  .mkt-val,.rpt-date b{font-variant-numeric:tabular-nums;}
+  .pf:hover{box-shadow:0 4px 14px rgba(30,58,95,.07);}
+  .more-btn{display:block;width:100%;margin-top:9px;background:var(--card);border:1px dashed var(--border);color:var(--link);font-size:13px;font-weight:600;border-radius:10px;padding:9px;cursor:pointer;font-family:inherit;transition:.15s;}
+  .more-btn:hover{border-color:var(--accent);border-style:solid;background:var(--accent-soft);}
+  .nomatch{display:none;color:var(--muted);font-size:13px;padding:12px 2px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--accent);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  footer{text-align:center;color:var(--muted-2);font-size:11.5px;padding:22px 0 10px;margin-top:22px;border-top:1px solid var(--border);line-height:1.8;}
+  @media (max-width:420px){ .hero{padding:17px 15px;} .hero h1{font-size:19px;} .hero .stamp{position:static;margin-top:8px;} }
 </style></head><body><div class="wrap">
-<header>
+
+<header class="hero">
   <h1>美股博主复盘</h1>
-  <p>每日自动跟踪 8 位 YouTube 美股博主（6 中文 + 2 英文）· 猫姐 X 帖文每日同步 · 复盘观点 + 关键价位 · 仅供学习研究，不构成投资建议</p>
+  <div class="sub">每日自动跟踪 8 位博主 · YouTube 视频 + 猫姐 X 帖文 · 观点 / 关键价位 / 多空倾向</div>
+  <div class="stats">
+    <span><b>5</b>期日报</span>
+    <span><b>67</b>个股档案</span>
+    <span><b>198</b>条观点</span>
+    <span><b>27</b>份内容</span>
+  </div>
+  <div class="stamp">更新 11.02 18:45</div>
 </header>
 
-<div class="sec-title">每日复盘日报 <span class="cnt">6 期</span></div>
+<div class="mkt">
+      <div class="mkt-h">📈 最新美股指数<span class="asof">截至 2026-10-30 美东收盘</span></div>
+      <div class="mkt-grid"><div class="mkt-item">
+          <div class="mkt-name">道琼斯</div>
+          <div class="mkt-val">51,770.31</div>
+          <div class="mkt-pct down">▼ -1.09%</div>
+          <div class="mkt-dd">距高点 <b>-5.43%</b></div>
+        </div><div class="mkt-item">
+          <div class="mkt-name">标普500</div>
+          <div class="mkt-val">7,580.07</div>
+          <div class="mkt-pct down">▼ -1.82%</div>
+          <div class="mkt-dd">距高点 <b>-3.37%</b></div>
+        </div><div class="mkt-item">
+          <div class="mkt-name">纳斯达克</div>
+          <div class="mkt-val">25,437</div>
+          <div class="mkt-pct down">▼ -2.86%</div>
+          <div class="mkt-dd">距高点 <b>-8.25%</b></div>
+        </div></div>
+    </div>
+
+<nav class="tabs">
+  <a href="#rpt">📰 日报</a>
+  <a href="#hold">⭐ 持仓</a>
+  <a href="#all">📂 全部档案</a>
+</nav>
+
+<div class="sec-title" id="rpt">每日复盘日报 <span class="cnt">最近 5 期</span></div>
 <a class="rpt" href="/reports/2026-10-31.html">
-      <div class="rpt-date">2026.10.31</div>
+      <div class="rpt-date"><b>10.31</b><span>周六</span></div>
       <div class="rpt-main"><div class="rpt-title">美股复盘日报</div>
-      <div class="rpt-meta">5 视频 · 25 观点 · 6 持仓</div></div>
+      <div class="rpt-meta">5 视频 · 25 观点 · 6 持仓 · 16 价位</div></div>
       <span class="tone flat">中性</span>
     </a><a class="rpt" href="/reports/2026-10-30.html">
-      <div class="rpt-date">2026.10.30</div>
+      <div class="rpt-date"><b>10.30</b><span>周五</span></div>
       <div class="rpt-main"><div class="rpt-title">美股复盘日报</div>
-      <div class="rpt-meta">8 视频 · 75 观点 · 8 持仓</div></div>
+      <div class="rpt-meta">8 视频 · 75 观点 · 8 持仓 · 28 价位</div></div>
       <span class="tone down">偏空</span>
     </a><a class="rpt" href="/reports/2026-10-29.html">
-      <div class="rpt-date">2026.10.29</div>
+      <div class="rpt-date"><b>10.29</b><span>周四</span></div>
       <div class="rpt-main"><div class="rpt-title">美股复盘日报</div>
-      <div class="rpt-meta">5 视频 · 35 观点 · 7 持仓</div></div>
+      <div class="rpt-meta">5 视频 · 35 观点 · 7 持仓 · 15 价位</div></div>
       <span class="tone flat">中性</span>
     </a><a class="rpt" href="/reports/2026-10-28.html">
-      <div class="rpt-date">2026.10.28</div>
+      <div class="rpt-date"><b>10.28</b><span>周三</span></div>
       <div class="rpt-main"><div class="rpt-title">美股复盘日报</div>
-      <div class="rpt-meta">5 视频 · 30 观点 · 5 持仓</div></div>
+      <div class="rpt-meta">5 视频 · 30 观点 · 5 持仓 · 12 价位</div></div>
       <span class="tone flat">中性</span>
     </a><a class="rpt" href="/reports/2026-10-27.html">
-      <div class="rpt-date">2026.10.27</div>
+      <div class="rpt-date"><b>10.27</b><span>周二</span></div>
       <div class="rpt-main"><div class="rpt-title">美股复盘日报</div>
-      <div class="rpt-meta">3 视频 · 23 观点 · 5 持仓</div></div>
-      <span class="tone flat">中性</span>
-    </a><a class="rpt" href="/reports/2026-10-26.html">
-      <div class="rpt-date">2026.10.26</div>
-      <div class="rpt-main"><div class="rpt-title">美股复盘日报</div>
-      <div class="rpt-meta">1 视频 · 10 观点 · 3 持仓</div></div>
+      <div class="rpt-meta">3 视频 · 23 观点 · 5 持仓 · 15 价位</div></div>
       <span class="tone flat">中性</span>
     </a>
+<p class="note">网页只展示最近 5 期，更早 1 期已归档在数据库；想看更早的复盘，直接问一句即可（例：「10 月 20 日大家怎么看谷歌」）。</p>
 
-<div class="sec-title">持仓标的档案 <span class="cnt">8 个</span></div>
+<div class="sec-title" id="hold">持仓标的档案 <span class="cnt">8 个 · 按你的持仓顺序</span></div>
 <div class="grid"><a class="pf" href="/profiles/SPY.html">
       <div class="pf-name">标普500ETF <span class="pf-star">持仓</span></div>
       <div class="pf-tk">SPY</div>
-      <div class="pf-meta">6 条观点 · 2026.10.27~2026.10.31</div>
+      <div class="pf-meta">6 条观点 · 最近 10.31</div>
     </a><a class="pf" href="/profiles/QQQ.html">
       <div class="pf-name">纳指100ETF <span class="pf-star">持仓</span></div>
       <div class="pf-tk">QQQ</div>
-      <div class="pf-meta">7 条观点 · 2026.10.26~2026.10.31</div>
+      <div class="pf-meta">7 条观点 · 最近 10.31</div>
     </a><a class="pf" href="/profiles/SMH.html">
       <div class="pf-name">费城半导体ETF <span class="pf-star">持仓</span></div>
       <div class="pf-tk">SMH</div>
-      <div class="pf-meta">11 条观点 · 2026.10.27~2026.10.31</div>
+      <div class="pf-meta">11 条观点 · 最近 10.31</div>
     </a><a class="pf" href="/profiles/GOOGL.html">
       <div class="pf-name">谷歌 <span class="pf-star">持仓</span></div>
       <div class="pf-tk">GOOGL</div>
-      <div class="pf-meta">20 条观点 · 2026.10.26~2026.10.31</div>
+      <div class="pf-meta">20 条观点 · 最近 10.31</div>
     </a><a class="pf" href="/profiles/MSFT.html">
       <div class="pf-name">微软 <span class="pf-star">持仓</span></div>
       <div class="pf-tk">MSFT</div>
-      <div class="pf-meta">15 条观点 · 2026.10.27~2026.10.31</div>
+      <div class="pf-meta">15 条观点 · 最近 10.31</div>
     </a><a class="pf" href="/profiles/NVDA.html">
       <div class="pf-name">英伟达 <span class="pf-star">持仓</span></div>
       <div class="pf-tk">NVDA</div>
-      <div class="pf-meta">6 条观点 · 2026.10.29~2026.10.31</div>
+      <div class="pf-meta">6 条观点 · 最近 10.31</div>
     </a><a class="pf" href="/profiles/TSM.html">
       <div class="pf-name">台积电 <span class="pf-star">持仓</span></div>
       <div class="pf-tk">TSM</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30~2026.10.30</div>
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
     </a><a class="pf" href="/profiles/TSLA.html">
       <div class="pf-name">特斯拉 <span class="pf-star">持仓</span></div>
       <div class="pf-tk">TSLA</div>
-      <div class="pf-meta">9 条观点 · 2026.10.26~2026.10.30</div>
+      <div class="pf-meta">9 条观点 · 最近 10.30</div>
     </a></div>
 
-<div class="sec-title">全部个股档案 <span class="cnt">67 个</span></div>
-<div class="grid"><a class="pf" href="/profiles/GOOGL.html">
+<div class="sec-title" id="all">全部个股档案 <span class="cnt"><i id="qcnt">67</i> / 67 个</span></div>
+<input class="search" id="q" type="search" placeholder="搜索标的：NVDA / 英伟达 / 半导体(代码或名称)" autocomplete="off" aria-label="搜索个股档案">
+<div class="grid" id="allGrid"><a class="pf" href="/profiles/GOOGL.html" data-k="谷歌 googl">
       <div class="pf-name">谷歌</div>
       <div class="pf-tk">GOOGL</div>
-      <div class="pf-meta">20 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/MSFT.html">
+      <div class="pf-meta">20 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/MSFT.html" data-k="微软 msft">
       <div class="pf-name">微软</div>
       <div class="pf-tk">MSFT</div>
-      <div class="pf-meta">15 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/AMZN.html">
+      <div class="pf-meta">15 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/AMZN.html" data-k="亚马逊 amzn">
       <div class="pf-name">亚马逊</div>
       <div class="pf-tk">AMZN</div>
-      <div class="pf-meta">12 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/INTC.html">
+      <div class="pf-meta">12 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/INTC.html" data-k="英特尔 intc">
       <div class="pf-name">英特尔</div>
       <div class="pf-tk">INTC</div>
-      <div class="pf-meta">12 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/SMH.html">
+      <div class="pf-meta">12 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/SMH.html" data-k="费城半导体etf smh">
       <div class="pf-name">费城半导体ETF</div>
       <div class="pf-tk">SMH</div>
-      <div class="pf-meta">11 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/TSLA.html">
+      <div class="pf-meta">11 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/TSLA.html" data-k="特斯拉 tsla">
       <div class="pf-name">特斯拉</div>
       <div class="pf-tk">TSLA</div>
-      <div class="pf-meta">9 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/QQQ.html">
+      <div class="pf-meta">9 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/QQQ.html" data-k="纳指100etf qqq">
       <div class="pf-name">纳指100ETF</div>
       <div class="pf-tk">QQQ</div>
-      <div class="pf-meta">7 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/NVDA.html">
+      <div class="pf-meta">7 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/NVDA.html" data-k="英伟达 nvda">
       <div class="pf-name">英伟达</div>
       <div class="pf-tk">NVDA</div>
-      <div class="pf-meta">6 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/ORCL.html">
+      <div class="pf-meta">6 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/ORCL.html" data-k="甲骨文 orcl">
       <div class="pf-name">甲骨文</div>
       <div class="pf-tk">ORCL</div>
-      <div class="pf-meta">6 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/SPY.html">
+      <div class="pf-meta">6 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/SPY.html" data-k="标普500etf spy">
       <div class="pf-name">标普500ETF</div>
       <div class="pf-tk">SPY</div>
-      <div class="pf-meta">6 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/NOW.html">
+      <div class="pf-meta">6 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/NOW.html" data-k="servicenow now">
       <div class="pf-name">ServiceNow</div>
       <div class="pf-tk">NOW</div>
-      <div class="pf-meta">5 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/BA.html">
+      <div class="pf-meta">5 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/BA.html" data-k="波音 ba">
       <div class="pf-name">波音</div>
       <div class="pf-tk">BA</div>
-      <div class="pf-meta">4 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/BTC.html">
+      <div class="pf-meta">4 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/BTC.html" data-k="比特币 btc">
       <div class="pf-name">比特币</div>
       <div class="pf-tk">BTC</div>
-      <div class="pf-meta">4 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/RDDT.html">
+      <div class="pf-meta">4 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/RDDT.html" data-k="reddit rddt">
       <div class="pf-name">Reddit</div>
       <div class="pf-tk">RDDT</div>
-      <div class="pf-meta">4 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/STX.html">
+      <div class="pf-meta">4 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/STX.html" data-k="希捷 stx">
       <div class="pf-name">希捷</div>
       <div class="pf-tk">STX</div>
-      <div class="pf-meta">4 条观点 · 2026.10.28</div>
-    </a><a class="pf" href="/profiles/AMD.html">
+      <div class="pf-meta">4 条观点 · 最近 10.28</div>
+    </a><a class="pf" href="/profiles/AMD.html" data-k="amd amd">
       <div class="pf-name">AMD</div>
       <div class="pf-tk">AMD</div>
-      <div class="pf-meta">3 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/AVGO.html">
+      <div class="pf-meta">3 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/AVGO.html" data-k="博通 avgo">
       <div class="pf-name">博通</div>
       <div class="pf-tk">AVGO</div>
-      <div class="pf-meta">3 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/META.html">
+      <div class="pf-meta">3 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/META.html" data-k="meta meta">
       <div class="pf-name">Meta</div>
       <div class="pf-tk">META</div>
-      <div class="pf-meta">3 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/MRVL.html">
+      <div class="pf-meta">3 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/MRVL.html" data-k="迈威尔 mrvl">
       <div class="pf-name">迈威尔</div>
       <div class="pf-tk">MRVL</div>
-      <div class="pf-meta">3 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/SNDK.html">
+      <div class="pf-meta">3 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/SNDK.html" data-k="闪迪 sndk">
       <div class="pf-name">闪迪</div>
       <div class="pf-tk">SNDK</div>
-      <div class="pf-meta">3 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/CAT.html">
+      <div class="pf-meta">3 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/CAT.html" data-k="卡特彼勒 cat">
       <div class="pf-name">卡特彼勒</div>
       <div class="pf-tk">CAT</div>
-      <div class="pf-meta">2 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/CRCL.html">
+      <div class="pf-meta">2 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/CRCL.html" data-k="circle crcl">
       <div class="pf-name">Circle</div>
       <div class="pf-tk">CRCL</div>
-      <div class="pf-meta">2 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/FTNT.html">
+      <div class="pf-meta">2 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/FTNT.html" data-k="fortinet ftnt">
       <div class="pf-name">Fortinet</div>
       <div class="pf-tk">FTNT</div>
-      <div class="pf-meta">2 条观点 · 2026.10.29</div>
-    </a><a class="pf" href="/profiles/KLAC.html">
+      <div class="pf-meta">2 条观点 · 最近 10.29</div>
+    </a><a class="pf" href="/profiles/KLAC.html" data-k="科磊 klac">
       <div class="pf-name">科磊</div>
       <div class="pf-tk">KLAC</div>
-      <div class="pf-meta">2 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/KO.html">
+      <div class="pf-meta">2 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/KO.html" data-k="可口可乐 ko">
       <div class="pf-name">可口可乐</div>
       <div class="pf-tk">KO</div>
-      <div class="pf-meta">2 条观点 · 2026.10.28</div>
-    </a><a class="pf" href="/profiles/LITE.html">
+      <div class="pf-meta">2 条观点 · 最近 10.28</div>
+    </a><a class="pf" href="/profiles/LITE.html" data-k="lumentum lite">
       <div class="pf-name">Lumentum</div>
       <div class="pf-tk">LITE</div>
-      <div class="pf-meta">2 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/LLY.html">
+      <div class="pf-meta">2 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/LLY.html" data-k="礼来 lly">
       <div class="pf-name">礼来</div>
       <div class="pf-tk">LLY</div>
-      <div class="pf-meta">2 条观点 · 2026.10.29</div>
-    </a><a class="pf" href="/profiles/MU.html">
+      <div class="pf-meta">2 条观点 · 最近 10.29</div>
+    </a><a class="pf" href="/profiles/MU.html" data-k="美光 mu">
       <div class="pf-name">美光</div>
       <div class="pf-tk">MU</div>
-      <div class="pf-meta">2 条观点 · 2026.10.29</div>
-    </a><a class="pf" href="/profiles/NBIS.html">
+      <div class="pf-meta">2 条观点 · 最近 10.29</div>
+    </a><a class="pf" href="/profiles/NBIS.html" data-k="nebius nbis">
       <div class="pf-name">Nebius</div>
       <div class="pf-tk">NBIS</div>
-      <div class="pf-meta">2 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/VRT.html">
+      <div class="pf-meta">2 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/VRT.html" data-k="vertiv vrt">
       <div class="pf-name">Vertiv</div>
       <div class="pf-tk">VRT</div>
-      <div class="pf-meta">2 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/idx_VIX.html">
+      <div class="pf-meta">2 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/idx_VIX.html" data-k="vix恐慌指数 ^vix">
       <div class="pf-name">VIX恐慌指数</div>
       <div class="pf-tk">^VIX</div>
-      <div class="pf-meta">2 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/AAPL.html">
+      <div class="pf-meta">2 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/AAPL.html" data-k="苹果 aapl">
       <div class="pf-name">苹果</div>
       <div class="pf-tk">AAPL</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/ANT.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/ANT.html" data-k="anthropic ant">
       <div class="pf-name">Anthropic</div>
       <div class="pf-tk">ANT</div>
-      <div class="pf-meta">1 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/BSX.html">
+      <div class="pf-meta">1 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/BSX.html" data-k="波士顿科学 bsx">
       <div class="pf-name">波士顿科学</div>
       <div class="pf-tk">BSX</div>
-      <div class="pf-meta">1 条观点 · 2026.10.28</div>
-    </a><a class="pf" href="/profiles/CDNS.html">
+      <div class="pf-meta">1 条观点 · 最近 10.28</div>
+    </a><a class="pf" href="/profiles/CDNS.html" data-k="cadence cdns">
       <div class="pf-name">Cadence</div>
       <div class="pf-tk">CDNS</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/CEG.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/CEG.html" data-k="constellation energy ceg">
       <div class="pf-name">Constellation Energy</div>
       <div class="pf-tk">CEG</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/COIN.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/COIN.html" data-k="coinbase coin">
       <div class="pf-name">Coinbase</div>
       <div class="pf-tk">COIN</div>
-      <div class="pf-meta">1 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/CRWD.html">
+      <div class="pf-meta">1 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/CRWD.html" data-k="crowdstrike crwd">
       <div class="pf-name">CrowdStrike</div>
       <div class="pf-tk">CRWD</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/ENPH.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/ENPH.html" data-k="enphase enph">
       <div class="pf-name">Enphase</div>
       <div class="pf-tk">ENPH</div>
-      <div class="pf-meta">1 条观点 · 2026.10.28</div>
-    </a><a class="pf" href="/profiles/GEV.html">
+      <div class="pf-meta">1 条观点 · 最近 10.28</div>
+    </a><a class="pf" href="/profiles/GEV.html" data-k="ge vernova gev">
       <div class="pf-name">GE Vernova</div>
       <div class="pf-tk">GEV</div>
-      <div class="pf-meta">1 条观点 · 2026.10.28</div>
-    </a><a class="pf" href="/profiles/GLD.html">
+      <div class="pf-meta">1 条观点 · 最近 10.28</div>
+    </a><a class="pf" href="/profiles/GLD.html" data-k="黄金etf gld">
       <div class="pf-name">黄金ETF</div>
       <div class="pf-tk">GLD</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/GLW.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/GLW.html" data-k="康宁 glw">
       <div class="pf-name">康宁</div>
       <div class="pf-tk">GLW</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/HOOD.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/HOOD.html" data-k="robinhood hood">
       <div class="pf-name">Robinhood</div>
       <div class="pf-tk">HOOD</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/HSBC.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/HSBC.html" data-k="汇丰控股 hsbc">
       <div class="pf-name">汇丰控股</div>
       <div class="pf-tk">HSBC</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/IBM.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/IBM.html" data-k="ibm ibm">
       <div class="pf-name">IBM</div>
       <div class="pf-tk">IBM</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/MCD.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/MCD.html" data-k="麦当劳 mcd">
       <div class="pf-name">麦当劳</div>
       <div class="pf-tk">MCD</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/NU.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/NU.html" data-k="nu holdings nu">
       <div class="pf-name">Nu Holdings</div>
       <div class="pf-tk">NU</div>
-      <div class="pf-meta">1 条观点 · 2026.10.26</div>
-    </a><a class="pf" href="/profiles/NVO.html">
+      <div class="pf-meta">1 条观点 · 最近 10.26</div>
+    </a><a class="pf" href="/profiles/NVO.html" data-k="诺和诺德 nvo">
       <div class="pf-name">诺和诺德</div>
       <div class="pf-tk">NVO</div>
-      <div class="pf-meta">1 条观点 · 2026.10.29</div>
-    </a><a class="pf" href="/profiles/NXPI.html">
+      <div class="pf-meta">1 条观点 · 最近 10.29</div>
+    </a><a class="pf" href="/profiles/NXPI.html" data-k="恩智浦 nxpi">
       <div class="pf-name">恩智浦</div>
       <div class="pf-tk">NXPI</div>
-      <div class="pf-meta">1 条观点 · 2026.10.28</div>
-    </a><a class="pf" href="/profiles/PBR.html">
+      <div class="pf-meta">1 条观点 · 最近 10.28</div>
+    </a><a class="pf" href="/profiles/PBR.html" data-k="巴西石油 pbr">
       <div class="pf-name">巴西石油</div>
       <div class="pf-tk">PBR</div>
-      <div class="pf-meta">1 条观点 · 2026.10.26</div>
-    </a><a class="pf" href="/profiles/PLTR.html">
+      <div class="pf-meta">1 条观点 · 最近 10.26</div>
+    </a><a class="pf" href="/profiles/PLTR.html" data-k="palantir pltr">
       <div class="pf-name">Palantir</div>
       <div class="pf-tk">PLTR</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/PYPL.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/PYPL.html" data-k="paypal pypl">
       <div class="pf-name">PayPal</div>
       <div class="pf-tk">PYPL</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/QCOM.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/QCOM.html" data-k="高通 qcom">
       <div class="pf-name">高通</div>
       <div class="pf-tk">QCOM</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/RIVN.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/RIVN.html" data-k="rivian rivn">
       <div class="pf-name">Rivian</div>
       <div class="pf-tk">RIVN</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/SMR.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/SMR.html" data-k="nuscale smr">
       <div class="pf-name">NuScale</div>
       <div class="pf-tk">SMR</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/SOFI.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/SOFI.html" data-k="sofi sofi">
       <div class="pf-name">SoFi</div>
       <div class="pf-tk">SOFI</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/SPACEX.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/SPACEX.html" data-k="spacex spacex">
       <div class="pf-name">SpaceX</div>
       <div class="pf-tk">SPACEX</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/TER.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/TER.html" data-k="泰瑞达 ter">
       <div class="pf-name">泰瑞达</div>
       <div class="pf-tk">TER</div>
-      <div class="pf-meta">1 条观点 · 2026.10.28</div>
-    </a><a class="pf" href="/profiles/TRV.html">
+      <div class="pf-meta">1 条观点 · 最近 10.28</div>
+    </a><a class="pf" href="/profiles/TRV.html" data-k="旅行者集团 trv">
       <div class="pf-name">旅行者集团</div>
       <div class="pf-tk">TRV</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/TSM.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/TSM.html" data-k="台积电 tsm">
       <div class="pf-name">台积电</div>
       <div class="pf-tk">TSM</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
-    </a><a class="pf" href="/profiles/TXN.html">
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
+    </a><a class="pf" href="/profiles/TXN.html" data-k="德州仪器 txn">
       <div class="pf-name">德州仪器</div>
       <div class="pf-tk">TXN</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/UPS.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/UPS.html" data-k="联合包裹 ups">
       <div class="pf-name">联合包裹</div>
       <div class="pf-tk">UPS</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/V.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/V.html" data-k="visa v">
       <div class="pf-name">Visa</div>
       <div class="pf-tk">V</div>
-      <div class="pf-meta">1 条观点 · 2026.10.27</div>
-    </a><a class="pf" href="/profiles/XLE.html">
+      <div class="pf-meta">1 条观点 · 最近 10.27</div>
+    </a><a class="pf" href="/profiles/XLE.html" data-k="能源etf xle">
       <div class="pf-name">能源ETF</div>
       <div class="pf-tk">XLE</div>
-      <div class="pf-meta">1 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/XLP.html">
+      <div class="pf-meta">1 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/XLP.html" data-k="必需消费etf xlp">
       <div class="pf-name">必需消费ETF</div>
       <div class="pf-tk">XLP</div>
-      <div class="pf-meta">1 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/XLV.html">
+      <div class="pf-meta">1 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/XLV.html" data-k="医疗保健etf xlv">
       <div class="pf-name">医疗保健ETF</div>
       <div class="pf-tk">XLV</div>
-      <div class="pf-meta">1 条观点 · 2026.10.31</div>
-    </a><a class="pf" href="/profiles/idx_TNX.html">
+      <div class="pf-meta">1 条观点 · 最近 10.31</div>
+    </a><a class="pf" href="/profiles/idx_TNX.html" data-k="10年期美债收益率 ^tnx">
       <div class="pf-name">10年期美债收益率</div>
       <div class="pf-tk">^TNX</div>
-      <div class="pf-meta">1 条观点 · 2026.10.30</div>
+      <div class="pf-meta">1 条观点 · 最近 10.30</div>
     </a></div>
+<p class="nomatch" id="nomatch">没有匹配的标的，换个代码或名称试试（支持「半导体」这类中文关键词）。</p>
+<button class="more-btn" id="moreBtn" type="button">展开全部 67 个档案</button>
 
-<footer>AI 自动整理自 YouTube 公开视频 · 红涨绿跌 · 时间戳可回看</footer>
-</div></body></html>
+<footer>
+  AI 自动整理自 YouTube 公开视频与 X 帖文 · 红涨绿跌 · 时间戳可回看<br>
+  数据截至 2026-10-31 · 生成于 11.02 18:45 · 仅供学习研究，不构成投资建议
+</footer>
+<button id="toTop" type="button" aria-label="回到顶部">↑</button>
+</div>
+<script>
+(function(){
+  var q=document.getElementById('q'), cnt=document.getElementById('qcnt');
+  if(!q) return;
+  var grid=document.getElementById('allGrid');
+  var cards=[].slice.call(grid.querySelectorAll('.pf'));
+  var LIMIT=12, total=cards.length, expanded=false;
+  var btn=document.getElementById('moreBtn'), nomatch=document.getElementById('nomatch');
+  cards.forEach(function(c){ c.setAttribute('data-i', cards.indexOf(c)); });
+  function paint(){
+    var v=q.value.trim().toLowerCase(), n=0;
+    cards.forEach(function(c){
+      var i=+c.getAttribute('data-i');
+      var hit=!v||(c.getAttribute('data-k')||'').indexOf(v)>=0;
+      var show=hit && (v ? true : (expanded || i<LIMIT));
+      c.style.display=show?'':'none';
+      if(hit) n++;
+    });
+    cnt.textContent = v ? n : total;
+    if(nomatch) nomatch.style.display = (v && n===0) ? 'block' : 'none';
+    if(btn){
+      btn.style.display = v ? 'none' : 'block';
+      btn.textContent = expanded ? '收起，只看前 '+LIMIT+' 个' : '展开全部 '+total+' 个档案';
+    }
+  }
+  q.addEventListener('input', paint);
+  if(btn) btn.addEventListener('click', function(){ expanded=!expanded; paint(); });
+  paint();
+})();
+(function(){
+  var b=document.getElementById('toTop'); if(!b) return;
+  var on=false;
+  addEventListener('scroll', function(){
+    var s=window.scrollY>600;
+    if(s!==on){ on=s; b.classList.toggle('show', s); }
+  }, {passive:true});
+  b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
+</body></html>
