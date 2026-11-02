@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美股复盘日报 2026-10-26</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --text:#1a1a1a; --text-strong:#111111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --accent-soft:#eef2ff;
+    --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#ffffff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --accent-soft:#1e2a44;
+      --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.6;}
+  .wrap{max-width:640px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;}
+  .hero h1{margin:0 0 6px;font-size:19px;font-weight:700;color:#fff;}
+  .hero .sub{font-size:12.5px;color:#dbe4f0;}
+  .mkt{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;}
+  .mkt-h{font-size:13px;font-weight:700;color:var(--text-strong);margin:0 0 8px;}
+  .mkt-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .mkt-grid{display:flex;gap:8px;flex-wrap:nowrap;}
+  .mkt-item{flex:1 1 0;min-width:0;background:var(--bg);border:1px solid var(--border-soft);border-radius:8px;padding:8px 10px;}
+  .mkt-name{font-size:11.5px;color:var(--muted);font-weight:600;white-space:nowrap;}
+  .mkt-val{font-size:16px;font-weight:800;color:var(--text-strong);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:2px;white-space:nowrap;}
+  .mkt-pct{font-size:13px;font-weight:700;margin-top:1px;white-space:nowrap;}
+  .mkt-dd{font-size:11px;color:var(--muted);margin-top:3px;white-space:nowrap;}
+  .mkt-dd b{color:var(--down-fg);font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  @media (max-width:420px){
+    .mkt-item{padding:7px 7px;}
+    .mkt-name{font-size:10.5px;}
+    .mkt-val{font-size:13px;}
+    .mkt-pct{font-size:11.5px;}
+    .mkt-dd{font-size:10px;}
+  }
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .tone{display:inline-block;padding:1px 9px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .tone.up{background:var(--up-bg);color:var(--up-fg);}
+  .tone.down{background:var(--down-bg);color:var(--down-fg);}
+  .tone.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .hd{padding:12px 0;border-bottom:1px dashed var(--border);}
+  .hd:last-child{border-bottom:none;padding-bottom:0;}
+  .hd-key{background:linear-gradient(90deg,var(--accent-soft),transparent);border-left:3px solid var(--accent);padding-left:10px;border-radius:6px;margin:6px 0;}
+  .hd-h{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;flex-wrap:wrap;}
+  .hd-name{font-weight:700;font-size:16px;color:var(--text-strong);}
+  .hd-tk{color:var(--muted);font-size:12px;font-weight:500;}
+  .lean{font-weight:600;font-size:12px;padding:1px 9px;border-radius:20px;margin-left:auto;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .hd-meta{font-size:12px;color:var(--muted);margin-bottom:6px;}
+  .op{padding:9px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-title{font-size:12.5px;color:var(--muted);margin-top:3px;font-style:italic;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .c-up{color:var(--up-fg);font-weight:600;}
+  .c-down{color:var(--down-fg);font-weight:600;}
+  .c-flat{color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;margin:2px 4px 2px 0;background:var(--accent-soft);color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  tr:last-child td{border-bottom:none;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  .tk{color:var(--muted-2);font-size:11.5px;font-weight:400;}
+  .ch{margin-bottom:10px;}
+  .ch-name{font-weight:700;font-size:14px;color:var(--text-strong);margin-bottom:4px;}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style></head><body><div class="wrap">
+<div class="hero">
+  <h1>美股复盘日报</h1>
+  <div class="sub">2026年10月26日 · 1 位博主 · 10 条观点 · 大盘<span class="tone flat">中性</span></div>
+</div>
+
+
+
+<div class="sec">
+  <div class="sec-h">📌 一、我的持仓</div>
+  <div class="hd">
+        <div class="hd-h"><span class="hd-name">纳指100ETF</span>
+        <span class="hd-tk">QQQ</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">1 次提及 · 看多 0 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/26</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">705</b>（关键支撑）</span></div>
+    <div class="op-d">今天仍收在5日均线下方，只要价格处于今天的低点705以上就继续看反弹；若跌破705趋势就可能进一步下行。也许明天还会涨一天把上方缺口回补掉，周三可能要小心一些，行情还是会有反复。</div>
+    <div class="op-q">「只要价格处于今天的低点705以上，就继续看反弹，若跌破705，趋势就可能进一步下行」</div>
+    <div class="op-tag"><b>催化：</b>中期选举历史规律<br><b>风险：</b>周三后行情反复</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=480s" class="tslink">8:00 回看</a></div>
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">谷歌</span>
+        <span class="hd-tk">GOOGL</span>
+        <span class="lean up">偏多</span></div>
+        <div class="hd-meta">1 次提及 · 看多 1 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/26</span></span>
+    <span class="st c-up">看多/买入·中期</span></div>
+    <div class="op-lv"><span class="lv">目标 <b class="num">314</b></span><span class="lv">目标 <b class="num">300</b></span><span class="lv lv-s">支撑 <b class="num">272</b>（三级支撑）</span></div>
+    <div class="op-d">股价近期持续走低已跌破330美元整理平台，短期趋势由震荡转向偏空。技术位：跌破7月前低314则下一道防线是300心理关口，若300被放量击穿可能回测今年3月低点272（较峰值回撤约33%）。但博主明确表示没那么悲观：周三盘后财报，对业绩完全不担心，现金流可能承压但估值已经这么低，加上AI板块已暴跌这么多，就等着巨头财报救命。即使财报后下跌估计也不会跌到272，相反财报后下跌就是抄底的机会。</div>
+    <div class="op-q">「股价即使财报后下跌，估计也不会跌到272那么低，相反，财报后下跌就是抄底的机会」</div>
+    <div class="op-tag"><b>催化：</b>周三盘后财报<br><b>风险：</b>跌破300可能回测272、现金流承压</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=840s" class="tslink">14:00 回看</a></div>
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">特斯拉</span>
+        <span class="hd-tk">TSLA</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">1 次提及 · 看多 0 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/26</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    
+    <div class="op-d">今天大涨，资金继续炒作与SpaceX在2027年底前合并。但博主不看好全盘合并：SPCX有美国国防业务，而特斯拉很大一部分产能与全球利润来自中国市场，中国不太可能允许一家美国国防军工承包商在中国运营业务；若只留电动车业务而把机器人、自动驾驶拿到SpaceX，谁还买特斯拉股票。但同时承认特斯拉和SpaceX是美股唯二的「宗教股」，不能以正常科技巨头估值逻辑分析，所以不能因为不看好合并就说股价一定跌。</div>
+    <div class="op-q">「特斯拉和SPCX也都是美股市场中唯二2支宗教股，不能以正常科技巨头的估值逻辑去分析股价」</div>
+    <div class="op-tag"><b>催化：</b>SpaceX合并传闻<br><b>风险：</b>合并面临中国监管障碍、估值脱离基本面</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=720s" class="tslink">12:00 回看</a></div>
+  </div>
+      </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🌐 二、大盘情况</div>
+  <p style="margin:0 0 8px;"><span class="tone flat" style="margin-left:0;">中性</span>
+  <span style="font-size:12.5px;color:var(--muted);margin-left:8px;">中性 1</span></p>
+  <div class="op"><div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性</span></div><div class="op-d">油价回落、AI板块反弹，三大股指集体收涨，指数小幅修复但个股明显分化。费城半导体收涨2.82%，暂时以超跌反弹看待。标普日内反弹到7700点附近触及上方多条均线承压回落。QQQ仍收在5日均线下方。</div></div>
+</div>
+
+<div class="sec"><div class="sec-h">📊 三、其他标的共识</div><table>
+      <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
+      <tr><td>Nebius <span class="tk">NBIS</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="flat">分歧</td></tr><tr><td>Meta <span class="tk">META</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">1</td>
+        <td style="text-align:right" class="down">偏空</td></tr><tr><td>Nu Holdings <span class="tk">NU</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">1</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="up">偏多</td></tr><tr><td>巴西石油 <span class="tk">PBR</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">1</td>
+        <td style="text-align:right" class="down">偏空</td></tr><tr><td>英特尔 <span class="tk">INTC</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="flat">分歧</td></tr><tr><td>Lumentum <span class="tk">LITE</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="flat">分歧</td></tr>
+    </table></div>
+
+<div class="sec">
+  <div class="sec-h">🎬 四、各博主视频要点</div>
+  <div class="hd">
+        <div class="hd-h"><span class="hd-name">NaNa说美股</span><span class="hd-tk">10/26</span><span class="st flat">中性</span></div>
+        <div class="op-title">俩兄弟都下场做空了吧！NaNa说美股(2026.10.26)</div>
+        <div class="op-d">油价回落、AI板块反弹，三大股指集体收涨，指数小幅修复但个股明显分化。费城半导体收涨2.82%，暂时以超跌反弹看待。标普日内反弹到7700点附近触及上方多条均线承压回落。QQQ仍收在5日均线下方。</div>
+        <div class="op-tag"><b>宏观：</b>川普周日发帖称当天不会发动对伊朗军事打击，将选择概括为「与伊朗达成协议」或「彻底解决他们」，沙特、土耳其、巴基斯坦三国官员在德黑兰会面协调，油价回落。历史上1950年以来19次美国中期选举中，标普在选举前第5个交易日到选举后第3个交易日的8个交易日窗口内有18次上涨，胜率94.7%，平均涨幅约2.8%，唯一下跌是1994年（-1.3%）——但博主提醒川普任期内就是专门打破规律的。Anthropic递交纳斯达克IPO申请（代码ANT），募资目标最高约1000亿美元对应估值约2万亿（部分投资者已下调至1.5万亿），11月中旬完成IPO，将成为美股史上第一家血统纯正的前沿大模型上市公司，其认购热度将直接检验市场对AI投资的真实态度。</div>
+        <div class="op-tag"><b>热点：</b>AI算力、半导体、光通信、核电、加密</div>
+        <div class="op-tag"><b>要点：</b>标普500感觉要在这个7600-7800区间磨到天荒地老；QQQ只要在今日低点705以上就继续看反弹，跌破705趋势可能进一步下行；Anthropic算力采购承诺：微软449亿、谷歌1145亿、SpaceX 1205亿、博通1612亿；虽未直接与英伟达签约，但底层跑的依然是英伟达硬件；马斯克唱空新云：称债市几乎完全切断对没有AI数据中心以外大量收入的新云公司融资，行业内超200家未来可能大规模淘汰整合；但SpaceX不会购买任何新云公司；博主判断2027年可能出现大规模Neocloud破产潮，但真正受冲击的是债务沉重的中小玩家，财务稳健的佼佼者反而可能在洗牌后吞噬市场份额；SpaceX完成400亿美元债务融资采购GPU，并与Apollo签署约400亿美元GPU融资租赁协议（购买英伟达下一代Vera Rubin芯片），属典型表外SPV融资租赁，粉饰资产负债表；巴西大选卢拉以51.8%意外胜选，股汇债三杀：EWZ盘中跌超28%、雷亚尔跌逾10%、巴西石油PBR跌14%、伯克希尔持仓NU跌近17%</div>
+      </div>
+</div>
+
+<div class="sec"><div class="sec-h">🎯 五、关键价位一览</div><table>
+      <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
+      <tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
+          <td>NaNa说美股</td>
+          <td>目标 <b class="num">314</b><br>目标 <b class="num">300</b><br>支撑 <b class="num">272</b>（三级支撑）</td>
+          <td><a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=840s" class="tslink">14:00</a></td></tr><tr><td><b>Nebius</b> <span class="tk">NBIS</span></td>
+          <td>NaNa说美股</td>
+          <td>目标 <b class="num">120-135</b>（下行终极目标）</td>
+          <td><a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=360s" class="tslink">6:00</a></td></tr><tr><td><b>Nu Holdings</b> <span class="tk">NU</span></td>
+          <td>NaNa说美股</td>
+          <td>买点 <b class="num">11.1</b>（建仓价）</td>
+          <td><a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td><b>纳指100ETF</b>⭐ <span class="tk">QQQ</span></td>
+          <td>NaNa说美股</td>
+          <td>支撑 <b class="num">705</b>（关键支撑）</td>
+          <td><a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=480s" class="tslink">8:00</a></td></tr>
+    </table></div>
+
+
+
+<div class="foot">AI 自动整理自 YouTube 公开视频 · 价位数字已高亮标注 · 时间戳可点击回看 · 不构成投资建议</div>
+</div></body></html>

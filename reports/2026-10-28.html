@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美股复盘日报 2026-10-28</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --text:#1a1a1a; --text-strong:#111111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --accent-soft:#eef2ff;
+    --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#ffffff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --accent-soft:#1e2a44;
+      --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.6;}
+  .wrap{max-width:640px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;}
+  .hero h1{margin:0 0 6px;font-size:19px;font-weight:700;color:#fff;}
+  .hero .sub{font-size:12.5px;color:#dbe4f0;}
+  .mkt{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;}
+  .mkt-h{font-size:13px;font-weight:700;color:var(--text-strong);margin:0 0 8px;}
+  .mkt-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .mkt-grid{display:flex;gap:8px;flex-wrap:nowrap;}
+  .mkt-item{flex:1 1 0;min-width:0;background:var(--bg);border:1px solid var(--border-soft);border-radius:8px;padding:8px 10px;}
+  .mkt-name{font-size:11.5px;color:var(--muted);font-weight:600;white-space:nowrap;}
+  .mkt-val{font-size:16px;font-weight:800;color:var(--text-strong);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:2px;white-space:nowrap;}
+  .mkt-pct{font-size:13px;font-weight:700;margin-top:1px;white-space:nowrap;}
+  .mkt-dd{font-size:11px;color:var(--muted);margin-top:3px;white-space:nowrap;}
+  .mkt-dd b{color:var(--down-fg);font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  @media (max-width:420px){
+    .mkt-item{padding:7px 7px;}
+    .mkt-name{font-size:10.5px;}
+    .mkt-val{font-size:13px;}
+    .mkt-pct{font-size:11.5px;}
+    .mkt-dd{font-size:10px;}
+  }
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .tone{display:inline-block;padding:1px 9px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .tone.up{background:var(--up-bg);color:var(--up-fg);}
+  .tone.down{background:var(--down-bg);color:var(--down-fg);}
+  .tone.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .hd{padding:12px 0;border-bottom:1px dashed var(--border);}
+  .hd:last-child{border-bottom:none;padding-bottom:0;}
+  .hd-key{background:linear-gradient(90deg,var(--accent-soft),transparent);border-left:3px solid var(--accent);padding-left:10px;border-radius:6px;margin:6px 0;}
+  .hd-h{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;flex-wrap:wrap;}
+  .hd-name{font-weight:700;font-size:16px;color:var(--text-strong);}
+  .hd-tk{color:var(--muted);font-size:12px;font-weight:500;}
+  .lean{font-weight:600;font-size:12px;padding:1px 9px;border-radius:20px;margin-left:auto;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .hd-meta{font-size:12px;color:var(--muted);margin-bottom:6px;}
+  .op{padding:9px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-title{font-size:12.5px;color:var(--muted);margin-top:3px;font-style:italic;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .c-up{color:var(--up-fg);font-weight:600;}
+  .c-down{color:var(--down-fg);font-weight:600;}
+  .c-flat{color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;margin:2px 4px 2px 0;background:var(--accent-soft);color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  tr:last-child td{border-bottom:none;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  .tk{color:var(--muted-2);font-size:11.5px;font-weight:400;}
+  .ch{margin-bottom:10px;}
+  .ch-name{font-weight:700;font-size:14px;color:var(--text-strong);margin-bottom:4px;}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style></head><body><div class="wrap">
+<div class="hero">
+  <h1>美股复盘日报</h1>
+  <div class="sub">2026年10月28日 · 5 位博主 · 30 条观点 · 大盘<span class="tone flat">中性</span></div>
+</div>
+
+
+
+<div class="sec">
+  <div class="sec-h">📌 一、我的持仓</div>
+  <div class="hd">
+        <div class="hd-h"><span class="hd-name">纳指100ETF</span>
+        <span class="hd-tk">QQQ</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">1 次提及 · 看多 0 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/28</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv">目标 <b class="num">504</b>（正常回撤位置）</span></div>
+    <div class="op-d">纳指盘后下跌不代表方向，多空两头都压了期权（往上突破、往下吃掉周一旗掌链）。不到周五收盘看不清真实方向。即使跌到504块也只是把昨天的吃掉、前天还有增量，属正常位置。10月大波动最后两个交易日，要耐心等亚马逊财报和周五收盘见分晓。</div>
+    <div class="op-q">「你不到周五你搞不清楚的，你要看那个收盘最后……现在就算跌到504块，也是个正常的位置」</div>
+    <div class="op-tag"><b>催化：</b>周五期权结算、亚马逊财报待出<br><b>风险：</b>多空双压期权波动大、10月大波动尾部</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1950s" class="tslink">32:30 回看</a></div>
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">费城半导体ETF</span>
+        <span class="hd-tk">SMH</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">1 次提及 · 看多 0 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/28</span></span>
+    <span class="st c-flat">中性/观望·中期</span></div>
+    
+    <div class="op-d">半导体目前判断为中性：微软本季资本开支452亿（低于指引500亿，第三方产能交付延迟），2026自然年从1750亿下调到1700亿但全年仍增长；谷歌2027资本开支「显著增加」但增速未知，Meta含糊、亚马逊待出。三大云厂商资本开支增速不明确是半导体最大变数。盘后半导体下跌主要不是资本开支实质缩减，而是Marvell财报前瞻没超预期（高估值+增速略miss被惩罚），FTNT跌25点、ServiceNow跌17-18点，都类似之前PLTR的估值逻辑——把后面两年业绩都计价了，增速一miss就惩罚。</div>
+    <div class="op-q">「对于半导体来讲仍是一个模糊信息……它不是利空，但你要说对半导体有多利好，它也没出现，增速很关键」</div>
+    <div class="op-tag"><b>催化：</b>谷歌2027资本开支将显著增加、微软全年资本开支仍增长<br><b>风险：</b>2027资本开支增速未知、高估值半导体增速略miss就被惩罚</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1800s" class="tslink">30:00 回看</a></div>
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">谷歌</span>
+        <span class="hd-tk">GOOGL</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">4 次提及 · 看多 1 / 看空 2</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/28</span></span>
+    <span class="st c-down">看空/观望·中期</span></div>
+    <div class="op-lv"><span class="lv">目标 <b class="num">286-430</b>（<b class="num">26</b>年前瞻区间，中位<b class="num">358</b>）</span><span class="lv">目标 <b class="num">297-464</b>（<b class="num">27</b>年前瞻，中位<b class="num">372</b>）</span></div>
+    <div class="op-d">第三财季「最不该出意外的业务出了意外」：传统广告/搜索业务大面积不及预期——广告820.1亿(+11%)低于预期835.7亿、搜索633.5亿低于预期648.5亿、YouTube广告112.1亿低于预期，营业利润406亿比预期低6%。EPS仅2.12远低于预期3.03。唯一亮点是云业务307亿(+103%)超预期。自由现金流连续第二个季度转负(-91亿)，过去12个月暴跌73%到197亿。博主维持估值不变（26年286-430中位358、27年297-464中位372），价格已跌至下限，决定「等一个季度」看传统业务转型能否好转，短期不再看谷歌有表现。谷歌是博主第四大持仓约6%、成本74-75块，明确不加仓（同类科技股仓位太重需控风险）。若连续两个季度传统业务重大衰退才怀疑趋势性出问题。</div>
+    <div class="op-q">「本来谷歌的财报如果和微软哪怕比较接近，也不会有这么差的结果……它确实是今天摔了一个大跟头，而最不该出意外的业务出了意外」</div>
+    <div class="op-tag"><b>催化：</b>云业务+103%超预期、AI推动商业查询增长为五年来最高、2027资本开支将显著增加（对半导体中性偏正面）<br><b>风险：</b>传统广告/搜索业务大面积miss、EPS远低于预期、自由现金流连续转负、276亿ATM增发额度待发（潜在摊薄）</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=780s" class="tslink">13:00 回看</a></div>
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·10/28</span></span>
+    <span class="st c-up">看多/买入·长期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">272-297</b></span></div>
+    <div class="op-d">财报爆雷：调整后EPS 2.67（预期3.02）、营收1275.8亿（预期1282.2亿）双miss，自由现金流-90.7亿（预期-27亿）降幅远超预期。但资本支出513.6亿低于预期550.9亿是好事（应控制AI资本支出保自由现金流）。云业务超一倍至307亿（超预期287亿）是唯一亮点，继续从AWS/Azure夺份额。唯一亮点是营收+25%创2021年以来最快增速。技术面已跌破三角形整理区间、短期形态糟糕，但长期仍值得布局。巴菲特伯克希尔从去年底一直买入，平均成本307-304，现在价格能抄到「老巴的底」。老李设定272-297区间分批开仓、272是加仓点位，用左侧分批买入方式。老李持仓63股（目标80股）。</div>
+    <div class="op-q">「现在这个价格你去开仓买入的话，是能够成功抄到老巴的底裤的」</div>
+    <div class="op-tag"><b>催化：</b>云业务+超一倍至307亿、营收+25%创2021年来最快、伯克希尔持续买入背书<br><b>风险：</b>EPS/营收双miss、自由现金流恶化、财报后或阴跌</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=486s" class="tslink">8:06 回看</a></div>
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/28</span></span>
+    <span class="st c-down">强烈看空/回避·短期</span></div>
+    <div class="op-lv"><span class="lv">目标 <b class="num">270</b>（下行目标）</span></div>
+    <div class="op-d">Q3营收1276亿+25%不及预期1282亿，净利从349.8亿降至261.7亿，EPS 2.12远低于预期3.02（因股权投资亏损87亿）。更致命的是搜索广告增速降至12%（Q2 17%、Q1 19%），YouTube广告降至9%（Q2 13%）。云业务+103%至307.1亿、营业利润率36.2%是唯一亮点但无法抵消搜索缺口。资本开支飙升使自由现金流转为-91亿（预期-27亿），运营现金流423亿远低于预期527.2亿，本季零回购——为AI基建把自己烧到没钱。</div>
+    <div class="op-q">「为AI基建大业把自己烧到没钱了，股价崩的一点儿都不冤啊，很快就要270见了」</div>
+    <div class="op-tag"><b>风险：</b>搜索广告被AI颠覆、自由现金流转负、零回购</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=120s" class="tslink">2:00 回看</a></div>
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/28</span></span>
+    <span class="st c-flat">中性/观望·中期</span></div>
+    
+    <div class="op-d">财报爆雷：营收1275.8亿(+24.6%)略低于预期、EPS 2.12远低于预期3.0，云业务+103%是亮点但「槽点太多、亮点太少」。EPS大幅miss主因计提86亿非经常性投资损失（含SpaceX、Anthropic），剔除非经常后EPS约2.67仍不及预期。搜索+油管广告收入不及预期，作为基本盘核心业务表现不佳最令人担忧。自由现金流-91亿连续两季转负。博主昨日判断谷歌可能见底，依据是伯克希尔第三大重仓+阿贝尔「首秀」不能惨败，谷歌历史上套牢也能创新高。但本次财报实在大跌眼镜，预计跌势不止、可能延续到下一交易日。11月中旬三季度13F公布是变盘关键——若伯克希尔增持则空头束手就擒，减持则麻烦。</div>
+    <div class="op-q">「谷歌这次的财报实在令人意外……买微软感觉追高，买谷歌又怕接到掉落的刀子」</div>
+    <div class="op-tag"><b>催化：</b>云业务+103%超预期、伯克希尔第三大重仓背书、11月中旬13F变盘窗口<br><b>风险：</b>EPS远不及预期、搜索广告收入miss、自由现金流连续转负</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=xZO-bPVpFRk&amp;t=545s" class="tslink">9:05 回看</a></div>
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">微软</span>
+        <span class="hd-tk">MSFT</span>
+        <span class="lean up">偏多</span></div>
+        <div class="hd-meta">4 次提及 · 看多 4 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/28</span></span>
+    <span class="st c-up">看多/持有·长期</span></div>
+    <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（长线建仓区）</span></div>
+    <div class="op-d">第一财季「AI货币化成功上岸」：营收923亿超预期、EPS 4.89超预期、Azure按固定汇率+48%远超自身44-45%指引、营业利润率49.8%。AI货币化业务单季披露营收332亿美元比市场预期322亿高11亿。自由现金流186亿(-27%)但仍是四大科技里唯一能用运营现金流覆盖所有费用、唯一自由现金流转正的。2027财年承诺保持自由现金流转正并强调每美元资本开支回报提升。博主第一大持仓14%、成本251块，目标仍上看600（当前财年中位536、往后一年中位632），490-534是长线建仓区。600以上才考虑减仓，跌破490短线也不管。</div>
+    <div class="op-q">「他的AI货币化在四大科技中最成功，目前最成功……已经明确自由现金流可以负担支出，所以为什么标题上我写着他的AI货币化成功上岸了」</div>
+    <div class="op-tag"><b>催化：</b>Azure+48%超预期、AI货币化四大最成功、自由现金流转正、营业利润率49.8%<br><b>风险：</b>商业剩余履约义务环比无增长、Windows OEM收入暴跌22%、365席位增速放缓至7%</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">23:00 回看</a></div>
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·10/28</span></span>
+    <span class="st c-up">看多/持有·中期</span></div>
+    <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">551</b>（前高）</span></div>
+    <div class="op-d">财报调整后EPS和营收超预期，营收+19%，Azure云+48%至332亿是亮点。自由现金流-27%但仍为正，是四大云巨头（微软、Meta、谷歌、亚马逊）中唯一守住正自由现金流的一家。盘后涨至540以上、前高551，这一波可能冲新高。但老李不建议追高加仓，因微软估值相对其他科技巨头已偏高，当前位置买入性价比不高。</div>
+    <div class="op-q">「微软的自由现金流依然是正的……这一波可能就直接冲着新高去了」</div>
+    <div class="op-tag"><b>催化：</b>Azure+48%、唯一守住正自由现金流、盘后冲前高551<br><b>风险：</b>估值相对偏高</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">5:24 回看</a></div>
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/28</span></span>
+    <span class="st c-up">看多/持有·中期</span></div>
+    
+    <div class="op-d">2027财年Q1营收923亿+19%、调整后EPS 4.89+18%均好于预期；Azure超预期增长48%至332亿（预期328亿）。当季资本支出452亿低于此前预测的500亿，自由现金流186亿继续持稳且远高于预期85.4亿。在微软/谷歌/Meta/亚马逊四家超大规模云厂商中，是唯一预计明年仍保持现金流为正的公司，市场给予奖励、盘后上涨。</div>
+    <div class="op-q">「在微软、谷歌、META、亚马逊这几家超大规模云服务提供商中，微软是唯一一家预计明年仍将保持现金流为正的公司」</div>
+    <div class="op-tag"><b>催化：</b>Azure增速48%、资本支出低于指引<br><b>风险：</b>若指数跌破5日均线仍会被拖累</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=180s" class="tslink">3:00 回看</a></div>
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/28</span></span>
+    <span class="st c-up">看多/持有·中期</span></div>
+    
+    <div class="op-d">财报显著超预期：营收922.8亿(+18.8%)超预期906亿、净利366.3亿(+32%)、Azure云+48%超指引45%。云收入332亿、资本支出452亿低于预估510亿，是「正常科技明星股」的样子，各方面优秀。盘后涨3个多点，明天可能创历史新高。</div>
+    <div class="op-q">「微软的财报才是正常科技明星股的样子，各方面优秀」</div>
+    <div class="op-tag"><b>催化：</b>营收净利双超预期、Azure+48%超指引、资本支出低于预估<br><b>风险：</b>估值偏高</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=xZO-bPVpFRk&amp;t=712s" class="tslink">11:52 回看</a></div>
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">特斯拉</span>
+        <span class="hd-tk">TSLA</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">1 次提及 · 看多 0 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/28</span></span>
+    <span class="st c-flat">中性/观望·中期</span></div>
+    <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（巴克莱目标价）</span></div>
+    <div class="op-d">巴克莱上调评级至超配、目标价370→450美元，核心看好特斯拉与SpaceX合并的战略价值（股东或获收购溢价）。马斯克证实双方成立特别委员会研究合并但未达成协议。业务本身改善：汽车连续两年下滑后今年恢复增长，能源业务受益AI数据中心（2027储能产能几乎预订一空、出货或增超50%），Robotaxi与Waymo竞争。Tim观点：决定股价最核心因素是SpaceX合并溢价，溢价大概率在可控范围，短期股价难有大波动——涨不上去也跌不下来，直到收购方案出现。这与很多投资者期待快速暴涨的逻辑不同，需重新审视特斯拉是否还适合自己。</div>
+    <div class="op-q">「从今往后，特斯拉的股价就很难发生大的波动，涨也涨不太上去，跌也跌不下去，直到收购方案出现」</div>
+    <div class="op-tag"><b>催化：</b>SpaceX合并溢价预期、能源业务受益AI数据中心、汽车销量恢复增长<br><b>风险：</b>合并未达成协议、短期波动受限</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=VLj5YKi-Jig&amp;t=515s" class="tslink">8:35 回看</a></div>
+  </div>
+      </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🌐 二、大盘情况</div>
+  <p style="margin:0 0 8px;"><span class="tone flat" style="margin-left:0;">中性</span>
+  <span style="font-size:12.5px;color:var(--muted);margin-left:8px;">中性 3 · 中性偏空 1 · 中性偏多 1</span></p>
+  <div class="op"><div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性</span></div><div class="op-d">美联储维持利率3.75%-4%不变（库克、哈马克两人投加息25bp的反对票），沃什主席继续不给前瞻指引，市场预计12月加息概率降至78.4%，美债收益率曲线陡峭、美元走强。四大指数盘中收涨，但盘后才是重头戏：谷歌与微软两份财报冰火两重天。谷歌第三财季「最不该出意外的业务出了意外」——传统广告/搜索业务大面积不及预期，营收1275.8亿(+25%)略低、EPS仅2.12远低于预期的3.03，广告820.1亿(+11%)低于预期835.7亿，唯一超预期的是云业务307亿(+103%)；自由现金流连续第二个季度转负(-91亿)。微软第一财季则「AI货币化成功上岸」：营收923亿超预期、EPS 4.89超预期、Azure按固定汇率+48%超预期、营业利润率49.8%，是四大科技里唯一自由现金流仍能覆盖资本开支的。博主对半导体判断为中性（资本开支没有实质缩减，2027年增速仍未知）。大盘基调中性，博主强调「盘后下跌不代表什么，不到周五看不清方向」。</div></div><div class="op"><div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性</span></div><div class="op-d">美联储以10:2维持利率不变（库克与哈玛克主张加息25bp），沃什讲话不给前瞻指引，三大股指集体小幅收涨。费城半导体延续反弹收涨1.75%，韩国股市涨到熔断（SK海力士财报带动）。但盘后谷歌财报炸雷，纳指100期货被带跌。</div></div><div class="op"><div class="op-h"><span class="op-c">阳光财经</span><span class="st down">中性偏空</span></div><div class="op-d">标普上涨21.38点(+0.28%)连续三个小阳线，指数横盘无方向。美联储FOMC会议维持利率3.75%-4%不变，属「鹰派暂停」——库克、哈马克两票反对主张立即加息25bp，市场仍预期未来两次会议（至3月）各加息25bp。沃什提出结构性改革：2027年8次例会中拿1次做策略研讨（实际7次议息）、2028年拿2次（实际6次）。盘后财报冰火两重天：谷歌爆雷（营收1275.8亿+24.6%、EPS 2.12远低于预期3.0，云业务+103%超预期，自由现金流-91亿连续两季转负），微软报喜（营收922.8亿+18.8%、净利366.3亿+32%、Azure+48%超指引45%）。甲骨文放量大涨（2028财年末自由现金流转正、2029财年300亿指引）。博主公开账户净值19.5万、当日-5630(-2.79%)。</div></div><div class="op"><div class="op-h"><span class="op-c">老李玩钱</span><span class="st flat">中性</span></div><div class="op-d">美联储FOMC会议维持利率不变（不加息），符合市场预期（此前预期不加息概率90%以上），「有惊无险」安全落地。焦点转向12月（本年度最后一次会议），沃什未透露12月加息与否取向，市场对12月加息预期概率仍较高。老李账户上涨1800美金、总资产33.6万。甲骨文发布长期增长与资本配置计划，盘中大涨10%。盘后微软报喜、谷歌爆雷：微软EPS/营收超预期、Azure+48%，谷歌EPS 2.67/营收1275.8亿双miss、自由现金流-90.7亿、盘后跌9%→11%以上。</div></div><div class="op"><div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">中性偏多</span></div><div class="op-d">美股普遍收涨，AI概念股延续强势，存储半导体四小云领涨，特斯拉、博通领涨大科技，Meta、微软收跌，VIX下跌4.7%。美联储将于次日公布利率决议，市场普遍预期按兵不动，但12月加息概率已超80%（CME FedWatch）。甲骨文年度AI大会宣布多项重磅合作（扩英伟达Vera Rubin、引入谷歌TPU/OpenAI芯片/Cerebras/SambaNova），盘中涨近5%。特斯拉因与SpaceX合并预期获巴克莱上调评级至超配、目标价370→450美元。可口可乐三季度财报超预期。博主团队（Justine/Tim）核心观点：10月暂停加息已充分定价、看点在于沃什讲话是否偏鸽；甲骨文OCI云业务更看好、软件业务谨慎；特斯拉短期股价受SpaceX合并溢价锚定、难有大波动。</div></div>
+</div>
+
+<div class="sec"><div class="sec-h">📊 三、其他标的共识</div><table>
+      <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
+      <tr><td>迈威尔 <span class="tk">MRVL</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">1</td>
+        <td style="text-align:right" class="down">偏空</td></tr><tr><td>甲骨文 <span class="tk">ORCL</span></td>
+        <td style="text-align:center">4</td>
+        <td style="text-align:center" class="c-up">4</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="up">偏多</td></tr><tr><td>Vertiv <span class="tk">VRT</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">1</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="up">偏多</td></tr><tr><td>GE Vernova <span class="tk">GEV</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">1</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="up">偏多</td></tr><tr><td>美光 <span class="tk">MU</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">1</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="up">偏多</td></tr><tr><td>闪迪 <span class="tk">SNDK</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">1</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="up">偏多</td></tr>
+    </table></div>
+
+<div class="sec">
+  <div class="sec-h">🎬 四、各博主视频要点</div>
+  <div class="hd hd-key">
+        <div class="hd-h"><span class="hd-name">⭐ 视野环球财经</span><span class="hd-tk">10/28</span><span class="st flat">中性</span></div>
+        <div class="op-title">美股 MSFT AI货币化成功上岸！GOOG鼻青脸肿，等一个季度！对半导体影响！</div>
+        <div class="op-d">美联储维持利率3.75%-4%不变（库克、哈马克两人投加息25bp的反对票），沃什主席继续不给前瞻指引，市场预计12月加息概率降至78.4%，美债收益率曲线陡峭、美元走强。四大指数盘中收涨，但盘后才是重头戏：谷歌与微软两份财报冰火两重天。谷歌第三财季「最不该出意外的业务出了意外」——传统广告/搜索业务大面积不及预期，营收1275.8亿(+25%)略低、EPS仅2.12远低于预期的3.03，广告820.1亿(+11%)低于预期835.7亿，唯一超预期的是云业务307亿(+103%)；自由现金流连续第二个季度转负(-91亿)。微软第一财季则「AI货币化成功上岸」：营收923亿超预期、EPS 4.89超预期、Azure按固定汇率+48%超预期、营业利润率49.8%，是四大科技里唯一自由现金流仍能覆盖资本开支的。博主对半导体判断为中性（资本开支没有实质缩减，2027年增速仍未知）。大盘基调中性，博主强调「盘后下跌不代表什么，不到周五看不清方向」。</div>
+        <div class="op-tag"><b>宏观：</b>美联储维持利率3.75%-4%不变，库克与哈马克投加息反对票（库克意外），沃什继续避免明确前瞻指引。结构改革：2027年秋季起有一次会议侧重战略（不涉及货币政策投票），2028年增至每年两次战略会议。12月加息概率降至78.4%但仍高。美债收益率曲线陡峭、美元走强。半导体层面：微软本季资本开支452亿（低于指引500亿，因第三方产能交付延迟），2026自然年资本开支从1750亿下调到1700亿；谷歌2027年资本开支将「显著增加」但增速未知；Meta 2027含糊、亚马逊待出。三大云厂商资本开支增速不明确是半导体最大变数，目前判断为中性。</div>
+        <div class="op-tag"><b>热点：</b>云计算/AI算力、半导体、广告/搜索、网络安全</div>
+        <div class="op-tag"><b>要点：</b>美联储维持利率3.75%-4%不变，库克、哈马克投加息25bp反对票，12月加息概率降至78.4%，美元走强、美债收益率陡峭；谷歌第三财季「最不该出意外的业务出了意外」：传统广告/搜索业务大面积不及预期，广告820.1亿(+11%)低于预期835.7亿、搜索633.5亿低于预期648.5亿、YouTube广告112.1亿低于预期；谷歌营收1275.8亿(+25%)略低、EPS仅2.12远低于预期的3.03，营业利润406亿比预期低6%；唯一亮点是云业务307亿(+103%)远超预期291亿；谷歌自由现金流连续第二个季度转负(-91亿)，过去12个月自由现金流暴跌73%到197亿（去年同期736亿），AI投资侵蚀现金流；谷歌2026全年资本开支维持1950-2050亿不变，2027年资本开支将「显著增加」（Q4电话会议给细节），对半导体不是利空但增速未知是中性的变数；谷歌还有276亿美元ATM增发额度未发行（二季度就有），若未来传统业务继续跟不上、现金流短缺，可能增发或发债，是潜在利空；博主对谷歌看法：维持估值不变（26年286-430中位358、27年297-464中位372），价格已跌至区间下限，决定「等一个季度」看传统业务能否转型好转，短期不再看谷歌有表现；若连续两个季度传统业务重大衰退才怀疑出问题；博主持仓：谷歌是第四大持仓约6%、成本74-75块（做过滚动），明确「不会加仓」，因同类科技股仓位已太重需控制风险；微软第一财季「AI货币化成功上岸」：营收923亿超预期、EPS 4.89超预期、Azure按固定汇率+48%远超自身44-45%指引、营业利润率49.8%；微软AI货币化业务单季披露营收332亿美元，比市场预期322亿高出11亿；但商业剩余履约义务6770亿环比无增长（季节性四季度最强一季度最弱，转化速度快于补充）；微软Windows OEM设备收入暴跌22%（内存涨价+PC疲软），365商业席位增速从9%放缓到7%；本季资本开支452亿低于指引500亿（第三方产能交付延迟）；微软自由现金流186亿(-27%)，但仍能用运营现金流覆盖所有费用，是四大科技里表现最好的；2027财年保持自由现金流转正并强调每美元资本开支回报提升；博主对微软看法：AI货币化四大科技最成功，基本面上岸，第一大持仓14%、成本251块，目标仍上看600（当前财年中位536、往后推一年中位632），490-534是长线建仓区；600以上才考虑减仓，跌破490短线也不管；半导体中性：微软/谷歌资本开支都没实质缩减，但2027增速未知；Marvell财报前瞻没超预期（预期打满）盘后跌7-8个点，FTNT跌25点、ServiceNow跌17-18点，都是高估值+增速略miss被惩罚，类似之前PLTR的估值逻辑；大盘判断：纳指盘后下跌不代表方向，多空两头都压了期权（往上突破、往下吃掉周一旗掌链），不到周五收盘看不清真实方向，即使跌到504块也是正常位置</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">NaNa说美股</span><span class="hd-tk">10/28</span><span class="st flat">中性</span></div>
+        <div class="op-title">心都碎了！糟老头子坏的很！NaNa说美股(2026.10.29)</div>
+        <div class="op-d">美联储以10:2维持利率不变（库克与哈玛克主张加息25bp），沃什讲话不给前瞻指引，三大股指集体小幅收涨。费城半导体延续反弹收涨1.75%，韩国股市涨到熔断（SK海力士财报带动）。但盘后谷歌财报炸雷，纳指100期货被带跌。</div>
+        <div class="op-tag"><b>宏观：</b>美联储按兵不动但内部出现加息分歧，沃什只称金融环境正在收紧、政策正在奏效，通胀预期朝正确方向发展；并宣布从明年秋季起调整FOMC会议日程（2027年1次会议不投票不发声、2028年2次会议不投票）。地缘上副总统万斯正接触伊朗强硬派重启和谈，若失败中期选举后美以打击可能以其领导层为目标，原油战争风险溢价高企。核心矛盾：半导体赚的钱都是巨头烧出来的，而巨头们如今负债累累还要继续借债给AI烧钱，市场开始担心AI投资可持续性。</div>
+        <div class="op-tag"><b>热点：</b>半导体、存储、AI基建、电力设备、太阳能</div>
+        <div class="op-tag"><b>要点：</b>标普500日K收阳线十字星；若PCE后继续走高将考验7800点重压力位，若跌破7680将再回踩7600；纳指100期货盘后被谷歌带跌：若守住5日均线反弹还有希望，跌破则进一步下探甚至破前低；微软是微软/谷歌/Meta/亚马逊四家中唯一预计明年仍保持现金流为正的公司，市场给予奖励，盘后上涨；SK海力士营业利润83.3万亿韩元（约628亿美元）同比增约7倍，营业利润率创纪录80%；截至2029年DRAM与HBM产能已实质性全部售罄，客户下单量达实际供应能力2倍以上，存储短缺或持续至2030年；甲骨文投资者日公布2030财年目标：2028财年下半年实现正自由现金流、2029财年FCF至少300亿美元、2030财年营收超2250亿美元（CAGR&gt;35%），额外融资限制在200亿以内，股价盘中原地起飞；韩国股市已被华尔街当成提款机，涨高就被定点收割；回购完成前有托底，但涨高要小心镰刀</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">阳光财经</span><span class="hd-tk">10/28</span><span class="st down">中性偏空</span></div>
+        <div class="op-title">沃什：少开点会吧。盘后跌得股神都哭。【2026-10-28】</div>
+        <div class="op-d">标普上涨21.38点(+0.28%)连续三个小阳线，指数横盘无方向。美联储FOMC会议维持利率3.75%-4%不变，属「鹰派暂停」——库克、哈马克两票反对主张立即加息25bp，市场仍预期未来两次会议（至3月）各加息25bp。沃什提出结构性改革：2027年8次例会中拿1次做策略研讨（实际7次议息）、2028年拿2次（实际6次）。盘后财报冰火两重天：谷歌爆雷（营收1275.8亿+24.6%、EPS 2.12远低于预期3.0，云业务+103%超预期，自由现金流-91亿连续两季转负），微软报喜（营收922.8亿+18.8%、净利366.3亿+32%、Azure+48%超指引45%）。甲骨文放量大涨（2028财年末自由现金流转正、2029财年300亿指引）。博主公开账户净值19.5万、当日-5630(-2.79%)。</div>
+        <div class="op-tag"><b>宏观：</b>美联储维持利率3.75%-4%不变，两票反对（库克、哈马克主张加息25bp），市场解读为「鹰派暂停」——未来仍可能加息、无鸽派降息预期。沃什强调通胀三大来源（能源成本、关税、强消费+AI需求），治理通胀不依赖固定日历时间表。结构性改革：每年8次例会，2027年拿1次做货币政策策略研讨、2028年拿2次，实际议息会议减为7次/6次。加拿大逆势加息25bp，博主认为是保加元汇率、防输入型通胀的「偷袭」。华尔街对科技巨头CDS定价走高（AI融资债务机制接近极限），博通、甲骨文、SpaceX违约对冲成本上升，但近日有所回落。</div>
+        <div class="op-tag"><b>热点：</b>云计算/AI算力、半导体、广告/搜索、存储/硬盘</div>
+        <div class="op-tag"><b>要点：</b>美联储FOMC维持利率3.75%-4%不变，库克、哈马克两票反对主张加息25bp，属「鹰派暂停」；市场预期未来两次会议（至3月）各加息25bp，无鸽派降息预期；沃什结构改革：2027年8次例会拿1次做策略研讨（实际7次议息）、2028年拿2次（实际6次），本质是「经济好就不想开会」；加拿大逆势加息25bp，博主认为是保加元汇率、防输入型通胀，加元回到1.4以下「偷袭成功」；华尔街对科技巨头CDS定价走高，AI融资债务机制接近极限，博通、甲骨文、SpaceX违约对冲成本大幅上升；甲骨文年度大会指引：2028财年末实现正自由现金流，2029财年300亿美元自由现金流，CDS降价、放量大涨；谷歌盘后爆雷：营收1275.8亿(+24.6%)略低于预期、EPS 2.12远低于预期3.0，云业务+103%超预期，自由现金流-91亿连续两季转负；谷歌EPS大幅miss主因计提86亿非经常性投资损失（含SpaceX、Anthropic股权），剔除非经常损失后EPS约2.67仍不及预期；伯克希尔第三大重仓谷歌，阿贝尔「首战」被套，三季度13F 11月中旬公布是变盘关键；微软报喜：营收922.8亿(+18.8%)、净利366.3亿(+32%)、Azure+48%超指引45%，云收入332亿、资本支出452亿低于预估510亿；微软可能创历史新高、谷歌创阶段低点，博主提示「追高微软 vs 接掉落刀子谷歌」两难；存储板块：希捷STX、西数WDC跌至年线长期支撑后技术反弹，基本面尚未拐点；泰瑞达TER财报超预期（AI测试需求向好）但股价仍跌、跌破年线形态差</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">老李玩钱</span><span class="hd-tk">10/28</span><span class="st flat">中性</span></div>
+        <div class="op-title">美联储会议安全落地！ORCL，MSFT，GOOG 分析及操作建议</div>
+        <div class="op-d">美联储FOMC会议维持利率不变（不加息），符合市场预期（此前预期不加息概率90%以上），「有惊无险」安全落地。焦点转向12月（本年度最后一次会议），沃什未透露12月加息与否取向，市场对12月加息预期概率仍较高。老李账户上涨1800美金、总资产33.6万。甲骨文发布长期增长与资本配置计划，盘中大涨10%。盘后微软报喜、谷歌爆雷：微软EPS/营收超预期、Azure+48%，谷歌EPS 2.67/营收1275.8亿双miss、自由现金流-90.7亿、盘后跌9%→11%以上。</div>
+        <div class="op-tag"><b>宏观：</b>美联储维持利率不变，会前市场预期不加息概率90%以上，会议符合预期。焦点转向12月本年度最后一次会议，沃什未透露取向，市场对12月加息预期概率仍较高。甲骨文长期计划回应AI资本支出/自由现金流/债务三大担忧：资本支出2027-2028财年见顶、2029财年下降，自由现金流2028财年下半年转正、2029财年增至300亿以上，承诺2030财年前新增外部融资限200亿内，2029财年起扩张完全由自由资金支持，净债务/调整后EBITDA降至3.5倍以下，重申2027财年营收900亿、非GAAP EPS 8.10美元。</div>
+        <div class="op-tag"><b>热点：</b>云计算/AI算力、软件、互联网、半导体</div>
+        <div class="op-tag"><b>要点：</b>美联储维持利率不变符合预期，「有惊无险」安全落地，焦点转向12月会议；市场对12月加息预期概率仍较高，沃什未透露任何取向；甲骨文发布长期增长与资本配置计划，盘中大涨10%，直接回应AI资本支出/自由现金流/债务三大担忧；甲骨文指引：资本支出2027-2028财年见顶、2029财年下降；自由现金流2028财年下半年转正、2029财年增至300亿以上；甲骨文承诺2030财年前新增外部融资限200亿内，净债务/调整后EBITDA降至3.5倍以下，重申2027财年营收900亿、EPS 8.10；甲骨文与OpenAI高度绑定（3000亿美元大合同），OpenAI发展好则甲骨文跟涨、反之受打压，是潜在风险；微软财报：调整后EPS和营收超预期，营收+19%，Azure云+48%至332亿，自由现金流-27%但保持为正；四大云巨头（微软、Meta、谷歌、亚马逊）中仅微软守住正自由现金流，微软盘后涨至540以上、前高551；谷歌财报爆雷：EPS 2.67（预期3.02）、营收1275.8亿（预期1282.2亿）双miss，自由现金流-90.7亿（预期-27亿）；谷歌资本支出513.6亿低于预期550.9亿，博主认为是好事（应控制AI资本支出保自由现金流）；谷歌云业务+超一倍至307亿（超预期287亿），继续从AWS、Azure夺份额，是唯一亮点；谷歌股权投资：二季度获990.3亿意外收益（SpaceX/Anthropic），三季度却造成86.6亿亏损拖累业绩；老李持仓：谷歌63股（目标80股），设定272元加仓点位；甲骨文是账户唯一亏损股，设定130开仓/115加仓点位</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">美投侃新闻</span><span class="hd-tk">10/28</span><span class="st up">中性偏多</span></div>
+        <div class="op-title">Will the Fed Turn Dovish Tomorrow? Oracle's Comeback? Tesla Up for Grabs! Who Doesn't Still Love ...</div>
+        <div class="op-d">美股普遍收涨，AI概念股延续强势，存储半导体四小云领涨，特斯拉、博通领涨大科技，Meta、微软收跌，VIX下跌4.7%。美联储将于次日公布利率决议，市场普遍预期按兵不动，但12月加息概率已超80%（CME FedWatch）。甲骨文年度AI大会宣布多项重磅合作（扩英伟达Vera Rubin、引入谷歌TPU/OpenAI芯片/Cerebras/SambaNova），盘中涨近5%。特斯拉因与SpaceX合并预期获巴克莱上调评级至超配、目标价370→450美元。可口可乐三季度财报超预期。博主团队（Justine/Tim）核心观点：10月暂停加息已充分定价、看点在于沃什讲话是否偏鸽；甲骨文OCI云业务更看好、软件业务谨慎；特斯拉短期股价受SpaceX合并溢价锚定、难有大波动。</div>
+        <div class="op-tag"><b>宏观：</b>美联储次日公布利率决议，市场普遍预期按兵不动，但CME FedWatch显示12月加息概率已超80%，市场真正关心的是还会加息多少次、沃什释放什么信号。CNBC：10月暂停加息因两种信号并存——通胀未明显降温（9月CPI同比3.7%、核心2.6%，受能源价格推动）但经济现疲软（房贷利率超7%、地产承压、就业低招聘低裁员）。德银预计沃什强调未来仍可能加息但规模时间不给明确答案（减少前瞻指引）；Evercore ISI经济学家预计每季度一次节奏逐步加息，但警告减少指引或加剧市场波动；花旗预计12月再加一次、明年或降息；安联首席认为应收紧财政而非加息。Justine观点：高利率对科技巨头影响不能忽视（提高新项目融资成本），CoreWeave类高度依赖外部融资的企业压力更大；美联储两难，市场对融资压力担忧可能成为延缓加息理由。10月暂停已充分定价，看点在于沃什讲话，股市需要偏鸽方向，拿捏不到位则垃圾级债务人继续被惩罚。</div>
+        <div class="op-tag"><b>热点：</b>云计算/AI算力、半导体、电动车/机器人、消费/饮料</div>
+        <div class="op-tag"><b>要点：</b>美联储次日决议，市场预期按兵不动，12月加息概率超80%，真正看点是沃什讲话是否偏鸽；CNBC：10月暂停因通胀未降温（9月CPI 3.7%、核心2.6%）但经济现疲软（房贷利率超7%、地产承压）双信号并存；德银预计沃什强调未来仍可能加息但给不出明确规模时间（减少前瞻指引），Evercore预计每季度一次节奏；花旗预计12月再加一次、明年或降息；安联首席认为应收紧财政而非加息（高利率真正承压的是地产/汽车贷/消费信贷）；Justine：高利率对科技巨头影响不能忽视，CoreWeave类高度依赖外部融资的企业压力更大，市场对融资压力担忧或成美联储延缓加息理由；甲骨文年度AI大会宣布多项合作：扩大英伟达Vera Rubin部署（规模数吉瓦），2027年起OCI提供谷歌TPU（谷歌首次供给别家云大厂）；甲骨文引入OpenAI芯片及Cerebras、SambaNova推理芯片，多元化供应以降低缺货风险、吸引不同需求客户、降低资本开支；甲骨文与OpenAI合作推出AI Workspace（员工用ChatGPT查处理内部数据）和App Composer（用Codex开发应用），软件业务或与Snowflake竞争；甲骨文新墨西哥州Jupiter数据中心遭社区反对（空气/环境），许可听证12月7日，今年股价累计跌约33%；Justine对甲骨文：软件业务谨慎（公司多年惯性难迅速改头换面）、OCI云业务更看好（降芯片成本+减前期投入改善盈利），期待投资者日OCI指引和毛利率；特斯拉获巴克莱上调评级至超配、目标价370→450美元，核心看好特斯拉与SpaceX合并的战略价值；马斯克证实双方成立特别委员会研究合并但未达成协议；Terafab芯片工厂（2028量产）计划服务自动驾驶、Optimus机器人和SpaceX；特斯拉汽车业务连续两年下滑后今年有望恢复增长，能源业务受益AI数据中心（2027储能产能几乎预订一空、出货或增超50%）；Tim观点：特斯拉股价核心取决于SpaceX合并溢价，溢价大概率在可控范围，短期股价难有大波动、涨不上去也跌不下来；可口可乐三季度：收入133.8亿(+7.4%)超预期、EPS 91美分略超、利润率升至32.9%，零度可乐销量大涨16%；可口可乐连续第三个季度上调全年展望，有机收入增长至少5%、调整EPS增长至少11%、自由现金流130亿；Justine：可口可乐品牌优势和防御性，浓缩液模式+全球布局对冲包装涨价和美国消费放缓，零度可乐搭上健康趋势、在美抢占百事份额</div>
+      </div>
+</div>
+
+<div class="sec"><div class="sec-h">🎯 五、关键价位一览</div><table>
+      <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
+      <tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
+          <td>视野环球财经</td>
+          <td>目标 <b class="num">286-430</b>（<b class="num">26</b>年前瞻区间，中位<b class="num">358</b>）<br>目标 <b class="num">297-464</b>（<b class="num">27</b>年前瞻，中位<b class="num">372</b>）</td>
+          <td><a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=780s" class="tslink">13:00</a></td></tr><tr><td><b>微软</b>⭐ <span class="tk">MSFT</span></td>
+          <td>视野环球财经</td>
+          <td>阻力 <b class="num">600</b>上方（博主目标）<br>买点 <b class="num">490-534</b>（长线建仓区）</td>
+          <td><a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td><b>纳斯达克综合指数</b>⭐ <span class="tk">^IXIC</span></td>
+          <td>视野环球财经</td>
+          <td>目标 <b class="num">504</b>（正常回撤位置）</td>
+          <td><a href="https://www.youtube.com/watch?v=g3qLtJPUAxU&amp;t=1950s" class="tslink">32:30</a></td></tr><tr><td><b>甲骨文</b> <span class="tk">ORCL</span></td>
+          <td>老李玩钱</td>
+          <td>支撑 <b class="num">130</b> / <b class="num">115</b></td>
+          <td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=108s" class="tslink">1:48</a></td></tr><tr><td><b>微软</b>⭐ <span class="tk">MSFT</span></td>
+          <td>老李玩钱</td>
+          <td>阻力 <b class="num">551</b>（前高）</td>
+          <td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=324s" class="tslink">5:24</a></td></tr><tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
+          <td>老李玩钱</td>
+          <td>支撑 <b class="num">272-297</b></td>
+          <td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=486s" class="tslink">8:06</a></td></tr><tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
+          <td>NaNa说美股</td>
+          <td>目标 <b class="num">270</b>（下行目标）</td>
+          <td><a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=120s" class="tslink">2:00</a></td></tr><tr><td><b>甲骨文</b> <span class="tk">ORCL</span></td>
+          <td>NaNa说美股</td>
+          <td>目标 <b class="num">170</b>（短期）</td>
+          <td><a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td><b>Vertiv</b> <span class="tk">VRT</span></td>
+          <td>NaNa说美股</td>
+          <td>目标 止损参考<b class="num">225</b>（月均线）</td>
+          <td><a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=660s" class="tslink">11:00</a></td></tr><tr><td><b>特斯拉</b>⭐ <span class="tk">TSLA</span></td>
+          <td>美投侃新闻</td>
+          <td>目标 <b class="num">450</b>（巴克莱目标价）</td>
+          <td><a href="https://www.youtube.com/watch?v=VLj5YKi-Jig&amp;t=515s" class="tslink">8:35</a></td></tr>
+    </table></div>
+
+<div class="sec"><div class="sec-h">⚠️ 六、分歧标的</div><div class="ch"><div class="ch-name">谷歌 <span class="tk">GOOGL</span></div>
+      <div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">视野环球财经<span class="op-date">·10/28</span></span></div><div class="op-d">第三财季「最不该出意外的业务出了意外」：传统广告/搜索业务大面积不及预期——广告820.1亿(+11%)低于预期835.7亿、搜索633.5亿低于预期648.5亿、YouTube广告112.1亿低于预期，营业利润406亿比预期低6%。EPS仅2.12远低于预期3.03。唯一亮点是云业务307亿(+103%)超预期。自由现金流连续第二个季度转负(-91亿)，过去12个月暴跌73%到197亿。博主维持估值不变（26年286-430中位358、27年297-464中位372），价格已跌至下限，决定「等一个季度」看传统业务转型能否好转，短期不再看谷歌有表现。谷歌是博主第四大持仓约6%、成本74-75块，明确不加仓（同类科技股仓位太重需控风险）。若连续两个季度传统业务重大衰退才怀疑趋势性出问题。</div></div><div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">老李玩钱<span class="op-date">·10/28</span></span></div><div class="op-d">财报爆雷：调整后EPS 2.67（预期3.02）、营收1275.8亿（预期1282.2亿）双miss，自由现金流-90.7亿（预期-27亿）降幅远超预期。但资本支出513.6亿低于预期550.9亿是好事（应控制AI资本支出保自由现金流）。云业务超一倍至307亿（超预期287亿）是唯一亮点，继续从AWS/Azure夺份额。唯一亮点是营收+25%创2021年以来最快增速。技术面已跌破三角形整理区间、短期形态糟糕，但长期仍值得布局。巴菲特伯克希尔从去年底一直买入，平均成本307-304，现在价格能抄到「老巴的底」。老李设定272-297区间分批开仓、272是加仓点位，用左侧分批买入方式。老李持仓63股（目标80股）。</div></div><div class="op"><div class="op-h"><span class="st c-down">强烈看空</span><span class="op-c">NaNa说美股<span class="op-date">·10/28</span></span></div><div class="op-d">Q3营收1276亿+25%不及预期1282亿，净利从349.8亿降至261.7亿，EPS 2.12远低于预期3.02（因股权投资亏损87亿）。更致命的是搜索广告增速降至12%（Q2 17%、Q1 19%），YouTube广告降至9%（Q2 13%）。云业务+103%至307.1亿、营业利润率36.2%是唯一亮点但无法抵消搜索缺口。资本开支飙升使自由现金流转为-91亿（预期-27亿），运营现金流423亿远低于预期527.2亿，本季零回购——为AI基建把自己烧到没钱。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">阳光财经<span class="op-date">·10/28</span></span></div><div class="op-d">财报爆雷：营收1275.8亿(+24.6%)略低于预期、EPS 2.12远低于预期3.0，云业务+103%是亮点但「槽点太多、亮点太少」。EPS大幅miss主因计提86亿非经常性投资损失（含SpaceX、Anthropic），剔除非经常后EPS约2.67仍不及预期。搜索+油管广告收入不及预期，作为基本盘核心业务表现不佳最令人担忧。自由现金流-91亿连续两季转负。博主昨日判断谷歌可能见底，依据是伯克希尔第三大重仓+阿贝尔「首秀」不能惨败，谷歌历史上套牢也能创新高。但本次财报实在大跌眼镜，预计跌势不止、可能延续到下一交易日。11月中旬三季度13F公布是变盘关键——若伯克希尔增持则空头束手就擒，减持则麻烦。</div></div>
+    </div></div>
+
+<div class="foot">AI 自动整理自 YouTube 公开视频 · 价位数字已高亮标注 · 时间戳可点击回看 · 不构成投资建议</div>
+</div></body></html>
