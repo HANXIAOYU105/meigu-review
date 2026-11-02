@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · 必需消费ETF (XLP)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style></head><body><div class="wrap">
+<div class="hero">
+  <p class="nm">必需消费ETF</p>
+  <div class="tk">XLP · 必需消费</div>
+  <div class="meta">近5日 1 条观点 · 2026-10-27 ~ 2026-10-31 · 1 位博主</div>
+</div>
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势 <span class="asof">必需消费品精选 · 最近 45 个交易日 · 红涨绿跌</span></div>
+      <svg viewBox="0 0 640 220" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="必需消费品精选 日K"><line x1="8" y1="12.0" x2="600" y2="12.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="15.0" font-size="9" fill="rgba(140,150,165,0.9)">90.79</text><line x1="8" y1="58.5" x2="600" y2="58.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="61.5" font-size="9" fill="rgba(140,150,165,0.9)">88.02</text><line x1="8" y1="105.0" x2="600" y2="105.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="108.0" font-size="9" fill="rgba(140,150,165,0.9)">85.24</text><line x1="8" y1="151.5" x2="600" y2="151.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="154.5" font-size="9" fill="rgba(140,150,165,0.9)">82.46</text><line x1="8" y1="198.0" x2="600" y2="198.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="201.0" font-size="9" fill="rgba(140,150,165,0.9)">79.69</text><line x1="14.6" y1="103.2" x2="14.6" y2="110.7" stroke="#1fbf75" stroke-width="1"/><rect x="10.6" y="103.2" width="7.9" height="6.2" fill="#1fbf75"/><line x1="27.7" y1="89.6" x2="27.7" y2="106.5" stroke="#1fbf75" stroke-width="1"/><rect x="23.8" y="100.5" width="7.9" height="4.4" fill="#1fbf75"/><line x1="40.9" y1="90.9" x2="40.9" y2="108.4" stroke="#e5484d" stroke-width="1"/><rect x="36.9" y="100.1" width="7.9" height="2.7" fill="#e5484d"/><line x1="54.0" y1="98.3" x2="54.0" y2="112.7" stroke="#1fbf75" stroke-width="1"/><rect x="50.1" y="102.8" width="7.9" height="1.8" fill="#1fbf75"/><line x1="67.2" y1="104.0" x2="67.2" y2="116.7" stroke="#1fbf75" stroke-width="1"/><rect x="63.3" y="112.0" width="7.9" height="4.0" fill="#1fbf75"/><line x1="80.4" y1="116.2" x2="80.4" y2="129.0" stroke="#1fbf75" stroke-width="1"/><rect x="76.4" y="121.1" width="7.9" height="4.4" fill="#1fbf75"/><line x1="93.5" y1="133.8" x2="93.5" y2="145.0" stroke="#1fbf75" stroke-width="1"/><rect x="89.6" y="134.0" width="7.9" height="7.7" fill="#1fbf75"/><line x1="106.7" y1="129.0" x2="106.7" y2="141.5" stroke="#1fbf75" stroke-width="1"/><rect x="102.7" y="136.3" width="7.9" height="4.7" fill="#1fbf75"/><line x1="119.8" y1="131.0" x2="119.8" y2="141.9" stroke="#1fbf75" stroke-width="1"/><rect x="115.9" y="134.0" width="7.9" height="2.2" fill="#1fbf75"/><line x1="133.0" y1="110.9" x2="133.0" y2="121.6" stroke="#e5484d" stroke-width="1"/><rect x="129.0" y="118.7" width="7.9" height="1.0" fill="#e5484d"/><line x1="146.1" y1="124.6" x2="146.1" y2="133.0" stroke="#1fbf75" stroke-width="1"/><rect x="142.2" y="125.8" width="7.9" height="4.5" fill="#1fbf75"/><line x1="159.3" y1="124.8" x2="159.3" y2="137.2" stroke="#1fbf75" stroke-width="1"/><rect x="155.3" y="131.1" width="7.9" height="5.9" fill="#1fbf75"/><line x1="172.4" y1="130.6" x2="172.4" y2="142.5" stroke="#1fbf75" stroke-width="1"/><rect x="168.5" y="134.0" width="7.9" height="1.0" fill="#1fbf75"/><line x1="185.6" y1="139.2" x2="185.6" y2="145.9" stroke="#1fbf75" stroke-width="1"/><rect x="181.7" y="140.2" width="7.9" height="5.7" fill="#1fbf75"/><line x1="198.8" y1="154.1" x2="198.8" y2="163.8" stroke="#1fbf75" stroke-width="1"/><rect x="194.8" y="157.6" width="7.9" height="3.0" fill="#1fbf75"/><line x1="211.9" y1="144.2" x2="211.9" y2="154.4" stroke="#e5484d" stroke-width="1"/><rect x="208.0" y="147.1" width="7.9" height="4.5" fill="#e5484d"/><line x1="225.1" y1="143.0" x2="225.1" y2="155.1" stroke="#1fbf75" stroke-width="1"/><rect x="221.1" y="148.2" width="7.9" height="3.9" fill="#1fbf75"/><line x1="238.2" y1="141.2" x2="238.2" y2="164.3" stroke="#1fbf75" stroke-width="1"/><rect x="234.3" y="144.0" width="7.9" height="20.3" fill="#1fbf75"/><line x1="251.4" y1="156.6" x2="251.4" y2="170.5" stroke="#e5484d" stroke-width="1"/><rect x="247.4" y="158.3" width="7.9" height="10.9" fill="#e5484d"/><line x1="264.5" y1="150.9" x2="264.5" y2="166.8" stroke="#e5484d" stroke-width="1"/><rect x="260.6" y="154.6" width="7.9" height="7.9" fill="#e5484d"/><line x1="277.7" y1="161.5" x2="277.7" y2="171.2" stroke="#e5484d" stroke-width="1"/><rect x="273.7" y="161.8" width="7.9" height="4.5" fill="#e5484d"/><line x1="290.8" y1="154.3" x2="290.8" y2="183.2" stroke="#1fbf75" stroke-width="1"/><rect x="286.9" y="156.6" width="7.9" height="26.1" fill="#1fbf75"/><line x1="304.0" y1="181.7" x2="304.0" y2="190.4" stroke="#1fbf75" stroke-width="1"/><rect x="300.1" y="183.2" width="7.9" height="4.0" fill="#1fbf75"/><line x1="317.2" y1="180.4" x2="317.2" y2="190.6" stroke="#e5484d" stroke-width="1"/><rect x="313.2" y="183.9" width="7.9" height="1.0" fill="#e5484d"/><line x1="330.3" y1="175.4" x2="330.3" y2="191.1" stroke="#e5484d" stroke-width="1"/><rect x="326.4" y="175.4" width="7.9" height="8.9" fill="#e5484d"/><line x1="343.5" y1="158.8" x2="343.5" y2="175.5" stroke="#e5484d" stroke-width="1"/><rect x="339.5" y="162.6" width="7.9" height="12.2" fill="#e5484d"/><line x1="356.6" y1="154.3" x2="356.6" y2="164.5" stroke="#1fbf75" stroke-width="1"/><rect x="352.7" y="157.9" width="7.9" height="6.4" fill="#1fbf75"/><line x1="369.8" y1="131.8" x2="369.8" y2="158.9" stroke="#e5484d" stroke-width="1"/><rect x="365.8" y="135.5" width="7.9" height="22.3" fill="#e5484d"/><line x1="382.9" y1="133.5" x2="382.9" y2="143.2" stroke="#e5484d" stroke-width="1"/><rect x="379.0" y="135.3" width="7.9" height="7.9" fill="#e5484d"/><line x1="396.1" y1="118.9" x2="396.1" y2="136.0" stroke="#e5484d" stroke-width="1"/><rect x="392.1" y="118.9" width="7.9" height="13.9" fill="#e5484d"/><line x1="409.2" y1="107.0" x2="409.2" y2="123.9" stroke="#1fbf75" stroke-width="1"/><rect x="405.3" y="108.7" width="7.9" height="13.9" fill="#1fbf75"/><line x1="422.4" y1="91.1" x2="422.4" y2="115.6" stroke="#e5484d" stroke-width="1"/><rect x="418.5" y="91.3" width="7.9" height="21.1" fill="#e5484d"/><line x1="435.6" y1="50.9" x2="435.6" y2="82.2" stroke="#1fbf75" stroke-width="1"/><rect x="431.6" y="64.0" width="7.9" height="16.9" fill="#1fbf75"/><line x1="448.7" y1="61.1" x2="448.7" y2="72.3" stroke="#e5484d" stroke-width="1"/><rect x="444.8" y="65.1" width="7.9" height="4.7" fill="#e5484d"/><line x1="461.9" y1="66.3" x2="461.9" y2="78.4" stroke="#e5484d" stroke-width="1"/><rect x="457.9" y="72.0" width="7.9" height="6.0" fill="#e5484d"/><line x1="475.0" y1="53.2" x2="475.0" y2="67.3" stroke="#1fbf75" stroke-width="1"/><rect x="471.1" y="61.9" width="7.9" height="1.0" fill="#1fbf75"/><line x1="488.2" y1="67.0" x2="488.2" y2="77.0" stroke="#e5484d" stroke-width="1"/><rect x="484.2" y="73.7" width="7.9" height="1.0" fill="#e5484d"/><line x1="501.3" y1="25.4" x2="501.3" y2="61.1" stroke="#e5484d" stroke-width="1"/><rect x="497.4" y="25.4" width="7.9" height="33.7" fill="#e5484d"/><line x1="514.5" y1="26.1" x2="514.5" y2="57.8" stroke="#1fbf75" stroke-width="1"/><rect x="510.5" y="32.1" width="7.9" height="22.3" fill="#1fbf75"/><line x1="527.6" y1="45.9" x2="527.6" y2="65.5" stroke="#1fbf75" stroke-width="1"/><rect x="523.7" y="57.4" width="7.9" height="2.0" fill="#1fbf75"/><line x1="540.8" y1="65.1" x2="540.8" y2="75.5" stroke="#1fbf75" stroke-width="1"/><rect x="536.9" y="69.3" width="7.9" height="3.7" fill="#1fbf75"/><line x1="554.0" y1="74.2" x2="554.0" y2="86.2" stroke="#e5484d" stroke-width="1"/><rect x="550.0" y="78.2" width="7.9" height="6.9" fill="#e5484d"/><line x1="567.1" y1="54.6" x2="567.1" y2="69.0" stroke="#e5484d" stroke-width="1"/><rect x="563.2" y="55.7" width="7.9" height="5.9" fill="#e5484d"/><line x1="580.3" y1="18.9" x2="580.3" y2="39.0" stroke="#1fbf75" stroke-width="1"/><rect x="576.3" y="26.1" width="7.9" height="8.9" fill="#1fbf75"/><line x1="593.4" y1="34.5" x2="593.4" y2="38.2" stroke="#e5484d" stroke-width="1"/><rect x="589.5" y="37.8" width="7.9" height="1.0" fill="#e5484d"/><polyline points="14.6,109.4 27.7,104.8 40.9,100.1 54.0,104.7 67.2,116.1 80.4,125.4 93.5,141.7 106.7,141.0 119.8,136.2 133.0,118.7 146.1,130.3 159.3,137.0 172.4,134.3 185.6,145.9 198.8,160.6 211.9,147.1 225.1,152.1 238.2,164.3 251.4,158.3 264.5,154.6 277.7,161.8 290.8,182.7 304.0,187.3 317.2,183.9 330.3,175.4 343.5,162.6 356.6,164.3 369.8,135.5 382.9,135.3 396.1,118.9 409.2,122.6 422.4,91.3 435.6,80.9 448.7,65.1 461.9,72.0 475.0,62.9 488.2,73.7 501.3,25.4 514.5,54.4 527.6,59.4 540.8,73.0 554.0,78.2 567.1,55.7 580.3,35.0 593.4,37.8" fill="none" stroke="#4d8dff" stroke-width="1.4" stroke-opacity="0.85"/><text x="14.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/31</text><text x="119.8" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/11</text><text x="225.1" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/23</text><text x="330.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/5</text><text x="435.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/15</text><text x="540.8" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/27</text><text x="593.4" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/2</text></svg>
+    </div>
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日口径</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">1</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">1</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">0</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">0</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean up">偏多</span>（均分 1.00）</p>
+  <div class="chips"><span class="chip">XTrader猫姐美股</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
+  <div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td>继续持有 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=81s" class="tslink">⏱1:21</a></td></tr>
+        </table></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日复盘记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">XTrader猫姐美股</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="op-date">·10/31</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 继续持有</span></div>
+      <div class="op-d">过去几个月反复强调的防御方向，周五还在继续上涨，说明资金正在从 AI 高位板块向防御板块迁移。</div>
+      <div class="op-q">「我们知道在过去的几个月，我们跟大家强调的 XLP、XLV 这些板块，周五还在继续上涨，还在继续上涨。」</div>
+      <div class="op-tag"><b>催化：</b>资金向防御板块轮动</div>
+      <div class="op-tag"><b>风险：</b>轮动到极致后可能补跌</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=81s" class="tslink">1:21 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
+  <table>
+    <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
+    <tr><td>10/31</td><td>XTrader猫姐美股</td><td>触发 继续持有</td><td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=81s" class="tslink">1:21</a></td></tr>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂（按首见日期）</div>
+  <div class="tag-item"><span class="tag-fg">资金向防御板块轮动</span><span class="tag-date">10/31</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素（按首见日期）</div>
+  <div class="tag-item"><span class="tag-fg">轮动到极致后可能补跌</span><span class="tag-date">10/31</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日</span></div>
+  <div class="day">
+      <div class="day-h">10/31</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">XTrader猫姐美股</span><span class="st up">看多/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 继续持有</span></div>
+          <div class="op-d">过去几个月反复强调的防御方向，周五还在继续上涨，说明资金正在从 AI 高位板块向防御板块迁移。</div>
+          <div class="op-q">「我们知道在过去的几个月，我们跟大家强调的 XLP、XLV 这些板块，周五还在继续上涨，还在继续上涨。」</div>
+          <div class="op-tag"><b>催化：</b>资金向防御板块轮动</div>
+          <div class="op-tag"><b>风险：</b>轮动到极致后可能补跌</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=81s" class="tslink">1:21 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+</div></body></html>
