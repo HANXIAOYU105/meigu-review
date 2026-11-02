@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · 微软 (MSFT)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style></head><body><div class="wrap">
+<div class="hero">
+  <p class="nm">微软 ⭐</p>
+  <div class="tk">MSFT · 软件 · 持仓#5</div>
+  <div class="meta">6 条观点 · 2026-10-28 ~ 2026-10-30 · 3 位博主</div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">多空总览</div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">6</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">3</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">1</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">2</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 0.33）</p>
+  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">视野环球财经</span><span class="chip">美投侃新闻</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">关键点位演进</div>
+  <table>
+    <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
+    <tr><td>10/29</td><td>视野环球财经</td><td>阻力 <b class="num">600</b>上方（博主目标）<br>买点 <b class="num">490-534</b>（建仓区）</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00</a></td></tr>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂（按首见日期）</div>
+  <div class="tag-item"><span class="tag-fg">Azure增速48%</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">资本支出低于指引</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">自由现金流为正（四大唯一）</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI货币化加速</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AAA评级发债成本极低</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">首次发债（250亿美元）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AAA评级融资成本优势</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">2027财年自由现金流保持为正</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">季度股息上调8%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">250亿美元债券认购4.6倍</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">营收与自由现金流稳健</span><span class="tag-date">10/30</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素（按首见日期）</div>
+  <div class="tag-item"><span class="tag-fg">若指数跌破5日均线仍会被拖累</span><span class="tag-date">10/28</span></div><div class="tag-item"><span class="tag-fg">举债融资</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI资本开支压力</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">纳指破位后的量化抛压</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">短期情绪宣泄可能跌破490</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI发债消化压力</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">云业务增速平平</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">资本开支增速降速幅度</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">自由现金流承压（186亿 vs 去年257亿）</span><span class="tag-date">10/30</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线（按日期）</div>
+  <div class="day">
+      <div class="day-h">10/28</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">2027财年Q1营收923亿+19%、调整后EPS 4.89+18%均好于预期；Azure超预期增长48%至332亿（预期328亿）。当季资本支出452亿低于此前预测的500亿，自由现金流186亿继续持稳且远高于预期85.4亿。在微软/谷歌/Meta/亚马逊四家超大规模云厂商中，是唯一预计明年仍保持现金流为正的公司，市场给予奖励、盘后上涨。</div>
+          <div class="op-q">「在微软、谷歌、META、亚马逊这几家超大规模云服务提供商中，微软是唯一一家预计明年仍将保持现金流为正的公司」</div>
+          <div class="op-tag"><b>催化：</b>Azure增速48%、资本支出低于指引</div>
+          <div class="op-tag"><b>风险：</b>若指数跌破5日均线仍会被拖累</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=180s" class="tslink">3:00 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">10/29</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">看空/观望·中期</span></div>
+          
+          <div class="op-d">原本凭强劲云业务逆势上涨，但突然宣布2017年以来首次高评级债券发行、拟筹资至少250亿美元加入AI借债行列，消息后股价转跌。巨头钱多所以可以抱团避险的逻辑已经不成立，基本面变了，不能闭着眼睛随便买。</div>
+          <div class="op-q">「以前外面狂风暴雨的时候机构抱团巨头因为巨头钱多，但这个因素已经不成立了」</div>
+          
+          <div class="op-tag"><b>风险：</b>举债融资、AI资本开支压力</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=240s" class="tslink">4:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·长期</span></div>
+          <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">600</b>上方（博主目标）</span><span class="lv lv-e">买点 <b class="num">490-534</b>（建仓区）</span></div>
+          <div class="op-d">四大AI数据中心公司中唯一自由现金流为正的（微软正、亚马逊/谷歌/Meta都转负），且承诺财年自由现金流为正。250亿美元发债获1150亿认购（4.6倍），利率仅比美债高0.86个百分点，比三年前置换债溢价还低，顶级AAA评级（全美仅微软和强生两家）让融资成本极低。发债是「效率置换」非利空。博主明确持有不动、看600上方，490-534是无仓位者的建仓区（需预留仓位防纳指破位跌到490以下）。</div>
+          <div class="op-q">「它是四大科技里唯一的一家（自由现金流为正）……我个人没有问题，现在仍旧持有，490-534对于没有仓位的朋友来讲就是建仓的地方」</div>
+          <div class="op-tag"><b>催化：</b>自由现金流为正（四大唯一）、AI货币化加速、AAA评级发债成本极低</div>
+          <div class="op-tag"><b>风险：</b>纳指破位后的量化抛压、短期情绪宣泄可能跌破490</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">10/30</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/观望·中期</span></div>
+          
+          <div class="op-d">2017年以来首次在投资级债券市场发债，市场开始怀疑能否消化这么多为AI进行的发债。本周仅跌0.5%，相对抗跌。云业务「和自己比不差、和预期比平平」，AI回报未完整拆出，投资者算不清楚。</div>
+          <div class="op-q">「微软则是2017年来首次发债，大家开始怀疑市场到底能不能消化这么多为AI进行的发债」</div>
+          <div class="op-tag"><b>催化：</b>首次发债（250亿美元）</div>
+          <div class="op-tag"><b>风险：</b>AI发债消化压力、云业务增速平平</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1260s" class="tslink">21:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/持有·中期</span></div>
+          
+          <div class="op-d">启动至少250亿美元美元债发行（9年多来首次投资级发债），预计AAA评级（全市场仅微软和强生两家），40年期利差仅+1.35个百分点（vs谷歌1.55、甲骨文1.95），融资成本优势明显。历史对比：2017年发债后约一年半资本开支增速见顶、之后放缓。若本次认购倍数4倍以上、利差压得住，说明市场仍愿借给顶级信用大科技。关键看2027财年资本开支增速降速（卖方预期65%→36%→16%），若指引只低1-2个百分点可接受、低5个百分点则信号糟糕。发债更可能是为「投资+回购分红」并行。</div>
+          <div class="op-q">「如果微软这次的认购倍数能保持在4倍以上，利差也压得住，就说明市场依然愿意把钱借给顶级信用的大科技」</div>
+          <div class="op-tag"><b>催化：</b>AAA评级融资成本优势、2027财年自由现金流保持为正、季度股息上调8%</div>
+          <div class="op-tag"><b>风险：</b>资本开支增速降速幅度、自由现金流承压（186亿 vs 去年257亿）</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1080s" class="tslink">18:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·长期</span></div>
+          
+          <div class="op-d">作为高质量信贷股票的典型代表，10月逆势上涨1.76%，只是回吐部分涨幅而非崩溃。250亿债券发售认购达4.6倍、利息不高，说明市场对高质量借款人依旧充分认可。博主的长期持仓，是「高质量信贷」逻辑的核心样板。</div>
+          <div class="op-q">「微软这一轮下跌之后，这个月10月份还上涨了1.76%，绝对算不上差，它只是回吐了一部分的涨幅，因为它是高质量的信贷股票」</div>
+          <div class="op-tag"><b>催化：</b>250亿美元债券认购4.6倍、营收与自由现金流稳健</div>
+          
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=360s" class="tslink">6:00 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+</div></body></html>

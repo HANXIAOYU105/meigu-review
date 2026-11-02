@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · 英特尔 (INTC)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style></head><body><div class="wrap">
+<div class="hero">
+  <p class="nm">英特尔</p>
+  <div class="tk">INTC · 半导体</div>
+  <div class="meta">8 条观点 · 2026-10-26 ~ 2026-10-30 · 4 位博主</div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">多空总览</div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">8</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">0</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">7</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">1</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean down">偏空</span>（均分 -1.25）</p>
+  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">视野环球财经</span><span class="chip">美投侃新闻</span><span class="chip">阳光财经</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">关键点位演进</div>
+  <table>
+    <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
+    <tr><td>10/29</td><td>NaNa说美股</td><td>目标 回补<b class="num">68-79</b>缺口</td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=360s" class="tslink">6:00</a></td></tr><tr><td>10/29</td><td>视野环球财经</td><td>支撑 <b class="num">62-72</b>（中等支撑）<br>支撑 <b class="num">50-54.2</b>（下方支撑）</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=420s" class="tslink">7:00</a></td></tr><tr><td>10/30</td><td>NaNa说美股</td><td>目标 <b class="num">55</b>（下行目标）</td><td><a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=120s" class="tslink">2:00</a></td></tr>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂（按首见日期）</div>
+  <div class="tag-item"><span class="tag-fg">数据中心收入+78%（15年最强劲）</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">代工亏损收窄</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">摩根大通与美银下调评级</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">中期选举前政治因素</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">数据中心需求超供应（+78%）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">定制芯片三年翻三倍</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">与甲骨文云达成协议</span><span class="tag-date">10/30</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素（按首见日期）</div>
+  <div class="tag-item"><span class="tag-fg">上方套牢盘密集</span><span class="tag-date">10/26</span></div><div class="tag-item"><span class="tag-fg">可能是诱多</span><span class="tag-date">10/26</span></div><div class="tag-item"><span class="tag-fg">Q4毛利率指引大幅低于预期</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">代工业务无起色</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">Q4指引大幅miss</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">PC疲软延续到2027上半年</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">长期估值高估</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">价格随QQQ破位还有下跌空间</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">年内仍有78%涨幅，泡沫尚未出清</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">债务违约保险成本飙升</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Q4收入/毛利率指引大幅低于预期</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">CDS 127.9基点创新高</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">PC出货量今年-12%明年-10%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">以色列事故拖累</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">明年可能无正自由现金流</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">估值高企需要时间消化</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">高位追高无止损的持仓者深套</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Q4指引远低于预期</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">毛利率大幅下调</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">PC需求被内存涨价拖累</span><span class="tag-date">10/30</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线（按日期）</div>
+  <div class="day">
+      <div class="day-h">10/26</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性/观望·短期</span></div>
+          
+          <div class="op-d">股价收复5日均线与年线。但前面这一轮跌下来上方积压大量套牢盘，短线技术性回升将直面解套盘与获利盘的双重抛压，考验多头信心，更检验多头资金在此处是真建仓还是仅仅借反弹诱多离场。</div>
+          <div class="op-q">「短线的技术性回升将直面解套盘与获利盘的双重抛压，考验多头的信心」</div>
+          
+          <div class="op-tag"><b>风险：</b>上方套牢盘密集、可能是诱多</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=120s" class="tslink">2:00 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">10/29</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">强烈看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv">目标 回补<b class="num">68-79</b>缺口</span></div>
+          <div class="op-d">Q3营收165亿+21%、调整后EPS+126%均好于预期，但Q4营收与EPS指引大幅不及预期，Q4调整后毛利率仅38%远低于预期42.8%。年线守不住，可能回补下方68-79的大缺口。称其为「半导体业的波音」，对代工业务别抱指望，政策扶持也没用。</div>
+          <div class="op-q">「果然这支股票就是半导体业的波音，对它基本面尤其是代工业务那块别抱太大指望」</div>
+          
+          <div class="op-tag"><b>风险：</b>Q4毛利率指引大幅低于预期、代工业务无起色</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=360s" class="tslink">6:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st down">看空/回避·中期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">62-72</b>（中等支撑）</span><span class="lv lv-s">支撑 <b class="num">50-54.2</b>（下方支撑）</span></div>
+          <div class="op-d">三季报本身不错（数据中心+78%为15年最强劲、利润超预期），但Q4收入指引155亿远低于预期170-173亿、EPS 0.25远低于0.43-0.45，炸盘关键在指引。价格跌22-23%至70块仍比27年估值上限高10块，长期高估。PC疲软预计延续到2027年上半年，高增长预期Q4看不到。博主看法相对中性偏谨慎，认为英特尔更适合做波段、不适合做长线。</div>
+          <div class="op-q">「对我来讲他更适合做波段，他并不太适合去做这个长线」</div>
+          <div class="op-tag"><b>催化：</b>数据中心收入+78%（15年最强劲）、代工亏损收窄</div>
+          <div class="op-tag"><b>风险：</b>Q4指引大幅miss、PC疲软延续到2027上半年、长期估值高估、价格随QQQ破位还有下跌空间</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=420s" class="tslink">7:00 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">10/30</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">强烈看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">55</b>（下行目标）</span></div>
+          <div class="op-d">盘中狂泻31%创有记录以来最大单日跌幅，跳空低开直接跌破4月24日缺口且完全不做抵抗，说明不只是情绪而是基本面出了大问题。65不一定是底部，后续可能阴跌到55。摩根大通和美银双双下调评级。</div>
+          <div class="op-q">「这个跌法肯定不止情绪，而是基本面出了大问题，65不一定是底部，后续可能会阴跌到55」</div>
+          <div class="op-tag"><b>催化：</b>摩根大通与美银下调评级、中期选举前政治因素</div>
+          <div class="op-tag"><b>风险：</b>年内仍有78%涨幅，泡沫尚未出清、债务违约保险成本飙升</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=120s" class="tslink">2:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st down">看空/回避·短期</span></div>
+          
+          <div class="op-d">本周暴跌24.4%，虽本季度业绩超预期，但四季度收入和毛利率指引都大幅低于预期。5年期违约保护成本（CDS）升至127.9个基点创新高，是「科技巨头违约保护成本创新高」的主要推手之一，反映市场对其信用风险担忧加剧。</div>
+          <div class="op-q">「英特尔本周下跌24.4%，虽然本季度业绩超预期，但四季度收入和毛利率指引都大幅低于预期」</div>
+          
+          <div class="op-tag"><b>风险：</b>Q4收入/毛利率指引大幅低于预期、CDS 127.9基点创新高</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1440s" class="tslink">24:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st down">看空/回避·短期</span></div>
+          
+          <div class="op-d">分析师Phonics认为：三季报总体不错（数据中心收入+78%超预期、代工利润率改善），但Q4收入指引155亿大幅低于预期170亿、毛利率38%低于预期4个百分点、EPS 0.25美元惨烈miss，炸盘关键在指引。收入指引不行更可能是供给跟不上（高端基板短缺+以色列工厂停工2周）；毛利率低是收入下降后固定成本摊不开+18A产能利用率不足。PC下滑未被DC增长完全cover住。</div>
+          <div class="op-q">「收入指引不行，更可能还是供给跟不上造成的……PC端的下滑没有被DC端的增长cover住」</div>
+          <div class="op-tag"><b>催化：</b>数据中心需求超供应（+78%）、定制芯片三年翻三倍、与甲骨文云达成协议</div>
+          <div class="op-tag"><b>风险：</b>Q4指引大幅miss、PC出货量今年-12%明年-10%、以色列事故拖累、明年可能无正自由现金流</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=840s" class="tslink">14:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st down">看空/回避·长期</span></div>
+          
+          <div class="op-d">股价从高点142腰斩还拐弯，作为反面教材：高位（100多美元）买入的人是因为把未来两三年的增长想成线性、无风险，忽略了潜在风险且无止损纪律。博主止损纪律25%，早已止损。估值摆在这需要时间消化，明年可能大幅提升但需要时间。</div>
+          <div class="op-q">「它的股价从高点142下来腰斩了，还拐了个小弯……估值在这摆着，它需要时间」</div>
+          
+          <div class="op-tag"><b>风险：</b>估值高企需要时间消化、高位追高无止损的持仓者深套</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=900s" class="tslink">15:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st down">强烈看空/回避·短期</span></div>
+          
+          <div class="op-d">一天暴跌30%，作为芯片行业老一代龙头能跌成迷因股和垃圾股实在大开眼界。财报里客户端计算与物理AI业务收入下滑5%，内存涨价拖累PC需求；Q4指引营收150-160亿，远低于华尔街预期的170亿；毛利率预计从44.1%缩水6个点下调到38%。美国政府去年8月以4.333亿股持股近10%，今天一天回吐110-120亿美元，但因成本低仍有约200亿盈利。</div>
+          <div class="op-q">「作为一只芯片行业的老一代龙头，能跌得像迷因股和垃圾股，真的是大开眼界」</div>
+          
+          <div class="op-tag"><b>风险：</b>Q4指引远低于预期、毛利率大幅下调、PC需求被内存涨价拖累</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=120s" class="tslink">2:00 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+</div></body></html>
