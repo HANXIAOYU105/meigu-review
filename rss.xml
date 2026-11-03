@@ -6,7 +6,14 @@
     <atom:link href="https://meigu.nazhiyijia.top/rss.xml" rel="self" type="application/rss+xml"/>
     <description>每日自动整理 8 位 YouTube 美股博主与猫姐 X 帖文的核心观点、关键价位与多空倾向</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 02 Nov 2026 16:44:21 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 03 Nov 2026 04:13:04 GMT</lastBuildDate>
+    <item>
+      <title>美股复盘日报 2026.11.2（5 视频 · 42 观点 · 中性）</title>
+      <link>https://meigu.nazhiyijia.top/reports/2026-11-02.html</link>
+      <guid isPermaLink="true">https://meigu.nazhiyijia.top/reports/2026-11-02.html</guid>
+      <pubDate>Mon, 02 Nov 2026 12:00:00 GMT</pubDate>
+      <description>7 个持仓观点 · 42 条带价位 · 多空倾向中性。含前一天美股三大指数与回撤。</description>
+    </item>
     <item>
       <title>美股复盘日报 2026.10.31（5 视频 · 25 观点 · 中性）</title>
       <link>https://meigu.nazhiyijia.top/reports/2026-10-31.html</link>
@@ -34,13 +41,6 @@
       <guid isPermaLink="true">https://meigu.nazhiyijia.top/reports/2026-10-28.html</guid>
       <pubDate>Wed, 28 Oct 2026 12:00:00 GMT</pubDate>
       <description>5 个持仓观点 · 12 条带价位 · 多空倾向中性。含前一天美股三大指数与回撤。</description>
-    </item>
-    <item>
-      <title>美股复盘日报 2026.10.27（3 视频 · 23 观点 · 中性）</title>
-      <link>https://meigu.nazhiyijia.top/reports/2026-10-27.html</link>
-      <guid isPermaLink="true">https://meigu.nazhiyijia.top/reports/2026-10-27.html</guid>
-      <pubDate>Tue, 27 Oct 2026 12:00:00 GMT</pubDate>
-      <description>5 个持仓观点 · 15 条带价位 · 多空倾向中性。含前一天美股三大指数与回撤。</description>
     </item>
   </channel>
 </rss>
