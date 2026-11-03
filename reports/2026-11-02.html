@@ -100,6 +100,13 @@
   td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
   tr:last-child td{border-bottom:none;}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 关键价位表：标的/博主/时间窄列 + 价位宽列，全部竖向居中（2026-11-03 用户反馈可读性） */
+  .lv-tbl td, .lv-tbl th{vertical-align:middle;}
+  .lv-tbl td, .lv-tbl th{padding-left:4px;padding-right:4px;}
+  .lv-tbl td:nth-child(1){font-size:12px;}
+  .lv-tbl td:nth-child(1) b{font-size:12.5px;}
+  .lv-tbl td:nth-child(2){font-size:11px;color:var(--muted);}
+  .lv-tbl td:nth-child(4){white-space:nowrap;text-align:right;padding-right:8px;}
   .tk{color:var(--muted-2);font-size:11.5px;font-weight:400;}
   .ch{margin-bottom:10px;}
   .ch-name{font-weight:700;font-size:14px;color:var(--text-strong);margin-bottom:4px;}
@@ -112,6 +119,7 @@
   .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
   .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
   .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
   #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
   #toTop.show{display:block;}
   @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
@@ -390,8 +398,8 @@
       </div>
 </div>
 
-<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><div class="tbl-wrap"><table>
-      <colgroup><col style="width:26%"><col style="width:19%"><col style="width:41%"><col style="width:14%"></colgroup>
+<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><div class="tbl-wrap"><table class="lv-tbl">
+      <colgroup><col style="width:20%"><col style="width:16.5%"><col style="width:50.5%"><col style="width:13%"></colgroup>
       <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
       <tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
           <td>老李玩钱</td>
@@ -399,7 +407,7 @@
           <td><a href="https://www.youtube.com/watch?v=1nXl0sFPiE4&amp;t=272s" class="tslink">4:32</a></td></tr><tr><td><b>伯克希尔</b> <span class="tk">BRK.B</span></td>
           <td>老李玩钱</td>
           <td>支撑 <b class="num">503</b>（回调支撑位）<br>买点 回调至<b class="num">503</b>附近果断开仓<br>触发 <b class="num">503</b>附近开仓买入；<b class="num">512</b>附近进一步加仓（按原文口径）；持续建仓、长期持有</td>
-          <td><a href="https://www.youtube.com/watch?v=1nXl0sFPiE4&amp;t=703s" class="tslink">11:43</a></td></tr><tr><td><b>标普500动量指数ETF（Invesco S&amp;P 500 Momentum）</b> <span class="tk">SPMO</span></td>
+          <td><a href="https://www.youtube.com/watch?v=1nXl0sFPiE4&amp;t=703s" class="tslink">11:43</a></td></tr><tr><td><b>标普500动量指数ETF</b> <span class="tk">SPMO</span></td>
           <td>老李玩钱</td>
           <td>支撑 <b class="num">122</b>（加仓位）<br>买点 <b class="num">130</b>附近开仓<br>触发 <b class="num">130</b>附近开仓；<b class="num">122</b>附近进一步加仓<br>支撑 SPMO这支ETF就是标普<b class="num">500</b>动量指数，是在标普<b class="num">500</b>的基础上又再次进行了优化……把评分最高的前<b class="num">100</b>家公司来纳入到指</td>
           <td><a href="https://www.youtube.com/watch?v=1nXl0sFPiE4&amp;t=977s" class="tslink">16:17</a></td></tr><tr><td><b>标普500ETF</b>⭐ <span class="tk">SPY</span></td>
@@ -474,7 +482,7 @@
           <td><a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=843s" class="tslink">14:03</a></td></tr><tr><td><b>阿里巴巴</b> <span class="tk">BABA</span></td>
           <td>NaNa说美股</td>
           <td>触发 政策与合作落地节奏</td>
-          <td><a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=893s" class="tslink">14:53</a></td></tr><tr><td><b>the vendor（AI大模型公司，拟上市代码ANT）</b> <span class="tk">ANT</span></td>
+          <td><a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=893s" class="tslink">14:53</a></td></tr><tr><td><b>the vendor</b> <span class="tk">ANT</span></td>
           <td>NaNa说美股</td>
           <td>触发 不参与IPO，上市后观察</td>
           <td><a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=796s" class="tslink">13:16</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SMH</span></td>
@@ -498,7 +506,7 @@
           <td><a href="https://www.youtube.com/watch?v=qcdt6yQKt_4&amp;t=1936s" class="tslink">32:16</a></td></tr><tr><td><b>标普500ETF</b>⭐ <span class="tk">SPY</span></td>
           <td>美投侃新闻</td>
           <td>触发 谨慎转乐观，但不追高、等好于预期的催化</td>
-          <td><a href="https://www.youtube.com/watch?v=Rsp8_8qltZ4&amp;t=276s" class="tslink">4:36</a></td></tr><tr><td><b>the vendor（AI大模型公司，代码ANT，拟11月上市）</b> <span class="tk">ANT</span></td>
+          <td><a href="https://www.youtube.com/watch?v=Rsp8_8qltZ4&amp;t=276s" class="tslink">4:36</a></td></tr><tr><td><b>the vendor</b> <span class="tk">ANT</span></td>
           <td>美投侃新闻</td>
           <td>触发 上市后观察算力效率与收入增速能否企稳</td>
           <td><a href="https://www.youtube.com/watch?v=Rsp8_8qltZ4&amp;t=300s" class="tslink">5:00</a></td></tr><tr><td><b>迈威尔</b> <span class="tk">MRVL</span></td>
@@ -533,4 +541,4 @@
     </div></div>
 
 <nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 价位数字已高亮标注 · 时间戳可点击回看 · 不构成投资建议</div>
-</div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
+<div class="bstamp">页面构建于 11-03 13:59（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
