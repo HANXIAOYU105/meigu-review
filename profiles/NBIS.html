@@ -77,9 +77,11 @@
   .lvg{margin-bottom:10px;}
   .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
   .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
-  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
   td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
@@ -126,9 +128,9 @@
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日无点位 · 历史累计</span></div>
   <div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>NaNa说美股</td><td>10/26</td><td><b class="num">120-135</b>（下行终极目标） <a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=360s" class="tslink">⏱6:00</a></td><td class="vfy vfy-ok" title="已到达 120（已过 4/5 日）">🎯</td></tr>
-        </table></div>
+        </table></div></div>
 </div>
 
 <div class="sec">
@@ -138,10 +140,11 @@
 
 <div class="sec">
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
-  <table>
+  <div class="tbl-wrap"><table>
+    <colgroup><col style="width:20%"><col style="width:23%"><col style="width:45%"><col style="width:12%"></colgroup>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
     <tr><td>10/26</td><td>NaNa说美股</td><td>目标 <b class="num">120-135</b>（下行终极目标）</td><td><a href="https://www.youtube.com/watch?v=seKz_DVegsQ&amp;t=360s" class="tslink">6:00</a></td></tr>
-  </table>
+  </table></div>
 </div>
 
 <div class="sec">

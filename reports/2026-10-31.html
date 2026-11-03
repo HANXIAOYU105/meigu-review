@@ -92,9 +92,12 @@
   .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
   .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
   .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
-  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器，
+     杜绝手机端内容把表格撑出卡片边框（此前「关键价位一览」时间列溢出即此问题） */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
   tr:last-child td{border-bottom:none;}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   .tk{color:var(--muted-2);font-size:11.5px;font-weight:400;}
@@ -277,7 +280,8 @@
   <div class="op"><div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性</span></div><div class="op-d">本期为 Anthropic 招股书专题（非大盘复盘）。Anthropic 于 2026-10-26 递交 S-1，是首家公布完整财务细节的美国前沿模型实验室，计划 11 月 16 日当周上市（股票代码 ANT），估值已从约 2 万亿下调至 1.4-1.5 万亿。核心叙事：收入从 25Q1 的 3.76 亿暴增至 26Q2 的 116 亿（同比约 15 倍，Q1/Q2 增速 132%/144%），Q2 首次实现经营盈利；但公司对外承诺付款约 8500 亿（为半年收入 163 亿的 50 多倍）且大部分不可撤销，与三大云（谷歌/亚马逊/微软）、博通、英伟达构成多层杠杆的资金/算力循环。博主判断：机会在于产品真实有大量企业付费、从「工具预算」走向「人力预算」；风险在于承诺远超现金、收入能否跟上、安全争议（与美政府冲突、出口限制）以及上市后分档解禁带来的抛压。本片无具体价位观点，主要为产业链各环节公司（云厂商、芯片商）的关系与风险梳理。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st down">偏空</span></div><div class="op-d">猫姐复盘 INTC 操作：122 一线已了结，上上周五在 100 附近再次进场，周五盘中跌近 30% 触发止损离场。她再次强调半导体板块虽然挂着强 AI 叙事，但波动极端、风险极大，必须小心。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st down">偏空</span></div><div class="op-d">猫姐连续提示不要盲目抄底：当日大盘再度大跌，她判断下跌还没有结束，明确让等待、不要急。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st flat">中性</span></div><div class="op-d">猫姐复盘周五盘面：尾盘由空头回补推动几乎单边拉起。她在美东时间 12:16 就提示当日只能靠空头回补，最后一小时开始时再次提示确认。她认为市场信号与成因已经很明确，本周末的 YouTube 视频会详细分析。结论是「又跌才有涨，跌是为了更好的涨」，不必恐慌。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股</span><span class="st flat">中性</span></div><div class="op-d">本周大盘跌得非常惨烈，核心是 QQQ 跌破 706.58 触发程序性抛售（量化/机器交易只管触发不管方向），周五盘中几乎毫无反弹，直到最后一小时由空头回补 + 做市商 Delta 对冲把全天约一半涨幅拉回来。猫姐判断：市场中期真正看空的人很少，短线都是墙头草，这些都是偏积极的信号，不必过度恐慌；但点位上 706.58 下周必须收回，否则危险，608 若被有效跌破则是「万丈深渊」，会触发更大一轮抛售。她仍保留一部分多仓，同时用少量期权做黑天鹅保险，但不敢在此位裸空。</div></div>
 </div>
 
-<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><table>
+<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:36%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup>
       <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
       <tr><td>亚马逊 <span class="tk">AMZN</span></td>
         <td style="text-align:center">1</td>
@@ -304,7 +308,7 @@
         <td style="text-align:center" class="c-up">0</td>
         <td style="text-align:center" class="c-down">0</td>
         <td style="text-align:right" class="flat">分歧</td></tr>
-    </table></div>
+    </table></div></div>
 
 <div class="sec" id="s4">
   <div class="sec-h">🎬 四、各博主视频要点</div>
@@ -346,7 +350,8 @@
       </div>
 </div>
 
-<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><table>
+<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:26%"><col style="width:19%"><col style="width:41%"><col style="width:14%"></colgroup>
       <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
       <tr><td><b>英特尔</b> <span class="tk">INTC</span></td>
           <td>XTrader猫姐美股</td>
@@ -365,16 +370,16 @@
           <td>支撑 <b class="num">706.58</b> / <b class="num">608</b><br>阻力 <b class="num">725.71</b><br>买点 <b class="num">706.58</b> 有效收复后补多仓<br>触发 <b class="num">706.58</b> 收回→进多仓；<b class="num">608</b> 有效跌破→全面防守</td>
           <td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=9s" class="tslink">0:09</a></td></tr><tr><td><b>英特尔</b> <span class="tk">INTC</span></td>
           <td>XTrader猫姐美股</td>
-          <td>支撑 <b class="num">62</b> / <b class="num">50</b><br>阻力 <b class="num">122</b>（前次离场位）<br>触发 <b class="num">62</b> 跌破→直接看 <b class="num">50</b>；INTC 起稳→视为大盘转好信号</td>
+          <td>支撑 <b class="num">62</b> / <b class="num">50</b><br>阻力 <b class="num">122</b>（前次离场位）<br>触发 <b class="num">62</b> 跌破→直接看 <b class="num">50</b>；INTC 起稳→视为大盘转好信号<br>买点 之后在 <b class="num">100</b> 附近二次进场，本该反转却没有反转、均线死叉，立刻止损并反手上了空头对冲仓位，随后一路下跌验证了判断</td>
           <td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=656s" class="tslink">10:56</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SMH</span></td>
           <td>XTrader猫姐美股</td>
           <td>触发 板块整体起稳后再考虑参与；当前一律规避</td>
           <td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=656s" class="tslink">10:56</a></td></tr><tr><td><b>Meta</b> <span class="tk">META</span></td>
           <td>XTrader猫姐美股</td>
-          <td>支撑 <b class="num">600</b><br>阻力 <b class="num">606-607</b><br>买点 <b class="num">606-607</b> 站回且有力度时补仓<br>触发 <b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓</td>
+          <td>支撑 <b class="num">600</b><br>阻力 <b class="num">606-607</b><br>买点 <b class="num">606-607</b> 站回且有力度时补仓<br>触发 <b class="num">600</b> 跌破→止损；<b class="num">606-607</b> 有力站回→补仓<br>目标 财报触发后一开盘就止损离场（纪律坚决），股价从 <b class="num">608</b> 附近跌到 <b class="num">600</b> 出头</td>
           <td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=840s" class="tslink">14:00</a></td></tr><tr><td><b>比特币</b> <span class="tk">BTC</span></td>
           <td>XTrader猫姐美股</td>
-          <td>支撑 <b class="num">75000-76000</b> / <b class="num">64000</b><br>阻力 <b class="num">80000</b><br>触发 拉回 <b class="num">8</b> 万→进入右侧；跌破 <b class="num">7.5</b> 万→看 <b class="num">6.4</b> 万</td>
+          <td>支撑 <b class="num">75000-76000</b> / <b class="num">64000</b><br>阻力 <b class="num">80000</b><br>触发 拉回 <b class="num">8</b> 万→进入右侧；跌破 <b class="num">7.5</b> 万→看 <b class="num">6.4</b> 万<br>买点 日线 <b class="num">21</b> 号出现卖点后一直没出现买点（一次买点预警也未成立）<br>支撑 当下面临关键位：<b class="num">75-76</b> 是微弱支撑，本周末不能再跌，守住则问题不大<br>支撑 跌破下方 <b class="num">7</b> 万都不一定强，真正的中心点位是 <b class="num">64</b>K（<b class="num">2024</b> 年给出的周线/月线级别中心点位，越弱时拖拽作用越明显）</td>
           <td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=942s" class="tslink">15:42</a></td></tr><tr><td><b>ServiceNow</b> <span class="tk">NOW</span></td>
           <td>XTrader猫姐美股</td>
           <td>支撑 <b class="num">111</b>（已失守）<br>阻力 <b class="num">120</b> / <b class="num">155</b><br>买点 回到 <b class="num">120</b> 以上再考虑<br>触发 站稳 <b class="num">120</b> 之上才重新评估，否则远离</td>
@@ -397,7 +402,7 @@
           <td>XTrader猫姐美股</td>
           <td>触发 继续持有</td>
           <td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1326s" class="tslink">22:06</a></td></tr>
-    </table></div>
+    </table></div></div>
 
 <div class="sec" id="s6"><div class="sec-h">⚠️ 六、分歧标的</div><div class="ch"><div class="ch-name">谷歌 <span class="tk">GOOGL</span></div>
       <div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">美投侃新闻<span class="op-date">·10/31</span></span></div><div class="op-d">谷歌财报后第二天大跌 13%，博主认为看起来可怕但或许带来难得的抄底机会，并已发布深度分析。作为 Anthropic 供应商与客户双重身份，谷歌从 Anthropic 身上通过算力租金、渠道费、TPU 采购（追加 1250-1500 亿）多条路径获利，且是其重要算力来源之一。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">XTrader猫姐美股<span class="op-date">·10/31</span></span></div><div class="op-d">财报后大跌，周四一天蒸发 5000 亿美元市值。核心原因是现金流变差——市场对 AI 板块的估值逻辑正在从「现金流充裕+轻资产+回购」转向审视「重资产+借钱搞 AI」，谷歌的现金流表现让市场最恐慌。这属于 AI 估值重构的一部分，不是单次财报的偶发反应。</div></div>

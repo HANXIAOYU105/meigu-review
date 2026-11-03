@@ -77,9 +77,11 @@
   .lvg{margin-bottom:10px;}
   .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
   .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
-  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
   td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
@@ -126,15 +128,15 @@
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
   <div class="lvg"><div class="lvg-h">🔺 压力位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>阳光财经</td><td>11/2</td><td><b class="num">5</b>日均线（反弹受阻位） <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=27s" class="tslink">⏱0:27</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
-        </table></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>XTrader猫姐美股</td><td>11/2</td><td>其周末复盘视频给出的 SPY 关键防守线（本帖未重复标注数值，具体数值见周末视频观点）</td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>阳光财经</td><td>11/2</td><td><b class="num">7200</b>（大幅下跌情形下的悲观预期止跌位，指数口径） <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=27s" class="tslink">⏱0:27</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
-        </table></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>XTrader猫姐美股</td><td>10/31</td><td>等跌势结束、出现明确止跌信号再考虑</td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>XTrader猫姐美股</td><td>10/31</td><td>等再跌一段、结构走稳后再加仓</td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>XTrader猫姐美股</td><td>11/2</td><td>防守线得失为当日多空分水岭：守住看多方延续，失守警惕更大 sell off</td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>美投侃新闻</td><td>11/2</td><td>谨慎转乐观，但不追高、等好于预期的催化 <a href="https://www.youtube.com/watch?v=Rsp8_8qltZ4&amp;t=276s" class="tslink">⏱4:36</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>视野环球财经</td><td>11/2</td><td>维持既定纪律：压路机前捡钱不好捡，选股避开CDS超<b class="num">200</b>、市价超一年前瞻估值的标的 <a href="https://www.youtube.com/watch?v=qcdt6yQKt_4&amp;t=1936s" class="tslink">⏱32:16</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>阳光财经</td><td>11/2</td><td>急跌至<b class="num">7200</b>一线观察企稳信号；收复半年线前不抢反弹 <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=27s" class="tslink">⏱0:27</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
-        </table></div>
+        </table></div></div>
 </div>
 
 <div class="sec">
@@ -219,10 +221,11 @@
 
 <div class="sec">
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
-  <table>
+  <div class="tbl-wrap"><table>
+    <colgroup><col style="width:20%"><col style="width:23%"><col style="width:45%"><col style="width:12%"></colgroup>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
     <tr><td>10/23</td><td>XTrader猫姐美股</td><td>支撑 <b class="num">759.57</b>（俱乐部同步的新防守位）<br>阻力 <b class="num">772.91</b>（中期阻力线，周三假突破）<br>触发 有效收复<b class="num">759.57</b>→标普企稳信号；继续看<b class="num">772.91</b>能否真突破</td><td><a href="https://www.youtube.com/watch?v=sSERJlTfDD4&amp;t=238s" class="tslink">3:58</a></td></tr><tr><td>10/27</td><td>视野环球财经</td><td>目标 <b class="num">7100-7200</b>（战术下行目标）<br>目标 <b class="num">8000</b>（年底）<br>目标 <b class="num">8300</b>（<b class="num">12</b>个月）<br>目标 大摩Michael Wilson判断：<b class="num">6</b>月调整已进入尾声，但前方还有三次清算事件，指数可能先跌至战术下行目标<b class="num">7100-7</b></td><td><a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td>10/29</td><td>NaNa说美股</td><td>目标 <b class="num">7600</b><br>目标 <b class="num">7550-7500</b><br>支撑 标普<b class="num">500</b>指数关注<b class="num">7600</b>点区间支撑能不能守住，失守就看向<b class="num">7550-7500</b></td><td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=660s" class="tslink">11:00</a></td></tr><tr><td>10/31</td><td>XTrader猫姐美股</td><td>触发 等跌势结束、出现明确止跌信号再考虑</td><td>—</td></tr><tr><td>10/31</td><td>XTrader猫姐美股</td><td>触发 等再跌一段、结构走稳后再加仓</td><td>—</td></tr><tr><td>11/2</td><td>XTrader猫姐美股</td><td>支撑 其周末复盘视频给出的 SPY 关键防守线（本帖未重复标注数值，具体数值见周末视频观点）<br>触发 防守线得失为当日多空分水岭：守住看多方延续，失守警惕更大 sell off</td><td>—</td></tr><tr><td>11/2</td><td>美投侃新闻</td><td>触发 谨慎转乐观，但不追高、等好于预期的催化</td><td><a href="https://www.youtube.com/watch?v=Rsp8_8qltZ4&amp;t=276s" class="tslink">4:36</a></td></tr><tr><td>11/2</td><td>视野环球财经</td><td>触发 维持既定纪律：压路机前捡钱不好捡，选股避开CDS超<b class="num">200</b>、市价超一年前瞻估值的标的</td><td><a href="https://www.youtube.com/watch?v=qcdt6yQKt_4&amp;t=1936s" class="tslink">32:16</a></td></tr><tr><td>11/2</td><td>阳光财经</td><td>支撑 <b class="num">7200</b>（大幅下跌情形下的悲观预期止跌位，指数口径）<br>阻力 <b class="num">5</b>日均线（反弹受阻位）<br>触发 急跌至<b class="num">7200</b>一线观察企稳信号；收复半年线前不抢反弹</td><td><a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=27s" class="tslink">0:27</a></td></tr>
-  </table>
+  </table></div>
 </div>
 
 <div class="sec">

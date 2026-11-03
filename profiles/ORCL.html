@@ -77,9 +77,11 @@
   .lvg{margin-bottom:10px;}
   .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
   .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
-  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
   td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
@@ -126,15 +128,15 @@
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
   <div class="lvg"><div class="lvg-h">🔺 压力位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>美投侃新闻</td><td>10/30</td><td>甲骨文的长端更是高到<b class="num">1.95</b>个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力 <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1140s" class="tslink">⏱19:00</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>视野环球财经</td><td>11/2</td><td><b class="num">170</b>（大幅上涨行情需先突破的位置，现价<b class="num">119</b>距其约<b class="num">60</b>点） <a href="https://www.youtube.com/watch?v=qcdt6yQKt_4&amp;t=557s" class="tslink">⏱9:17</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
-        </table></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>阳光财经</td><td>11/2</td><td><b class="num">114</b>（失守则看<b class="num">100</b>下方） <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=409s" class="tslink">⏱6:49</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
-        </table></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>NaNa说美股</td><td>11/2</td><td>信用风险出清前回避 <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=448s" class="tslink">⏱7:28</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>视野环球财经</td><td>11/2</td><td>上方突破<b class="num">170</b>才算走出压缩区；下方需先解决信贷/回款担忧再谈估值修复 <a href="https://www.youtube.com/watch?v=qcdt6yQKt_4&amp;t=557s" class="tslink">⏱9:17</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>阳光财经</td><td>11/2</td><td>跌破<b class="num">114</b>→回避破位加速风险 <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=409s" class="tslink">⏱6:49</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
-        </table></div>
+        </table></div></div>
 </div>
 
 <div class="sec">
@@ -192,10 +194,11 @@
 
 <div class="sec">
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
-  <table>
+  <div class="tbl-wrap"><table>
+    <colgroup><col style="width:20%"><col style="width:23%"><col style="width:45%"><col style="width:12%"></colgroup>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
     <tr><td>10/28</td><td>NaNa说美股</td><td>目标 <b class="num">170</b>（短期）<br>目标 投资者日公布<b class="num">2030</b>财年财务目标：<b class="num">2028</b>财年下半年实现正自由现金流，<b class="num">2029</b>财年FCF至少<b class="num">300</b>亿美元，资本支出<b class="num">202</b><br>支撑 承诺<b class="num">2030</b>财年前额外融资限制在<b class="num">200</b>亿以内（股权<b class="num">100</b>亿+债务<b class="num">100</b>亿），<b class="num">2029</b>财年起靠自有资金支撑增长</td><td><a href="https://www.youtube.com/watch?v=pslPykhJoh0&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td>10/28</td><td>老李玩钱</td><td>支撑 <b class="num">130</b> / <b class="num">115</b></td><td><a href="https://www.youtube.com/watch?v=oGE0jMTHpvg&amp;t=108s" class="tslink">1:48</a></td></tr><tr><td>10/30</td><td>美投侃新闻</td><td>阻力 甲骨文的长端更是高到<b class="num">1.95</b>个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力</td><td><a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1140s" class="tslink">19:00</a></td></tr><tr><td>11/2</td><td>NaNa说美股</td><td>触发 信用风险出清前回避</td><td><a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=448s" class="tslink">7:28</a></td></tr><tr><td>11/2</td><td>视野环球财经</td><td>阻力 <b class="num">170</b>（大幅上涨行情需先突破的位置，现价<b class="num">119</b>距其约<b class="num">60</b>点）<br>触发 上方突破<b class="num">170</b>才算走出压缩区；下方需先解决信贷/回款担忧再谈估值修复</td><td><a href="https://www.youtube.com/watch?v=qcdt6yQKt_4&amp;t=557s" class="tslink">9:17</a></td></tr><tr><td>11/2</td><td>阳光财经</td><td>支撑 <b class="num">114</b>（失守则看<b class="num">100</b>下方）<br>触发 跌破<b class="num">114</b>→回避破位加速风险</td><td><a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=409s" class="tslink">6:49</a></td></tr>
-  </table>
+  </table></div>
 </div>
 
 <div class="sec">

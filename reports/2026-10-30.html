@@ -92,9 +92,12 @@
   .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
   .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
   .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
-  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器，
+     杜绝手机端内容把表格撑出卡片边框（此前「关键价位一览」时间列溢出即此问题） */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
   tr:last-child td{border-bottom:none;}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   .tk{color:var(--muted-2);font-size:11.5px;font-weight:400;}
@@ -164,7 +167,7 @@
         <div class="op">
     <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-flat">中性/观望·短期</span></div>
-    <div class="op-lv"><span class="lv lv-e">买点 <b class="num">610</b>附近（极限回撤/上车区间）</span></div>
+    <div class="op-lv"><span class="lv lv-e">买点 <b class="num">610</b>附近（极限回撤/上车区间）</span><span class="lv lv-s">支撑 跌破<b class="num">696</b>强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨</span></div>
     <div class="op-d">跌破696强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨。200日均约678-679是量化重要触发位置需重点观察；下方极限回撤看610附近（再跌约10%），对做QQQ指数的人来说这是每年靠大跌一两波赚超额收益的上车机会。</div>
     <div class="op-q">「从现在开始往下10个点，跌10%一直到下方大概610左右，这是做指数QQQ的朋友要注意的上车机会」</div>
     <div class="op-tag"><b>催化：</b>200日均678-679关键支撑<br><b>风险：</b>两院横扫对AI情绪利空、信贷紧张进一步升级</div>
@@ -206,7 +209,7 @@
   </div><div class="op">
     <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/30</span></span>
     <span class="st c-down">看空/回避·中期</span></div>
-    <div class="op-lv"><span class="lv lv-s">支撑 中心带下方（数月不创新高）</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 中心带下方（数月不创新高）</span><span class="lv lv-s">支撑 周五跌破<b class="num">200</b>日均线但触及支撑，日线超卖+RSI底背离（价格新低、RSI抬升），有反弹可能，但周线是lower high</span></div>
     <div class="op-d">SMH月度跌14.2%，与必需消费XLP走势完全相反——XLP突破新高、SMH跌破支撑。周五跌破200日均线但触及支撑，日线超卖+RSI底背离（价格新低、RSI抬升），有反弹可能，但周线是lower high、跌破上行RSI趋势线，若跌破中心带则进入横盘期、半导体数月甚至到明年中后期都难创新高。历史看半导体从20%+回撤到新高的时间约230天（Benner周期测算），最早明年2-3月恢复、最晚拖到明年中后。博主的周五剧烈抛售通常不意味着压力结束。</div>
     <div class="op-q">「我们可能要好几个月都看不到半导体创出历史新高，甚至可能拖到明年年中甚至年底」</div>
     <div class="op-tag"><b>催化：</b>日线超卖+RSI底背离、触及200日均线支撑<br><b>风险：</b>周线lower high、跌破中心带进入横盘、信用风险压制</div>
@@ -215,7 +218,7 @@
   </div><div class="op">
     <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/30</span></span>
     <span class="st c-up">看多/买入·短期</span></div>
-    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">10000</b>（强支撑）</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">10000</b>（强支撑）</span><span class="lv lv-s">支撑 从高点拉黄金分割，<b class="num">1</b>万点有多重支撑：整数关+年线位+<b class="num">0.382</b>分位</span><span class="lv lv-s">支撑 今天收在<b class="num">10688</b>点，下方支撑力度应该有，短线下跌后反弹也就在路上了</span></div>
     <div class="op-d">要看AI行情是否还有梅开二度的机会就看费城半导体指数。费半在二季度迅速翻倍涨幅极大，三季度以来显著调整，今天又大跌，但距离250日长期均线不远，调整有可能接近尾声。从高点拉黄金分割，1万点有多重支撑：整数关+年线位+0.382分位。今天收在10688点，下方支撑力度应该有，短线下跌后反弹也就在路上了。</div>
     <div class="op-q">「1万点有多重支撑：万点有整数关，也有年线位，还有黄金分割0.382分位……短线下跌以后，反弹也就在路上了」</div>
     <div class="op-tag"><b>催化：</b>250日均线支撑、1万点多重支撑<br><b>风险：</b>若跌破1万点则趋势进一步恶化</div>
@@ -230,7 +233,7 @@
         <div class="op">
     <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·10/30</span></span>
     <span class="st c-up">看多/买入·长期</span></div>
-    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">270-275</b></span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">270-275</b></span><span class="lv lv-e">买点 博主认为这是「早来的圣诞礼物」，应在<b class="num">12-24</b>个月内市场转为庆祝前逢跌买入</span><span class="lv lv-s">支撑 技术面：跌破<b class="num">200</b>日均线，<b class="num">270-275</b>是关键支撑（<b class="num">2026</b>年低点），跌破则进入未知区域</span></div>
     <div class="op-d">本周暴跌12.6%是市场误解。核心亮点是谷歌云+100%（152亿→307亿）、营业利润36亿→111亿，若延续增速可能超越广告业务。真正被华尔街忽略的是「隐形库存」：9月30日库存超110亿美元（12月仅24亿），是TPU备货（为Anthropic等客户），因客户需IPO/融资/数据中心建成才能买，这些库存将比「建数据中心按小时出租」更快转化为营收利润。现金流担忧被夸大：资本开支大部分投向+100%增长的云业务。博主认为这是「早来的圣诞礼物」，应在12-24个月内市场转为庆祝前逢跌买入。技术面：跌破200日均线，270-275是关键支撑（2026年低点），跌破则进入未知区域。</div>
     <div class="op-q">「把这次下跌当作早来的圣诞礼物，这些公司在投资正在印钱、印利润的基础设施」</div>
     <div class="op-tag"><b>催化：</b>谷歌云+100%、营业利润111亿、110亿TPU库存将转化为营收、云业务或超越广告<br><b>风险：</b>现金流转负、跌破270-275支撑风险</div>
@@ -350,7 +353,7 @@
   </div><div class="op">
     <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-flat">中性/持有·长期</span></div>
-    
+    <div class="op-lv"><span class="lv lv-e">买点 博主<b class="num">2025</b>年<b class="num">4</b>月加仓后高位再未加仓，属于低位建仓的利润回吐</span></div>
     <div class="op-d">信贷质量没有微软那么高，但相对仍是低风险梯队，10月跌10%只是吃掉8-9月部分涨幅，未出现崩溃式下跌。博主2025年4月加仓后高位再未加仓，属于低位建仓的利润回吐。11月财报是整个半导体情绪与AI资本开支预期的关键节点。</div>
     <div class="op-q">「英伟达的信贷质量就没有微软那么高，但是相对来讲仍旧是低风险梯队，它在10月份跌了10个点，也只是把9月份和8月份的部分涨幅吃掉」</div>
     <div class="op-tag"><b>催化：</b>11月财报是AI资本开支关键信号<br><b>风险：</b>AI投资回报担忧、费半破位拖累情绪</div>
@@ -383,7 +386,7 @@
         <div class="op">
     <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-up">看多/增持·长期</span></div>
-    
+    <div class="op-lv"><span class="lv lv-e">买点 博主<b class="num">2025</b>年就曾减仓、更早建仓，本月跌<b class="num">10</b>%只是吃掉<b class="num">6</b>月以来涨幅，持仓成本低</span></div>
     <div class="op-d">博主2025年就曾减仓、更早建仓，本月跌10%只是吃掉6月以来涨幅，持仓成本低。明确表示「再跌一跌准备加仓」，是博主下一批加仓的首选标的。</div>
     <div class="op-q">「台积电我更早就加仓了……再跌一跌，我准备要加仓了」</div>
     <div class="op-tag"><b>催化：</b>低位加仓计划<br><b>风险：</b>半导体板块整体破位、费半/纳指双双破位</div>
@@ -398,7 +401,7 @@
         <div class="op">
     <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·10/30</span></span>
     <span class="st c-flat">中性偏多/持有·中期</span></div>
-    <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（需突破）</span><span class="lv lv-s">支撑 <b class="num">400</b>区间（收购支撑）</span></div>
+    <div class="op-lv"><span class="lv">目标 <b class="num">450</b>（需突破）</span><span class="lv lv-s">支撑 <b class="num">400</b>区间（收购支撑）</span><span class="lv lv-r">阻力 技术面：收于所有均线上方、站上<b class="num">200</b>日均线，但仍处<b class="num">2025</b>年高点以来的下降结构（lower highs/lower lo</span></div>
     <div class="op-d">本周涨超7%至372（几乎无新闻）。核心是SpaceX收购的「隐形买盘」——特斯拉下跌会降低SpaceX收购价，所以存在隐形需求支撑，使特斯拉停留在400区间。马斯克可能以420.69价格收购特斯拉（并入SpaceX）。技术面：收于所有均线上方、站上200日均线，但仍处2025年高点以来的下降结构（lower highs/lower lows），需突破450确认。</div>
     <div class="op-q">「如果特斯拉下跌，就会降低SpaceX收购需要支付的价格，所以股票下方有隐形需求」</div>
     <div class="op-tag"><b>催化：</b>SpaceX收购隐形买盘、收于所有均线上方<br><b>风险：</b>仍处下降结构、需突破450</div>
@@ -407,7 +410,7 @@
   </div><div class="op">
     <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/30</span></span>
     <span class="st c-up">看多/持有·长期</span></div>
-    
+    <div class="op-lv"><span class="lv lv-e">买点 博主加仓时间最早（<b class="num">100</b>多美元时），<b class="num">200</b>美元以上即不再加仓</span></div>
     <div class="op-d">博主加仓时间最早（100多美元时），200美元以上即不再加仓。本月月线级别逆势上涨12%，是其持仓中表现最强者之一，验证了「低位建仓、不追高」的纪律。</div>
     <div class="op-q">「特斯拉更不用说了，加仓时间更早了，100多块钱的时候……现在月线级别这个月还涨了12个点」</div>
     
@@ -451,7 +454,8 @@
   <div class="op"><div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性</span></div><div class="op-d">四大指数10月收官遭遇重挫：纳指100大跌3.4%，费城半导体跌近8%，双双破位；标普相对抗跌（228涨275跌），消费与能源板块成为资金避风港（消费品+1.41%，布伦特原油突破110美元）。美联储三位官员（洛根、穆萨勒姆、巴尔金）释放鹰派信号。博主核心判断：这一轮下跌是「信贷问题」而非「需求问题」或「AI证伪」——高质量借款人融资依旧通畅（微软250亿债券认购4.6倍），市场只是对高风险的AI数据中心信贷说不。</div></div><div class="op"><div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">偏空</span></div><div class="op-d">亚马逊与英特尔财报加剧AI支出担忧，三大股指集体收跌：纳指100重挫3.46%（盘中一度跌近4.5%），标普500跌1.82%并跌破7600点支撑，道指跌1.09%。信息科技板块独自拖累大盘，其余5个板块反而上涨。费城半导体指数暴跌7.2%（最深9.3%），6月5日以来第二大单日跌幅。</div></div><div class="op"><div class="op-h"><span class="op-c">阳光财经</span><span class="st down">偏空</span></div><div class="op-d">标普跌140.32点（约1.82%），开盘跳空下跌后很快跌破半年线；纳指跌747.73点（2.86%），跳空缺口达380点，跌破此前三个月打造的平台，属跳空加破位的强烈看空信号。好在收盘前一小时拉出下影线，暂时打消天天暴跌的恐慌预期。下跌集中在半导体（-6%以上）、计算机硬件（-9%以上）、国防航天；上涨的是医药、农业、零售等防御板块。</div></div><div class="op"><div class="op-h"><span class="op-c">美投侃新闻</span><span class="st down">偏空</span></div><div class="op-d">美股全线走低，纳指创6月以来最差单日表现、年内第二差。AI交易是最大拖累，半导体/存储/小云全线大跌（半导体ETF SOXX跌8.2%），VIX大涨12.9%。其他资产：黄金跌3.3%创6月以来最差，白银跌5.8%，比特币期货跌5.2%（受币安被盗影响），WTI原油涨2.1%。美银首席策略师Heartnet判断「AI与债券市场矛盾激化」：云大厂资本开支到2027年预计冲1.2万亿美元（2年前的5倍），自由现金流由正转负至-1800亿美元，缺口只能靠借，2024年仅发债170亿、今年已1820亿+890亿新股，大规模回购时代宣告终结。分析师Justin则强调「分子端AI变现更重要」，收益率回落甚至降息对AI的帮助可能只是短暂的。</div></div><div class="op"><div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性</span></div><div class="op-d">美股普遍收跌，但市场广度明显偏正面（等权跑赢市值约150个基点）。AI概念股走弱、存储半导体回吐部分涨幅、软件承压、大科技多数下跌（谷歌领跌，Meta苹果收涨）。其他资产：美债全线走强（各期限收益率下行5-10个基点、曲线陡峭化），美元/黄金/比特币小幅下跌，白银跌2.4%，WTI原油跌0.8%。核心矛盾：9月PCE显示通胀有向服务业扩散迹象（剔住房服务价格同比升至2024年12月以来最高），三季度GDP年化增3.4%强劲但依赖AI投资（设备投资+20.9%、知识产权+8.4%），美联储陷入「压通胀 vs 保增长」两难。</div></div><div class="op"><div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">看空</span></div><div class="op-d">月度/周度复盘。本周标普500跌约0.7%、纳指跌约2.1%，周五是标普自6月以来最差单日。10月科技与通信服务板块是唯一下跌板块（DRAM月度跌20.5%、SMH跌14.2%、XLK跌8.3%、XLC跌约10%），而防御板块大涨（XLP+10.9%、XOP+13.6%、XLE+13.9%、医疗创历史新高、房地产回暖）。核心主线是「资金从成长股轮动到价值股」——周四标普500中400多只个股上涨但指数收跌，市场宽度扩张与指数背离，博主查Bloomberg 1996年以来数据称这种背离「历史上从未发生」。对冲基金（高盛主经纪商数据）月中抛售的AI股票已抹平2025年初以来全部净买入，但仍保留20-30% AI敞口。核心驱动是信用风险：AI投资从现金流融资转向举债融资（谷歌发债287亿、亚马逊长期债务481亿、微软发债250亿、博通担保Anthropic 630亿芯片融资），CDS违约互换价格飙升（英伟达/Meta/亚马逊/谷歌CDS上升，甲骨文最高约271基点），垃圾债利差从9月中旬270基点升至338基点，CCC债券收益率逼近15.7%，Blue Owl限制两只私募信贷基金赎回。博主判断市场在问三个问题：谁为扩张买单、增速放缓时估值是否合理、AI正在把谁挤出市场。</div></div><div class="op"><div class="op-h"><span class="op-c">The Investor Channel</span><span class="st flat">中性</span></div><div class="op-d">周五（10月30日）财报周复盘。本周科技巨头遭重创：微软、谷歌、亚马逊财报出炉，谷歌迎来史上最差周之一（单日暴跌12%、市值蒸发近5000亿，史上最大单日市值损失），亚马逊紧随其后（营收2020亿/EPS双miss、盘后一度跌7%但收盘反弹至240）。核心驱动是AI资本开支的「循环融资」——英伟达投Meta 30亿、Meta发债950亿、AMD投Meta超10亿，资金在科技巨头间循环。博主观点偏乐观：市场对AI资本开支的担忧是误解，谷歌11亿库存（TPU备货）将快速转化为营收，谷歌云+100%到307亿、营业利润从36亿到111亿，是「早来的圣诞礼物」，应逢跌买入。技术面逐一点评Mag7。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st down">偏空</span></div><div class="op-d">猫姐盘中提示 NOW 当日大跌并破坏周线结构，明确表示不会在此位置急着抄底，要等几天市场共识形成后再看；下方至少 111 一线必须稳住。同时回顾上周五 YouTube 公开复盘已提示该股触及阻力位，俱乐部有成员在 155 出掉。</div></div>
 </div>
 
-<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><table>
+<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:36%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup>
       <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
       <tr><td>亚马逊 <span class="tk">AMZN</span></td>
         <td style="text-align:center">6</td>
@@ -478,7 +482,7 @@
         <td style="text-align:center" class="c-up">0</td>
         <td style="text-align:center" class="c-down">1</td>
         <td style="text-align:right" class="down">偏空</td></tr>
-    </table></div>
+    </table></div></div>
 
 <div class="sec" id="s4">
   <div class="sec-h">🎬 四、各博主视频要点</div>
@@ -541,14 +545,15 @@
       </div>
 </div>
 
-<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><table>
+<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:26%"><col style="width:19%"><col style="width:41%"><col style="width:14%"></colgroup>
       <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
       <tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
           <td>The Investor Channel</td>
-          <td>支撑 <b class="num">270-275</b></td>
+          <td>支撑 <b class="num">270-275</b><br>买点 博主认为这是「早来的圣诞礼物」，应在<b class="num">12-24</b>个月内市场转为庆祝前逢跌买入<br>支撑 技术面：跌破<b class="num">200</b>日均线，<b class="num">270-275</b>是关键支撑（<b class="num">2026</b>年低点），跌破则进入未知区域</td>
           <td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=760s" class="tslink">12:40</a></td></tr><tr><td><b>亚马逊</b> <span class="tk">AMZN</span></td>
           <td>The Investor Channel</td>
-          <td>支撑 低<b class="num">200</b>（支撑）</td>
+          <td>支撑 低<b class="num">200</b>（支撑）<br>支撑 技术面：暴跌至<b class="num">230</b>后收盘反弹至<b class="num">240</b>（<b class="num">200</b>日均线<b class="num">245</b>下方），低<b class="num">200</b>有充足支撑，仍是higher highs/hi</td>
           <td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">9:10</a></td></tr><tr><td><b>微软</b>⭐ <span class="tk">MSFT</span></td>
           <td>The Investor Channel</td>
           <td>目标 <b class="num">550</b>（历史新高区间）</td>
@@ -557,40 +562,40 @@
           <td>目标 <b class="num">205</b>（<b class="num">200</b>日均线）</td>
           <td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1580s" class="tslink">26:20</a></td></tr><tr><td><b>特斯拉</b>⭐ <span class="tk">TSLA</span></td>
           <td>The Investor Channel</td>
-          <td>目标 <b class="num">450</b>（需突破）<br>支撑 <b class="num">400</b>区间（收购支撑）</td>
+          <td>目标 <b class="num">450</b>（需突破）<br>支撑 <b class="num">400</b>区间（收购支撑）<br>阻力 技术面：收于所有均线上方、站上<b class="num">200</b>日均线，但仍处<b class="num">2025</b>年高点以来的下降结构（lower highs/lower lo</td>
           <td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1280s" class="tslink">21:20</a></td></tr><tr><td><b>SpaceX</b> <span class="tk">SPACEX</span></td>
           <td>The Investor Channel</td>
           <td>支撑 <b class="num">120</b>（下方买盘区）<br>支撑 <b class="num">140</b>（支撑跌破）</td>
           <td><a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=1740s" class="tslink">29:00</a></td></tr><tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
           <td>视野环球财经</td>
-          <td></td>
+          <td>买点 博主<b class="num">2025</b>年<b class="num">4</b>月加仓后高位再未加仓，属于低位建仓的利润回吐</td>
           <td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=360s" class="tslink">6:00</a></td></tr><tr><td><b>台积电</b>⭐ <span class="tk">TSM</span></td>
           <td>视野环球财经</td>
-          <td></td>
+          <td>买点 博主<b class="num">2025</b>年就曾减仓、更早建仓，本月跌<b class="num">10</b>%只是吃掉<b class="num">6</b>月以来涨幅，持仓成本低</td>
           <td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1560s" class="tslink">26:00</a></td></tr><tr><td><b>特斯拉</b>⭐ <span class="tk">TSLA</span></td>
           <td>视野环球财经</td>
-          <td></td>
+          <td>买点 博主加仓时间最早（<b class="num">100</b>多美元时），<b class="num">200</b>美元以上即不再加仓</td>
           <td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=620s" class="tslink">10:20</a></td></tr><tr><td><b>NuScale</b> <span class="tk">SMR</span></td>
           <td>视野环球财经</td>
-          <td></td>
+          <td>买点 博主今年<b class="num">7</b>月在<b class="num">300</b>多元位置建仓，未追高，属于低位布局的持仓展示案例</td>
           <td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=480s" class="tslink">8:00</a></td></tr><tr><td><b>旅行者集团</b> <span class="tk">TRV</span></td>
           <td>视野环球财经</td>
-          <td></td>
+          <td>买点 博主建仓多年，成本仅<b class="num">100</b>多-<b class="num">160</b>多美元，现已翻倍接近<b class="num">3</b>倍</td>
           <td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=540s" class="tslink">9:00</a></td></tr><tr><td><b>英特尔</b> <span class="tk">INTC</span></td>
           <td>视野环球财经</td>
-          <td></td>
+          <td>买点 股价从高点<b class="num">142</b>腰斩还拐弯，作为反面教材：高位（<b class="num">100</b>多美元）买入的人是因为把未来两三年的增长想成线性、无风险，忽略了潜</td>
           <td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=900s" class="tslink">15:00</a></td></tr><tr><td><b>纳指100ETF</b>⭐ <span class="tk">QQQ</span></td>
           <td>视野环球财经</td>
-          <td>买点 <b class="num">610</b>附近（极限回撤/上车区间）</td>
+          <td>买点 <b class="num">610</b>附近（极限回撤/上车区间）<br>支撑 跌破<b class="num">696</b>强支撑、收盘创新低，技术面偏空，反弹应「对待」而非追涨</td>
           <td><a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1380s" class="tslink">23:00</a></td></tr><tr><td><b>亚马逊</b> <span class="tk">AMZN</span></td>
           <td>美投侃新闻</td>
-          <td></td>
+          <td>阻力 分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来<b class="num">5</b>年现金流偿还，能省眼前现金流并缓解评级压力</td>
           <td><a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=480s" class="tslink">8:00</a></td></tr><tr><td><b>黄金ETF</b> <span class="tk">GLD</span></td>
           <td>美投侃新闻</td>
-          <td></td>
+          <td>支撑 黄金跌至一年低点<b class="num">3876</b>美元、<b class="num">10</b>月累跌超<b class="num">6</b>%（<b class="num">2008</b>年以来最差<b class="num">10</b>月），但Jason认为在科技股下跌+通胀上升+美元</td>
           <td><a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=1080s" class="tslink">18:00</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SMH</span></td>
           <td>The Trading Apologist</td>
-          <td>支撑 中心带下方（数月不创新高）</td>
+          <td>支撑 中心带下方（数月不创新高）<br>支撑 周五跌破<b class="num">200</b>日均线但触及支撑，日线超卖+RSI底背离（价格新低、RSI抬升），有反弹可能，但周线是lower high</td>
           <td><a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=710s" class="tslink">11:50</a></td></tr><tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
           <td>The Trading Apologist</td>
           <td>支撑 <b class="num">240-250</b>（黄金口袋支撑）<br>目标 <b class="num">200-250</b>（未来数月）</td>
@@ -605,19 +610,19 @@
           <td>支撑 <b class="num">70-80</b>（第一支撑）<br>支撑 <b class="num">50-60</b>（下一支撑）</td>
           <td><a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2720s" class="tslink">45:20</a></td></tr><tr><td><b>甲骨文</b> <span class="tk">ORCL</span></td>
           <td>美投侃新闻</td>
-          <td></td>
+          <td>阻力 甲骨文的长端更是高到<b class="num">1.95</b>个百分点……对甲骨文这类利差更高、负债更重的公司来说，利差走阔就是利息和估值的双重压力</td>
           <td><a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=1140s" class="tslink">19:00</a></td></tr><tr><td><b>AMD</b> <span class="tk">AMD</span></td>
           <td>阳光财经</td>
-          <td></td>
+          <td>目标 苏妈完成了<b class="num">600</b>美元目标价的梦想、<b class="num">1</b>万亿市值给她看了一眼，但博主认为苏妈要的是持续<b class="num">1</b>万亿而不是曾经有过</td>
           <td><a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=840s" class="tslink">14:00</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SOXX</span></td>
           <td>阳光财经</td>
-          <td>支撑 <b class="num">10000</b>（强支撑）</td>
+          <td>支撑 <b class="num">10000</b>（强支撑）<br>支撑 从高点拉黄金分割，<b class="num">1</b>万点有多重支撑：整数关+年线位+<b class="num">0.382</b>分位<br>支撑 今天收在<b class="num">10688</b>点，下方支撑力度应该有，短线下跌后反弹也就在路上了</td>
           <td><a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=660s" class="tslink">11:00</a></td></tr><tr><td><b>ServiceNow</b> <span class="tk">NOW</span></td>
           <td>XTrader猫姐美股</td>
           <td>支撑 <b class="num">111</b><br>阻力 <b class="num">155</b><br>触发 等几天市场共识出来后再考虑是否介入；<b class="num">111</b> 需稳住</td>
           <td>—</td></tr><tr><td><b>英特尔</b> <span class="tk">INTC</span></td>
           <td>NaNa说美股</td>
-          <td>目标 <b class="num">55</b>（下行目标）</td>
+          <td>目标 <b class="num">55</b>（下行目标）<br>触发 盘中狂泻<b class="num">31</b>%创有记录以来最大单日跌幅，跳空低开直接跌破<b class="num">4</b>月<b class="num">24</b>日缺口且完全不做抵抗，说明不只是情绪而是基本面出了大问题</td>
           <td><a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=120s" class="tslink">2:00</a></td></tr><tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
           <td>NaNa说美股</td>
           <td></td>
@@ -628,7 +633,7 @@
           <td>NaNa说美股</td>
           <td>触发 <b class="num">25-30</b>（抄底触发区间）</td>
           <td><a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=600s" class="tslink">10:00</a></td></tr>
-    </table></div>
+    </table></div></div>
 
 <div class="sec" id="s6"><div class="sec-h">⚠️ 六、分歧标的</div><div class="ch"><div class="ch-name">谷歌 <span class="tk">GOOGL</span></div>
       <div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">The Investor Channel<span class="op-date">·10/30</span></span></div><div class="op-d">本周暴跌12.6%是市场误解。核心亮点是谷歌云+100%（152亿→307亿）、营业利润36亿→111亿，若延续增速可能超越广告业务。真正被华尔街忽略的是「隐形库存」：9月30日库存超110亿美元（12月仅24亿），是TPU备货（为Anthropic等客户），因客户需IPO/融资/数据中心建成才能买，这些库存将比「建数据中心按小时出租」更快转化为营收利润。现金流担忧被夸大：资本开支大部分投向+100%增长的云业务。博主认为这是「早来的圣诞礼物」，应在12-24个月内市场转为庆祝前逢跌买入。技术面：跌破200日均线，270-275是关键支撑（2026年低点），跌破则进入未知区域。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span></div><div class="op-d">回撤最大，股价回到3月份价格。AI营收快速增长且超预期，但自有业务（尤其广告）略有疲软。博主认为一个季度的广告疲软说明不了问题，需等四季度财报确认是偶发性还是趋势性——若连续变差则是趋势性改变，基本面需重新计价。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span></div><div class="op-d">本周跌12.6%为科技巨头跌幅最大，AI对搜索业务的冲击拖累业绩。核心业务（搜索/广告）开始放缓，而这本是支撑AI投资的基础。未来支出承诺超1万亿美元（一年前近8倍）。作为AI变现存疑的代表性标的受压。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">The Trading Apologist<span class="op-date">·10/30</span></span></div><div class="op-d">创历史最大单日跌幅12%+（此前纪录11.6%在2020年3月），市值蒸发约5000亿。但基本面其实不差：营收+25%、云+103%至307亿、云积压订单5610亿。真正的问题是广告——广告收入+10.6%（Meta+26%）、搜索增速17%→12%、YouTube 13%→9%，AI模式变现低于传统搜索，管理层承认AI搜索导流少。EPS 2.12 vs 预期3.01，其中0.55是SpaceX账面亏损，剔除后约2.67仍miss（利息支出高+股数增加）。自由现金流连续两季为负(-91亿)、回购从398亿降至0、长期债务从465亿增至1251亿、2026资本开支1950-2050亿且2027显著增加。博主不悲观但看更低：未来数月见200-250美元不奇怪，240-250黄金口袋是支撑，300附近有反弹压力（lower high）。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span></div><div class="op-d">当日领跌大科技。8月6日完成250亿发债后，这是首家顶级云厂商再次发债，其40年期利差指引约+1.55个百分点。作为发债认购热度的参照（8月美元债仍拿4.6倍认购）。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">阳光财经<span class="op-date">·10/30</span></span></div><div class="op-d">昨天爆雷今天只是余震，小跌1%。博主持有该股，之前赚三万多现在剩两万多营利没拿，属于获利回吐而非亏损。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">NaNa说美股<span class="op-date">·10/30</span></span></div><div class="op-d">搜索广告增速放缓，AI对其搜索广告业务是挖根基级别的威胁；烧钱搞AI导致现金流为负且明年还要加大资本支出。去年涨66%、今年借巴菲特买入消息拉高，爬得高跌得重，目前完全没有买盘托底，续跌1.4%。市场认为谷歌的问题比亚马逊更严重。</div></div>

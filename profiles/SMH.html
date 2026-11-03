@@ -77,9 +77,11 @@
   .lvg{margin-bottom:10px;}
   .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
   .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
-  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   tr:last-child td{border-bottom:none;}
   td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
@@ -126,15 +128,15 @@
 <div class="sec">
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
   <div class="lvg"><div class="lvg-h">🟢 支撑位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>The Trading Apologist</td><td>10/30</td><td>中心带下方（数月不创新高） <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=710s" class="tslink">⏱11:50</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>The Trading Apologist</td><td>10/30</td><td>周五跌破<b class="num">200</b>日均线但触及支撑，日线超卖+RSI底背离（价格新低、RSI抬升），有反弹可能，但周线是lower high <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=710s" class="tslink">⏱11:50</a></td><td class="vfy vfy-ok" title="守住 200（已过 1/5 日）">✅</td></tr><tr><td>阳光财经</td><td>10/30</td><td><b class="num">10000</b>（强支撑） <a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=660s" class="tslink">⏱11:00</a></td><td class="vfy vfy-bad" title="跌破 10000，最低 506.440002">❌</td></tr><tr><td>阳光财经</td><td>10/30</td><td>从高点拉黄金分割，<b class="num">1</b>万点有多重支撑：整数关+年线位+<b class="num">0.382</b>分位 <a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=660s" class="tslink">⏱11:00</a></td><td class="vfy vfy-ok" title="守住 1（已过 1/5 日）">✅</td></tr><tr><td>阳光财经</td><td>10/30</td><td>今天收在<b class="num">10688</b>点，下方支撑力度应该有，短线下跌后反弹也就在路上了 <a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=660s" class="tslink">⏱11:00</a></td><td class="vfy vfy-bad" title="跌破 10688，最低 506.440002">❌</td></tr><tr><td>NaNa说美股</td><td>11/2</td><td><b class="num">10000</b>（SOX整数关口，正在逼近） <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=225s" class="tslink">⏱3:45</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>阳光财经</td><td>11/2</td><td><b class="num">10000</b>（与<b class="num">250</b>日线、回调分割位重叠） <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=389s" class="tslink">⏱6:29</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>阳光财经</td><td>11/2</td><td>费半指数如果在<b class="num">1</b>万点获得支撑，并开启反弹那也不意外 <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=389s" class="tslink">⏱6:29</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
-        </table></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>阳光财经</td><td>11/2</td><td><b class="num">10000</b>一线止跌信号出现后分批 <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=389s" class="tslink">⏱6:29</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
-        </table></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
-          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>XTrader猫姐美股</td><td>10/31</td><td>等波动收敛、结构重新走好后再考虑</td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>XTrader猫姐美股</td><td>10/31</td><td>板块整体起稳后再考虑参与；当前一律规避 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=656s" class="tslink">⏱10:56</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>NaNa说美股</td><td>11/2</td><td>观察<b class="num">10000</b>关口得失 <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=225s" class="tslink">⏱3:45</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>阳光财经</td><td>11/2</td><td>再跌约<b class="num">3</b>%到<b class="num">10000</b>附近观察放量止跌 <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=389s" class="tslink">⏱6:29</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
-        </table></div>
+        </table></div></div>
 </div>
 
 <div class="sec">
@@ -234,10 +236,11 @@
 
 <div class="sec">
   <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
-  <table>
+  <div class="tbl-wrap"><table>
+    <colgroup><col style="width:20%"><col style="width:23%"><col style="width:45%"><col style="width:12%"></colgroup>
     <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
     <tr><td>10/27</td><td>The Trading Apologist</td><td>阻力 <b class="num">55</b>（阻力）<br>目标 <b class="num">824</b>（<b class="num">100</b>%扩展目标）<br>阻力 收复跌破区、突破日线RSI下行趋势线，站回<b class="num">200</b>日均线上方</td><td><a href="https://www.youtube.com/watch?v=SUAyPFxaUI4&amp;t=880s" class="tslink">14:40</a></td></tr><tr><td>10/27</td><td>视野环球财经</td><td>目标 <b class="num">510</b>（期权压注）<br>目标 <b class="num">538</b>（反转确认位）<br>触发 <b class="num">483</b>（反包关键位）</td><td><a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1020s" class="tslink">17:00</a></td></tr><tr><td>10/29</td><td>视野环球财经</td><td>触发 <b class="num">482.8</b>（周一旗掌点，反包关键位）<br>触发 此前博主设的上下突破位<b class="num">536</b>/反包位</td><td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00</a></td></tr><tr><td>10/30</td><td>The Trading Apologist</td><td>支撑 中心带下方（数月不创新高）<br>支撑 周五跌破<b class="num">200</b>日均线但触及支撑，日线超卖+RSI底背离（价格新低、RSI抬升），有反弹可能，但周线是lower high</td><td><a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=710s" class="tslink">11:50</a></td></tr><tr><td>10/30</td><td>阳光财经</td><td>支撑 <b class="num">10000</b>（强支撑）<br>支撑 从高点拉黄金分割，<b class="num">1</b>万点有多重支撑：整数关+年线位+<b class="num">0.382</b>分位<br>支撑 今天收在<b class="num">10688</b>点，下方支撑力度应该有，短线下跌后反弹也就在路上了</td><td><a href="https://www.youtube.com/watch?v=V2l__ttBEDU&amp;t=660s" class="tslink">11:00</a></td></tr><tr><td>10/31</td><td>XTrader猫姐美股</td><td>触发 等波动收敛、结构重新走好后再考虑</td><td>—</td></tr><tr><td>10/31</td><td>XTrader猫姐美股</td><td>触发 板块整体起稳后再考虑参与；当前一律规避</td><td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=656s" class="tslink">10:56</a></td></tr><tr><td>11/2</td><td>NaNa说美股</td><td>支撑 <b class="num">10000</b>（SOX整数关口，正在逼近）<br>触发 观察<b class="num">10000</b>关口得失</td><td><a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=225s" class="tslink">3:45</a></td></tr><tr><td>11/2</td><td>阳光财经</td><td>支撑 <b class="num">10000</b>（与<b class="num">250</b>日线、回调分割位重叠）<br>买点 <b class="num">10000</b>一线止跌信号出现后分批<br>触发 再跌约<b class="num">3</b>%到<b class="num">10000</b>附近观察放量止跌<br>支撑 费半指数如果在<b class="num">1</b>万点获得支撑，并开启反弹那也不意外</td><td><a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=389s" class="tslink">6:29</a></td></tr>
-  </table>
+  </table></div>
 </div>
 
 <div class="sec">

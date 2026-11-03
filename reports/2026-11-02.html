@@ -92,9 +92,12 @@
   .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
   .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
   .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
-  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器，
+     杜绝手机端内容把表格撑出卡片边框（此前「关键价位一览」时间列溢出即此问题） */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
   tr:last-child td{border-bottom:none;}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   .tk{color:var(--muted-2);font-size:11.5px;font-weight:400;}
@@ -310,7 +313,8 @@
   <div class="op"><div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性</span></div><div class="op-d">11月首个交易日科技股大跳水：盘前油价期货大幅回落推动高开，科技股反弹仅持续一小时，10点半后被全天甩卖，纳指100从涨1.2%转为跌1.3%并收盘跌破上周五低点，云端数据中心与半导体领跌。但宽度不差：标普347家上涨/155家下跌，等权重指数上涨0.76%。导火索是甲骨文100亿债券+100亿股票融资坐实信贷担忧，数据中心CDS飙升。</div></div><div class="op"><div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">偏空</span></div><div class="op-d">三大股指分化：纳指与标普500回吐早盘涨幅转跌，仅道指逆势上涨；半导体与软件延续上周五跌势，场内资金继续从科技转向其他板块。盘前美伊外交预期升温令油价大跌、10年期美债收益率跌破5%，但VIX日内冲高至21.7，标普反弹摸到5日均线后掉头、再次跌落半年线；QQQ反抽700阻力失败后跌破上周五低点、已到年线；费城半导体指数跌3.4%逼近10000点整数关口。盘后苹果与PLTR财报。</div></div><div class="op"><div class="op-h"><span class="op-c">阳光财经</span><span class="st down">偏空</span></div><div class="op-d">标普收跌0.51%（-38.67点），小幅高开冲高至5日均线受阻回落、又无抵抗跌破半年线，已连续两天收盘低于半年线——两根连续阴线提示正在酝酿一波回调；若大幅下跌，悲观预期可在7200一线止跌企稳。纳指跌272.68点收25164，下方25000整数关与年线24700有支撑。恐慌贪婪指数读数23，已入极度恐慌区间（0-25）但距离真正的血洗（此前低点16）仍有空间。行业热力图一半红一半绿：半导体/软件/硬件/通信设备深跌，保险、互联网零售、信贷、医疗上涨。</div></div><div class="op"><div class="op-h"><span class="op-c">老李玩钱</span><span class="st flat">中性</span></div><div class="op-d">动荡的10月终于过去，今天他的账户又小跌约4000美元（-1.07%），总资产勉强守住32万美元（本金20万，10月前峰值34万，最大回撤约5%点多，靠后卫股护盘，跌幅比纳指小）。中期选举前一个月美股通常动荡、回调概率大，10月再次验证；但1950-2022年19次中期选举后12个月标普全部上涨、平均约+15%，加上11月（平均+0.97%）与12月（平均+1.31%）的季节性和感恩节-圣诞节节日行情，11月布局宜突出一个『稳』字。</div></div><div class="op"><div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性</span></div><div class="op-d">美股涨跌互现：等权指数跑赢市值加权约120基点，金融、可选消费等非科技板块上涨；但AI交易早盘反弹未能延续，存储半导体全线走弱，软件同步下跌、网络安全跌幅最大；大科技涨跌互现（亚马逊领涨、微软领跌），VIX上涨约9%重返20关口。WTI原油在美伊外交谈判消息下大跌7.4%。盘后苹果与Palantir财报重磅落地。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st flat">中性</span></div><div class="op-d">周一 SPY 与 QQQ 双双正好开盘在猫姐此前给出的关键点位上，开盘半小时多空仍在这两条线上焦灼，方向未定。她明确当天目标：多方必须守住这两条线，否则将引发更大规模的 sell off。这两条线最早于 6 月份提出，近几期周末 YouTube 公开复盘视频反复强调。</div></div>
 </div>
 
-<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><table>
+<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:36%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup>
       <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
       <tr><td>伯克希尔 <span class="tk">BRK.B</span></td>
         <td style="text-align:center">1</td>
@@ -337,7 +341,7 @@
         <td style="text-align:center" class="c-up">2</td>
         <td style="text-align:center" class="c-down">0</td>
         <td style="text-align:right" class="up">偏多</td></tr>
-    </table></div>
+    </table></div></div>
 
 <div class="sec" id="s4">
   <div class="sec-h">🎬 四、各博主视频要点</div>
@@ -386,7 +390,8 @@
       </div>
 </div>
 
-<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><table>
+<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:26%"><col style="width:19%"><col style="width:41%"><col style="width:14%"></colgroup>
       <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
       <tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
           <td>老李玩钱</td>
@@ -521,7 +526,7 @@
           <td>XTrader猫姐美股</td>
           <td>支撑 其周末复盘视频给出的 QQQ 定海神针线（本帖未重复标注数值，具体数值见周末视频观点）<br>触发 定海神针线得失为当日多空分水岭：守住看多方延续，失守警惕更大 sell off</td>
           <td>—</td></tr>
-    </table></div>
+    </table></div></div>
 
 <div class="sec" id="s6"><div class="sec-h">⚠️ 六、分歧标的</div><div class="ch"><div class="ch-name">标普500ETF <span class="tk">SPY</span></div>
       <div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">阳光财经<span class="op-date">·11/2</span></span></div><div class="op-d">冲高至5日均线受阻、无抵抗跌破半年线，连续两天收在半年线下方，两根阴线酝酿回调走势；但中期选举后一年历史上100%上涨（平均+13.7%），且货币政策与业绩才是主要矛盾，回调到悲观位反而是机会。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">视野环球财经<span class="op-date">·11/2</span></span></div><div class="op-d">标普从高点才跌10%出头，属正常回撤、合理回撤区间之内，不必当稀罕事。宽度健康（347涨/155跌、等权重+0.76%）说明非系统性崩塌；空头杠杆拥挤+11月历史最佳季节性（1950年以来平均+1.9%）提供潜在反弹燃料，但选股纪律必须先看CDS与估值。</div></div><div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">美投侃新闻<span class="op-date">·11/2</span></span></div><div class="op-d">等权跑赢市值加权120bp、非科技板块上涨说明并非系统性风险；Jason认为财报、招股书、选举、伊朗四大不确定性基本落地，情绪指标（AI泡沫指数42连续3周、偏力度指数32为4月以来最低）已到低位——坏消息出尽、悲观释放充分后，只要出现好于预期的消息（AMD/高通财报、周五非农）就可能推动反弹；方向上可从谨慎转向乐观，但短期仍可能波动、不会马上大涨。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">XTrader猫姐美股<span class="op-date">·11/2</span></span></div><div class="op-d">SPY 开盘正好落在其预设防守线上，开盘半小时多空仍在焦灼；当天多方必须守住这条线，否则将引发更大 sell off。按其体系以防守线得失定方向：守住则多头延续，失守则警惕更大跌幅。</div></div>

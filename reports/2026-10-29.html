@@ -92,9 +92,12 @@
   .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
   .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
   .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-  table{width:100%;border-collapse:collapse;font-size:13px;}
-  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
-  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器，
+     杜绝手机端内容把表格撑出卡片边框（此前「关键价位一览」时间列溢出即此问题） */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
   tr:last-child td{border-bottom:none;}
   td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
   .tk{color:var(--muted-2);font-size:11.5px;font-weight:400;}
@@ -158,7 +161,7 @@
   </div><div class="op">
     <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span>
     <span class="st c-flat">中性/观望·短期</span></div>
-    <div class="op-lv"><span class="lv">目标 <b class="num">7600</b></span><span class="lv">目标 <b class="num">7550-7500</b></span></div>
+    <div class="op-lv"><span class="lv">目标 <b class="num">7600</b></span><span class="lv">目标 <b class="num">7550-7500</b></span><span class="lv lv-s">支撑 标普<b class="num">500</b>指数关注<b class="num">7600</b>点区间支撑能不能守住，失守就看向<b class="num">7550-7500</b></span></div>
     <div class="op-d">关注7600点区间支撑能否守住，失守则看向7550-7500。</div>
     <div class="op-q">「标普500指数关注7600点区间支撑能不能守住，失守就看向7550-7500」</div>
     
@@ -182,7 +185,7 @@
   </div><div class="op">
     <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span>
     <span class="st c-down">看空/观望·短期</span></div>
-    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">700</b>（支撑）</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">700</b>（支撑）</span><span class="lv lv-t">触发 跳空低开，收盘已跌破<b class="num">5</b>日均线，日K收阴线十字星</span></div>
     <div class="op-d">跳空低开，收盘已跌破5日均线，日K收阴线十字星。谷歌财报打断科技股短期反弹节奏，原本期待亚马逊财报托市结果盘后期指直接跪了，明天大概率再次考验700附近支撑。</div>
     <div class="op-q">「明天大概率要再次考验700附近的支撑了」</div>
     <div class="op-tag"><b>风险：</b>巨头财报对指数拖累太大</div>
@@ -197,7 +200,7 @@
         <div class="op">
     <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·10/29</span></span>
     <span class="st c-flat">中性/观望·短期</span></div>
-    <div class="op-lv"><span class="lv lv-t">触发 <b class="num">482.8</b>（周一旗掌点，反包关键位）</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 <b class="num">482.8</b>（周一旗掌点，反包关键位）</span><span class="lv lv-t">触发 此前博主设的上下突破位<b class="num">536</b>/反包位</span></div>
     <div class="op-d">费半反包至10月26日旗掌点482.8附近（10月26日开盘价），相当于把这三天的增量全部吃掉。此前博主设的上下突破位536/反包位。若明天收盘低于周一开盘价则空头加码、空头胜；若收回则可能回到中心位置继续等。同样属「闹妖镜」行情，明天收盘价定方向。</div>
     <div class="op-q">「现在你能理解这个逻辑了吗？这就是当时期权的压住的情况，它是一个高波动，只不过他选择了反包下来往下走」</div>
     <div class="op-tag"><b>催化：</b>期权结算日<br><b>风险：</b>反包后空头加码、跌破周一低点则走弱</div>
@@ -230,7 +233,7 @@
   </div><div class="op">
     <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span>
     <span class="st c-down">看空/观望·中期</span></div>
-    <div class="op-lv"><span class="lv lv-e">买点 <b class="num">280</b>建底仓</span><span class="lv">目标 <b class="num">272</b>测试位</span><span class="lv lv-e">买点 <b class="num">270-250</b>分批加仓</span></div>
+    <div class="op-lv"><span class="lv lv-e">买点 <b class="num">280</b>建底仓</span><span class="lv">目标 <b class="num">272</b>测试位</span><span class="lv lv-e">买点 <b class="num">270-250</b>分批加仓</span><span class="lv lv-s">支撑 谷歌已不是现金奶牛，估值需要重新定价，后续可能继续下探<b class="num">3</b>月前低<b class="num">272</b></span></div>
     <div class="op-d">收跌12.64%创历史最大单日跌幅，高盛、摩根大通双双下调目标价。核心搜索广告增速连续两季下滑，CFO表示Q4和明年继续all in AI烧钱不能停。盘中砸到280附近多头几乎无抵抗。谷歌已不是现金奶牛，估值需要重新定价，后续可能继续下探3月前低272。</div>
     <div class="op-q">「谷歌现在已经不是那个现金奶牛了，估值需要重新定价」</div>
     <div class="op-tag"><b>催化：</b>财报后通常观察3天等抛压充分释放<br><b>风险：</b>搜索广告增速连续两季下滑、AI资本开支无上限</div>
@@ -314,7 +317,7 @@
         <div class="op">
     <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/29</span></span>
     <span class="st c-flat">中性偏空/分批买入·中期</span></div>
-    <div class="op-lv"><span class="lv">目标 <b class="num">200</b>（下偏差带目标）</span></div>
+    <div class="op-lv"><span class="lv">目标 <b class="num">200</b>（下偏差带目标）</span><span class="lv lv-s">支撑 跌破支撑（第<b class="num">4</b>次突破区间失败后跌破），目标下看<b class="num">200</b>美元（下偏差带）</span></div>
     <div class="op-d">跌破支撑（第4次突破区间失败后跌破），目标下看200美元（下偏差带）。博主已开始小幅回补英伟达仓位，计划在200附近分批加仓（layering in）。技术面处于收紧区间、可能测试区间下沿，接近200。</div>
     <div class="op-q">「英伟达正在演绎我们之前讨论的下探下偏差带200美元的剧本」</div>
     <div class="op-tag"><b>催化：</b>接近200下偏差带支撑<br><b>风险：</b>跌破支撑、科技股集中抛压</div>
@@ -329,7 +332,7 @@
         <div class="op">
     <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/29</span></span>
     <span class="st c-up">看多/持有·中期</span></div>
-    <div class="op-lv"><span class="lv lv-t">触发 <b class="num">400-405</b>（需站上）</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 <b class="num">400-405</b>（需站上）</span><span class="lv lv-s">支撑 突破后回踩，主要阻力在<b class="num">380-400</b>，博主希望<b class="num">395</b>转支撑、收盘站上<b class="num">400-405</b>（最好<b class="num">403</b>）</span></div>
     <div class="op-d">周线RSI突破，走势强于其他科技股。突破后回踩，主要阻力在380-400，博主希望395转支撑、收盘站上400-405（最好403）。日线偏延伸但周线仍非常有意思。周五虽下跌但守住200日均线、收出较强劲的K线。</div>
     <div class="op-q">「特斯拉周线RSI突破，走势比其他科技股强得多」</div>
     <div class="op-tag"><b>催化：</b>周线RSI突破、守住200日均线<br><b>风险：</b>日线偏延伸、需站上400-405</div>
@@ -346,7 +349,8 @@
   <div class="op"><div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性</span></div><div class="op-d">四大指数罗素独涨、纳指大跌，市场呈现典型「人格分裂」：科技股重挫、周期股反弹。标普市场广度良好（406涨97跌），11个板块中仅科技和通讯下跌、其余9个上涨。博主判断标普有望在中期选举后「康复出院」获得更健康广度。重点解读三家财报：英特尔（三季报不错但Q4指引炸盘）、亚马逊（广告疲软+自由现金流转负）、微软（250亿发债但获4.6倍认购，逻辑最硬）。核心关注QQQ/SOXX多空博弈：费半反包至10月26日旗掌点482.8附近，QQQ仍在696-698关键位之上未破，明天（期权结算日）收盘价将决定方向。</div></div><div class="op"><div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">偏空</span></div><div class="op-d">受谷歌财报与PCE数据升温影响三大股指全线低开集体收跌：纳指跌1.38%，标普500跌0.30%，道指仅跌0.25%（周期股支撑）。软件、硬件与互联网内容板块重挫，但其它板块走高，市场并无恐慌。盘后亚马逊闪崩12%、英特尔狂泻20%。</div></div><div class="op"><div class="op-h"><span class="op-c">阳光财经</span><span class="st down">中性偏空</span></div><div class="op-d">标普小跌23.59点(-0.3%)但收小阳线，纳指因谷歌暴跌带崩下跌365.13点，跳空下跌留缺口（博主判断非启动缺口、可回补）。宏观面：三季度GDP按年率增3.4%（超预期3.1%），9月核心PCE同比3.1%仍高于2%目标。财报季四大云巨头（微软、谷歌、Meta、亚马逊）全部出炉，自由现金流爆掉三家，仅微软现金流充裕但也发债250亿。谷歌暴跌12.64%创纪录，亚马逊盘后也暴雷（营收2019.4亿、EPS 1.89双不及预期）。英特尔盘后跌17%。博主总结AI资本支出继续推高有难度，甲骨文率先预期2029年资本支出下降。博主公开账户单日亏1.12万、净值缩水5.52%，计划减仓高通、泰瑞达、IBM收缩战线。</div></div><div class="op"><div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性</span></div><div class="op-d">周三美股收高，受财报提振海力士大涨13%带动半导体存储上涨，能源股受原油上涨（WTI+2.9%重上100美元）领涨。大型科技股多数下跌，博通最强、SpaceX最软。盘后谷歌大跌10%、微软一度涨7%。美联储按兵不动（10:2，库克、哈马克两票反对主张加息25bp），沃什强调通胀高于目标近6年、能源价格再度走高，但认为整体金融条件尚未紧缩。甲骨文投资者日更新长期指引，股价一度飙升14%。海力士财报创纪录但净利润因凯霞股权投资与汇兑损失大幅低于预期。博主（Jason）核心观点：加息对AI融资影响没有想象大（利差走阔比基准利率更重要，CoreWeave事件是鲜明代表），明年一季度美联储中高概率暂停加息；对甲骨文、谷歌、微软、海力士逐一深度分析。</div></div><div class="op"><div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">看空</span></div><div class="op-d">10月29日（周四）复盘。科技股连续第二天暴跌，谷歌昨日财报后暴跌12%（历史最大单日跌幅、市值蒸发约5000亿），今日亚马逊财报接力下跌（盘后一度跌12%、收盘反弹5.5%）。FOMC「无甚波澜」（近年最温和反应）。三星隔夜财报芯片部门106.5万亿韩元低于市场泄露的110万亿，跌5%。宏观：GDP 3.4%（预期3.2%）、核心PCE同比3.1%、整体PCE 3.6。标普跌0.3%、道指跌0.3%、纳指跌1.4%、罗素涨0.8%（小盘股跑赢）。博主判断明天（周五）开盘会很凶险，科技股与半导体短期仍会震荡承压，但其他板块有机会。强调机构在尾盘持续买入（最近5个交易日市场宽度改善），市场广度仍在扩张（RSP等权重指数抗跌）。</div></div>
 </div>
 
-<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><table>
+<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:36%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup>
       <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
       <tr><td>英特尔 <span class="tk">INTC</span></td>
         <td style="text-align:center">3</td>
@@ -373,7 +377,7 @@
         <td style="text-align:center" class="c-up">2</td>
         <td style="text-align:center" class="c-down">0</td>
         <td style="text-align:right" class="up">偏多</td></tr>
-    </table></div>
+    </table></div></div>
 
 <div class="sec" id="s4">
   <div class="sec-h">🎬 四、各博主视频要点</div>
@@ -415,7 +419,8 @@
       </div>
 </div>
 
-<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><table>
+<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:26%"><col style="width:19%"><col style="width:41%"><col style="width:14%"></colgroup>
       <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
       <tr><td><b>英特尔</b> <span class="tk">INTC</span></td>
           <td>视野环球财经</td>
@@ -428,34 +433,34 @@
           <td>触发 <b class="num">696-698</b>（关键位）/ 破位则技术性下跌空间打开</td>
           <td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=2100s" class="tslink">35:00</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SOXX</span></td>
           <td>视野环球财经</td>
-          <td>触发 <b class="num">482.8</b>（周一旗掌点，反包关键位）</td>
+          <td>触发 <b class="num">482.8</b>（周一旗掌点，反包关键位）<br>触发 此前博主设的上下突破位<b class="num">536</b>/反包位</td>
           <td><a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1740s" class="tslink">29:00</a></td></tr><tr><td><b>英特尔</b> <span class="tk">INTC</span></td>
           <td>NaNa说美股</td>
           <td>目标 回补<b class="num">68-79</b>缺口</td>
           <td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=360s" class="tslink">6:00</a></td></tr><tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
           <td>NaNa说美股</td>
-          <td>买点 <b class="num">280</b>建底仓<br>目标 <b class="num">272</b>测试位<br>买点 <b class="num">270-250</b>分批加仓</td>
+          <td>买点 <b class="num">280</b>建底仓<br>目标 <b class="num">272</b>测试位<br>买点 <b class="num">270-250</b>分批加仓<br>支撑 谷歌已不是现金奶牛，估值需要重新定价，后续可能继续下探<b class="num">3</b>月前低<b class="num">272</b></td>
           <td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=120s" class="tslink">2:00</a></td></tr><tr><td><b>亚马逊</b> <span class="tk">AMZN</span></td>
           <td>NaNa说美股</td>
           <td>支撑 补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低）</td>
           <td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00</a></td></tr><tr><td><b>纳指100ETF</b>⭐ <span class="tk">QQQ</span></td>
           <td>NaNa说美股</td>
-          <td>支撑 <b class="num">700</b>（支撑）</td>
+          <td>支撑 <b class="num">700</b>（支撑）<br>触发 跳空低开，收盘已跌破<b class="num">5</b>日均线，日K收阴线十字星</td>
           <td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=600s" class="tslink">10:00</a></td></tr><tr><td><b>标普500指数</b>⭐ <span class="tk">^GSPC</span></td>
           <td>NaNa说美股</td>
-          <td>目标 <b class="num">7600</b><br>目标 <b class="num">7550-7500</b></td>
+          <td>目标 <b class="num">7600</b><br>目标 <b class="num">7550-7500</b><br>支撑 标普<b class="num">500</b>指数关注<b class="num">7600</b>点区间支撑能不能守住，失守就看向<b class="num">7550-7500</b></td>
           <td><a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=660s" class="tslink">11:00</a></td></tr><tr><td><b>亚马逊</b> <span class="tk">AMZN</span></td>
           <td>The Trading Apologist</td>
-          <td>目标 时间投影磨底至<b class="num">2027-2029</b></td>
+          <td>目标 时间投影磨底至<b class="num">2027-2029</b><br>触发 技术面跌破<b class="num">2023</b>年<b class="num">1</b>月以来主要周线趋势线（下影线跌破），是决定性的性格转变</td>
           <td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">22:10</a></td></tr><tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
           <td>The Trading Apologist</td>
           <td>目标 <b class="num">250</b>（目标）<br>目标 <b class="num">240-250</b>（黄金口袋）<br>阻力 <b class="num">300</b>（反弹压力）</td>
           <td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1350s" class="tslink">22:30</a></td></tr><tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
           <td>The Trading Apologist</td>
-          <td>目标 <b class="num">200</b>（下偏差带目标）</td>
+          <td>目标 <b class="num">200</b>（下偏差带目标）<br>支撑 跌破支撑（第<b class="num">4</b>次突破区间失败后跌破），目标下看<b class="num">200</b>美元（下偏差带）</td>
           <td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1980s" class="tslink">33:00</a></td></tr><tr><td><b>特斯拉</b>⭐ <span class="tk">TSLA</span></td>
           <td>The Trading Apologist</td>
-          <td>触发 <b class="num">400-405</b>（需站上）</td>
+          <td>触发 <b class="num">400-405</b>（需站上）<br>支撑 突破后回踩，主要阻力在<b class="num">380-400</b>，博主希望<b class="num">395</b>转支撑、收盘站上<b class="num">400-405</b>（最好<b class="num">403</b>）</td>
           <td><a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=2050s" class="tslink">34:10</a></td></tr><tr><td><b>美光</b> <span class="tk">MU</span></td>
           <td>The Trading Apologist</td>
           <td>支撑 <b class="num">900</b>下方（支撑）</td>
@@ -463,7 +468,7 @@
           <td>美投侃新闻</td>
           <td>支撑 <b class="num">300</b>美元下方（估值合理区间）</td>
           <td><a href="https://www.youtube.com/watch?v=run9hnLobpM&amp;t=620s" class="tslink">10:20</a></td></tr>
-    </table></div>
+    </table></div></div>
 
 <div class="sec" id="s6"><div class="sec-h">⚠️ 六、分歧标的</div><div class="ch"><div class="ch-name">微软 <span class="tk">MSFT</span></div>
       <div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">视野环球财经<span class="op-date">·10/29</span></span></div><div class="op-d">四大AI数据中心公司中唯一自由现金流为正的（微软正、亚马逊/谷歌/Meta都转负），且承诺财年自由现金流为正。250亿美元发债获1150亿认购（4.6倍），利率仅比美债高0.86个百分点，比三年前置换债溢价还低，顶级AAA评级（全美仅微软和强生两家）让融资成本极低。发债是「效率置换」非利空。博主明确持有不动、看600上方，490-534是无仓位者的建仓区（需预留仓位防纳指破位跌到490以下）。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span></div><div class="op-d">原本凭强劲云业务逆势上涨，但突然宣布2017年以来首次高评级债券发行、拟筹资至少250亿美元加入AI借债行列，消息后股价转跌。巨头钱多所以可以抱团避险的逻辑已经不成立，基本面变了，不能闭着眼睛随便买。</div></div><div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">美投侃新闻<span class="op-date">·10/29</span></span></div><div class="op-d">财报延续稳健风格：营收923亿(+19%)、EPS 4.89(+18%)超预期3.5%、营业利润率49.8%。Azure+48%超预期（受益Foundry平台收入两倍多+工程优化硬件效率提升），供给受限下仍跑出高增速，下季度指引抬到49%-50%说明AI需求端无问题、瓶颈在供给。资本开支452亿低于预期13%、2026年指引下调到1700亿（第三方产能延迟），自由现金流186亿大超预期一倍多，2027财年保持为正。下季度收入中位数966亿超预期。Tim观点：微软是难得Megacap Leader，稳定现金流+稳定AI回报，即便涨了不少仍值得买入。留意：OpenAI贡献约11%收入（依赖未下降）、M365付费席位增速放缓到5%、Copilot付费席位数未更新。</div></div><div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">阳光财经<span class="op-date">·10/29</span></span></div><div class="op-d">微软财报各项指标都过关：收入利润超预期、云增速超预期、资本支出低于原计划，是云巨头里现金流最好的一家。但自由现金流缩水，股价由升转跌，可能因一笔250亿发债计划（期限2-40年、利率约6%以上、3A评级）。微软3A评级债券市场抢着买，财报后没大涨但至少排了雷，博主判断股价应稳定看涨。</div></div>
