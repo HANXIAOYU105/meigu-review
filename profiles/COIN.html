@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · Coinbase (COIN)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">个股档案 · COIN</span><span class="rt"></span></nav>
+<div class="hero">
+  <p class="nm">Coinbase</p>
+  <div class="tk">COIN · 加密</div>
+  <div class="meta">近5日 3 条观点 · 2026-10-30 ~ 2026-11-02 · 3 位博主</div>
+</div>
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势 <span class="asof">Coinbase Global · 最近 45 个交易日 · 红涨绿跌</span></div>
+      <svg viewBox="0 0 640 220" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Coinbase Global 日K"><line x1="8" y1="12.0" x2="600" y2="12.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="15.0" font-size="9" fill="rgba(140,150,165,0.9)">211</text><line x1="8" y1="58.5" x2="600" y2="58.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="61.5" font-size="9" fill="rgba(140,150,165,0.9)">192</text><line x1="8" y1="105.0" x2="600" y2="105.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="108.0" font-size="9" fill="rgba(140,150,165,0.9)">173</text><line x1="8" y1="151.5" x2="600" y2="151.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="154.5" font-size="9" fill="rgba(140,150,165,0.9)">153</text><line x1="8" y1="198.0" x2="600" y2="198.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="201.0" font-size="9" fill="rgba(140,150,165,0.9)">134</text><line x1="14.6" y1="63.2" x2="14.6" y2="95.1" stroke="#e5484d" stroke-width="1"/><rect x="10.6" y="67.6" width="7.9" height="23.2" fill="#e5484d"/><line x1="27.7" y1="77.6" x2="27.7" y2="99.2" stroke="#1fbf75" stroke-width="1"/><rect x="23.8" y="83.7" width="7.9" height="11.2" fill="#1fbf75"/><line x1="40.9" y1="90.3" x2="40.9" y2="106.4" stroke="#e5484d" stroke-width="1"/><rect x="36.9" y="99.3" width="7.9" height="1.6" fill="#e5484d"/><line x1="54.0" y1="49.0" x2="54.0" y2="84.8" stroke="#e5484d" stroke-width="1"/><rect x="50.1" y="56.6" width="7.9" height="27.2" fill="#e5484d"/><line x1="67.2" y1="65.5" x2="67.2" y2="80.3" stroke="#1fbf75" stroke-width="1"/><rect x="63.3" y="75.2" width="7.9" height="1.0" fill="#1fbf75"/><line x1="80.4" y1="81.8" x2="80.4" y2="91.2" stroke="#1fbf75" stroke-width="1"/><rect x="76.4" y="85.5" width="7.9" height="4.2" fill="#1fbf75"/><line x1="93.5" y1="75.3" x2="93.5" y2="100.2" stroke="#1fbf75" stroke-width="1"/><rect x="89.6" y="76.2" width="7.9" height="23.7" fill="#1fbf75"/><line x1="106.7" y1="100.5" x2="106.7" y2="110.4" stroke="#e5484d" stroke-width="1"/><rect x="102.7" y="105.8" width="7.9" height="3.5" fill="#e5484d"/><line x1="119.8" y1="82.2" x2="119.8" y2="104.5" stroke="#e5484d" stroke-width="1"/><rect x="115.9" y="98.6" width="7.9" height="2.9" fill="#e5484d"/><line x1="133.0" y1="55.3" x2="133.0" y2="86.5" stroke="#e5484d" stroke-width="1"/><rect x="129.0" y="59.6" width="7.9" height="25.7" fill="#e5484d"/><line x1="146.1" y1="77.2" x2="146.1" y2="115.9" stroke="#1fbf75" stroke-width="1"/><rect x="142.2" y="78.5" width="7.9" height="27.7" fill="#1fbf75"/><line x1="159.3" y1="101.6" x2="159.3" y2="132.6" stroke="#1fbf75" stroke-width="1"/><rect x="155.3" y="105.3" width="7.9" height="19.3" fill="#1fbf75"/><line x1="172.4" y1="101.1" x2="172.4" y2="121.6" stroke="#e5484d" stroke-width="1"/><rect x="168.5" y="101.7" width="7.9" height="10.1" fill="#e5484d"/><line x1="185.6" y1="48.1" x2="185.6" y2="92.8" stroke="#e5484d" stroke-width="1"/><rect x="181.7" y="52.8" width="7.9" height="38.8" fill="#e5484d"/><line x1="198.8" y1="18.9" x2="198.8" y2="37.4" stroke="#1fbf75" stroke-width="1"/><rect x="194.8" y="26.5" width="7.9" height="10.0" fill="#1fbf75"/><line x1="211.9" y1="31.7" x2="211.9" y2="45.7" stroke="#e5484d" stroke-width="1"/><rect x="208.0" y="36.4" width="7.9" height="4.0" fill="#e5484d"/><line x1="225.1" y1="28.1" x2="225.1" y2="49.5" stroke="#e5484d" stroke-width="1"/><rect x="221.1" y="43.5" width="7.9" height="1.0" fill="#e5484d"/><line x1="238.2" y1="32.3" x2="238.2" y2="54.2" stroke="#e5484d" stroke-width="1"/><rect x="234.3" y="40.9" width="7.9" height="5.9" fill="#e5484d"/><line x1="251.4" y1="39.6" x2="251.4" y2="56.9" stroke="#1fbf75" stroke-width="1"/><rect x="247.4" y="41.0" width="7.9" height="9.8" fill="#1fbf75"/><line x1="264.5" y1="41.9" x2="264.5" y2="60.4" stroke="#1fbf75" stroke-width="1"/><rect x="260.6" y="48.4" width="7.9" height="10.4" fill="#1fbf75"/><line x1="277.7" y1="44.7" x2="277.7" y2="67.6" stroke="#1fbf75" stroke-width="1"/><rect x="273.7" y="44.9" width="7.9" height="18.1" fill="#1fbf75"/><line x1="290.8" y1="42.2" x2="290.8" y2="76.8" stroke="#1fbf75" stroke-width="1"/><rect x="286.9" y="49.8" width="7.9" height="21.9" fill="#1fbf75"/><line x1="304.0" y1="57.5" x2="304.0" y2="73.4" stroke="#e5484d" stroke-width="1"/><rect x="300.1" y="64.8" width="7.9" height="7.9" fill="#e5484d"/><line x1="317.2" y1="38.1" x2="317.2" y2="85.2" stroke="#1fbf75" stroke-width="1"/><rect x="313.2" y="51.9" width="7.9" height="28.1" fill="#1fbf75"/><line x1="330.3" y1="58.8" x2="330.3" y2="77.3" stroke="#e5484d" stroke-width="1"/><rect x="326.4" y="67.4" width="7.9" height="3.2" fill="#e5484d"/><line x1="343.5" y1="56.3" x2="343.5" y2="75.6" stroke="#1fbf75" stroke-width="1"/><rect x="339.5" y="66.7" width="7.9" height="6.7" fill="#1fbf75"/><line x1="356.6" y1="84.3" x2="356.6" y2="94.4" stroke="#1fbf75" stroke-width="1"/><rect x="352.7" y="86.6" width="7.9" height="4.3" fill="#1fbf75"/><line x1="369.8" y1="89.5" x2="369.8" y2="106.9" stroke="#1fbf75" stroke-width="1"/><rect x="365.8" y="99.2" width="7.9" height="7.3" fill="#1fbf75"/><line x1="382.9" y1="78.5" x2="382.9" y2="107.4" stroke="#e5484d" stroke-width="1"/><rect x="379.0" y="88.7" width="7.9" height="11.0" fill="#e5484d"/><line x1="396.1" y1="77.0" x2="396.1" y2="94.9" stroke="#e5484d" stroke-width="1"/><rect x="392.1" y="86.2" width="7.9" height="2.3" fill="#e5484d"/><line x1="409.2" y1="80.0" x2="409.2" y2="90.6" stroke="#e5484d" stroke-width="1"/><rect x="405.3" y="82.9" width="7.9" height="5.3" fill="#e5484d"/><line x1="422.4" y1="81.4" x2="422.4" y2="107.9" stroke="#1fbf75" stroke-width="1"/><rect x="418.5" y="90.3" width="7.9" height="14.1" fill="#1fbf75"/><line x1="435.6" y1="73.9" x2="435.6" y2="121.4" stroke="#e5484d" stroke-width="1"/><rect x="431.6" y="78.0" width="7.9" height="38.4" fill="#e5484d"/><line x1="448.7" y1="79.0" x2="448.7" y2="114.0" stroke="#1fbf75" stroke-width="1"/><rect x="444.8" y="84.7" width="7.9" height="19.0" fill="#1fbf75"/><line x1="461.9" y1="96.2" x2="461.9" y2="117.3" stroke="#1fbf75" stroke-width="1"/><rect x="457.9" y="97.8" width="7.9" height="17.2" fill="#1fbf75"/><line x1="475.0" y1="96.1" x2="475.0" y2="121.2" stroke="#e5484d" stroke-width="1"/><rect x="471.1" y="109.2" width="7.9" height="11.2" fill="#e5484d"/><line x1="488.2" y1="85.7" x2="488.2" y2="106.4" stroke="#e5484d" stroke-width="1"/><rect x="484.2" y="94.2" width="7.9" height="5.0" fill="#e5484d"/><line x1="501.3" y1="102.5" x2="501.3" y2="119.2" stroke="#1fbf75" stroke-width="1"/><rect x="497.4" y="110.7" width="7.9" height="2.8" fill="#1fbf75"/><line x1="514.5" y1="111.7" x2="514.5" y2="127.4" stroke="#1fbf75" stroke-width="1"/><rect x="510.5" y="116.1" width="7.9" height="8.6" fill="#1fbf75"/><line x1="527.6" y1="129.4" x2="527.6" y2="146.7" stroke="#1fbf75" stroke-width="1"/><rect x="523.7" y="136.2" width="7.9" height="1.0" fill="#1fbf75"/><line x1="540.8" y1="130.9" x2="540.8" y2="140.8" stroke="#e5484d" stroke-width="1"/><rect x="536.9" y="132.8" width="7.9" height="1.8" fill="#e5484d"/><line x1="554.0" y1="129.5" x2="554.0" y2="143.5" stroke="#e5484d" stroke-width="1"/><rect x="550.0" y="129.8" width="7.9" height="12.4" fill="#e5484d"/><line x1="567.1" y1="126.7" x2="567.1" y2="141.2" stroke="#e5484d" stroke-width="1"/><rect x="563.2" y="134.0" width="7.9" height="7.2" fill="#e5484d"/><line x1="580.3" y1="163.1" x2="580.3" y2="191.1" stroke="#1fbf75" stroke-width="1"/><rect x="576.3" y="163.8" width="7.9" height="11.3" fill="#1fbf75"/><line x1="593.4" y1="168.9" x2="593.4" y2="176.5" stroke="#1fbf75" stroke-width="1"/><rect x="589.5" y="172.8" width="7.9" height="3.0" fill="#1fbf75"/><polyline points="14.6,67.6 27.7,94.9 40.9,99.3 54.0,56.6 67.2,76.0 80.4,89.7 93.5,99.9 106.7,105.8 119.8,98.6 133.0,59.6 146.1,106.2 159.3,124.5 172.4,101.7 185.6,52.8 198.8,36.4 211.9,36.4 225.1,43.5 238.2,40.9 251.4,50.8 264.5,58.8 277.7,63.0 290.8,71.7 304.0,64.8 317.2,80.0 330.3,67.4 343.5,73.3 356.6,90.9 369.8,106.5 382.9,88.7 396.1,86.2 409.2,82.9 422.4,104.3 435.6,78.0 448.7,103.7 461.9,115.0 475.0,109.2 488.2,94.2 501.3,113.5 514.5,124.7 527.6,136.4 540.8,132.8 554.0,129.8 567.1,134.0 580.3,175.1 593.4,175.7" fill="none" stroke="#4d8dff" stroke-width="1.4" stroke-opacity="0.85"/><text x="14.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/31</text><text x="119.8" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/11</text><text x="225.1" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/23</text><text x="330.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/5</text><text x="435.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/15</text><text x="540.8" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/27</text><text x="593.4" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/2</text></svg>
+    </div>
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日口径</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">3</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">0</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">3</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">0</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean down">偏空</span>（均分 -1.00）</p>
+  <div class="chips"><span class="chip">XTrader猫姐美股</span><span class="chip">NaNa说美股</span><span class="chip">阳光财经</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
+  <div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td><b class="num">137</b> <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1079s" class="tslink">⏱17:59</a></td><td class="vfy vfy-ok" title="守住 137（已过 1/5 日）">✅</td></tr>
+        </table></div><div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>11/2</td><td>大摩从平配下调至低配、目标价<b class="num">258</b>大幅下调至<b class="num">120</b>（复苏疲软+盈利估值下行） <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=843s" class="tslink">⏱14:03</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <table><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>10/31</td><td>跌破 <b class="num">137</b> 离场 <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1079s" class="tslink">⏱17:59</a></td><td class="vfy vfy-ok" title="观察期触及 137（已过 1/5 日）">⚡</td></tr><tr><td>NaNa说美股</td><td>11/2</td><td>回避 <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=843s" class="tslink">⏱14:03</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>NaNa说美股</td><td>11/2</td><td>又跌破<b class="num">140</b> <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=843s" class="tslink">⏱14:03</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>阳光财经</td><td>11/2</td><td>回避 <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=747s" class="tslink">⏱12:27</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr>
+        </table></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日复盘记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">XTrader猫姐美股</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="op-date">·10/31</span></span><span class="st down">看空/减仓·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">137</b></span><span class="lv lv-t">触发 跌破 <b class="num">137</b> 离场</span></div>
+      <div class="op-d">与上周观点不变：COIN 跌破 137 猫姐个人就离场。</div>
+      <div class="op-q">「Coinbase 跌破 137 我个人就走了。」</div>
+      
+      <div class="op-tag"><b>风险：</b>BTC 走弱直接压制交易量与估值</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1079s" class="tslink">17:59 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/2</span></span><span class="st down">看空/回避·短期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 回避</span><span class="lv lv-t">触发 又跌破<b class="num">140</b></span><span class="lv">目标 大摩从平配下调至低配、目标价<b class="num">258</b>大幅下调至<b class="num">120</b>（复苏疲软+盈利估值下行）</span></div>
+      <div class="op-d">又跌破140；大摩从平配下调至低配、目标价258大幅下调至120（复苏疲软+盈利估值下行）；财报差之外，还担心民主党控制众议院后调查川普的币圈金主。</div>
+      <div class="op-q">「COIN股价又跌破了140。摩根士丹利看空Coinbase……将Coinbase评级从『与大盘持平』下调至『低配』，并将目标价从$258大幅下调至$120。」</div>
+      <div class="op-tag"><b>催化：</b>无</div>
+      <div class="op-tag"><b>风险：</b>大摩目标价120意味着继续下行空间、选举后监管调查风险</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=843s" class="tslink">14:03 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/2</span></span><span class="st down">看空/回避·短期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 回避</span></div>
+      <div class="op-d">币安被朝鲜黑客盗走63亿（冻结30亿、33亿失踪）、恢复提现后又遭47亿提取，中心化交易所风险暴露；Coinbase同样是中心化交易所存在类似风险；若民主党控制国会，加密货币法案更难推进。</div>
+      <div class="op-q">「最大的中心化交易所BN于周末被朝鲜黑客洗劫了63个亿……Coinbase也是个中心化交易所，总是即将破坏，加密货币那些法案如果是民主党控制的国会那就更难推进了。」</div>
+      <div class="op-tag"><b>催化：</b>无</div>
+      <div class="op-tag"><b>风险：</b>交易所安全事件传染、选举后监管逆风</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=747s" class="tslink">12:27 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">关键点位演进 <span class="asof">历史全部</span></div>
+  <table>
+    <tr><th>日期</th><th>博主</th><th>价位</th><th>时间</th></tr>
+    <tr><td>10/31</td><td>XTrader猫姐美股</td><td>支撑 <b class="num">137</b><br>触发 跌破 <b class="num">137</b> 离场</td><td><a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1079s" class="tslink">17:59</a></td></tr><tr><td>11/2</td><td>NaNa说美股</td><td>触发 回避<br>触发 又跌破<b class="num">140</b><br>目标 大摩从平配下调至低配、目标价<b class="num">258</b>大幅下调至<b class="num">120</b>（复苏疲软+盈利估值下行）</td><td><a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=843s" class="tslink">14:03</a></td></tr><tr><td>11/2</td><td>阳光财经</td><td>触发 回避</td><td><a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=747s" class="tslink">12:27</a></td></tr>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂（按首见日期）</div>
+  <div class="tag-item"><span class="tag-fg">无</span><span class="tag-date">11/2</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素（按首见日期）</div>
+  <div class="tag-item"><span class="tag-fg">BTC 走弱直接压制交易量与估值</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">大摩目标价120意味着继续下行空间</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">选举后监管调查风险</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">交易所安全事件传染</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">选举后监管逆风</span><span class="tag-date">11/2</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日</span></div>
+  <div class="day">
+      <div class="day-h">10/31</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">XTrader猫姐美股</span><span class="st down">看空/减仓·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">137</b></span><span class="lv lv-t">触发 跌破 <b class="num">137</b> 离场</span></div>
+          <div class="op-d">与上周观点不变：COIN 跌破 137 猫姐个人就离场。</div>
+          <div class="op-q">「Coinbase 跌破 137 我个人就走了。」</div>
+          
+          <div class="op-tag"><b>风险：</b>BTC 走弱直接压制交易量与估值</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=ZAtPIPNKTZ0&amp;t=1079s" class="tslink">17:59 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/2</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 回避</span><span class="lv lv-t">触发 又跌破<b class="num">140</b></span><span class="lv">目标 大摩从平配下调至低配、目标价<b class="num">258</b>大幅下调至<b class="num">120</b>（复苏疲软+盈利估值下行）</span></div>
+          <div class="op-d">又跌破140；大摩从平配下调至低配、目标价258大幅下调至120（复苏疲软+盈利估值下行）；财报差之外，还担心民主党控制众议院后调查川普的币圈金主。</div>
+          <div class="op-q">「COIN股价又跌破了140。摩根士丹利看空Coinbase……将Coinbase评级从『与大盘持平』下调至『低配』，并将目标价从$258大幅下调至$120。」</div>
+          <div class="op-tag"><b>催化：</b>无</div>
+          <div class="op-tag"><b>风险：</b>大摩目标价120意味着继续下行空间、选举后监管调查风险</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=843s" class="tslink">14:03 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st down">看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 回避</span></div>
+          <div class="op-d">币安被朝鲜黑客盗走63亿（冻结30亿、33亿失踪）、恢复提现后又遭47亿提取，中心化交易所风险暴露；Coinbase同样是中心化交易所存在类似风险；若民主党控制国会，加密货币法案更难推进。</div>
+          <div class="op-q">「最大的中心化交易所BN于周末被朝鲜黑客洗劫了63个亿……Coinbase也是个中心化交易所，总是即将破坏，加密货币那些法案如果是民主党控制的国会那就更难推进了。」</div>
+          <div class="op-tag"><b>催化：</b>无</div>
+          <div class="op-tag"><b>风险：</b>交易所安全事件传染、选举后监管逆风</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=747s" class="tslink">12:27 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+</div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
