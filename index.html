@@ -93,6 +93,53 @@
   #toTop.show{display:block;}
   footer{text-align:center;color:var(--muted-2);font-size:11.5px;padding:22px 0 10px;margin-top:22px;border-top:1px solid var(--border);line-height:1.8;}
   @media (max-width:420px){ .hero{padding:17px 15px;} .hero h1{font-size:19px;} .hero .stamp{position:static;margin-top:8px;} }
+
+  #qaFab{position:fixed;right:16px;bottom:18px;z-index:60;border:none;border-radius:22px;padding:11px 17px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(37,99,235,.35);font-family:inherit;transition:transform .15s;}
+  #qaFab:hover{transform:translateY(-2px);}
+  #toTop{bottom:76px;}
+  #qaPanel{position:fixed;right:12px;bottom:12px;width:min(430px,calc(100vw - 24px));height:min(640px,72vh);z-index:70;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.35);display:none;flex-direction:column;overflow:hidden;}
+  #qaPanel.open{display:flex;}
+  .qa-head{display:flex;align-items:center;gap:8px;padding:11px 14px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;flex:0 0 auto;}
+  .qa-head b{font-size:14.5px;}
+  .qa-head span{font-size:11px;opacity:.85;flex:1;}
+  #qaClose{background:none;border:none;color:#fff;font-size:15px;cursor:pointer;padding:2px 7px;border-radius:6px;font-family:inherit;}
+  #qaClose:hover{background:rgba(255,255,255,.18);}
+  #qaMsgs{flex:1;overflow-y:auto;padding:12px;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:10px;}
+  .qa-user,.qa-bot{display:flex;}
+  .qa-user{justify-content:flex-end;}
+  .qa-bub{max-width:90%;border-radius:12px;padding:10px 12px;font-size:13.5px;line-height:1.6;}
+  .qa-user .qa-bub{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;border-bottom-right-radius:4px;}
+  .qa-bot .qa-bub{background:var(--border-soft);color:var(--text);border-bottom-left-radius:4px;}
+  .qa-h{font-weight:700;font-size:13.5px;margin:2px 0 6px;color:var(--accent);}
+  .qa-note{font-size:11.5px;color:var(--muted);margin:6px 0;}
+  .qa-op{border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin:6px 0;}
+  .qa-op-h{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:3px;}
+  .qa-ch{font-weight:700;font-size:12.5px;}
+  .qa-x{font-style:normal;background:#111;color:#fff;border-radius:4px;font-size:9.5px;padding:1px 4px;margin-left:3px;vertical-align:2px;}
+  .qa-date{font-size:11.5px;color:var(--muted);}
+  .qa-st{margin-left:auto;font-size:11px;font-weight:700;border-radius:10px;padding:1px 8px;white-space:nowrap;}
+  .qa-st.up{background:var(--up-bg);color:var(--up);}
+  .qa-st.down{background:var(--down-bg);color:var(--down);}
+  .qa-st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .qa-lv{display:flex;flex-wrap:wrap;gap:4px;margin:4px 0;}
+  .qa-lvi{font-size:11px;background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:2px 7px;}
+  .qa-lvi b{font-weight:800;}
+  .qa-th{font-size:12.8px;margin:3px 0;}
+  .qa-act{margin-top:4px;}
+  .qa-link{color:var(--link);font-size:12px;text-decoration:none;font-weight:600;}
+  .qa-link:hover{text-decoration:underline;}
+  .qa-idx{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0;}
+  .qa-idx-i{font-size:12.5px;}
+  .qa-idx-i .up{color:var(--up);font-weight:700;}
+  .qa-idx-i .down{color:var(--down);font-weight:700;}
+  .qa-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;}
+  .qa-chip{border:1px solid var(--border);background:var(--card);color:var(--link);border-radius:14px;padding:4px 10px;font-size:12px;cursor:pointer;font-family:inherit;}
+  .qa-chip:hover{border-color:var(--link);}
+  .qa-inputbar{display:flex;gap:8px;padding:10px;border-top:1px solid var(--border);flex:0 0 auto;}
+  #qaInput{flex:1;border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-size:13.5px;background:var(--bg);color:var(--text);outline:none;font-family:inherit;min-width:0;}
+  #qaInput:focus{border-color:var(--link);}
+  #qaSend{border:none;border-radius:10px;padding:9px 16px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;flex:0 0 auto;}
+  @media (max-width:480px){ #qaPanel{width:calc(100vw - 16px);right:8px;bottom:8px;height:78vh;} }
 </style></head><body><div class="wrap">
 
 <header class="hero">
@@ -104,7 +151,7 @@
     <span><b>276</b>条观点</span>
     <span><b>40</b>份内容</span>
   </div>
-  <div class="stamp">更新 11.04 17:49</div>
+  <div class="stamp">更新 11.04 20:33</div>
 </header>
 
 <div class="mkt">
@@ -494,7 +541,7 @@
   <a href="/rss.xml" style="color:var(--link)">📡 RSS 订阅</a> ·
   <a href="/data/opinions-latest.csv" style="color:var(--link)" download>⬇ 观点数据 CSV（276 条）</a> ·
   <a href="/track-record.html" style="color:var(--link)">🎯 命中率追踪</a><br>
-  数据截至 2026-11-03 · 生成于 11.04 17:49 · 仅供学习研究，不构成投资建议
+  数据截至 2026-11-03 · 生成于 11.04 20:33 · 仅供学习研究，不构成投资建议
 </footer>
 <button id="toTop" type="button" aria-label="回到顶部">↑</button>
 </div>
@@ -537,4 +584,11 @@
   b.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 })();
 </script>
+<button id="qaFab" type="button" title="基于每日观点数据库问答">💬 问一问</button>
+<div id="qaPanel" role="dialog" aria-label="站内问答">
+  <div class="qa-head"><b>💬 问一问</b><span>基于每日观点数据库 · 2026.11.3 更新</span><button id="qaClose" type="button" aria-label="关闭">✕</button></div>
+  <div id="qaMsgs"></div>
+  <div class="qa-inputbar"><input id="qaInput" type="text" placeholder="例如：英伟达最近怎么看？谁看空？" aria-label="输入问题"><button id="qaSend" type="button">发送</button></div>
+</div>
+<script src="/qa.js"></script>
 </body></html>
