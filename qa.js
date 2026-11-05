@@ -1049,8 +1049,17 @@ window.QAEngine={answerQuery:answerQuery,greet:greet};
     setTimeout(function(){var out;try{out=window.QAEngine.answerQuery(DATA,text,CTX);}catch(e){out={html:'解析出错，换个问法试试～'};}
       if(out&&out.ctx&&(out.ctx.tickers||out.ctx.channel))CTX=out.ctx;
       addBot((out&&out.html)||'没有找到相关内容');},100);}
-  btn.addEventListener('click',function(){panel.classList.add('open');btn.style.display='none';load();try{input.focus();}catch(e){}});
+  btn.addEventListener('click',function(){panel.classList.add('open');btn.style.display='none';load();try{input.focus();}catch(e){}var h=document.getElementById('qaHint');if(h){h.classList.remove('show');try{localStorage.setItem('qaHintSeen','1');}catch(e){}}});
   closeB.addEventListener('click',function(){panel.classList.remove('open');btn.style.display='';});
   sendB.addEventListener('click',function(){ask(input.value);});
   input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ask(input.value);}});
+  var hint=document.getElementById('qaHint');
+  if(hint){
+    var hintT=null;
+    var hideHint=function(perm){hint.classList.remove('show');if(hintT){clearTimeout(hintT);hintT=null;}if(perm){try{localStorage.setItem('qaHintSeen','1');}catch(e){}}};
+    var seen=false;try{seen=!!localStorage.getItem('qaHintSeen');}catch(e){}
+    if(!seen){setTimeout(function(){if(panel.classList.contains('open'))return;hint.classList.add('show');hintT=setTimeout(function(){hideHint(true);},12000);},1400);}
+    var hx=hint.querySelector('.qa-hint-x');if(hx)hx.addEventListener('click',function(){hideHint(true);});
+    var hgo=hint.querySelector('.qa-hint-go');if(hgo)hgo.addEventListener('click',function(){hideHint(true);panel.classList.add('open');btn.style.display='none';load();try{input.focus();}catch(e){}});
+  }
 })();

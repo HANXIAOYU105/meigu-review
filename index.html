@@ -113,6 +113,15 @@
 
   #qaFab{position:fixed;right:16px;bottom:18px;z-index:60;border:none;border-radius:22px;padding:11px 17px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(37,99,235,.35);font-family:inherit;transition:transform .15s;}
   #qaFab:hover{transform:translateY(-2px);}
+  /* 问一问首次访问引导气泡（2026-11-06）：悬在 FAB 上方偏左，避开 toTop */
+  #qaHint{position:fixed;right:64px;bottom:74px;z-index:59;max-width:264px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 32px rgba(15,23,42,.24);padding:12px 14px;font-size:12.5px;line-height:1.65;color:var(--text);opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .25s,transform .25s,visibility .25s;}
+  #qaHint.show{opacity:1;visibility:visible;transform:translateY(0);}
+  #qaHint b{display:block;font-size:13.5px;margin-bottom:3px;color:var(--text-strong);}
+  #qaHint span{display:block;color:var(--muted);}
+  .qa-hint-x{position:absolute;top:6px;right:8px;border:none;background:none;color:var(--muted);font-size:14px;cursor:pointer;padding:3px;line-height:1;font-family:inherit;}
+  .qa-hint-go{margin-top:9px;border:none;border-radius:16px;padding:6px 15px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .qa-hint-go:hover{filter:brightness(1.08);}
+  @media (max-width:480px){ #qaHint{right:56px;max-width:calc(100vw - 72px);} }
   #toTop{bottom:76px;}
   #qaPanel{position:fixed;right:12px;bottom:12px;width:min(430px,calc(100vw - 24px));height:min(640px,72vh);z-index:70;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.35);display:none;flex-direction:column;overflow:hidden;}
   #qaPanel.open{display:flex;}
@@ -193,7 +202,7 @@
     <span><b>364</b>条观点</span>
     <span><b>50</b>份内容</span>
   </div>
-  <div class="stamp">更新 11.06 01:24</div>
+  <div class="stamp">更新 11.06 01:38</div>
 </header>
 <a class="hero-link" href="https://distilled-bloggers.app.workbuddy.host/?sharecode=QMAOBRSUYW" target="_blank" rel="noopener" title="打开「蒸馏大博主」（新窗口）">
   <span class="hl-name">✨ 蒸馏大博主</span>
@@ -653,7 +662,8 @@
   <a href="/rss.xml" style="color:var(--link)">📡 RSS 订阅</a> ·
   <a href="/data/opinions-latest.csv" style="color:var(--link)" download>⬇ 观点数据 CSV（364 条）</a> ·
   <a href="/track-record.html" style="color:var(--link)">🎯 命中率追踪</a><br>
-  数据截至 2026-11-05 · 生成于 11.06 01:24 · 仅供学习研究，不构成投资建议
+  💬 右下角新增「问一问」：点开即可基于观点数据库提问，得到蒸馏简报式回答 ·
+  数据截至 2026-11-05 · 生成于 11.06 01:38 · 仅供学习研究，不构成投资建议
 </footer>
 <button id="toTop" type="button" aria-label="回到顶部">↑</button>
 </div>
@@ -697,6 +707,12 @@
 })();
 </script>
 <button id="qaFab" type="button" title="基于每日观点数据库问答">💬 问一问</button>
+<div id="qaHint" role="status">
+  <button class="qa-hint-x" type="button" aria-label="知道了">✕</button>
+  <b>💬 站内「问一问」上线了</b>
+  <span>右下角随时提问，基于每日观点数据库即时回答：标的观点、目标价位、看多看空理由、板块汇总都能问。</span>
+  <button class="qa-hint-go" type="button">去提问 →</button>
+</div>
 <div id="qaPanel" role="dialog" aria-label="站内问答">
   <div class="qa-head"><b>💬 问一问</b><span>基于每日观点数据库 · 2026.11.5 更新</span><button id="qaClose" type="button" aria-label="关闭">✕</button></div>
   <div id="qaMsgs"></div>
