@@ -38,13 +38,15 @@
   .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
   .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
   .stat-box.up .n{color:var(--up-fg);}
-  /* 关键指标卡（K线上方，2026-11-05）：网格自适应换行，窄屏不溢出 */
-  .fm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;}
-  .fm{background:var(--flat-bg);border-radius:8px;padding:8px 10px;min-width:0;}
+  /* 关键指标卡（K线上方，2026-11-05）：紧凑网格，窄屏不溢出 */
+  .fm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:5px;}
+  .fm{background:var(--flat-bg);border-radius:7px;padding:5px 7px;min-width:0;overflow:hidden;}
   .fm-wide{grid-column:1 / -1;}
-  .fm-l{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .fm-v{font-size:14.5px;font-weight:700;color:var(--text-strong);margin-top:2px;font-variant-numeric:tabular-nums;overflow-wrap:break-word;word-break:break-word;}
-  .fm-chg{font-size:12px;font-weight:600;}
+  .fm-l{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .fm-v{font-size:12.5px;font-weight:700;color:var(--text-strong);margin-top:1px;font-variant-numeric:tabular-nums;overflow-wrap:break-word;word-break:break-word;}
+  .fm-v .rng{font-size:11px;letter-spacing:-0.3px;white-space:nowrap;}
+  .fm-chg{font-size:11px;font-weight:600;}
+  @media (max-width:480px){ .fm-grid{grid-template-columns:repeat(4,1fr);} }
   .fm-up{color:var(--up-fg);}
   .fm-down{color:var(--down-fg);}
   .stat-box.down .n{color:var(--down-fg);}
@@ -120,7 +122,7 @@
 
 <div class="sec">
   <div class="sec-h">📊 关键指标 <span class="asof">截至美东 2026-11-05 收盘 · Yahoo Finance</span></div>
-  <div class="fm-grid"><div class="fm"><div class="fm-l">最新收盘（美元）</div><div class="fm-v">795.23 <span class="fm-chg fm-down">↓-7%</span></div></div><div class="fm"><div class="fm-l">总市值</div><div class="fm-v">8997亿</div></div><div class="fm"><div class="fm-l">市盈率 TTM</div><div class="fm-v">10.7</div></div><div class="fm"><div class="fm-l">预期市盈率</div><div class="fm-v">3.8</div></div><div class="fm"><div class="fm-l">市净率</div><div class="fm-v">6.50</div></div><div class="fm"><div class="fm-l">每股收益 TTM</div><div class="fm-v">74.33</div></div><div class="fm"><div class="fm-l">股息率 TTM</div><div class="fm-v">0.1%</div></div><div class="fm"><div class="fm-l">Beta 波动</div><div class="fm-v">2.40</div></div><div class="fm"><div class="fm-l">营收 TTM</div><div class="fm-v">1332亿</div></div><div class="fm"><div class="fm-l">毛利率</div><div class="fm-v">80.7%</div></div><div class="fm"><div class="fm-l">净利率</div><div class="fm-v">63.8%</div></div><div class="fm"><div class="fm-l">净资产收益率</div><div class="fm-v">88.3%</div></div><div class="fm"><div class="fm-l">负债/权益</div><div class="fm-v">3.7%</div></div><div class="fm fm-wide"><div class="fm-l">52周区间</div><div class="fm-v">192.59 ~ 1255</div></div><div class="fm"><div class="fm-l">3月日均成交</div><div class="fm-v">2695万股</div></div><div class="fm"><div class="fm-l">总股本</div><div class="fm-v">11.3亿股</div></div></div>
+  <div class="fm-grid"><div class="fm"><div class="fm-l">最新收盘</div><div class="fm-v">795.23 <span class="fm-chg fm-down">↓-7%</span></div></div><div class="fm"><div class="fm-l">总市值</div><div class="fm-v">8997亿</div></div><div class="fm"><div class="fm-l">市盈率 TTM</div><div class="fm-v">10.7</div></div><div class="fm"><div class="fm-l">预期市盈率</div><div class="fm-v">3.8</div></div><div class="fm"><div class="fm-l">市净率</div><div class="fm-v">6.50</div></div><div class="fm"><div class="fm-l">股息率 TTM</div><div class="fm-v">0.1%</div></div><div class="fm"><div class="fm-l">Beta 波动</div><div class="fm-v">2.40</div></div><div class="fm"><div class="fm-l">营收 TTM</div><div class="fm-v">1332亿</div></div><div class="fm"><div class="fm-l">毛利率</div><div class="fm-v">80.7%</div></div><div class="fm"><div class="fm-l">净资产收益率</div><div class="fm-v">88.3%</div></div><div class="fm"><div class="fm-l">52周区间</div><div class="fm-v"><span class="rng">192.59~1255</span></div></div></div>
 </div>
 
 <div class="sec">
@@ -215,4 +217,4 @@
 </div>
 
 <nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
-<div class="bstamp">页面构建于 11-05 16:33（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
+<div class="bstamp">页面构建于 11-05 16:53（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
