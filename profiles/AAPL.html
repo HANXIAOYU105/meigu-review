@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · 苹果 (AAPL)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">个股档案 · AAPL</span><span class="rt"></span></nav>
+<div class="hero">
+  <p class="nm">苹果</p>
+  <div class="tk">AAPL · 消费电子</div>
+  <div class="meta">近5日 9 条观点 · 2026-11-01 ~ 2026-11-04 · 5 位博主</div>
+</div>
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势 <span class="asof">苹果 · 最近 60 个交易日 · 红涨绿跌</span></div>
+      <svg viewBox="0 0 640 220" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="苹果 日K"><line x1="8" y1="12.0" x2="600" y2="12.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="15.0" font-size="9" fill="rgba(140,150,165,0.9)">357</text><line x1="8" y1="58.5" x2="600" y2="58.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="61.5" font-size="9" fill="rgba(140,150,165,0.9)">342</text><line x1="8" y1="105.0" x2="600" y2="105.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="108.0" font-size="9" fill="rgba(140,150,165,0.9)">328</text><line x1="8" y1="151.5" x2="600" y2="151.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="154.5" font-size="9" fill="rgba(140,150,165,0.9)">313</text><line x1="8" y1="198.0" x2="600" y2="198.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="201.0" font-size="9" fill="rgba(140,150,165,0.9)">298</text><line x1="12.9" y1="174.9" x2="12.9" y2="191.1" stroke="#1fbf75" stroke-width="1"/><rect x="10.0" y="176.6" width="5.9" height="9.1" fill="#1fbf75"/><line x1="22.8" y1="173.8" x2="22.8" y2="186.4" stroke="#e5484d" stroke-width="1"/><rect x="19.8" y="176.1" width="5.9" height="3.4" fill="#e5484d"/><line x1="32.7" y1="169.0" x2="32.7" y2="179.2" stroke="#1fbf75" stroke-width="1"/><rect x="29.7" y="173.8" width="5.9" height="1.0" fill="#1fbf75"/><line x1="42.5" y1="168.5" x2="42.5" y2="183.5" stroke="#1fbf75" stroke-width="1"/><rect x="39.6" y="173.1" width="5.9" height="2.0" fill="#1fbf75"/><line x1="52.4" y1="156.2" x2="52.4" y2="174.6" stroke="#e5484d" stroke-width="1"/><rect x="49.4" y="160.9" width="5.9" height="7.8" fill="#e5484d"/><line x1="62.3" y1="131.4" x2="62.3" y2="162.3" stroke="#e5484d" stroke-width="1"/><rect x="59.3" y="139.2" width="5.9" height="21.4" fill="#e5484d"/><line x1="72.1" y1="128.2" x2="72.1" y2="158.9" stroke="#1fbf75" stroke-width="1"/><rect x="69.2" y="137.2" width="5.9" height="19.7" fill="#1fbf75"/><line x1="82.0" y1="153.4" x2="82.0" y2="170.5" stroke="#1fbf75" stroke-width="1"/><rect x="79.0" y="154.5" width="5.9" height="8.6" fill="#1fbf75"/><line x1="91.9" y1="150.3" x2="91.9" y2="161.1" stroke="#1fbf75" stroke-width="1"/><rect x="88.9" y="156.3" width="5.9" height="3.6" fill="#1fbf75"/><line x1="101.7" y1="149.5" x2="101.7" y2="166.7" stroke="#1fbf75" stroke-width="1"/><rect x="98.8" y="158.5" width="5.9" height="2.8" fill="#1fbf75"/><line x1="111.6" y1="143.7" x2="111.6" y2="164.8" stroke="#e5484d" stroke-width="1"/><rect x="108.6" y="150.0" width="5.9" height="10.1" fill="#e5484d"/><line x1="121.5" y1="143.8" x2="121.5" y2="162.9" stroke="#e5484d" stroke-width="1"/><rect x="118.5" y="146.4" width="5.9" height="12.9" fill="#e5484d"/><line x1="131.3" y1="121.5" x2="131.3" y2="143.6" stroke="#e5484d" stroke-width="1"/><rect x="128.4" y="130.0" width="5.9" height="9.1" fill="#e5484d"/><line x1="141.2" y1="125.1" x2="141.2" y2="152.1" stroke="#1fbf75" stroke-width="1"/><rect x="138.2" y="130.3" width="5.9" height="8.8" fill="#1fbf75"/><line x1="151.1" y1="105.8" x2="151.1" y2="145.9" stroke="#e5484d" stroke-width="1"/><rect x="148.1" y="112.7" width="5.9" height="26.0" fill="#e5484d"/><line x1="160.9" y1="102.2" x2="160.9" y2="117.8" stroke="#1fbf75" stroke-width="1"/><rect x="158.0" y="107.1" width="5.9" height="6.1" fill="#1fbf75"/><line x1="170.8" y1="94.5" x2="170.8" y2="115.9" stroke="#e5484d" stroke-width="1"/><rect x="167.8" y="102.8" width="5.9" height="10.7" fill="#e5484d"/><line x1="180.7" y1="100.5" x2="180.7" y2="135.9" stroke="#1fbf75" stroke-width="1"/><rect x="177.7" y="102.5" width="5.9" height="26.6" fill="#1fbf75"/><line x1="190.5" y1="126.8" x2="190.5" y2="145.3" stroke="#1fbf75" stroke-width="1"/><rect x="187.6" y="138.3" width="5.9" height="2.8" fill="#1fbf75"/><line x1="200.4" y1="131.8" x2="200.4" y2="161.3" stroke="#1fbf75" stroke-width="1"/><rect x="197.4" y="143.5" width="5.9" height="1.0" fill="#1fbf75"/><line x1="210.3" y1="107.5" x2="210.3" y2="140.2" stroke="#e5484d" stroke-width="1"/><rect x="207.3" y="108.1" width="5.9" height="31.6" fill="#e5484d"/><line x1="220.1" y1="77.3" x2="220.1" y2="108.9" stroke="#e5484d" stroke-width="1"/><rect x="217.2" y="89.9" width="5.9" height="15.4" fill="#e5484d"/><line x1="230.0" y1="79.6" x2="230.0" y2="92.8" stroke="#1fbf75" stroke-width="1"/><rect x="227.0" y="81.8" width="5.9" height="5.5" fill="#1fbf75"/><line x1="239.9" y1="91.4" x2="239.9" y2="102.4" stroke="#e5484d" stroke-width="1"/><rect x="236.9" y="92.8" width="5.9" height="3.8" fill="#e5484d"/><line x1="249.7" y1="79.6" x2="249.7" y2="94.9" stroke="#1fbf75" stroke-width="1"/><rect x="246.8" y="89.0" width="5.9" height="1.0" fill="#1fbf75"/><line x1="259.6" y1="70.5" x2="259.6" y2="96.6" stroke="#e5484d" stroke-width="1"/><rect x="256.6" y="74.8" width="5.9" height="7.1" fill="#e5484d"/><line x1="269.5" y1="70.0" x2="269.5" y2="89.0" stroke="#1fbf75" stroke-width="1"/><rect x="266.5" y="71.9" width="5.9" height="5.7" fill="#1fbf75"/><line x1="279.3" y1="66.3" x2="279.3" y2="87.4" stroke="#e5484d" stroke-width="1"/><rect x="276.4" y="68.5" width="5.9" height="11.8" fill="#e5484d"/><line x1="289.2" y1="48.1" x2="289.2" y2="69.2" stroke="#1fbf75" stroke-width="1"/><rect x="286.2" y="64.7" width="5.9" height="1.2" fill="#1fbf75"/><line x1="299.1" y1="59.4" x2="299.1" y2="79.6" stroke="#1fbf75" stroke-width="1"/><rect x="296.1" y="61.7" width="5.9" height="13.0" fill="#1fbf75"/><line x1="308.9" y1="68.7" x2="308.9" y2="83.4" stroke="#1fbf75" stroke-width="1"/><rect x="306.0" y="75.7" width="5.9" height="2.6" fill="#1fbf75"/><line x1="318.8" y1="59.9" x2="318.8" y2="82.7" stroke="#e5484d" stroke-width="1"/><rect x="315.8" y="61.8" width="5.9" height="16.1" fill="#e5484d"/><line x1="328.7" y1="55.6" x2="328.7" y2="71.5" stroke="#1fbf75" stroke-width="1"/><rect x="325.7" y="64.0" width="5.9" height="6.3" fill="#1fbf75"/><line x1="338.5" y1="74.5" x2="338.5" y2="101.3" stroke="#1fbf75" stroke-width="1"/><rect x="335.6" y="74.9" width="5.9" height="24.2" fill="#1fbf75"/><line x1="348.4" y1="66.8" x2="348.4" y2="96.7" stroke="#e5484d" stroke-width="1"/><rect x="345.4" y="87.5" width="5.9" height="7.1" fill="#e5484d"/><line x1="358.3" y1="89.2" x2="358.3" y2="110.5" stroke="#e5484d" stroke-width="1"/><rect x="355.3" y="96.1" width="5.9" height="1.0" fill="#e5484d"/><line x1="368.1" y1="82.6" x2="368.1" y2="95.2" stroke="#e5484d" stroke-width="1"/><rect x="365.2" y="85.3" width="5.9" height="1.4" fill="#e5484d"/><line x1="378.0" y1="77.3" x2="378.0" y2="91.9" stroke="#e5484d" stroke-width="1"/><rect x="375.0" y="87.9" width="5.9" height="1.0" fill="#e5484d"/><line x1="387.9" y1="83.1" x2="387.9" y2="95.1" stroke="#e5484d" stroke-width="1"/><rect x="384.9" y="85.5" width="5.9" height="4.3" fill="#e5484d"/><line x1="397.7" y1="69.4" x2="397.7" y2="88.3" stroke="#1fbf75" stroke-width="1"/><rect x="394.8" y="74.9" width="5.9" height="1.0" fill="#1fbf75"/><line x1="407.6" y1="60.2" x2="407.6" y2="78.3" stroke="#e5484d" stroke-width="1"/><rect x="404.6" y="63.9" width="5.9" height="11.5" fill="#e5484d"/><line x1="417.5" y1="69.6" x2="417.5" y2="94.9" stroke="#e5484d" stroke-width="1"/><rect x="414.5" y="75.9" width="5.9" height="15.8" fill="#e5484d"/><line x1="427.3" y1="56.8" x2="427.3" y2="72.9" stroke="#e5484d" stroke-width="1"/><rect x="424.4" y="62.1" width="5.9" height="8.8" fill="#e5484d"/><line x1="437.2" y1="39.2" x2="437.2" y2="62.8" stroke="#1fbf75" stroke-width="1"/><rect x="434.2" y="50.3" width="5.9" height="10.9" fill="#1fbf75"/><line x1="447.1" y1="42.6" x2="447.1" y2="59.7" stroke="#1fbf75" stroke-width="1"/><rect x="444.1" y="50.5" width="5.9" height="5.3" fill="#1fbf75"/><line x1="456.9" y1="40.1" x2="456.9" y2="60.1" stroke="#1fbf75" stroke-width="1"/><rect x="454.0" y="43.0" width="5.9" height="15.8" fill="#1fbf75"/><line x1="466.8" y1="40.2" x2="466.8" y2="63.7" stroke="#1fbf75" stroke-width="1"/><rect x="463.8" y="45.7" width="5.9" height="8.4" fill="#1fbf75"/><line x1="476.7" y1="46.0" x2="476.7" y2="64.8" stroke="#e5484d" stroke-width="1"/><rect x="473.7" y="55.8" width="5.9" height="6.9" fill="#e5484d"/><line x1="486.5" y1="55.4" x2="486.5" y2="69.3" stroke="#1fbf75" stroke-width="1"/><rect x="483.6" y="65.6" width="5.9" height="1.1" fill="#1fbf75"/><line x1="496.4" y1="48.4" x2="496.4" y2="68.9" stroke="#e5484d" stroke-width="1"/><rect x="493.4" y="52.5" width="5.9" height="14.8" fill="#e5484d"/><line x1="506.3" y1="38.5" x2="506.3" y2="57.9" stroke="#e5484d" stroke-width="1"/><rect x="503.3" y="38.9" width="5.9" height="10.5" fill="#e5484d"/><line x1="516.1" y1="27.7" x2="516.1" y2="46.8" stroke="#1fbf75" stroke-width="1"/><rect x="513.2" y="36.1" width="5.9" height="4.4" fill="#1fbf75"/><line x1="526.0" y1="42.6" x2="526.0" y2="61.9" stroke="#1fbf75" stroke-width="1"/><rect x="523.0" y="52.7" width="5.9" height="1.0" fill="#1fbf75"/><line x1="535.9" y1="40.3" x2="535.9" y2="57.6" stroke="#e5484d" stroke-width="1"/><rect x="532.9" y="42.5" width="5.9" height="12.6" fill="#e5484d"/><line x1="545.7" y1="42.3" x2="545.7" y2="54.0" stroke="#1fbf75" stroke-width="1"/><rect x="542.8" y="43.1" width="5.9" height="9.9" fill="#1fbf75"/><line x1="555.6" y1="28.7" x2="555.6" y2="41.9" stroke="#e5484d" stroke-width="1"/><rect x="552.6" y="36.7" width="5.9" height="2.9" fill="#e5484d"/><line x1="565.5" y1="35.8" x2="565.5" y2="83.2" stroke="#1fbf75" stroke-width="1"/><rect x="562.5" y="43.7" width="5.9" height="6.7" fill="#1fbf75"/><line x1="575.3" y1="53.1" x2="575.3" y2="78.5" stroke="#1fbf75" stroke-width="1"/><rect x="572.4" y="56.7" width="5.9" height="13.9" fill="#1fbf75"/><line x1="585.2" y1="82.8" x2="585.2" y2="112.0" stroke="#e5484d" stroke-width="1"/><rect x="582.2" y="91.1" width="5.9" height="20.2" fill="#e5484d"/><line x1="595.1" y1="18.9" x2="595.1" y2="62.0" stroke="#e5484d" stroke-width="1"/><rect x="592.1" y="34.8" width="5.9" height="25.4" fill="#e5484d"/><polyline points="12.9,185.7 22.8,176.1 32.7,174.0 42.5,175.1 52.4,160.9 62.3,139.2 72.1,156.8 82.0,163.1 91.9,159.9 101.7,161.3 111.6,150.0 121.5,146.4 131.3,130.0 141.2,139.1 151.1,112.7 160.9,113.2 170.8,102.8 180.7,129.2 190.5,141.1 200.4,143.9 210.3,108.1 220.1,89.9 230.0,87.3 239.9,92.8 249.7,89.4 259.6,74.8 269.5,77.6 279.3,68.5 289.2,66.0 299.1,74.7 308.9,78.2 318.8,61.8 328.7,70.3 338.5,99.0 348.4,87.5 358.3,96.1 368.1,85.3 378.0,87.9 387.9,85.5 397.7,75.8 407.6,63.9 417.5,75.9 427.3,62.1 437.2,61.1 447.1,55.7 456.9,58.8 466.8,54.1 476.7,55.8 486.5,66.8 496.4,52.5 506.3,38.9 516.1,40.5 526.0,52.7 535.9,42.5 545.7,53.0 555.6,36.7 565.5,50.4 575.3,70.6 585.2,91.1 595.1,34.8" fill="none" stroke="#4d8dff" stroke-width="1.4" stroke-opacity="0.85"/><text x="12.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/12</text><text x="111.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/26</text><text x="210.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/10</text><text x="308.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/24</text><text x="407.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/8</text><text x="506.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/22</text><text x="595.1" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/4</text></svg>
+    </div>
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日口径</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">9</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">4</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">1</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">4</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 0.33）</p>
+  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span><span class="chip">视野环球财经</span><span class="chip">阳光财经</span><span class="chip">老李玩钱</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
+  <div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>阳光财经</td><td>11/3</td><td>苹果主打一个「稳」：beta <b class="num">1.09</b> 与大盘相近，历史上每次跳空下跌后都能回补缺口，今天缺口不大、未来应能回补，适合在 <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=378s" class="tslink">⏱6:18</a></td><td class="vfy vfy-pending" title="最低 340.99，未给到 1.09（已过 1/5 日）">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>11/2</td><td>看盘后电话会定方向 <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=183s" class="tslink">⏱3:03</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>美投侃新闻</td><td>11/2</td><td>继续看好并持有；跟踪存储成本与台积电产能 <a href="https://www.youtube.com/watch?v=Rsp8_8qltZ4&amp;t=1318s" class="tslink">⏱21:58</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>视野环球财经</td><td>11/2</td><td>持有者继续持有；未持仓想追高的慎重——现价约<b class="num">312</b>已到<b class="num">28</b>年<b class="num">9</b>月估值上限 <a href="https://www.youtube.com/watch?v=qcdt6yQKt_4&amp;t=885s" class="tslink">⏱14:45</a></td><td class="vfy vfy-ok" title="观察期触及 312（已过 2/5 日）">⚡</td></tr><tr><td>阳光财经</td><td>11/2</td><td>持有 <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=611s" class="tslink">⏱10:11</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr>
+        </table></div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日复盘记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/2</span></span><span class="st up">看多/买入·长期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 继续看好并持有；跟踪存储成本与台积电产能</span></div>
+      <div class="op-d">Q4收入1144.8亿(+12%)、EPS 2.10、iPhone 575.8亿创Q4新高（供应受限下）、Mac大超11.3%、FY26收入4788亿(+15%)创纪录；下季收入指引+8.5%虽放缓但将是史上最高收入季度、且在供应受限+高基数下给出——涨价不拖累需求。核心矛盾不是需求而是存储涨价挤压毛利率（下季指引45.5% vs 预期46.7%）与台积电产能；库存2.5倍+采购承诺+330亿是提前备货。本季几乎只确认iPhone 18 Pro收入，高端需求强、后续机型上市还有空间。继续看好：AI时代大模型可换、软件可装，但用户入口（iPhone）、最适配AI的Mac、软件生态与隐私都在苹果手里。</div>
+      <div class="op-q">「只要用户最活跃的iPhone、最适配AI的是Mac电脑，以及极强的软件生态和用户隐私的保障还在苹果手里，苹果就依然是消费级AI的重要入口之一。这也是我们继续看好苹果，并认为苹果在这轮AI浪潮里依然站在有利位置的原因。」</div>
+      <div class="op-tag"><b>催化：</b>iPhone 18后续机型与折叠屏上市、2nm缓解台积电瓶颈、涨价被市场接受、需求供不应求、Siri AI用量付费化+iCloud+订阅升级</div>
+      <div class="op-tag"><b>风险：</b>存储涨价令毛利率指引低于预期、且退税红利结束、12月季度Mac/iPad因存储继续受限、iPhone 18 Pro供不应求、供需平衡时点难测、大中华区低预期6.5%、日本更弱</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Rsp8_8qltZ4&amp;t=1318s" class="tslink">21:58 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/4</span></span><span class="st flat">中性/观望·短期</span></div>
+      
+      <div class="op-d">苹果上月将部分工程师每日AI使用额度从300美元降至200美元，并计划对部分团队进一步降至100美元，显示其在收紧内部AI开支，仅作事实陈述无方向判断。</div>
+      <div class="op-q">「苹果上月将部分工程师的每日AI使用额度从300美元降至200美元，并计划对部分团队进一步降至100美元」</div>
+      <div class="op-tag"><b>催化：</b>收紧AI开支或改善成本</div>
+      <div class="op-tag"><b>风险：</b>AI投入收缩或影响产品竞争力</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=EgQshiaDUmY&amp;t=1057s" class="tslink">17:37 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/2</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 持有</span></div>
+      <div class="op-d">财报营收1144.8亿（+12%）超预期、EPS 2.10超预期、iPhone 575.8亿超预期、派息27美分；盘后一度跌3%属情绪宣泄。苹果是七巨头中不做大规模资本支出的清流、现金流健康，被当避险资产，中端入口绑定谷歌Gemini搭上AI顺风车，大盘危机关头经常出来护盘。</div>
+      <div class="op-q">「苹果是7巨头当中因为没有大规模资本支出，成为一股清流，被投资者拿来避险……苹果因为有中端入口的优势，直接绑定谷歌的Gemini，就搭上了人工智能的顺风车。苹果股票波动低，走势稳定，经常在大盘危机关头出来护盘。」</div>
+      <div class="op-tag"><b>催化：</b>财报超预期、避险资金流入、Gemini入口合作</div>
+      <div class="op-tag"><b>风险：</b>盘后情绪走弱拖累大盘、若财报 sentiment 恶化则明天大盘更不利</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=611s" class="tslink">10:11 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/3</span></span><span class="st flat">中性/持有·长期</span></div>
+      <div class="op-lv"><span class="lv lv-e">买点 苹果主打一个「稳」：beta <b class="num">1.09</b> 与大盘相近，历史上每次跳空下跌后都能回补缺口，今天缺口不大、未来应能回补，适合在</span></div>
+      <div class="op-d">财报指标超预期：财年营收 4788 亿美元（+15.1%）、净利润 1321 亿（+18%），史上最佳财年；股价下跌主因内存涨价压毛利率，但苹果定价权强大、可把成本转嫁给消费者，内存只是长期发展中阶段性小问题。苹果主打一个「稳」：beta 1.09 与大盘相近，历史上每次跳空下跌后都能回补缺口，今天缺口不大、未来应能回补，适合在市场非理性砸盘时买入超值。</div>
+      <div class="op-q">「内存对于手机制造商来说大家成本都是一样上涨，而苹果有更强大的定价权，可以将成本转移给消费者去买单……苹果的每次跳空下跌之后都能回补缺口，今天的跳空缺口并不太大，未来应该也是能够回补。」</div>
+      <div class="op-tag"><b>催化：</b>史上最佳财年、跳空缺口回补的历史规律</div>
+      <div class="op-tag"><b>风险：</b>内存涨价导致成本压力持续存在（管理层提示）</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=378s" class="tslink">6:18 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">老李玩钱</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">账户中大科技巨头之一，今日上涨且涨幅不小。作为防御性较强的大科技，受益于选后不确定性消除与板块轮动，但老李未展开具体逻辑或操作计划。</div>
+      <div class="op-q">「账户里的大科技巨头比如说微软、苹果、谷歌，这几个全都是上涨的，而且涨了还不少。」</div>
+      <div class="op-tag"><b>催化：</b>选后不确定性消除、板块轮动至大科技</div>
+      
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=142s" class="tslink">2:22 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 1 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/2</span></span><span class="st flat">中性/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 看盘后电话会定方向</span></div>
+      <div class="op-d">盘后财报营收与利润均超预期、整体不错，但未必好到足以支撑当前估值继续扩张；AI交易降温后资金涌入苹果避险、股价涨了很多、估值偏高，市场还没消化完，最终取决于财报电话会。</div>
+      <div class="op-q">「虽然整体业绩还不错，营收与利润都超预期，但未必好到足以支撑当前估值继续扩张。最近AI交易降温，资金涌入苹果避险，股价涨了很多，估值也偏高了。」</div>
+      <div class="op-tag"><b>催化：</b>业绩超预期、避险资金流入</div>
+      <div class="op-tag"><b>风险：</b>估值已偏高、电话会指引不明则利好出尽</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=183s" class="tslink">3:03 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/3</span></span><span class="st down">看空/回避·短期</span></div>
+      
+      <div class="op-d">财报后股价下跌：12 月季度毛利率指引 45-46% 低于本季 47.9%，为 2023 财年四季度以来最低，CFO 明确内存成本是毛利率承压主因、下季冲击更沉重，低价零部件库存即将耗尽，明年采购价继续上涨；新 CEO 财报会表现木讷，多家机构下调目标价。但 NaNa 视角独特：苹果通常是美股/QQQ 回调中最后下跌的，苹果补跌说明 QQQ 快要见底——苹果的利空反而被视为存储概念股的买入理由。</div>
+      <div class="op-q">「苹果财报后股价还是下跌了，毛利率指引远逊预期引发市场担忧……在美股/QQQ的一轮回调行情中，苹果通常是最后一个下跌的，说明 QQQ 快要见底了。」</div>
+      <div class="op-tag"><b>催化：</b>内存涨价周期未结束（利好存储概念）</div>
+      <div class="op-tag"><b>风险：</b>下季毛利率冲击更沉重、多家机构下调目标价</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=zzLHdk1pFd8&amp;t=723s" class="tslink">12:03 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/4</span></span><span class="st up">看多/持有·短期</span></div>
+      
+      <div class="op-d">最让NaNa惊讶的是苹果：昨天市场还担忧毛利率，今天就不担忧了——预期数据中心建设放缓抑制内存需求、内存价格不能再疯涨，苹果成本压力缓解，可以暴起痛打美光MU，股价飙升。</div>
+      <div class="op-q">「因为预期数据中心建设放缓，抑制内存需求，价格不能再疯涨了，苹果也不用再忍气吞声了，可以暴起痛打丑光MU，所以，股价飙升。」</div>
+      <div class="op-tag"><b>催化：</b>内存涨价预期缓解→毛利率担忧消退</div>
+      <div class="op-tag"><b>风险：</b>内存价格走势反复、前一日毛利率担忧并未根本消除</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=440s" class="tslink">7:20 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·11/2</span></span><span class="st flat">中性/持有·长期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 持有者继续持有；未持仓想追高的慎重——现价约<b class="num">312</b>已到<b class="num">28</b>年<b class="num">9</b>月估值上限</span></div>
+      <div class="op-d">新CEO首份财报总体能打：营收1144.8亿(+12%)、iPhone +17%、Mac +24%、自由现金流1360亿(+38%)；但iPad/可穿戴下滑、服务收入增速9.8%为2023年Q2以来最低且首次破10%、大中华区不及预期、利润率47.9%创一年新低。现价312已顶到28年9月财年按10%增速的估值上限，信用非常稳。</div>
+      <div class="op-q">「你要是持有的朋友，你慢慢去拿；你要是没持有的朋友想追的朋友，你请三思。他就是比较典型的超过了一年前瞻估值的股票，尽管他的信用没有任何问题。」</div>
+      <div class="op-tag"><b>催化：</b>资本支出克制带来自由现金流扩张(+38%)、服务收入若重新加速、新产品周期与换CEO后的战略落地</div>
+      <div class="op-tag"><b>风险：</b>服务增速首次跌破10%，被寄予厚望的大腿失速、产品利润率与整体利润率47.9%均为一年最低、大中华区175.4亿低于预期、日本-1.4%萎缩、现价已超过一年前瞻估值上限</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=qcdt6yQKt_4&amp;t=885s" class="tslink">14:45 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">业绩超预期</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">避险资金流入</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">iPhone 18后续机型与折叠屏上市</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">2nm缓解台积电瓶颈</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">涨价被市场接受、需求供不应求</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">Siri AI用量付费化+iCloud+订阅升级</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">资本支出克制带来自由现金流扩张(+38%)</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">服务收入若重新加速</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">新产品周期与换CEO后的战略落地</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">财报超预期</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">Gemini入口合作</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">内存涨价周期未结束（利好存储概念）</span><span class="tag-date">11/3</span></div><div class="tag-item"><span class="tag-fg">史上最佳财年</span><span class="tag-date">11/3</span></div><div class="tag-item"><span class="tag-fg">跳空缺口回补的历史规律</span><span class="tag-date">11/3</span></div><div class="tag-item"><span class="tag-fg">内存涨价预期缓解→毛利率担忧消退</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">收紧AI开支或改善成本</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">选后不确定性消除</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">板块轮动至大科技</span><span class="tag-date">11/4</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">估值已偏高</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">电话会指引不明则利好出尽</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">存储涨价令毛利率指引低于预期、且退税红利结束</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">12月季度Mac/iPad因存储继续受限</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">iPhone 18 Pro供不应求、供需平衡时点难测</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">大中华区低预期6.5%、日本更弱</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">服务增速首次跌破10%，被寄予厚望的大腿失速</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">产品利润率与整体利润率47.9%均为一年最低</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">大中华区175.4亿低于预期、日本-1.4%萎缩</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">现价已超过一年前瞻估值上限</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">盘后情绪走弱拖累大盘</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">若财报 sentiment 恶化则明天大盘更不利</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">下季毛利率冲击更沉重</span><span class="tag-date">11/3</span></div><div class="tag-item"><span class="tag-fg">多家机构下调目标价</span><span class="tag-date">11/3</span></div><div class="tag-item"><span class="tag-fg">内存涨价导致成本压力持续存在（管理层提示）</span><span class="tag-date">11/3</span></div><div class="tag-item"><span class="tag-fg">内存价格走势反复</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">前一日毛利率担忧并未根本消除</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AI投入收缩或影响产品竞争力</span><span class="tag-date">11/4</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日</span></div>
+  <div class="day">
+      <div class="day-h">11/2</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 看盘后电话会定方向</span></div>
+          <div class="op-d">盘后财报营收与利润均超预期、整体不错，但未必好到足以支撑当前估值继续扩张；AI交易降温后资金涌入苹果避险、股价涨了很多、估值偏高，市场还没消化完，最终取决于财报电话会。</div>
+          <div class="op-q">「虽然整体业绩还不错，营收与利润都超预期，但未必好到足以支撑当前估值继续扩张。最近AI交易降温，资金涌入苹果避险，股价涨了很多，估值也偏高了。」</div>
+          <div class="op-tag"><b>催化：</b>业绩超预期、避险资金流入</div>
+          <div class="op-tag"><b>风险：</b>估值已偏高、电话会指引不明则利好出尽</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=183s" class="tslink">3:03 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/买入·长期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 继续看好并持有；跟踪存储成本与台积电产能</span></div>
+          <div class="op-d">Q4收入1144.8亿(+12%)、EPS 2.10、iPhone 575.8亿创Q4新高（供应受限下）、Mac大超11.3%、FY26收入4788亿(+15%)创纪录；下季收入指引+8.5%虽放缓但将是史上最高收入季度、且在供应受限+高基数下给出——涨价不拖累需求。核心矛盾不是需求而是存储涨价挤压毛利率（下季指引45.5% vs 预期46.7%）与台积电产能；库存2.5倍+采购承诺+330亿是提前备货。本季几乎只确认iPhone 18 Pro收入，高端需求强、后续机型上市还有空间。继续看好：AI时代大模型可换、软件可装，但用户入口（iPhone）、最适配AI的Mac、软件生态与隐私都在苹果手里。</div>
+          <div class="op-q">「只要用户最活跃的iPhone、最适配AI的是Mac电脑，以及极强的软件生态和用户隐私的保障还在苹果手里，苹果就依然是消费级AI的重要入口之一。这也是我们继续看好苹果，并认为苹果在这轮AI浪潮里依然站在有利位置的原因。」</div>
+          <div class="op-tag"><b>催化：</b>iPhone 18后续机型与折叠屏上市、2nm缓解台积电瓶颈、涨价被市场接受、需求供不应求、Siri AI用量付费化+iCloud+订阅升级</div>
+          <div class="op-tag"><b>风险：</b>存储涨价令毛利率指引低于预期、且退税红利结束、12月季度Mac/iPad因存储继续受限、iPhone 18 Pro供不应求、供需平衡时点难测、大中华区低预期6.5%、日本更弱</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Rsp8_8qltZ4&amp;t=1318s" class="tslink">21:58 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/持有·长期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 持有者继续持有；未持仓想追高的慎重——现价约<b class="num">312</b>已到<b class="num">28</b>年<b class="num">9</b>月估值上限</span></div>
+          <div class="op-d">新CEO首份财报总体能打：营收1144.8亿(+12%)、iPhone +17%、Mac +24%、自由现金流1360亿(+38%)；但iPad/可穿戴下滑、服务收入增速9.8%为2023年Q2以来最低且首次破10%、大中华区不及预期、利润率47.9%创一年新低。现价312已顶到28年9月财年按10%增速的估值上限，信用非常稳。</div>
+          <div class="op-q">「你要是持有的朋友，你慢慢去拿；你要是没持有的朋友想追的朋友，你请三思。他就是比较典型的超过了一年前瞻估值的股票，尽管他的信用没有任何问题。」</div>
+          <div class="op-tag"><b>催化：</b>资本支出克制带来自由现金流扩张(+38%)、服务收入若重新加速、新产品周期与换CEO后的战略落地</div>
+          <div class="op-tag"><b>风险：</b>服务增速首次跌破10%，被寄予厚望的大腿失速、产品利润率与整体利润率47.9%均为一年最低、大中华区175.4亿低于预期、日本-1.4%萎缩、现价已超过一年前瞻估值上限</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=qcdt6yQKt_4&amp;t=885s" class="tslink">14:45 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st up">看多/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 持有</span></div>
+          <div class="op-d">财报营收1144.8亿（+12%）超预期、EPS 2.10超预期、iPhone 575.8亿超预期、派息27美分；盘后一度跌3%属情绪宣泄。苹果是七巨头中不做大规模资本支出的清流、现金流健康，被当避险资产，中端入口绑定谷歌Gemini搭上AI顺风车，大盘危机关头经常出来护盘。</div>
+          <div class="op-q">「苹果是7巨头当中因为没有大规模资本支出，成为一股清流，被投资者拿来避险……苹果因为有中端入口的优势，直接绑定谷歌的Gemini，就搭上了人工智能的顺风车。苹果股票波动低，走势稳定，经常在大盘危机关头出来护盘。」</div>
+          <div class="op-tag"><b>催化：</b>财报超预期、避险资金流入、Gemini入口合作</div>
+          <div class="op-tag"><b>风险：</b>盘后情绪走弱拖累大盘、若财报 sentiment 恶化则明天大盘更不利</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=611s" class="tslink">10:11 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/3</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">看空/回避·短期</span></div>
+          
+          <div class="op-d">财报后股价下跌：12 月季度毛利率指引 45-46% 低于本季 47.9%，为 2023 财年四季度以来最低，CFO 明确内存成本是毛利率承压主因、下季冲击更沉重，低价零部件库存即将耗尽，明年采购价继续上涨；新 CEO 财报会表现木讷，多家机构下调目标价。但 NaNa 视角独特：苹果通常是美股/QQQ 回调中最后下跌的，苹果补跌说明 QQQ 快要见底——苹果的利空反而被视为存储概念股的买入理由。</div>
+          <div class="op-q">「苹果财报后股价还是下跌了，毛利率指引远逊预期引发市场担忧……在美股/QQQ的一轮回调行情中，苹果通常是最后一个下跌的，说明 QQQ 快要见底了。」</div>
+          <div class="op-tag"><b>催化：</b>内存涨价周期未结束（利好存储概念）</div>
+          <div class="op-tag"><b>风险：</b>下季毛利率冲击更沉重、多家机构下调目标价</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=zzLHdk1pFd8&amp;t=723s" class="tslink">12:03 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st flat">中性/持有·长期</span></div>
+          <div class="op-lv"><span class="lv lv-e">买点 苹果主打一个「稳」：beta <b class="num">1.09</b> 与大盘相近，历史上每次跳空下跌后都能回补缺口，今天缺口不大、未来应能回补，适合在</span></div>
+          <div class="op-d">财报指标超预期：财年营收 4788 亿美元（+15.1%）、净利润 1321 亿（+18%），史上最佳财年；股价下跌主因内存涨价压毛利率，但苹果定价权强大、可把成本转嫁给消费者，内存只是长期发展中阶段性小问题。苹果主打一个「稳」：beta 1.09 与大盘相近，历史上每次跳空下跌后都能回补缺口，今天缺口不大、未来应能回补，适合在市场非理性砸盘时买入超值。</div>
+          <div class="op-q">「内存对于手机制造商来说大家成本都是一样上涨，而苹果有更强大的定价权，可以将成本转移给消费者去买单……苹果的每次跳空下跌之后都能回补缺口，今天的跳空缺口并不太大，未来应该也是能够回补。」</div>
+          <div class="op-tag"><b>催化：</b>史上最佳财年、跳空缺口回补的历史规律</div>
+          <div class="op-tag"><b>风险：</b>内存涨价导致成本压力持续存在（管理层提示）</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=378s" class="tslink">6:18 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/4</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st up">看多/持有·短期</span></div>
+          
+          <div class="op-d">最让NaNa惊讶的是苹果：昨天市场还担忧毛利率，今天就不担忧了——预期数据中心建设放缓抑制内存需求、内存价格不能再疯涨，苹果成本压力缓解，可以暴起痛打美光MU，股价飙升。</div>
+          <div class="op-q">「因为预期数据中心建设放缓，抑制内存需求，价格不能再疯涨了，苹果也不用再忍气吞声了，可以暴起痛打丑光MU，所以，股价飙升。」</div>
+          <div class="op-tag"><b>催化：</b>内存涨价预期缓解→毛利率担忧消退</div>
+          <div class="op-tag"><b>风险：</b>内存价格走势反复、前一日毛利率担忧并未根本消除</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=440s" class="tslink">7:20 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/观望·短期</span></div>
+          
+          <div class="op-d">苹果上月将部分工程师每日AI使用额度从300美元降至200美元，并计划对部分团队进一步降至100美元，显示其在收紧内部AI开支，仅作事实陈述无方向判断。</div>
+          <div class="op-q">「苹果上月将部分工程师的每日AI使用额度从300美元降至200美元，并计划对部分团队进一步降至100美元」</div>
+          <div class="op-tag"><b>催化：</b>收紧AI开支或改善成本</div>
+          <div class="op-tag"><b>风险：</b>AI投入收缩或影响产品竞争力</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=EgQshiaDUmY&amp;t=1057s" class="tslink">17:37 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">老李玩钱</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">账户中大科技巨头之一，今日上涨且涨幅不小。作为防御性较强的大科技，受益于选后不确定性消除与板块轮动，但老李未展开具体逻辑或操作计划。</div>
+          <div class="op-q">「账户里的大科技巨头比如说微软、苹果、谷歌，这几个全都是上涨的，而且涨了还不少。」</div>
+          <div class="op-tag"><b>催化：</b>选后不确定性消除、板块轮动至大科技</div>
+          
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=142s" class="tslink">2:22 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-05 15:32（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>

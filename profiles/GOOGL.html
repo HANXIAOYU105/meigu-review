@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · 谷歌 (GOOGL)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">个股档案 · GOOGL</span><span class="rt"></span></nav>
+<div class="hero">
+  <p class="nm">谷歌 ⭐</p>
+  <div class="tk">GOOGL · 互联网 · 持仓#4</div>
+  <div class="meta">近5日 8 条观点 · 2026-11-01 ~ 2026-11-04 · 5 位博主</div>
+</div>
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势 <span class="asof">谷歌 · 最近 60 个交易日 · 红涨绿跌</span></div>
+      <svg viewBox="0 0 640 220" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="谷歌 日K"><line x1="8" y1="12.0" x2="600" y2="12.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="15.0" font-size="9" fill="rgba(140,150,165,0.9)">368</text><line x1="8" y1="58.5" x2="600" y2="58.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="61.5" font-size="9" fill="rgba(140,150,165,0.9)">344</text><line x1="8" y1="105.0" x2="600" y2="105.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="108.0" font-size="9" fill="rgba(140,150,165,0.9)">321</text><line x1="8" y1="151.5" x2="600" y2="151.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="154.5" font-size="9" fill="rgba(140,150,165,0.9)">297</text><line x1="8" y1="198.0" x2="600" y2="198.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="201.0" font-size="9" fill="rgba(140,150,165,0.9)">273</text><line x1="12.9" y1="54.2" x2="12.9" y2="65.3" stroke="#1fbf75" stroke-width="1"/><rect x="10.0" y="54.6" width="5.9" height="5.5" fill="#1fbf75"/><line x1="22.8" y1="51.4" x2="22.8" y2="59.6" stroke="#e5484d" stroke-width="1"/><rect x="19.8" y="54.5" width="5.9" height="1.2" fill="#e5484d"/><line x1="32.7" y1="46.4" x2="32.7" y2="58.1" stroke="#1fbf75" stroke-width="1"/><rect x="29.7" y="53.6" width="5.9" height="1.8" fill="#1fbf75"/><line x1="42.5" y1="52.7" x2="42.5" y2="63.2" stroke="#1fbf75" stroke-width="1"/><rect x="39.6" y="54.6" width="5.9" height="4.5" fill="#1fbf75"/><line x1="52.4" y1="57.4" x2="52.4" y2="66.6" stroke="#e5484d" stroke-width="1"/><rect x="49.4" y="58.7" width="5.9" height="3.5" fill="#e5484d"/><line x1="62.3" y1="53.7" x2="62.3" y2="65.7" stroke="#e5484d" stroke-width="1"/><rect x="59.3" y="57.7" width="5.9" height="4.5" fill="#e5484d"/><line x1="72.1" y1="59.3" x2="72.1" y2="69.8" stroke="#1fbf75" stroke-width="1"/><rect x="69.2" y="61.0" width="5.9" height="4.7" fill="#1fbf75"/><line x1="82.0" y1="54.8" x2="82.0" y2="66.2" stroke="#e5484d" stroke-width="1"/><rect x="79.0" y="57.5" width="5.9" height="4.4" fill="#e5484d"/><line x1="91.9" y1="44.1" x2="91.9" y2="62.1" stroke="#e5484d" stroke-width="1"/><rect x="88.9" y="51.1" width="5.9" height="8.8" fill="#e5484d"/><line x1="101.7" y1="47.0" x2="101.7" y2="56.0" stroke="#1fbf75" stroke-width="1"/><rect x="98.8" y="48.0" width="5.9" height="5.3" fill="#1fbf75"/><line x1="111.6" y1="53.4" x2="111.6" y2="66.6" stroke="#1fbf75" stroke-width="1"/><rect x="108.6" y="53.9" width="5.9" height="9.1" fill="#1fbf75"/><line x1="121.5" y1="63.7" x2="121.5" y2="69.9" stroke="#e5484d" stroke-width="1"/><rect x="118.5" y="65.7" width="5.9" height="1.9" fill="#e5484d"/><line x1="131.3" y1="49.0" x2="131.3" y2="66.5" stroke="#e5484d" stroke-width="1"/><rect x="128.4" y="54.0" width="5.9" height="11.6" fill="#e5484d"/><line x1="141.2" y1="58.0" x2="141.2" y2="72.6" stroke="#1fbf75" stroke-width="1"/><rect x="138.2" y="59.5" width="5.9" height="8.8" fill="#1fbf75"/><line x1="151.1" y1="72.5" x2="151.1" y2="80.7" stroke="#1fbf75" stroke-width="1"/><rect x="148.1" y="74.9" width="5.9" height="1.9" fill="#1fbf75"/><line x1="160.9" y1="67.0" x2="160.9" y2="81.2" stroke="#e5484d" stroke-width="1"/><rect x="158.0" y="72.7" width="5.9" height="6.0" fill="#e5484d"/><line x1="170.8" y1="57.8" x2="170.8" y2="66.9" stroke="#e5484d" stroke-width="1"/><rect x="167.8" y="62.1" width="5.9" height="3.8" fill="#e5484d"/><line x1="180.7" y1="59.6" x2="180.7" y2="72.3" stroke="#1fbf75" stroke-width="1"/><rect x="177.7" y="61.7" width="5.9" height="7.9" fill="#1fbf75"/><line x1="190.5" y1="67.2" x2="190.5" y2="80.0" stroke="#e5484d" stroke-width="1"/><rect x="187.6" y="69.8" width="5.9" height="5.8" fill="#e5484d"/><line x1="200.4" y1="82.7" x2="200.4" y2="90.5" stroke="#1fbf75" stroke-width="1"/><rect x="197.4" y="83.1" width="5.9" height="2.0" fill="#1fbf75"/><line x1="210.3" y1="80.0" x2="210.3" y2="90.8" stroke="#e5484d" stroke-width="1"/><rect x="207.3" y="81.2" width="5.9" height="8.6" fill="#e5484d"/><line x1="220.1" y1="60.7" x2="220.1" y2="76.4" stroke="#e5484d" stroke-width="1"/><rect x="217.2" y="69.6" width="5.9" height="6.8" fill="#e5484d"/><line x1="230.0" y1="47.0" x2="230.0" y2="62.4" stroke="#e5484d" stroke-width="1"/><rect x="227.0" y="48.1" width="5.9" height="12.4" fill="#e5484d"/><line x1="239.9" y1="50.7" x2="239.9" y2="61.3" stroke="#1fbf75" stroke-width="1"/><rect x="236.9" y="53.2" width="5.9" height="3.6" fill="#1fbf75"/><line x1="249.7" y1="50.0" x2="249.7" y2="65.3" stroke="#1fbf75" stroke-width="1"/><rect x="246.8" y="52.6" width="5.9" height="8.3" fill="#1fbf75"/><line x1="259.6" y1="47.8" x2="259.6" y2="58.9" stroke="#1fbf75" stroke-width="1"/><rect x="256.6" y="49.5" width="5.9" height="2.7" fill="#1fbf75"/><line x1="269.5" y1="28.2" x2="269.5" y2="49.9" stroke="#1fbf75" stroke-width="1"/><rect x="266.5" y="32.4" width="5.9" height="15.3" fill="#1fbf75"/><line x1="279.3" y1="31.8" x2="279.3" y2="48.6" stroke="#e5484d" stroke-width="1"/><rect x="276.4" y="37.0" width="5.9" height="8.5" fill="#e5484d"/><line x1="289.2" y1="18.9" x2="289.2" y2="46.4" stroke="#1fbf75" stroke-width="1"/><rect x="286.2" y="31.8" width="5.9" height="12.8" fill="#1fbf75"/><line x1="299.1" y1="46.9" x2="299.1" y2="71.6" stroke="#1fbf75" stroke-width="1"/><rect x="296.1" y="47.1" width="5.9" height="23.7" fill="#1fbf75"/><line x1="308.9" y1="60.5" x2="308.9" y2="74.5" stroke="#e5484d" stroke-width="1"/><rect x="306.0" y="61.9" width="5.9" height="12.1" fill="#e5484d"/><line x1="318.8" y1="52.7" x2="318.8" y2="64.4" stroke="#e5484d" stroke-width="1"/><rect x="315.8" y="58.9" width="5.9" height="3.1" fill="#e5484d"/><line x1="328.7" y1="59.5" x2="328.7" y2="67.5" stroke="#e5484d" stroke-width="1"/><rect x="325.7" y="61.2" width="5.9" height="4.0" fill="#e5484d"/><line x1="338.5" y1="61.0" x2="338.5" y2="70.5" stroke="#1fbf75" stroke-width="1"/><rect x="335.6" y="62.7" width="5.9" height="2.0" fill="#1fbf75"/><line x1="348.4" y1="41.7" x2="348.4" y2="64.6" stroke="#1fbf75" stroke-width="1"/><rect x="345.4" y="58.4" width="5.9" height="1.0" fill="#1fbf75"/><line x1="358.3" y1="40.5" x2="358.3" y2="75.5" stroke="#1fbf75" stroke-width="1"/><rect x="355.3" y="45.3" width="5.9" height="24.8" fill="#1fbf75"/><line x1="368.1" y1="55.2" x2="368.1" y2="64.3" stroke="#e5484d" stroke-width="1"/><rect x="365.2" y="59.7" width="5.9" height="4.3" fill="#e5484d"/><line x1="378.0" y1="50.6" x2="378.0" y2="61.9" stroke="#e5484d" stroke-width="1"/><rect x="375.0" y="53.8" width="5.9" height="7.7" fill="#e5484d"/><line x1="387.9" y1="48.7" x2="387.9" y2="57.4" stroke="#e5484d" stroke-width="1"/><rect x="384.9" y="51.4" width="5.9" height="1.0" fill="#e5484d"/><line x1="397.7" y1="45.3" x2="397.7" y2="60.5" stroke="#e5484d" stroke-width="1"/><rect x="394.8" y="45.9" width="5.9" height="7.5" fill="#e5484d"/><line x1="407.6" y1="33.4" x2="407.6" y2="53.7" stroke="#1fbf75" stroke-width="1"/><rect x="404.6" y="40.7" width="5.9" height="9.6" fill="#1fbf75"/><line x1="417.5" y1="37.6" x2="417.5" y2="46.2" stroke="#e5484d" stroke-width="1"/><rect x="414.5" y="43.6" width="5.9" height="1.0" fill="#e5484d"/><line x1="427.3" y1="34.0" x2="427.3" y2="45.9" stroke="#e5484d" stroke-width="1"/><rect x="424.4" y="41.5" width="5.9" height="1.7" fill="#e5484d"/><line x1="437.2" y1="29.9" x2="437.2" y2="43.7" stroke="#1fbf75" stroke-width="1"/><rect x="434.2" y="34.6" width="5.9" height="4.8" fill="#1fbf75"/><line x1="447.1" y1="28.3" x2="447.1" y2="54.1" stroke="#1fbf75" stroke-width="1"/><rect x="444.1" y="35.9" width="5.9" height="15.7" fill="#1fbf75"/><line x1="456.9" y1="42.6" x2="456.9" y2="65.4" stroke="#e5484d" stroke-width="1"/><rect x="454.0" y="48.4" width="5.9" height="8.9" fill="#e5484d"/><line x1="466.8" y1="45.6" x2="466.8" y2="68.4" stroke="#1fbf75" stroke-width="1"/><rect x="463.8" y="50.3" width="5.9" height="15.2" fill="#1fbf75"/><line x1="476.7" y1="53.6" x2="476.7" y2="62.9" stroke="#e5484d" stroke-width="1"/><rect x="473.7" y="58.3" width="5.9" height="1.0" fill="#e5484d"/><line x1="486.5" y1="57.2" x2="486.5" y2="69.8" stroke="#1fbf75" stroke-width="1"/><rect x="483.6" y="59.4" width="5.9" height="6.7" fill="#1fbf75"/><line x1="496.4" y1="72.0" x2="496.4" y2="85.6" stroke="#1fbf75" stroke-width="1"/><rect x="493.4" y="72.6" width="5.9" height="4.4" fill="#1fbf75"/><line x1="506.3" y1="83.5" x2="506.3" y2="102.1" stroke="#1fbf75" stroke-width="1"/><rect x="503.3" y="85.4" width="5.9" height="12.3" fill="#1fbf75"/><line x1="516.1" y1="97.1" x2="516.1" y2="105.7" stroke="#1fbf75" stroke-width="1"/><rect x="513.2" y="103.8" width="5.9" height="1.9" fill="#1fbf75"/><line x1="526.0" y1="103.2" x2="526.0" y2="112.8" stroke="#1fbf75" stroke-width="1"/><rect x="523.0" y="104.3" width="5.9" height="8.1" fill="#1fbf75"/><line x1="535.9" y1="98.4" x2="535.9" y2="112.3" stroke="#e5484d" stroke-width="1"/><rect x="532.9" y="104.9" width="5.9" height="7.1" fill="#e5484d"/><line x1="545.7" y1="93.4" x2="545.7" y2="100.8" stroke="#e5484d" stroke-width="1"/><rect x="542.8" y="96.4" width="5.9" height="2.2" fill="#e5484d"/><line x1="555.6" y1="168.6" x2="555.6" y2="184.3" stroke="#1fbf75" stroke-width="1"/><rect x="552.6" y="171.5" width="5.9" height="6.0" fill="#1fbf75"/><line x1="565.5" y1="178.8" x2="565.5" y2="191.1" stroke="#1fbf75" stroke-width="1"/><rect x="562.5" y="182.8" width="5.9" height="2.5" fill="#1fbf75"/><line x1="575.3" y1="171.2" x2="575.3" y2="187.4" stroke="#1fbf75" stroke-width="1"/><rect x="572.4" y="180.2" width="5.9" height="6.8" fill="#1fbf75"/><line x1="585.2" y1="181.9" x2="585.2" y2="190.6" stroke="#1fbf75" stroke-width="1"/><rect x="582.2" y="184.6" width="5.9" height="1.0" fill="#1fbf75"/><line x1="595.1" y1="152.5" x2="595.1" y2="178.3" stroke="#e5484d" stroke-width="1"/><rect x="592.1" y="167.4" width="5.9" height="10.7" fill="#e5484d"/><polyline points="12.9,60.0 22.8,54.5 32.7,55.4 42.5,59.1 52.4,58.7 62.3,57.7 72.1,65.7 82.0,57.5 91.9,51.1 101.7,53.3 111.6,63.1 121.5,65.7 131.3,54.0 141.2,68.3 151.1,76.8 160.9,72.7 170.8,62.1 180.7,69.6 190.5,69.8 200.4,85.1 210.3,81.2 220.1,69.6 230.0,48.1 239.9,56.8 249.7,60.9 259.6,52.1 269.5,47.8 279.3,37.0 289.2,44.6 299.1,70.9 308.9,61.9 318.8,58.9 328.7,61.2 338.5,64.8 348.4,58.5 358.3,70.1 368.1,59.7 378.0,53.8 387.9,51.4 397.7,45.9 407.6,50.2 417.5,43.6 427.3,41.5 437.2,39.4 447.1,51.5 456.9,48.4 466.8,65.4 476.7,58.3 486.5,66.0 496.4,76.9 506.3,97.7 516.1,105.7 526.0,112.4 535.9,104.9 545.7,96.4 555.6,177.5 565.5,185.3 575.3,187.0 585.2,185.0 595.1,167.4" fill="none" stroke="#4d8dff" stroke-width="1.4" stroke-opacity="0.85"/><text x="12.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/12</text><text x="111.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/26</text><text x="210.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/10</text><text x="308.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/24</text><text x="407.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/8</text><text x="506.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/22</text><text x="595.1" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/4</text></svg>
+    </div>
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日口径</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">8</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">4</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">0</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">4</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 0.50）</p>
+  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">阳光财经</span><span class="chip">美投侃新闻</span><span class="chip">老李玩钱</span><span class="chip">视野环球财经</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
+  <div class="lvg"><div class="lvg-h">🔺 压力位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>11/4</td><td><b class="num">300</b>（未摸到） <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=459s" class="tslink">⏱7:39</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>视野环球财经</td><td>11/4</td><td><b class="num">298</b>（强压力线起点）/ <b class="num">348</b>（突破确认位） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1366s" class="tslink">⏱22:46</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>视野环球财经</td><td>11/4</td><td>前高（时间问题）；<b class="num">27</b> 年前瞻中位 <b class="num">374</b> <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1366s" class="tslink">⏱22:46</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>视野环球财经</td><td>11/4</td><td>重仓高位（<b class="num">300-304</b> 买入）者，接近 <b class="num">298</b> 一线强压力若放量滞涨可减仓防守 Q<b class="num">4</b> 财报，跌回低吸位买回，若突破 <b class="num">3</b> <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1366s" class="tslink">⏱22:46</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>阳光财经</td><td>11/3</td><td>前期低点水平线（接近一年来新低处） <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=719s" class="tslink">⏱11:59</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>NaNa说美股</td><td>11/4</td><td><b class="num">5</b>日均线（刚站上） <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=459s" class="tslink">⏱7:39</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>视野环球财经</td><td>11/4</td><td><b class="num">287</b> 附近即 <b class="num">27</b> 年前瞻下限 <b class="num">299</b> 下方（下方两个位置分批低吸） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1366s" class="tslink">⏱22:46</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>视野环球财经</td><td>11/4</td><td>他的第四大持仓，三大云里技术面最差（跌破几个重要强支撑、压力最大），Q<b class="num">3</b> 广告出小问题、未确认暂时还是趋势性走弱 <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1366s" class="tslink">⏱22:46</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>11/4</td><td>下方两个位置分批低吸（一个位置吸一次，不要太密集） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1366s" class="tslink">⏱22:46</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>11/2</td><td>等企稳信号 <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=568s" class="tslink">⏱9:28</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>视野环球财经</td><td>11/4</td><td><b class="num">298</b> 一线放量滞涨 → 重仓者减仓防守 Q<b class="num">4</b> 财报；突破 <b class="num">348</b> → 追买回来（趋势确认） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1366s" class="tslink">⏱22:46</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日复盘记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/3</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 前期低点水平线（接近一年来新低处）</span></div>
+      <div class="op-d">大跌后这几天一直在低位挣扎，已接近一年来新低，但暴跌后有前期低点水平线支撑，跌得这么凶有可能反弹一下。财报那天看似抛压大，但实际换手率只有 0.85%，大量机构大户和散户套在里边不急着跑，都觉得要反弹——抛压不重是反弹的技术基础。</div>
+      <div class="op-q">「暴跌后已经接近一年来新低，跌这么凶的情况下又有前低支撑，有可能反弹一下……实际上换手率只有 0.85%，大量的机构大户和散户套在里边，他们都不急着跑，会觉得要反弹。」</div>
+      <div class="op-tag"><b>催化：</b>前低支撑+超跌、套牢盘惜售、换手率仅 0.85%</div>
+      <div class="op-tag"><b>风险：</b>前低若失守则创新低</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=719s" class="tslink">11:59 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">公开账户持仓之一，今日大涨。民主党控制国会或利好科技巨头：国债收益率因债务控制回落，减少云巨头资本支出融资的利息支出压力；NANC民主党ETF前十大重仓谷歌等科技巨头，博主倾向中期选举利好科技巨头的观点。利空是民主党环保评估会增加数据中心达产难度和成本，但利好利空相抵后仍偏正面。</div>
+      <div class="op-q">「所以我倾向于此次中期选举利好科技巨头的观点。」</div>
+      <div class="op-tag"><b>催化：</b>国债收益率回落减轻融资压力、民主党议员重仓科技巨头</div>
+      <div class="op-tag"><b>风险：</b>环保审批增加数据中心成本</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=RJWmotsUotU&amp;t=688s" class="tslink">11:28 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">数据中心建设放缓对大云相对利好：已建好的算力更抢手且有涨价空间，自建模式加大现金流支撑使相对优势放大。谷歌作为三大云之一当日涨超3%，市场份额或进一步向大云集中。</div>
+      <div class="op-q">「我们认为放缓对大云相对利好……三大云里谷歌涨超3%」</div>
+      <div class="op-tag"><b>催化：</b>数据中心审批放缓使存量算力涨价、小云竞争对手融资模式受压、核心广告业务现金流支撑</div>
+      <div class="op-tag"><b>风险：</b>联邦及州层面AI监管收紧、整体AI交易情绪承压</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=EgQshiaDUmY&amp;t=18s" class="tslink">0:18 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/4</span></span><span class="st flat">中性/观望·短期</span></div>
+      
+      <div class="op-d">谷歌三季度自由现金流从去年约245亿美元转为负91亿，财报当周大跌12.6%。Justine认为现金流只是原因之一，搜索广告增速放缓到只有12%说明基本盘也出问题，市场更在乎增长是否超预期；现金流和成长性需要足够匹配才能被市场买单。另谷歌要求学校启用搜索时一并接受AI功能，遭民主党阵营抨击，教育AI监管争议升温。</div>
+      <div class="op-q">「今年三季度自由现金流变成负91亿，财报当周就大跌了12.6%……搜索广告的增速也放缓到只有12%，等于基本盘也出了问题」</div>
+      <div class="op-tag"><b>催化：</b>明年资本开支继续增加（管理层表态）、AI应用传导可能重新拉高增速</div>
+      <div class="op-tag"><b>风险：</b>自由现金流转负91亿、搜索广告增速放缓至12%、教育AI监管争议</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=v-NBy7bKWuA&amp;t=347s" class="tslink">5:47 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">老李玩钱</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">账户中大科技巨头之一，今日大涨且涨幅不小。作为加大AI资本支出的云厂代表，民主党用电限制政策反而缓解华尔街对其巨额资本支出的担忧，自由现金流预期改善，构成利好。</div>
+      <div class="op-q">「账户里的大科技巨头比如说微软、苹果、谷歌，这几个全都是上涨的，而且涨了还不少。」</div>
+      <div class="op-tag"><b>催化：</b>AI资本支出受限改善自由现金流、不确定性消除后板块轮动受益</div>
+      <div class="op-tag"><b>风险：</b>数据中心扩张受政策约束</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=142s" class="tslink">2:22 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·11/4</span></span><span class="st up">看多/持有·长期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">287</b> 附近即 <b class="num">27</b> 年前瞻下限 <b class="num">299</b> 下方（下方两个位置分批低吸）</span><span class="lv lv-r">阻力 <b class="num">298</b>（强压力线起点）/ <b class="num">348</b>（突破确认位）</span><span class="lv lv-e">买点 下方两个位置分批低吸（一个位置吸一次，不要太密集）</span><span class="lv lv-t">触发 <b class="num">298</b> 一线放量滞涨 → 重仓者减仓防守 Q<b class="num">4</b> 财报；突破 <b class="num">348</b> → 追买回来（趋势确认）</span><span class="lv lv-r">阻力 前高（时间问题）；<b class="num">27</b> 年前瞻中位 <b class="num">374</b></span><span class="lv lv-s">支撑 他的第四大持仓，三大云里技术面最差（跌破几个重要强支撑、压力最大），Q<b class="num">3</b> 广告出小问题、未确认暂时还是趋势性走弱</span><span class="lv lv-r">阻力 重仓高位（<b class="num">300-304</b> 买入）者，接近 <b class="num">298</b> 一线强压力若放量滞涨可减仓防守 Q<b class="num">4</b> 财报，跌回低吸位买回，若突破 <b class="num">3</b></span></div>
+      <div class="op-d">他的第四大持仓，三大云里技术面最差（跌破几个重要强支撑、压力最大），Q3 广告出小问题、未确认暂时还是趋势性走弱。但估值不高：27 年前瞻 299-449 中位 374（他更正口误：27 年下限是 299 不是 399），现价 287 正在前瞻下限。处理分三种：轻仓/新建仓的不动拿到 Q4 财报，下跌中在下方两个位置分批低吸（一个位置吸一次）；重仓高位（300-304 买入）者，接近 298 一线强压力若放量滞涨可减仓防守 Q4 财报，跌回低吸位买回，若突破 348 则追买回来（趋势确认）；看不懂技术面的干脆不动等季度。他本人不动、长期看好，判断云增长抵消广告下滑是大概率事件；只要 Q4 广告不趋势性下滑，回到前高只是时间问题。</div>
+      <div class="op-q">「299到449啊，中位374，所以现在的287，其实就是在27年的前瞻估值的下限，价格并不高……看到智涨（滞涨）检仓（减仓）处理，为你的四季度财报提前做好最差的防守准备……攒上去了突破了348，一样把它买回来，相当于是追着买回来……我相信谷歌回到前高，他只是一个时间问题。」</div>
+      <div class="op-tag"><b>催化：</b>Q4 财报广告企稳+云增长抵消广告下滑、突破 348 趋势确认</div>
+      <div class="op-tag"><b>风险：</b>广告连续两个季度下滑则股价难上、298 一线强压力放量滞涨</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1366s" class="tslink">22:46 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/2</span></span><span class="st flat">中性/观望·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 等企稳信号</span></div>
+      <div class="op-d">股价反弹无力，又计划发行60亿欧元债券融资；作为五大巨头之一回购大砍、加入融资大军，短期缺乏独立催化剂。</div>
+      <div class="op-q">「谷歌股价反弹无力，公司计划通过发行欧元债券筹集60亿欧元。」</div>
+      <div class="op-tag"><b>催化：</b>欧元债融资补充AI资本开支弹药</div>
+      <div class="op-tag"><b>风险：</b>融资潮压制估值、反弹动能不足</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=568s" class="tslink">9:28 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/4</span></span><span class="st flat">中性/减仓·中期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">5</b>日均线（刚站上）</span><span class="lv lv-r">阻力 <b class="num">300</b>（未摸到）</span></div>
+      <div class="op-d">谷歌比较克制只涨3.2%，连300都没摸到，好歹站上5日均线。NaNa手里155股解套后今天卖了100股只留55股底仓：财报让她担心AI对搜索广告的冲击，对长持信心不足，但又怕卖飞，且这几天受益民主党的股票/板块可能还会持续，所以留底仓。</div>
+      <div class="op-q">「谷歌这边比较克制，只涨了3.2%，连300都没摸到，不过好歹站上5日均线了，我手里的155股终于解套了，我今天卖了100股，只留下55股……因为它最近的财报让我有点担心AI对它搜索广告的冲击。」</div>
+      <div class="op-tag"><b>催化：</b>受益民主党行情可能持续</div>
+      <div class="op-tag"><b>风险：</b>AI对搜索广告业务的冲击、长持信心不足</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=459s" class="tslink">7:39 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">欧元债融资补充AI资本开支弹药</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">前低支撑+超跌</span><span class="tag-date">11/3</span></div><div class="tag-item"><span class="tag-fg">套牢盘惜售、换手率仅 0.85%</span><span class="tag-date">11/3</span></div><div class="tag-item"><span class="tag-fg">受益民主党行情可能持续</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">数据中心审批放缓使存量算力涨价</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">小云竞争对手融资模式受压</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">核心广告业务现金流支撑</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">明年资本开支继续增加（管理层表态）</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AI应用传导可能重新拉高增速</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AI资本支出受限改善自由现金流</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">不确定性消除后板块轮动受益</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">Q4 财报广告企稳+云增长抵消广告下滑</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">突破 348 趋势确认</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">国债收益率回落减轻融资压力</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">民主党议员重仓科技巨头</span><span class="tag-date">11/4</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">融资潮压制估值</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">反弹动能不足</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">前低若失守则创新低</span><span class="tag-date">11/3</span></div><div class="tag-item"><span class="tag-fg">AI对搜索广告业务的冲击</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">长持信心不足</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">联邦及州层面AI监管收紧</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">整体AI交易情绪承压</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">自由现金流转负91亿</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">搜索广告增速放缓至12%</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">教育AI监管争议</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">数据中心扩张受政策约束</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">广告连续两个季度下滑则股价难上</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">298 一线强压力放量滞涨</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">环保审批增加数据中心成本</span><span class="tag-date">11/4</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日</span></div>
+  <div class="day">
+      <div class="day-h">11/2</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性/观望·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 等企稳信号</span></div>
+          <div class="op-d">股价反弹无力，又计划发行60亿欧元债券融资；作为五大巨头之一回购大砍、加入融资大军，短期缺乏独立催化剂。</div>
+          <div class="op-q">「谷歌股价反弹无力，公司计划通过发行欧元债券筹集60亿欧元。」</div>
+          <div class="op-tag"><b>催化：</b>欧元债融资补充AI资本开支弹药</div>
+          <div class="op-tag"><b>风险：</b>融资潮压制估值、反弹动能不足</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=568s" class="tslink">9:28 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/3</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st flat">中性/观望·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 前期低点水平线（接近一年来新低处）</span></div>
+          <div class="op-d">大跌后这几天一直在低位挣扎，已接近一年来新低，但暴跌后有前期低点水平线支撑，跌得这么凶有可能反弹一下。财报那天看似抛压大，但实际换手率只有 0.85%，大量机构大户和散户套在里边不急着跑，都觉得要反弹——抛压不重是反弹的技术基础。</div>
+          <div class="op-q">「暴跌后已经接近一年来新低，跌这么凶的情况下又有前低支撑，有可能反弹一下……实际上换手率只有 0.85%，大量的机构大户和散户套在里边，他们都不急着跑，会觉得要反弹。」</div>
+          <div class="op-tag"><b>催化：</b>前低支撑+超跌、套牢盘惜售、换手率仅 0.85%</div>
+          <div class="op-tag"><b>风险：</b>前低若失守则创新低</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=719s" class="tslink">11:59 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/4</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性/减仓·中期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">5</b>日均线（刚站上）</span><span class="lv lv-r">阻力 <b class="num">300</b>（未摸到）</span></div>
+          <div class="op-d">谷歌比较克制只涨3.2%，连300都没摸到，好歹站上5日均线。NaNa手里155股解套后今天卖了100股只留55股底仓：财报让她担心AI对搜索广告的冲击，对长持信心不足，但又怕卖飞，且这几天受益民主党的股票/板块可能还会持续，所以留底仓。</div>
+          <div class="op-q">「谷歌这边比较克制，只涨了3.2%，连300都没摸到，不过好歹站上5日均线了，我手里的155股终于解套了，我今天卖了100股，只留下55股……因为它最近的财报让我有点担心AI对它搜索广告的冲击。」</div>
+          <div class="op-tag"><b>催化：</b>受益民主党行情可能持续</div>
+          <div class="op-tag"><b>风险：</b>AI对搜索广告业务的冲击、长持信心不足</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=459s" class="tslink">7:39 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">数据中心建设放缓对大云相对利好：已建好的算力更抢手且有涨价空间，自建模式加大现金流支撑使相对优势放大。谷歌作为三大云之一当日涨超3%，市场份额或进一步向大云集中。</div>
+          <div class="op-q">「我们认为放缓对大云相对利好……三大云里谷歌涨超3%」</div>
+          <div class="op-tag"><b>催化：</b>数据中心审批放缓使存量算力涨价、小云竞争对手融资模式受压、核心广告业务现金流支撑</div>
+          <div class="op-tag"><b>风险：</b>联邦及州层面AI监管收紧、整体AI交易情绪承压</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=EgQshiaDUmY&amp;t=18s" class="tslink">0:18 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/观望·短期</span></div>
+          
+          <div class="op-d">谷歌三季度自由现金流从去年约245亿美元转为负91亿，财报当周大跌12.6%。Justine认为现金流只是原因之一，搜索广告增速放缓到只有12%说明基本盘也出问题，市场更在乎增长是否超预期；现金流和成长性需要足够匹配才能被市场买单。另谷歌要求学校启用搜索时一并接受AI功能，遭民主党阵营抨击，教育AI监管争议升温。</div>
+          <div class="op-q">「今年三季度自由现金流变成负91亿，财报当周就大跌了12.6%……搜索广告的增速也放缓到只有12%，等于基本盘也出了问题」</div>
+          <div class="op-tag"><b>催化：</b>明年资本开支继续增加（管理层表态）、AI应用传导可能重新拉高增速</div>
+          <div class="op-tag"><b>风险：</b>自由现金流转负91亿、搜索广告增速放缓至12%、教育AI监管争议</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=v-NBy7bKWuA&amp;t=347s" class="tslink">5:47 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">老李玩钱</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">账户中大科技巨头之一，今日大涨且涨幅不小。作为加大AI资本支出的云厂代表，民主党用电限制政策反而缓解华尔街对其巨额资本支出的担忧，自由现金流预期改善，构成利好。</div>
+          <div class="op-q">「账户里的大科技巨头比如说微软、苹果、谷歌，这几个全都是上涨的，而且涨了还不少。」</div>
+          <div class="op-tag"><b>催化：</b>AI资本支出受限改善自由现金流、不确定性消除后板块轮动受益</div>
+          <div class="op-tag"><b>风险：</b>数据中心扩张受政策约束</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=142s" class="tslink">2:22 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·长期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">287</b> 附近即 <b class="num">27</b> 年前瞻下限 <b class="num">299</b> 下方（下方两个位置分批低吸）</span><span class="lv lv-r">阻力 <b class="num">298</b>（强压力线起点）/ <b class="num">348</b>（突破确认位）</span><span class="lv lv-e">买点 下方两个位置分批低吸（一个位置吸一次，不要太密集）</span><span class="lv lv-t">触发 <b class="num">298</b> 一线放量滞涨 → 重仓者减仓防守 Q<b class="num">4</b> 财报；突破 <b class="num">348</b> → 追买回来（趋势确认）</span><span class="lv lv-r">阻力 前高（时间问题）；<b class="num">27</b> 年前瞻中位 <b class="num">374</b></span><span class="lv lv-s">支撑 他的第四大持仓，三大云里技术面最差（跌破几个重要强支撑、压力最大），Q<b class="num">3</b> 广告出小问题、未确认暂时还是趋势性走弱</span><span class="lv lv-r">阻力 重仓高位（<b class="num">300-304</b> 买入）者，接近 <b class="num">298</b> 一线强压力若放量滞涨可减仓防守 Q<b class="num">4</b> 财报，跌回低吸位买回，若突破 <b class="num">3</b></span></div>
+          <div class="op-d">他的第四大持仓，三大云里技术面最差（跌破几个重要强支撑、压力最大），Q3 广告出小问题、未确认暂时还是趋势性走弱。但估值不高：27 年前瞻 299-449 中位 374（他更正口误：27 年下限是 299 不是 399），现价 287 正在前瞻下限。处理分三种：轻仓/新建仓的不动拿到 Q4 财报，下跌中在下方两个位置分批低吸（一个位置吸一次）；重仓高位（300-304 买入）者，接近 298 一线强压力若放量滞涨可减仓防守 Q4 财报，跌回低吸位买回，若突破 348 则追买回来（趋势确认）；看不懂技术面的干脆不动等季度。他本人不动、长期看好，判断云增长抵消广告下滑是大概率事件；只要 Q4 广告不趋势性下滑，回到前高只是时间问题。</div>
+          <div class="op-q">「299到449啊，中位374，所以现在的287，其实就是在27年的前瞻估值的下限，价格并不高……看到智涨（滞涨）检仓（减仓）处理，为你的四季度财报提前做好最差的防守准备……攒上去了突破了348，一样把它买回来，相当于是追着买回来……我相信谷歌回到前高，他只是一个时间问题。」</div>
+          <div class="op-tag"><b>催化：</b>Q4 财报广告企稳+云增长抵消广告下滑、突破 348 趋势确认</div>
+          <div class="op-tag"><b>风险：</b>广告连续两个季度下滑则股价难上、298 一线强压力放量滞涨</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1366s" class="tslink">22:46 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">公开账户持仓之一，今日大涨。民主党控制国会或利好科技巨头：国债收益率因债务控制回落，减少云巨头资本支出融资的利息支出压力；NANC民主党ETF前十大重仓谷歌等科技巨头，博主倾向中期选举利好科技巨头的观点。利空是民主党环保评估会增加数据中心达产难度和成本，但利好利空相抵后仍偏正面。</div>
+          <div class="op-q">「所以我倾向于此次中期选举利好科技巨头的观点。」</div>
+          <div class="op-tag"><b>催化：</b>国债收益率回落减轻融资压力、民主党议员重仓科技巨头</div>
+          <div class="op-tag"><b>风险：</b>环保审批增加数据中心成本</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=RJWmotsUotU&amp;t=688s" class="tslink">11:28 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-05 15:32（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
