@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美股复盘日报 2026-11-03</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --text:#1a1a1a; --text-strong:#111111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --accent-soft:#eef2ff;
+    --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#ffffff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --accent-soft:#1e2a44;
+      --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.6;}
+  .wrap{max-width:640px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;}
+  .hero h1{margin:0 0 6px;font-size:19px;font-weight:700;color:#fff;}
+  .hero .sub{font-size:12.5px;color:#dbe4f0;}
+  .mkt{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;}
+  .mkt-h{font-size:13px;font-weight:700;color:var(--text-strong);margin:0 0 8px;}
+  .mkt-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .mkt-grid{display:flex;gap:8px;flex-wrap:nowrap;}
+  .mkt-item{flex:1 1 0;min-width:0;background:var(--bg);border:1px solid var(--border-soft);border-radius:8px;padding:8px 10px;}
+  .mkt-name{font-size:11.5px;color:var(--muted);font-weight:600;white-space:nowrap;}
+  .mkt-val{font-size:16px;font-weight:800;color:var(--text-strong);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:2px;white-space:nowrap;}
+  .mkt-pct{font-size:13px;font-weight:700;margin-top:1px;white-space:nowrap;}
+  .mkt-dd{font-size:11px;color:var(--muted);margin-top:3px;white-space:nowrap;}
+  .mkt-dd b{color:var(--down-fg);font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  @media (max-width:420px){
+    .mkt-item{padding:7px 7px;}
+    .mkt-name{font-size:10.5px;}
+    .mkt-val{font-size:13px;}
+    .mkt-pct{font-size:11.5px;}
+    .mkt-dd{font-size:10px;}
+  }
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .toc{display:flex;gap:6px;overflow-x:auto;margin:0 0 12px;padding:2px 0 4px;scrollbar-width:none;}
+  .toc::-webkit-scrollbar{display:none;}
+  .toc a{flex:none;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:4px 11px;text-decoration:none;white-space:nowrap;transition:.15s;}
+  .toc a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+  .sec{scroll-margin-top:58px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .tone{display:inline-block;padding:1px 9px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .tone.up{background:var(--up-bg);color:var(--up-fg);}
+  .tone.down{background:var(--down-bg);color:var(--down-fg);}
+  .tone.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .hd{padding:12px 0;border-bottom:1px dashed var(--border);}
+  .hd:last-child{border-bottom:none;padding-bottom:0;}
+  .hd-key{background:linear-gradient(90deg,var(--accent-soft),transparent);border-left:3px solid var(--accent);padding-left:10px;border-radius:6px;margin:6px 0;}
+  .hd-h{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;flex-wrap:wrap;}
+  .hd-name{font-weight:700;font-size:16px;color:var(--text-strong);}
+  .hd-tk{color:var(--muted);font-size:12px;font-weight:500;}
+  .lean{font-weight:600;font-size:12px;padding:1px 9px;border-radius:20px;margin-left:auto;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .hd-meta{font-size:12px;color:var(--muted);margin-bottom:6px;}
+  .op{padding:9px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-title{font-size:12.5px;color:var(--muted);margin-top:3px;font-style:italic;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .c-up{color:var(--up-fg);font-weight:600;}
+  .c-down{color:var(--down-fg);font-weight:600;}
+  .c-flat{color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;margin:2px 4px 2px 0;background:var(--accent-soft);color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器，
+     杜绝手机端内容把表格撑出卡片边框（此前「关键价位一览」时间列溢出即此问题） */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  tr:last-child td{border-bottom:none;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 关键价位表：标的/博主/时间窄列 + 价位宽列，全部竖向居中（2026-11-03 用户反馈可读性） */
+  .lv-tbl td, .lv-tbl th{vertical-align:middle;}
+  .lv-tbl td, .lv-tbl th{padding-left:4px;padding-right:4px;}
+  .lv-tbl td:nth-child(1){font-size:12px;}
+  .lv-tbl td:nth-child(1) b{font-size:12.5px;}
+  .lv-tbl td:nth-child(2){font-size:11px;color:var(--muted);}
+  .lv-tbl td:nth-child(4){white-space:nowrap;text-align:right;padding-right:8px;}
+  .tk{color:var(--muted-2);font-size:11.5px;font-weight:400;}
+  .ch{margin-bottom:10px;}
+  .ch-name{font-weight:700;font-size:14px;color:var(--text-strong);margin-bottom:4px;}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">美股复盘日报 · 11.3</span><span class="rt"><a href="/reports/2026-11-04.html" title="更新一期">← 11.4</a><a href="/reports/2026-11-02.html" title="更早一期">11.2 →</a></span></nav>
+<div class="hero">
+  <h1>美股复盘日报</h1>
+  <div class="sub">2026年11月3日 · 6 位博主 · 22 条观点 · 大盘<span class="tone flat">中性</span></div>
+</div>
+
+<div class="mkt">
+    <div class="mkt-h">📈 前一日美股指数<span class="asof">截至 2026-11-03 美东收盘</span></div>
+    <div class="mkt-grid"><div class="mkt-item">
+        <div class="mkt-name">道琼斯</div>
+        <div class="mkt-val">51,786.72</div>
+        <div class="mkt-pct c-down">▼ -0.38%</div>
+        <div class="mkt-dd">距高点 <b>-5.40%</b></div>
+      </div><div class="mkt-item">
+        <div class="mkt-name">标普500</div>
+        <div class="mkt-val">7,568.92</div>
+        <div class="mkt-pct c-up">▲ +0.36%</div>
+        <div class="mkt-dd">距高点 <b>-3.51%</b></div>
+      </div><div class="mkt-item">
+        <div class="mkt-name">纳斯达克</div>
+        <div class="mkt-val">25,372.01</div>
+        <div class="mkt-pct c-up">▲ +0.83%</div>
+        <div class="mkt-dd">距高点 <b>-8.48%</b></div>
+      </div></div>
+  </div>
+<nav class="toc"><a href="#s1">📌 持仓</a><a href="#s2">🌐 大盘</a><a href="#s3">📊 其他标的</a><a href="#s4">🎬 博主要点</a><a href="#s5">🎯 关键价位</a></nav>
+
+<div class="sec" id="s1">
+  <div class="sec-h">📌 一、我的持仓</div>
+  <div class="hd">
+        <div class="hd-h"><span class="hd-name">标普500ETF</span>
+        <span class="hd-tk">SPY</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">5 次提及 · 看多 0 / 看空 1</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 VIX 回到 <b class="num">18</b> 以下=市场趋于平稳的确认信号；<b class="num">18</b> 以上代表市场仍预期较高波动</span></div>
+    <div class="op-d">周二道指独跌、三指上涨，盘面较周一平稳、量能萎缩。中期选举民主党横扫概率升至 99%，AI 主题承压、盘后恐慌抛售，但两党都不敢砍 AI（AI 是 GDP 增长大腿），立法硬约束两年内难落地，所以不需要过度悲观。想买的不着急，等趋势稳定后再买质量高、估值不超前瞻一年的标的；不要跟趋势作对。</div>
+    <div class="op-q">「现在的博彩市场已经是压住民主党横扫的概率极高，所以所有的AI投资主题大家看到是大幅成压（承压）……你要想买的不着急，你等下一个趋势稳定之后，虚实稳定之后很多东西都可以买。」</div>
+    <div class="op-tag"><b>催化：</b>中期选举结果落地后波动收敛、VIX 回到 18 以下确认市场平稳<br><b>风险：</b>横扫后监督/听证/州级审批摩擦推高 AI 合规与运营成本、数据中心信贷紧张持续</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=IcDRffqDfTo&amp;t=4s" class="tslink">0:04 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span><span class="op-date">·11/3</span></span>
+    <span class="st c-down">看空/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 下方关键支撑线（程序性抛售触发线，具体数值见周一视频/图）</span><span class="lv lv-t">触发 下方支撑线失守→抛售量预计再增 <b class="num">30</b>%，视为离场/回避信号</span></div>
+    <div class="op-d">关键支撑线跌破后程序性抛售放量，全天无空头回补，多头接盘意愿极弱；周二下方支撑线若再失守，抛售量将再增约 30%，短期不宜接飞刀，先看支撑线能否顶住。</div>
+    <div class="op-q">「周一跌破这两条线后引发大量程序性抛售，这是谁也没办法的事情，全天无任何空头回补（仅有小幅半小时线反弹）周二下面的线要顶住，否则还要增加30%的抛售….」</div>
+    <div class="op-tag"><b>催化：</b>下方支撑线是否守住<br><b>风险：</b>支撑线再度跌破将触发程序盘继续放量抛售（约+30%）</div>
+    
+    <div class="op-ts">🔗 <a href="https://x.com/maojietrading/status/2117601949776236607" class="tslink" target="_blank" rel="noopener">查看原帖</a></div>
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span><span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/观望·中期</span></div>
+    
+    <div class="op-d">市场资金结构恶化：长线资金缺席、程序盘与短线大炒主导、散户杠杆化，涨跌被结构性放大。波动率高企的环境下，方向判断的可靠性下降，纪律化操作优于主观预测。</div>
+    <div class="op-q">「机构现在全是墙头草，以前所谓的长线资金都不怎么参与行情了，全是短线大炒，跌了就程序性触发挤兑，涨了就哗啦啦争相进场……美股现在越来越有点币圈的味道了」</div>
+    <div class="op-tag"><b>风险：</b>散户杠杆+程序化抛售叠加，尾部波动风险放大</div>
+    
+    <div class="op-ts">🔗 <a href="https://x.com/maojietrading/status/2117629833257922858" class="tslink" target="_blank" rel="noopener">查看原帖</a></div>
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/观望·中期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 年线 <b class="num">7200</b> 点（强支撑）；大摩悲观情形 <b class="num">7100</b> 点</span><span class="lv lv-r">阻力 半年线（连续三天收其下方、一涨就被压制）</span><span class="lv lv-t">触发 CNN 恐慌贪婪指数若能跌到 <b class="num">10</b> 分可大胆抄底（概率不大）</span><span class="lv">目标 大摩 Wilson：短期或跌至 <b class="num">7100</b> 点，明年看 <b class="num">8000</b> 点</span></div>
+    <div class="op-d">反弹+0.36% 但受半年线压制、已连续三天收在半年线下方，中期横盘无连续上涨趋势，横久了要防下破。若下探寻底，年线 7200 点左右是强大支撑；指数最多跌约 300 点，但个股会跌得多。大摩 Wilson 预测再跌 9% 至 7100 点后明年到 8000 点，短空长多可借鉴；无黑天鹅跌不到 7100，8000 完全可能看到。</div>
+    <div class="op-q">「如果这次标普指数下下（向下）循底，那么年限（年线）7200 点左右是强大的支撑位，虽然指数最多可能也就跌个 300 点，但标普跌 300 点，个股就会跌很多。」</div>
+    <div class="op-tag"><b>催化：</b>中期选举后不确定性消除、AI 主题回暖<br><b>风险：</b>美伊战事重燃推升油价、12 月加息概率 78.9% 且债券利率高位、半年线下方持续压制</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=40s" class="tslink">0:40 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-r">阻力 半年线（日内反抽测试后回落）</span><span class="lv lv-t">触发 蓝色浪潮暴跌→局部抄底机会</span><span class="lv lv-r">阻力 标普<b class="num">500</b>指数日内反抽测试半年线阻力后回落，短期趋势仍然偏弱，但既然 AMD 盘后都涨了，那明天大盘可能会继续反弹……如</span></div>
+    <div class="op-d">标普日内反抽测试半年线阻力后回落，短期趋势仍偏弱；但 AMD 盘后上涨、选后季节性与低仓位可能推动继续反弹。对选后暴涨预期保持适度谨慎——今年 SPX 已涨 10.7% 远超季节性；若蓝色浪潮引发暴跌，反而是局部抄底机会。</div>
+    <div class="op-q">「标普500指数日内反抽测试半年线阻力后回落，短期趋势仍然偏弱，但既然 AMD 盘后都涨了，那明天大盘可能会继续反弹……如果蓝色浪潮席卷两院，美股暴跌，那也没关系，反而是一个局部抄底机会。」</div>
+    <div class="op-tag"><b>催化：</b>中期选举结果落地、瑞银：季节性+对冲基金低仓位利于选后反弹<br><b>风险：</b>民主党横扫引发政策不确定性与 AI 建设担忧、中东战事升级、选后暴涨预期落空</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=zzLHdk1pFd8&amp;t=333s" class="tslink">5:33 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">纳指100ETF</span>
+        <span class="hd-tk">QQQ</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">3 次提及 · 看多 0 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    
+    <div class="op-d">纳指100 期货在横扫概率飙升后突然大幅下挫，AI 重仓的科技板块首当其冲被计价政治风险；但恐慌归恐慌，立法硬约束短期难通过，波动动一动属正常，低开高走反复是当前行情特征。</div>
+    <div class="op-q">「大家看一下纳纸（纳指）100的期货，大幅下错（下挫），突然间碰就掉下来了……就是出现了一波恐慌式的抛售。」</div>
+    <div class="op-tag"><b>催化：</b>选举结果完全落地<br><b>风险：</b>AI 板块政治不确定性推高波动、恐慌抛售延续</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=IcDRffqDfTo&amp;t=1214s" class="tslink">20:14 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">25000</b> 点左右</span></div>
+    <div class="op-d">纳指 +0.83% 反弹只是下跌途中喘口气，日线图短线仍是下跌趋势，下方支撑位约 25000 点；估计也快反弹了。资金当日从避险股（道指跌）流出抄底科技股。</div>
+    <div class="op-q">「反弹只是下跌途中喘口气，下方支撑位应该在 25000 点左右，虽然日线图短线下跌趋势，但估计也快反弹了。」</div>
+    <div class="op-tag"><b>催化：</b>AMD 盘后急涨提振科技情绪<br><b>风险：</b>债券利率高位压制成长股</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=61s" class="tslink">1:01 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 年线（已在其上反弹）、半年线与月均线（需站稳才摆脱下行压力）</span><span class="lv lv-r">阻力 <b class="num">28900</b>（前期支撑转强阻力）</span><span class="lv lv-t">触发 重新站上 <b class="num">28900</b> 且站稳半年线/月均线 → 摆脱下行压力</span></div>
+    <div class="op-d">纳指100 在年线上反弹、止步三连跌，但昨日已跌入回调区间（较 10 月高点跌超 10%），资金从大型科技股撤出。28900 已从前期重要支撑转为强阻力，反弹收不回 28900 都只是下跌趋势中的反抽；站稳半年线与月均线才算摆脱下行压力。苹果通常是一轮回调中最后下跌的，苹果财报后下跌反而暗示 QQQ 快要见底。</div>
+    <div class="op-q">「上方 28900 这里已经从前期重要支撑转变为强阻力，反弹如果不能重新站上 28900 点，都只是下跌趋势中的反抽，站稳半年线与月均线才算是摆脱了下行压力。」</div>
+    <div class="op-tag"><b>催化：</b>AMD 财报后上涨改善 AI 板块情绪、苹果下跌暗示 QQQ 接近见底<br><b>风险：</b>Anthropic IPO 压价（1.5-1.6 万亿 vs 2 万亿）反映 AI 交易降温、28900 下方反抽失败再探底</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=zzLHdk1pFd8&amp;t=444s" class="tslink">7:24 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">费城半导体ETF</span>
+        <span class="hd-tk">SMH</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">2 次提及 · 看多 1 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/3</span></span>
+    <span class="st c-up">看多/增持·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">10000</b> 点（整数关+年线+<b class="num">0.382</b> 黄金分割三重共振）</span><span class="lv lv-e">买点 <b class="num">10000</b> 点附近（三重共振密集支撑位）</span><span class="lv lv-s">支撑 费半今年 <b class="num">4</b> 月直接翻倍、需要很长时间回调消化，本轮已到最重要支撑：从高点拉黄金分割线，<b class="num">10000</b> 点既是整数关、又是年</span></div>
+    <div class="op-d">费半今年 4 月直接翻倍、需要很长时间回调消化，本轮已到最重要支撑：从高点拉黄金分割线，10000 点既是整数关、又是年线位置、还是 0.382 黄金分割位——三重技术位共振的密集支撑。今天反弹 2 个多百分点但冲高回落带上影线、力度不足；若无重大外部风险，反弹指日可待。AI 主线若断大盘无题材接力将走弱，AI 回暖则大盘重拾上升趋势。AMD 盘后大涨将提振半导体，费半有望借此东风反弹。</div>
+    <div class="op-q">「1 万点是一个重要的点位……是废半（费半）指数的整数关，又是年限（年线）所在的位置，还是黄金分割位上的 0.382 位置……如果没有重大外部风险事件发生的话，反弹应该是指日可待了。」</div>
+    <div class="op-tag"><b>催化：</b>AMD 盘后财报大涨带动板块、10000 点三重技术支撑<br><b>风险：</b>美伊战事等外部风险、AI 主线断裂则持续偏弱</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=301s" class="tslink">5:01 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-r">阻力 年线（收涨后仍在其下方）</span></div>
+    <div class="op-d">费半指数收涨 2.63%，但仍处于年线下方；10 月单月跌 15.4%。大摩 TMT 动能因子较 12 个月高点低 62%（比 2000 年泡沫破裂时的约 50% 还深）、高盛口径 -42%，动能出清程度极深。半导体与软件是当日资金轮动方向，AMD 财报后上涨是两周来首个 AI 重磅财报上涨，或带动板块情绪修复，但趋势尚未反转。</div>
+    <div class="op-q">「费城半导体指数收涨 2.63%，目前仍处于年线下方……费半指数跌了 15.4%，QQQ 跌了 6.7%。下游的利润是很丰厚，但是上游的金主们个个借债度日。」</div>
+    <div class="op-tag"><b>催化：</b>AMD 盘后上涨、高盛上调全球数据中心容量与资本开支预测<br><b>风险：</b>年线压制下反弹持续性存疑、上游借债度日的资金链风险</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=zzLHdk1pFd8&amp;t=217s" class="tslink">3:37 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">谷歌</span>
+        <span class="hd-tk">GOOGL</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">1 次提及 · 看多 0 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 前期低点水平线（接近一年来新低处）</span></div>
+    <div class="op-d">大跌后这几天一直在低位挣扎，已接近一年来新低，但暴跌后有前期低点水平线支撑，跌得这么凶有可能反弹一下。财报那天看似抛压大，但实际换手率只有 0.85%，大量机构大户和散户套在里边不急着跑，都觉得要反弹——抛压不重是反弹的技术基础。</div>
+    <div class="op-q">「暴跌后已经接近一年来新低，跌这么凶的情况下又有前低支撑，有可能反弹一下……实际上换手率只有 0.85%，大量的机构大户和散户套在里边，他们都不急着跑，会觉得要反弹。」</div>
+    <div class="op-tag"><b>催化：</b>前低支撑+超跌、套牢盘惜售、换手率仅 0.85%<br><b>风险：</b>前低若失守则创新低</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=719s" class="tslink">11:59 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">英伟达</span>
+        <span class="hd-tk">NVDA</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">2 次提及 · 看多 0 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/持有·中期</span></div>
+    
+    <div class="op-d">在与 AMD 的横向对比中被提及：英伟达基数更高、高增速阶段早已过去，AMD 因基数低、高增长比英伟达晚两年，现在正是 AMD 高增长期——但恰好撞上资本支出增速见顶与信贷问题，时间上吃亏；若放在两年前，AMD 这个增速价格早就起飞（可能到 800）。言下之意：英伟达增速虽慢但确定性高、估值横向对比更便宜，是持有属性；AMD 涨价弹性更大但吃时间亏且风险点位更近。</div>
+    <div class="op-q">「英伟达的增速虽然没有 MD（AMD）这么快，因为英伟达的基数更高，他高增速早就过去了……但又刚好碰到了资本支出增速见顶，还有信贷现在这边出问题的时候。」</div>
+    <div class="op-tag"><b>风险：</b>资本支出增速见顶对整个算力链的传导</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=IcDRffqDfTo&amp;t=820s" class="tslink">13:40 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/3</span></span>
+    <span class="st c-flat">中性/持有·短期</span></div>
+    
+    <div class="op-d">Sani 自述手上持有英伟达和几个小仓位半导体，希望 AMD 能撑到明天交易时段、带一波费半指数回暖——即借 AMD 财报东风修复半导体持仓。个股本身无新增观点，属于持有跟随板块反弹的思路。</div>
+    <div class="op-q">「我虽然手上没有 AMD 啦，但是有英伟达和好几个小仓位的半导体，还是挺希望 AMD 能撑到明天交易时段，带一波废半（费半）指数都回暖吧。」</div>
+    <div class="op-tag"><b>催化：</b>AMD 盘后大涨带动费半反弹<br><b>风险：</b>盘后反弹若昙花一现则带动失败</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=592s" class="tslink">9:52 回看</a></div>
+    
+  </div>
+      </div>
+</div>
+
+<div class="sec" id="s2">
+  <div class="sec-h">🌐 二、大盘情况</div>
+  <p style="margin:0 0 8px;"><span class="tone flat" style="margin-left:0;">中性</span>
+  <span style="font-size:12.5px;color:var(--muted);margin-left:8px;">偏空 3 · 中性 3</span></p>
+  <div class="op"><div class="op-h"><span class="op-c">视野环球财经</span><span class="st down">偏空</span></div><div class="op-d">Rainow 复盘周二（11-03）盘面：道指独跌、三大股指上涨，盘中走势比周一平稳，成交量萎缩，市场在等中期选举结果。节目过程中博彩市场（Polymarket）民主党横扫两院概率已达 99%（选举前约六七十徘徊），纳指100 期货闻讯大幅下挫，盘后出现恐慌式抛售。他的框架：两党都支持美国 AI 领先地位，谁也不敢砍 AI（AI 投资是美国 GDP 增长大腿），所以不需要过度悲观；但民主党横扫会带来调查权、传票权、听证主导权，加强对硅谷 AI 公司、数据中心扩张、私人信贷融资的监督，推高合规与运营成本——行政摩擦就是企业的真实成本。立法层面未来两年很难真正修订数据中心立法（总统否决权），真正的冲击在监督、听证与州级阻力；选举后州级审批压力反而可能减轻。操作纪律：想买的不着急，等趋势稳定之后再买质量高的、市价不超过前瞻估值一年的标的；刚止损的朋友不要急着回本，不要跟趋势作对。VIX 框架：回到 18 以下代表市场趋于平稳（16 附近更佳），22 以上风险溢价增强，25-30 属恐慌砸盘；当前有避险行为但未到极度恐慌。</div></div><div class="op"><div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性</span></div><div class="op-d">中期选举投票日，市场情绪谨慎、量能萎缩；标普与纳指在周一抛售后小幅反弹，道指小幅收跌，资金日内轮动到半导体与软件。瑞银认为季节性与对冲基金低仓位为选后反弹创造条件（1950-2022 的 19 次中期选举后标普500 随后一年均上涨、平均 +15.4%），但 NaNa 提醒：Truist 数据显示选举年通常前 10 个月仅涨约 1%、选后到年底涨 4%，而今年到 10 月底 SPX 已涨 10.7%，远超季节性平均，对选后大幅走强要保持适度谨慎。VIX 持续在 20 以上；若明日中东无战事、投票结果落地，多空对冲头寸解除可能带来剧烈短期波动——她更倾向暴涨，但若蓝色浪潮席卷两院引发暴跌反而是局部抄底机会。Q3 财报季过半：60% 成分股已公布、82% 盈利超预期，但 10 月费半 -15.4%、QQQ -6.7%，市场叙事已从「需求支撑股价」转向「资金能否实现回报」。花旗持仓报告显示上周 SPX/纳指再现大规模新增空头，去风险延续，多头踩踏风险下降。</div></div><div class="op"><div class="op-h"><span class="op-c">阳光财经</span><span class="st flat">中性</span></div><div class="op-d">标普 +27.52 点（+0.36%）反弹但再受半年线压制、已连续三天收在半年线下方，中期持续横盘、需防向下破位——若下探寻底，年线 7200 点左右是强大支撑，指数最多跌约 300 点但个股会跌更多。纳指 +207.65 点（+0.83%）只是下跌途中喘口气，下方支撑约 25000 点，估计快反弹了。道指下跌说明资金从避险股流出抄底科技股；CNN 恐慌贪婪指数 23→19，若能反弹几天跌到 10 分就可以大胆抄底，但概率不大。宏观变数：中期选举后白宫军事顾虑大减，美伊间接谈判难有成果（已袭击格什姆岛附近、伊朗击落两架无人机、川普威胁打击皮卡兹山核设施），战争重新升温概率不小，油价回升将是美股利空。就业稳健（9 月职位空缺 752 万、周五非农预期 +5.9 万），但科技巨头发债提速推高债券利率，市场预测 12 月加息概率回升至 78.9%，对成长股是持续压力。大摩 Wilson：标普再跌 9% 至 7100 点、但明年看 8000 点（短空长多）；Sani 认为跌到 7100 需黑天鹅、8000 完全可能看到。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st flat">中性</span></div><div class="op-d">猫姐今日将 LITE（Lumentum）全部清仓离场，作为今年该标的交易的一个 mark；近两天盈利回撤约 2 万多美元；她把 29-30 两天的提示一并整理存档，并感谢 LITE 的陪伴：很好的公司、不错的标的，期间的回撤也是教训。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st down">偏空</span></div><div class="op-d">猫姐复盘周一（11-02）盘面：关键支撑线跌破后引发大量程序性抛售，且全天无任何空头回补（仅半小时线级别小幅反弹），这种单边放量下跌最伤多头。她提醒周二（11-03）下方支撑线必须顶住，否则还要增加约 30% 的抛售量。这是她一贯的「程序性触发线」框架：跌破关键线→程序盘接力抛售→跌幅自我放大。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st down">偏空</span></div><div class="op-d">猫姐对当前市场资金结构的整体判断：机构全是墙头草，传统长线资金基本不参与行情，全是短线大炒；跌了就程序性触发挤兑，涨了就争相进场。她认为美股越来越像币圈——涨跌只由少数流动筹码决定，加上大量散户上杠杆做合约，数据扭曲、波动被被动放大。这解释了她为何坚持只按程序性触发线操作、不做主观抄底。</div></div>
+</div>
+
+<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:36%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup>
+      <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
+      <tr><td>AMD <span class="tk">AMD</span></td>
+        <td style="text-align:center">3</td>
+        <td style="text-align:center" class="c-up">2</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="up">偏多</td></tr><tr><td>Palantir <span class="tk">PLTR</span></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">2</td>
+        <td style="text-align:right" class="down">偏空</td></tr><tr><td>Lumentum <span class="tk">LITE</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="flat">分歧</td></tr><tr><td>苹果 <span class="tk">AAPL</span></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">1</td>
+        <td style="text-align:right" class="flat">分歧</td></tr><tr><td>伯克希尔 <span class="tk">BRK.B</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">1</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="up">偏多</td></tr>
+    </table></div></div>
+
+<div class="sec" id="s4">
+  <div class="sec-h">🎬 四、各博主视频要点</div>
+  <div class="hd hd-key">
+        <div class="hd-h"><span class="hd-name">⭐ 视野环球财经</span><span class="hd-tk">11/3</span><span class="st down">偏空</span></div>
+        <div class="op-title">美股 横扫概率极高，AI承压！AMD前瞻大好，暗藏隐忧！PLTR增速放缓高不可攀！</div>
+        <div class="op-d">Rainow 复盘周二（11-03）盘面：道指独跌、三大股指上涨，盘中走势比周一平稳，成交量萎缩，市场在等中期选举结果。节目过程中博彩市场（Polymarket）民主党横扫两院概率已达 99%（选举前约六七十徘徊），纳指100 期货闻讯大幅下挫，盘后出现恐慌式抛售。他的框架：两党都支持美国 AI 领先地位，谁也不敢砍 AI（AI 投资是美国 GDP 增长大腿），所以不需要过度悲观；但民主党横扫会带来调查权、传票权、听证主导权，加强对硅谷 AI 公司、数据中心扩张、私人信贷融资的监督，推高合规与运营成本——行政摩擦就是企业的真实成本。立法层面未来两年很难真正修订数据中心立法（总统否决权），真正的冲击在监督、听证与州级阻力；选举后州级审批压力反而可能减轻。操作纪律：想买的不着急，等趋势稳定之后再买质量高的、市价不超过前瞻估值一年的标的；刚止损的朋友不要急着回本，不要跟趋势作对。VIX 框架：回到 18 以下代表市场趋于平稳（16 附近更佳），22 以上风险溢价增强，25-30 属恐慌砸盘；当前有避险行为但未到极度恐慌。</div>
+        <div class="op-tag"><b>宏观：</b>经济面：9月 JOLTS 职位空缺从修正后 719 万增至 752.3 万，高于预期 710 万，为 5 月以来最高；离职率 1.9%→2.1%，职位空缺率 4.3%→4.5%，劳动力需求旺盛。政治面：民主党横扫概率极高，AI/数据中心面临更严监督与审批摩擦，信贷紧张的持续性被计价；但立法硬约束短期难落地，不必过度悲观。核心矛盾仍是信贷：超大规模数据中心运营商三季度自由现金流合计 -311 亿（去年三季度约 +600 亿），靠发债/发股填补资金缺口，资金来源可持续性是整个 AI 产业链最大的变数。</div>
+        <div class="op-tag"><b>热点：</b>AI/数据中心（承压）、半导体</div>
+        <div class="op-tag"><b>要点：</b>民主党横扫概率 99%，AI 投资主题大幅承压，纳指100 期货盘后急挫；AMD 财报超预期但现金流恶化：库存单季 +35%（84.7亿→114.6亿）、应收账款 +26%（72.8亿→92.1亿）、8月发债 47.5 亿、总债务翻倍至 70.8 亿；数据中心需求不是问题（微软、谷歌、甲骨文等都在排队），资金来源可持续性才是问题；AMD 2026 全年数据中心收入约 330 亿，2027 翻倍目标对应 606-700 亿；PLTR 增速放缓：合同总价值同比仅 +6%（上季 +49%），美国商业合同价值 +11%（上季 +153%）；两个不能碰：高 CDS/高负债数据中心股；市价超过一年前瞻估值的股票；VIX&lt;18 市场平稳、&gt;22 风险增强、25-30 恐慌砸盘</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">NaNa说美股</span><span class="hd-tk">11/3</span><span class="st flat">中性</span></div>
+        <div class="op-title">选后真能暴涨？NaNa说美股(2026.11.03)</div>
+        <div class="op-d">中期选举投票日，市场情绪谨慎、量能萎缩；标普与纳指在周一抛售后小幅反弹，道指小幅收跌，资金日内轮动到半导体与软件。瑞银认为季节性与对冲基金低仓位为选后反弹创造条件（1950-2022 的 19 次中期选举后标普500 随后一年均上涨、平均 +15.4%），但 NaNa 提醒：Truist 数据显示选举年通常前 10 个月仅涨约 1%、选后到年底涨 4%，而今年到 10 月底 SPX 已涨 10.7%，远超季节性平均，对选后大幅走强要保持适度谨慎。VIX 持续在 20 以上；若明日中东无战事、投票结果落地，多空对冲头寸解除可能带来剧烈短期波动——她更倾向暴涨，但若蓝色浪潮席卷两院引发暴跌反而是局部抄底机会。Q3 财报季过半：60% 成分股已公布、82% 盈利超预期，但 10 月费半 -15.4%、QQQ -6.7%，市场叙事已从「需求支撑股价」转向「资金能否实现回报」。花旗持仓报告显示上周 SPX/纳指再现大规模新增空头，去风险延续，多头踩踏风险下降。</div>
+        <div class="op-tag"><b>宏观：</b>中期选举前资金停滞、观望为主。地缘双变量：美伊在研究卡塔尔新方案（36 小时内反馈），内塔尼亚胡催促选后对伊动手；俄乌美定于 11 月 10-11 日在阿布扎比三方和谈，油价承压。Anthropic IPO 认购遇冷：大机构要求以 1.5-1.6 万亿美元保守定价（此前讨论 2 万亿），最快下周路演、争取 11 月 16 日当周上市。高盛大幅上调全球数据中心容量预测与资本开支规模，提振 AI 下游基建情绪。摩根士丹利 TMT 动能因子较 12 个月高点低 62%（比 2000 年泡沫破裂时约 50% 还深），高盛口径 -42%。</div>
+        <div class="op-tag"><b>热点：</b>半导体（+2.63% 反弹但仍在年线下方）、软件、防御/现金充裕老登股（BRK 创历史新高、KO/礼来/WMT 走强）、存储（苹果确认内存涨价周期未结束）</div>
+        <div class="op-tag"><b>要点：</b>中期选举选后暴涨的历史规律今年要打折扣：SPX 今年已涨 10.7%，远超选举年前 10 个月 1% 的季节性平均；VIX&gt;20，选后对冲头寸解除或带来暴涨/暴跌，她倾向暴涨但暴跌反而是局部抄底机会；AMD 财报后大涨是两周来首个财报后上涨的 AI 重磅股，财报解释权在华尔街：要涨说增速、要跌说现金流（FCF 5.54 亿远低于预估 19.7 亿）；纳指100 在年线反弹止三连跌，昨日已跌入回调区间（较 10 月高点 -10%+），28900 由前期支撑转为强阻力；苹果毛利率指引 45-46% 远逊本季 47.9%，内存成本冲击下季更沉重；但苹果通常是 QQQ 回调中最后下跌的，QQQ 或快见底；BRK 静悄悄创新高，资金拥抱现金充裕老登股；防御板块上涨动力源自科技股恐慌，科技股见底或流动性危机时都会被抛售/补跌</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">阳光财经</span><span class="hd-tk">11/3</span><span class="st flat">中性</span></div>
+        <div class="op-title">美股难得：AMD盘后急涨。砖家说大盘还要再跌9%？【2026-11-03】</div>
+        <div class="op-d">标普 +27.52 点（+0.36%）反弹但再受半年线压制、已连续三天收在半年线下方，中期持续横盘、需防向下破位——若下探寻底，年线 7200 点左右是强大支撑，指数最多跌约 300 点但个股会跌更多。纳指 +207.65 点（+0.83%）只是下跌途中喘口气，下方支撑约 25000 点，估计快反弹了。道指下跌说明资金从避险股流出抄底科技股；CNN 恐慌贪婪指数 23→19，若能反弹几天跌到 10 分就可以大胆抄底，但概率不大。宏观变数：中期选举后白宫军事顾虑大减，美伊间接谈判难有成果（已袭击格什姆岛附近、伊朗击落两架无人机、川普威胁打击皮卡兹山核设施），战争重新升温概率不小，油价回升将是美股利空。就业稳健（9 月职位空缺 752 万、周五非农预期 +5.9 万），但科技巨头发债提速推高债券利率，市场预测 12 月加息概率回升至 78.9%，对成长股是持续压力。大摩 Wilson：标普再跌 9% 至 7100 点、但明年看 8000 点（短空长多）；Sani 认为跌到 7100 需黑天鹅、8000 完全可能看到。</div>
+        <div class="op-tag"><b>宏观：</b>就业不是美联储的头疼问题，通胀（关税+战争+AI 投资）才是硬指标；科技巨头加快发债抬升债券利率，12 月加息概率 78.9% 且仍可能回升，利率高位对科技/成长股构成强压力。地缘：选举结束美伊冲突重燃概率不低。</div>
+        <div class="op-tag"><b>热点：</b>半导体（费半 +2% 反弹但冲高回落）、科技股（资金从避险股流出抄底）、存储/内存（涨价周期持续）</div>
+        <div class="op-tag"><b>要点：</b>标普连续三天收在半年线下方，一涨就被均线压制还会继续调整；下破则年线 7200 点为强支撑；纳指支撑 25000 点，日线短线下跌趋势但估计快反弹；费半指数 10000 点是整数关+年线+0.382 黄金分割的三重共振密集支撑，是兵家必争之地；12 月加息概率回升至 78.9%，科技巨头发债增加债券供给、抬升利率，压制成长股；大摩 Wilson 短空长多：标普或再跌 9% 至 7100 点，明年看 8000 点；苹果毛利率因内存涨价下降，但苹果定价权强、可转嫁成本，属阶段性小问题；AMD 盘后急涨：数据中心 85 亿 +97%，Q4 指引 171 亿超预期；苏姿丰股价目标 600 美元对应市值 1 万亿</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">XTrader猫姐美股<span class="src-x">X</span></span><span class="hd-tk">11/3</span><span class="st flat">中性</span></div>
+        <div class="op-title">今天把lite清仓离场了，今年收益如图，这两天大概把盈利回撤了2万多美元吧，29-30两天的提示也一起整理出来</div>
+        <div class="op-d">猫姐今日将 LITE（Lumentum）全部清仓离场，作为今年该标的交易的一个 mark；近两天盈利回撤约 2 万多美元；她把 29-30 两天的提示一并整理存档，并感谢 LITE 的陪伴：很好的公司、不错的标的，期间的回撤也是教训。</div>
+        <div class="op-tag"><b>宏观：</b>无大盘观点，属个人交易纪律记录：盈利回撤后按计划清仓离场、复盘存档，体现其「离场不恋战」的纪律。</div>
+        
+        <div class="op-tag"><b>要点：</b>LITE 全部清仓离场，作为今年交易的 mark；近两天盈利回撤约 2 万多美元；29-30 两天的提示一并整理存档；评价：很好的公司、不错的标的，期间回撤也是教训</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">XTrader猫姐美股<span class="src-x">X</span></span><span class="hd-tk">11/3</span><span class="st down">偏空</span></div>
+        <div class="op-title">周一跌破两条线后引发大量程序性抛售，全天无空头回补，周二下面的线要顶住</div>
+        <div class="op-d">猫姐复盘周一（11-02）盘面：关键支撑线跌破后引发大量程序性抛售，且全天无任何空头回补（仅半小时线级别小幅反弹），这种单边放量下跌最伤多头。她提醒周二（11-03）下方支撑线必须顶住，否则还要增加约 30% 的抛售量。这是她一贯的「程序性触发线」框架：跌破关键线→程序盘接力抛售→跌幅自我放大。</div>
+        <div class="op-tag"><b>宏观：</b>机构行为短线化，长线资金缺席，跌势由程序性抛售主导，市场结构脆弱。</div>
+        
+        <div class="op-tag"><b>要点：</b>周一跌破两条关键线后引发大量程序性抛售；全天无空头回补，仅半小时线级别小幅反弹；周二下方支撑线必须守住，否则抛售量还要增加约 30%</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">XTrader猫姐美股<span class="src-x">X</span></span><span class="hd-tk">11/3</span><span class="st down">偏空</span></div>
+        <div class="op-title">机构全是墙头草，美股越来越有币圈味道：跌了程序性挤兑，涨了争相进场</div>
+        <div class="op-d">猫姐对当前市场资金结构的整体判断：机构全是墙头草，传统长线资金基本不参与行情，全是短线大炒；跌了就程序性触发挤兑，涨了就争相进场。她认为美股越来越像币圈——涨跌只由少数流动筹码决定，加上大量散户上杠杆做合约，数据扭曲、波动被被动放大。这解释了她为何坚持只按程序性触发线操作、不做主观抄底。</div>
+        <div class="op-tag"><b>宏观：</b>长线资金缺席、短线与程序交易主导、散户杠杆化，市场波动被结构性地放大，类似币圈生态。</div>
+        
+        <div class="op-tag"><b>要点：</b>机构全是墙头草，长线资金基本不参与行情；跌了程序性触发挤兑，涨了争相进场，波动被放大；大量散户上杠杆做合约，市场数据扭曲，越来越像币圈</div>
+      </div>
+</div>
+
+<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><div class="tbl-wrap"><table class="lv-tbl">
+      <colgroup><col style="width:20%"><col style="width:16.5%"><col style="width:50.5%"><col style="width:13%"></colgroup>
+      <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
+      <tr><td><b>标普500ETF</b>⭐ <span class="tk">SPY</span></td>
+          <td>视野环球财经</td>
+          <td>触发 VIX 回到 <b class="num">18</b> 以下=市场趋于平稳的确认信号；<b class="num">18</b> 以上代表市场仍预期较高波动</td>
+          <td><a href="https://www.youtube.com/watch?v=IcDRffqDfTo&amp;t=4s" class="tslink">0:04</a></td></tr><tr><td><b>AMD</b> <span class="tk">AMD</span></td>
+          <td>视野环球财经</td>
+          <td>支撑 <b class="num">450</b> 左右为安全得多的价值区间（约 <b class="num">10</b>% 折让空间，对应约 <b class="num">400</b> 附近建仓更具性价比）<br>阻力 <b class="num">528</b>（重新确认上行趋势的关口，未收复前视为反弹）、<b class="num">505</b>（上周五跌穿的支撑位，现转压力）<br>买点 <b class="num">450</b> 左右比现价安全得多，约 <b class="num">10</b>% 折让空间；<b class="num">400</b> 附近更佳<br>触发 盘后反弹先当反弹看待，未过 <b class="num">528</b> 不确认上行趋势，注意任何反弹被卖掉；明年 <b class="num">1</b> 月中旬后四季度财报是极高风险时间点<br>阻力 高盛 <b class="num">12</b> 个月目标价 <b class="num">700</b>；本人估值体系 <b class="num">2027</b> 前瞻上限 <b class="num">609</b>（<b class="num">30-40</b> 倍），低倍 <b class="num">457</b><br>目标 四季度指引营收 <b class="num">170</b> 亿（环比 +<b class="num">27</b>%、同比 +<b class="num">65</b>%），据此推算 <b class="num">2026</b> 全年数据中心收入约 <b class="num">330</b> 亿，苏姿丰</td>
+          <td><a href="https://www.youtube.com/watch?v=IcDRffqDfTo&amp;t=762s" class="tslink">12:42</a></td></tr><tr><td><b>Palantir</b> <span class="tk">PLTR</span></td>
+          <td>视野环球财经</td>
+          <td>支撑 <b class="num">151-161</b>，跌破后看 <b class="num">122-138</b><br>阻力 <b class="num">169-192</b>（跌破后的强压力区）<br>触发 跌破 <b class="num">169</b> 后 <b class="num">169-192</b> 转强压力；能横盘不大幅下跌已算好结果，反弹到压力区注意卖出<br>目标 按合理倍数 <b class="num">27</b> 年前瞻约 <b class="num">115</b> 左右才算回归（现价 <b class="num">170</b>+ 高估太多）<br>阻力 技术面：今天开盘 <b class="num">168</b>，已跌破 <b class="num">169</b>，<b class="num">169-192</b> 变强压力区</td>
+          <td><a href="https://www.youtube.com/watch?v=IcDRffqDfTo&amp;t=1114s" class="tslink">18:34</a></td></tr><tr><td><b>标普500ETF</b>⭐ <span class="tk">SPY</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>支撑 下方关键支撑线（程序性抛售触发线，具体数值见周一视频/图）<br>触发 下方支撑线失守→抛售量预计再增 <b class="num">30</b>%，视为离场/回避信号</td>
+          <td>—</td></tr><tr><td><b>标普500ETF</b>⭐ <span class="tk">SPY</span></td>
+          <td>阳光财经</td>
+          <td>支撑 年线 <b class="num">7200</b> 点（强支撑）；大摩悲观情形 <b class="num">7100</b> 点<br>阻力 半年线（连续三天收其下方、一涨就被压制）<br>触发 CNN 恐慌贪婪指数若能跌到 <b class="num">10</b> 分可大胆抄底（概率不大）<br>目标 大摩 Wilson：短期或跌至 <b class="num">7100</b> 点，明年看 <b class="num">8000</b> 点</td>
+          <td><a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=40s" class="tslink">0:40</a></td></tr><tr><td><b>纳指100ETF</b>⭐ <span class="tk">QQQ</span></td>
+          <td>阳光财经</td>
+          <td>支撑 <b class="num">25000</b> 点左右</td>
+          <td><a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=61s" class="tslink">1:01</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SMH</span></td>
+          <td>阳光财经</td>
+          <td>支撑 <b class="num">10000</b> 点（整数关+年线+<b class="num">0.382</b> 黄金分割三重共振）<br>买点 <b class="num">10000</b> 点附近（三重共振密集支撑位）<br>支撑 费半今年 <b class="num">4</b> 月直接翻倍、需要很长时间回调消化，本轮已到最重要支撑：从高点拉黄金分割线，<b class="num">10000</b> 点既是整数关、又是年</td>
+          <td><a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=301s" class="tslink">5:01</a></td></tr><tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
+          <td>阳光财经</td>
+          <td>支撑 前期低点水平线（接近一年来新低处）</td>
+          <td><a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=719s" class="tslink">11:59</a></td></tr><tr><td><b>苹果</b> <span class="tk">AAPL</span></td>
+          <td>阳光财经</td>
+          <td>买点 苹果主打一个「稳」：beta <b class="num">1.09</b> 与大盘相近，历史上每次跳空下跌后都能回补缺口，今天缺口不大、未来应能回补，适合在</td>
+          <td><a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=378s" class="tslink">6:18</a></td></tr><tr><td><b>AMD</b> <span class="tk">AMD</span></td>
+          <td>阳光财经</td>
+          <td>目标 苏姿丰目标 <b class="num">600</b> 美元（对应市值 <b class="num">1</b> 万亿）</td>
+          <td><a href="https://www.youtube.com/watch?v=YBr6wL_S8Ng&amp;t=481s" class="tslink">8:01</a></td></tr><tr><td><b>标普500ETF</b>⭐ <span class="tk">SPY</span></td>
+          <td>NaNa说美股</td>
+          <td>阻力 半年线（日内反抽测试后回落）<br>触发 蓝色浪潮暴跌→局部抄底机会<br>阻力 标普<b class="num">500</b>指数日内反抽测试半年线阻力后回落，短期趋势仍然偏弱，但既然 AMD 盘后都涨了，那明天大盘可能会继续反弹……如</td>
+          <td><a href="https://www.youtube.com/watch?v=zzLHdk1pFd8&amp;t=333s" class="tslink">5:33</a></td></tr><tr><td><b>纳指100ETF</b>⭐ <span class="tk">QQQ</span></td>
+          <td>NaNa说美股</td>
+          <td>支撑 年线（已在其上反弹）、半年线与月均线（需站稳才摆脱下行压力）<br>阻力 <b class="num">28900</b>（前期支撑转强阻力）<br>触发 重新站上 <b class="num">28900</b> 且站稳半年线/月均线 → 摆脱下行压力</td>
+          <td><a href="https://www.youtube.com/watch?v=zzLHdk1pFd8&amp;t=444s" class="tslink">7:24</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SMH</span></td>
+          <td>NaNa说美股</td>
+          <td>阻力 年线（收涨后仍在其下方）</td>
+          <td><a href="https://www.youtube.com/watch?v=zzLHdk1pFd8&amp;t=217s" class="tslink">3:37</a></td></tr>
+    </table></div></div>
+
+
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 价位数字已高亮标注 · 时间戳可点击回看 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-05 12:48（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>

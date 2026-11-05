@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · 微软 (MSFT)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">个股档案 · MSFT</span><span class="rt"></span></nav>
+<div class="hero">
+  <p class="nm">微软 ⭐</p>
+  <div class="tk">MSFT · 软件 · 持仓#5</div>
+  <div class="meta">近5日 6 条观点 · 2026-11-01 ~ 2026-11-04 · 5 位博主</div>
+</div>
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势 <span class="asof">微软 · 最近 60 个交易日 · 红涨绿跌</span></div>
+      <svg viewBox="0 0 640 220" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="微软 日K"><line x1="8" y1="12.0" x2="600" y2="12.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="15.0" font-size="9" fill="rgba(140,150,165,0.9)">562</text><line x1="8" y1="58.5" x2="600" y2="58.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="61.5" font-size="9" fill="rgba(140,150,165,0.9)">540</text><line x1="8" y1="105.0" x2="600" y2="105.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="108.0" font-size="9" fill="rgba(140,150,165,0.9)">518</text><line x1="8" y1="151.5" x2="600" y2="151.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="154.5" font-size="9" fill="rgba(140,150,165,0.9)">495</text><line x1="8" y1="198.0" x2="600" y2="198.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="201.0" font-size="9" fill="rgba(140,150,165,0.9)">473</text><line x1="12.9" y1="140.6" x2="12.9" y2="161.3" stroke="#1fbf75" stroke-width="1"/><rect x="10.0" y="143.8" width="5.9" height="15.7" fill="#1fbf75"/><line x1="22.8" y1="140.9" x2="22.8" y2="158.2" stroke="#e5484d" stroke-width="1"/><rect x="19.8" y="150.2" width="5.9" height="7.5" fill="#e5484d"/><line x1="32.7" y1="143.7" x2="32.7" y2="156.3" stroke="#1fbf75" stroke-width="1"/><rect x="29.7" y="151.3" width="5.9" height="2.0" fill="#1fbf75"/><line x1="42.5" y1="159.0" x2="42.5" y2="188.5" stroke="#1fbf75" stroke-width="1"/><rect x="39.6" y="164.2" width="5.9" height="20.3" fill="#1fbf75"/><line x1="52.4" y1="176.3" x2="52.4" y2="191.1" stroke="#e5484d" stroke-width="1"/><rect x="49.4" y="181.8" width="5.9" height="1.0" fill="#e5484d"/><line x1="62.3" y1="165.9" x2="62.3" y2="186.5" stroke="#e5484d" stroke-width="1"/><rect x="59.3" y="176.3" width="5.9" height="8.8" fill="#e5484d"/><line x1="72.1" y1="174.7" x2="72.1" y2="184.3" stroke="#1fbf75" stroke-width="1"/><rect x="69.2" y="176.4" width="5.9" height="4.5" fill="#1fbf75"/><line x1="82.0" y1="170.1" x2="82.0" y2="186.4" stroke="#e5484d" stroke-width="1"/><rect x="79.0" y="176.6" width="5.9" height="7.0" fill="#e5484d"/><line x1="91.9" y1="161.3" x2="91.9" y2="179.4" stroke="#e5484d" stroke-width="1"/><rect x="88.9" y="168.1" width="5.9" height="8.5" fill="#e5484d"/><line x1="101.7" y1="157.5" x2="101.7" y2="174.4" stroke="#e5484d" stroke-width="1"/><rect x="98.8" y="159.0" width="5.9" height="13.0" fill="#e5484d"/><line x1="111.6" y1="147.2" x2="111.6" y2="168.1" stroke="#e5484d" stroke-width="1"/><rect x="108.6" y="149.3" width="5.9" height="17.7" fill="#e5484d"/><line x1="121.5" y1="128.3" x2="121.5" y2="162.4" stroke="#e5484d" stroke-width="1"/><rect x="118.5" y="131.2" width="5.9" height="21.1" fill="#e5484d"/><line x1="131.3" y1="104.8" x2="131.3" y2="131.6" stroke="#e5484d" stroke-width="1"/><rect x="128.4" y="113.7" width="5.9" height="17.0" fill="#e5484d"/><line x1="141.2" y1="116.4" x2="141.2" y2="128.5" stroke="#1fbf75" stroke-width="1"/><rect x="138.2" y="120.2" width="5.9" height="6.4" fill="#1fbf75"/><line x1="151.1" y1="129.4" x2="151.1" y2="148.4" stroke="#e5484d" stroke-width="1"/><rect x="148.1" y="139.6" width="5.9" height="7.3" fill="#e5484d"/><line x1="160.9" y1="141.2" x2="160.9" y2="154.6" stroke="#1fbf75" stroke-width="1"/><rect x="158.0" y="142.1" width="5.9" height="6.3" fill="#1fbf75"/><line x1="170.8" y1="109.2" x2="170.8" y2="140.1" stroke="#e5484d" stroke-width="1"/><rect x="167.8" y="120.7" width="5.9" height="17.6" fill="#e5484d"/><line x1="180.7" y1="118.9" x2="180.7" y2="143.1" stroke="#1fbf75" stroke-width="1"/><rect x="177.7" y="121.0" width="5.9" height="21.4" fill="#1fbf75"/><line x1="190.5" y1="151.7" x2="190.5" y2="162.2" stroke="#e5484d" stroke-width="1"/><rect x="187.6" y="154.3" width="5.9" height="2.0" fill="#e5484d"/><line x1="200.4" y1="153.4" x2="200.4" y2="162.9" stroke="#1fbf75" stroke-width="1"/><rect x="197.4" y="156.2" width="5.9" height="2.9" fill="#1fbf75"/><line x1="210.3" y1="153.1" x2="210.3" y2="170.8" stroke="#e5484d" stroke-width="1"/><rect x="207.3" y="157.5" width="5.9" height="8.6" fill="#e5484d"/><line x1="220.1" y1="143.9" x2="220.1" y2="157.2" stroke="#1fbf75" stroke-width="1"/><rect x="217.2" y="150.8" width="5.9" height="1.0" fill="#1fbf75"/><line x1="230.0" y1="121.1" x2="230.0" y2="151.4" stroke="#e5484d" stroke-width="1"/><rect x="227.0" y="130.5" width="5.9" height="17.3" fill="#e5484d"/><line x1="239.9" y1="129.5" x2="239.9" y2="151.0" stroke="#1fbf75" stroke-width="1"/><rect x="236.9" y="141.6" width="5.9" height="6.1" fill="#1fbf75"/><line x1="249.7" y1="150.1" x2="249.7" y2="168.3" stroke="#1fbf75" stroke-width="1"/><rect x="246.8" y="156.2" width="5.9" height="5.7" fill="#1fbf75"/><line x1="259.6" y1="138.7" x2="259.6" y2="155.9" stroke="#1fbf75" stroke-width="1"/><rect x="256.6" y="146.3" width="5.9" height="1.0" fill="#1fbf75"/><line x1="269.5" y1="144.6" x2="269.5" y2="160.2" stroke="#1fbf75" stroke-width="1"/><rect x="266.5" y="146.0" width="5.9" height="8.7" fill="#1fbf75"/><line x1="279.3" y1="137.9" x2="279.3" y2="159.8" stroke="#e5484d" stroke-width="1"/><rect x="276.4" y="138.4" width="5.9" height="13.8" fill="#e5484d"/><line x1="289.2" y1="124.1" x2="289.2" y2="154.9" stroke="#1fbf75" stroke-width="1"/><rect x="286.2" y="126.6" width="5.9" height="19.4" fill="#1fbf75"/><line x1="299.1" y1="122.1" x2="299.1" y2="150.3" stroke="#1fbf75" stroke-width="1"/><rect x="296.1" y="140.2" width="5.9" height="1.0" fill="#1fbf75"/><line x1="308.9" y1="144.0" x2="308.9" y2="160.0" stroke="#e5484d" stroke-width="1"/><rect x="306.0" y="146.1" width="5.9" height="5.9" fill="#e5484d"/><line x1="318.8" y1="101.5" x2="318.8" y2="147.5" stroke="#e5484d" stroke-width="1"/><rect x="315.8" y="108.2" width="5.9" height="35.6" fill="#e5484d"/><line x1="328.7" y1="114.1" x2="328.7" y2="137.1" stroke="#e5484d" stroke-width="1"/><rect x="325.7" y="122.6" width="5.9" height="7.8" fill="#e5484d"/><line x1="338.5" y1="113.4" x2="338.5" y2="136.8" stroke="#e5484d" stroke-width="1"/><rect x="335.6" y="123.1" width="5.9" height="1.4" fill="#e5484d"/><line x1="348.4" y1="100.6" x2="348.4" y2="120.3" stroke="#e5484d" stroke-width="1"/><rect x="345.4" y="115.0" width="5.9" height="2.7" fill="#e5484d"/><line x1="358.3" y1="94.3" x2="358.3" y2="116.5" stroke="#1fbf75" stroke-width="1"/><rect x="355.3" y="100.5" width="5.9" height="14.7" fill="#1fbf75"/><line x1="368.1" y1="95.0" x2="368.1" y2="113.4" stroke="#1fbf75" stroke-width="1"/><rect x="365.2" y="101.5" width="5.9" height="3.9" fill="#1fbf75"/><line x1="378.0" y1="74.6" x2="378.0" y2="97.2" stroke="#e5484d" stroke-width="1"/><rect x="375.0" y="89.5" width="5.9" height="7.4" fill="#e5484d"/><line x1="387.9" y1="67.6" x2="387.9" y2="82.0" stroke="#1fbf75" stroke-width="1"/><rect x="384.9" y="76.0" width="5.9" height="4.9" fill="#1fbf75"/><line x1="397.7" y1="75.8" x2="397.7" y2="90.5" stroke="#1fbf75" stroke-width="1"/><rect x="394.8" y="77.9" width="5.9" height="2.0" fill="#1fbf75"/><line x1="407.6" y1="72.1" x2="407.6" y2="102.7" stroke="#1fbf75" stroke-width="1"/><rect x="404.6" y="79.8" width="5.9" height="15.0" fill="#1fbf75"/><line x1="417.5" y1="64.4" x2="417.5" y2="87.3" stroke="#e5484d" stroke-width="1"/><rect x="414.5" y="68.9" width="5.9" height="14.2" fill="#e5484d"/><line x1="427.3" y1="53.0" x2="427.3" y2="67.6" stroke="#e5484d" stroke-width="1"/><rect x="424.4" y="56.3" width="5.9" height="7.5" fill="#e5484d"/><line x1="437.2" y1="35.5" x2="437.2" y2="52.3" stroke="#1fbf75" stroke-width="1"/><rect x="434.2" y="49.0" width="5.9" height="2.5" fill="#1fbf75"/><line x1="447.1" y1="46.7" x2="447.1" y2="74.2" stroke="#1fbf75" stroke-width="1"/><rect x="444.1" y="47.7" width="5.9" height="24.1" fill="#1fbf75"/><line x1="456.9" y1="56.3" x2="456.9" y2="76.9" stroke="#e5484d" stroke-width="1"/><rect x="454.0" y="59.8" width="5.9" height="12.7" fill="#e5484d"/><line x1="466.8" y1="50.7" x2="466.8" y2="91.0" stroke="#1fbf75" stroke-width="1"/><rect x="463.8" y="55.9" width="5.9" height="25.5" fill="#1fbf75"/><line x1="476.7" y1="67.9" x2="476.7" y2="83.5" stroke="#e5484d" stroke-width="1"/><rect x="473.7" y="72.1" width="5.9" height="10.0" fill="#e5484d"/><line x1="486.5" y1="70.7" x2="486.5" y2="88.1" stroke="#1fbf75" stroke-width="1"/><rect x="483.6" y="71.3" width="5.9" height="4.2" fill="#1fbf75"/><line x1="496.4" y1="72.6" x2="496.4" y2="89.8" stroke="#e5484d" stroke-width="1"/><rect x="493.4" y="73.3" width="5.9" height="7.3" fill="#e5484d"/><line x1="506.3" y1="72.0" x2="506.3" y2="99.6" stroke="#1fbf75" stroke-width="1"/><rect x="503.3" y="72.9" width="5.9" height="25.1" fill="#1fbf75"/><line x1="516.1" y1="88.2" x2="516.1" y2="109.1" stroke="#e5484d" stroke-width="1"/><rect x="513.2" y="90.8" width="5.9" height="14.0" fill="#e5484d"/><line x1="526.0" y1="72.7" x2="526.0" y2="96.7" stroke="#e5484d" stroke-width="1"/><rect x="523.0" y="74.0" width="5.9" height="10.8" fill="#e5484d"/><line x1="535.9" y1="69.7" x2="535.9" y2="82.9" stroke="#1fbf75" stroke-width="1"/><rect x="532.9" y="74.6" width="5.9" height="2.1" fill="#1fbf75"/><line x1="545.7" y1="69.1" x2="545.7" y2="87.5" stroke="#1fbf75" stroke-width="1"/><rect x="542.8" y="75.7" width="5.9" height="1.7" fill="#1fbf75"/><line x1="555.6" y1="56.0" x2="555.6" y2="101.1" stroke="#1fbf75" stroke-width="1"/><rect x="552.6" y="58.2" width="5.9" height="20.9" fill="#1fbf75"/><line x1="565.5" y1="87.7" x2="565.5" y2="111.9" stroke="#1fbf75" stroke-width="1"/><rect x="562.5" y="89.3" width="5.9" height="7.0" fill="#1fbf75"/><line x1="575.3" y1="80.2" x2="575.3" y2="131.5" stroke="#1fbf75" stroke-width="1"/><rect x="572.4" y="91.9" width="5.9" height="35.1" fill="#1fbf75"/><line x1="585.2" y1="93.1" x2="585.2" y2="125.5" stroke="#e5484d" stroke-width="1"/><rect x="582.2" y="98.2" width="5.9" height="24.9" fill="#e5484d"/><line x1="595.1" y1="18.9" x2="595.1" y2="53.9" stroke="#e5484d" stroke-width="1"/><rect x="592.1" y="25.8" width="5.9" height="25.1" fill="#e5484d"/><polyline points="12.9,159.4 22.8,150.2 32.7,153.3 42.5,184.5 52.4,181.8 62.3,176.3 72.1,180.9 82.0,176.6 91.9,168.1 101.7,159.0 111.6,149.3 121.5,131.2 131.3,113.7 141.2,126.6 151.1,139.6 160.9,148.4 170.8,120.7 180.7,142.4 190.5,154.3 200.4,159.1 210.3,157.5 220.1,150.8 230.0,130.5 239.9,147.7 249.7,161.9 259.6,146.4 269.5,154.7 279.3,138.4 289.2,145.9 299.1,140.5 308.9,146.1 318.8,108.2 328.7,122.6 338.5,123.1 348.4,115.0 358.3,115.2 368.1,105.3 378.0,89.5 387.9,80.9 397.7,79.9 407.6,94.8 417.5,68.9 427.3,56.3 437.2,51.5 447.1,71.8 456.9,59.8 466.8,81.4 476.7,72.1 486.5,75.6 496.4,73.3 506.3,98.0 516.1,90.8 526.0,74.0 535.9,76.7 545.7,77.3 555.6,79.1 565.5,96.2 575.3,127.0 585.2,98.2 595.1,25.8" fill="none" stroke="#4d8dff" stroke-width="1.4" stroke-opacity="0.85"/><text x="12.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/12</text><text x="111.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/26</text><text x="210.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/10</text><text x="308.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/24</text><text x="407.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/8</text><text x="506.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/22</text><text x="595.1" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/4</text></svg>
+    </div>
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日口径</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">6</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">6</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">0</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">0</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean up">偏多</span>（均分 1.00）</p>
+  <div class="chips"><span class="chip">阳光财经</span><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span><span class="chip">老李玩钱</span><span class="chip">视野环球财经</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
+  <div class="lvg"><div class="lvg-h">🔺 压力位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>11/4</td><td>已突破三重顶阻力（创历史新高） <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=382s" class="tslink">⏱6:22</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>视野环球财经</td><td>11/4</td><td><b class="num">600</b>（上看目标；<b class="num">27</b>/<b class="num">6</b> 前瞻估值上限 <b class="num">623</b>） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1125s" class="tslink">⏱18:45</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>11/4</td><td><b class="num">534</b>（前几日低吸位，已快速收复） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1125s" class="tslink">⏱18:45</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>阳光财经</td><td>11/2</td><td>持有 <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=548s" class="tslink">⏱9:08</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>视野环球财经</td><td>11/4</td><td><b class="num">600</b> 上方之后再讨论减仓 <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1125s" class="tslink">⏱18:45</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日复盘记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean up">偏多</span><span class="ch-meta">2 条 · 看多 2 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/2</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 持有</span></div>
+      <div class="op-d">Ackman认为微软符合其价值标准；她也看好微软当前的业绩和趋势与投资价值。</div>
+      <div class="op-q">「潘兴广场资本的比尔·阿克曼表示，微软、亚马逊和耐飞三支股票符合他的价值标准。微软和亚马逊当前业绩和趋势都不错，我也看好他们的投资价值。」</div>
+      <div class="op-tag"><b>催化：</b>价值型资金逆势买入、业绩与趋势稳健</div>
+      <div class="op-tag"><b>风险：</b>云巨头自由现金流压力的大环境</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=548s" class="tslink">9:08 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">公开账户持仓之一，今日大涨。民主党控制国会或利好科技巨头：国债收益率回落减少云巨头资本支出融资的利息支出压力，微软是NANC民主党ETF前十大重仓（超大公司是美股最核心资产）。利空是环保审批增加数据中心成本，但博主整体倾向利好科技巨头。</div>
+      <div class="op-q">「微软、谷歌及时大涨，也盖不过其他这些跌的。」</div>
+      <div class="op-tag"><b>催化：</b>国债收益率回落、云业务资本支出融资压力减轻</div>
+      <div class="op-tag"><b>风险：</b>环保评估增加数据中心达产难度和成本</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=RJWmotsUotU&amp;t=688s" class="tslink">11:28 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-r">阻力 已突破三重顶阻力（创历史新高）</span></div>
+      <div class="op-d">微软高开高走大涨6.7%，创历史新高，一举突破三重顶阻力。刚交过财报，云业务增长强劲证明AI变现能力，自由现金流是几个云巨头中唯一还没转负的。市场预期数据中心建设受限后资源向巨头集中，政治最大不确定性落地后资金立刻抱团微软。</div>
+      <div class="op-q">「MSFT股价高开高走，大涨6.7%，创历史新高，一举突破了三重顶阻力……云业务增长强劲，证明了AI变现能力，自由现金流也是几个云巨头当中唯一还没转负的。」</div>
+      <div class="op-tag"><b>催化：</b>财报云业务强劲、政治不确定性落地资金抱团、数据中心资源向巨头集中</div>
+      <div class="op-tag"><b>风险：</b>短期涨幅过大后的技术性回吐</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=382s" class="tslink">6:22 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">微软作为大云代表当日大涨超6%，放缓逻辑下已建算力更有涨价空间、相对小云的竞争优势被放大，且有软件核心业务现金流支撑建设成本。</div>
+      <div class="op-q">「微软亚马逊更是大涨超6%……大云更多是自建模式，加上手里已经有大量建好和再建的容量」</div>
+      <div class="op-tag"><b>催化：</b>存量算力议价能力提升、小云份额向大云集中、收紧内部AI开支改善成本</div>
+      <div class="op-tag"><b>风险：</b>数据中心审批放缓影响扩张节奏、对前沿模型依赖的算力需求波动</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=EgQshiaDUmY&amp;t=18s" class="tslink">0:18 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">老李玩钱</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">账户中大科技巨头之一，今日大涨。民主党限制AI用电量与排放的政策将约束云厂进一步AI资本支出，自由现金流有望好转，华尔街对科技巨头巨额资本支出的担忧减轻，利好股价。</div>
+      <div class="op-q">「账户里的大科技巨头比如说微软、苹果、谷歌，这几个全都是上涨的，而且涨了还不少……民主党政策一出，用电量跟排放把你限制住了，那你不可能再做大规模的AI资本支出了，自由现金流可能就会有所好转。」</div>
+      <div class="op-tag"><b>催化：</b>AI资本支出受限改善自由现金流、华尔街担忧减轻</div>
+      <div class="op-tag"><b>风险：</b>AI扩张受限或影响长期云增长</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=142s" class="tslink">2:22 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">534</b>（前几日低吸位，已快速收复）</span><span class="lv lv-t">触发 <b class="num">600</b> 上方之后再讨论减仓</span><span class="lv lv-r">阻力 <b class="num">600</b>（上看目标；<b class="num">27</b>/<b class="num">6</b> 前瞻估值上限 <b class="num">623</b>）</span></div>
+      <div class="op-d">他的最大持仓，当日收盘价创历史新高、放量走势非常强；534 下方只给了几天低吸机会就上去了。后面仍上看 600（现价起约 10% 空间，与期权无关、时间不确定）；截至 27 年 6 月前瞻估值上限 623，看到 600 没有大问题。目前无减仓计划（600 上方再谈减仓）、无加仓计划（仓位已很重），纯持有。受益逻辑：新建数据中心受限→算力稀缺→超大规模云可提价，微软当日涨超 6%。</div>
+      <div class="op-q">「微软是我的一个最大持仓，今天是收盘价创了历史新高，放量走势非常的强……后面的看法仍就是上看600的上方……截止到27年的6月，他的前瞻估值的上限就在623，所以呢看到600，我认为没有什么太大的问题……没有任何减仓计划，目前就是一个持有计划。」</div>
+      <div class="op-tag"><b>催化：</b>云服务营收大幅增长（三季度已验证）、算力稀缺推动云单价提升</div>
+      <div class="op-tag"><b>风险：</b>600 上方估值接近前瞻上限 623 后空间收窄</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1125s" class="tslink">18:45 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">价值型资金逆势买入</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">业绩与趋势稳健</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">财报云业务强劲</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">政治不确定性落地资金抱团</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">数据中心资源向巨头集中</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">存量算力议价能力提升</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">小云份额向大云集中</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">收紧内部AI开支改善成本</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AI资本支出受限改善自由现金流</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">华尔街担忧减轻</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">云服务营收大幅增长（三季度已验证）</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">算力稀缺推动云单价提升</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">国债收益率回落</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">云业务资本支出融资压力减轻</span><span class="tag-date">11/4</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">云巨头自由现金流压力的大环境</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">短期涨幅过大后的技术性回吐</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">数据中心审批放缓影响扩张节奏</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">对前沿模型依赖的算力需求波动</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AI扩张受限或影响长期云增长</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">600 上方估值接近前瞻上限 623 后空间收窄</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">环保评估增加数据中心达产难度和成本</span><span class="tag-date">11/4</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日</span></div>
+  <div class="day">
+      <div class="day-h">11/2</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st up">看多/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 持有</span></div>
+          <div class="op-d">Ackman认为微软符合其价值标准；她也看好微软当前的业绩和趋势与投资价值。</div>
+          <div class="op-q">「潘兴广场资本的比尔·阿克曼表示，微软、亚马逊和耐飞三支股票符合他的价值标准。微软和亚马逊当前业绩和趋势都不错，我也看好他们的投资价值。」</div>
+          <div class="op-tag"><b>催化：</b>价值型资金逆势买入、业绩与趋势稳健</div>
+          <div class="op-tag"><b>风险：</b>云巨头自由现金流压力的大环境</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=548s" class="tslink">9:08 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/4</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st up">看多/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-r">阻力 已突破三重顶阻力（创历史新高）</span></div>
+          <div class="op-d">微软高开高走大涨6.7%，创历史新高，一举突破三重顶阻力。刚交过财报，云业务增长强劲证明AI变现能力，自由现金流是几个云巨头中唯一还没转负的。市场预期数据中心建设受限后资源向巨头集中，政治最大不确定性落地后资金立刻抱团微软。</div>
+          <div class="op-q">「MSFT股价高开高走，大涨6.7%，创历史新高，一举突破了三重顶阻力……云业务增长强劲，证明了AI变现能力，自由现金流也是几个云巨头当中唯一还没转负的。」</div>
+          <div class="op-tag"><b>催化：</b>财报云业务强劲、政治不确定性落地资金抱团、数据中心资源向巨头集中</div>
+          <div class="op-tag"><b>风险：</b>短期涨幅过大后的技术性回吐</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=382s" class="tslink">6:22 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">微软作为大云代表当日大涨超6%，放缓逻辑下已建算力更有涨价空间、相对小云的竞争优势被放大，且有软件核心业务现金流支撑建设成本。</div>
+          <div class="op-q">「微软亚马逊更是大涨超6%……大云更多是自建模式，加上手里已经有大量建好和再建的容量」</div>
+          <div class="op-tag"><b>催化：</b>存量算力议价能力提升、小云份额向大云集中、收紧内部AI开支改善成本</div>
+          <div class="op-tag"><b>风险：</b>数据中心审批放缓影响扩张节奏、对前沿模型依赖的算力需求波动</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=EgQshiaDUmY&amp;t=18s" class="tslink">0:18 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">老李玩钱</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">账户中大科技巨头之一，今日大涨。民主党限制AI用电量与排放的政策将约束云厂进一步AI资本支出，自由现金流有望好转，华尔街对科技巨头巨额资本支出的担忧减轻，利好股价。</div>
+          <div class="op-q">「账户里的大科技巨头比如说微软、苹果、谷歌，这几个全都是上涨的，而且涨了还不少……民主党政策一出，用电量跟排放把你限制住了，那你不可能再做大规模的AI资本支出了，自由现金流可能就会有所好转。」</div>
+          <div class="op-tag"><b>催化：</b>AI资本支出受限改善自由现金流、华尔街担忧减轻</div>
+          <div class="op-tag"><b>风险：</b>AI扩张受限或影响长期云增长</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=142s" class="tslink">2:22 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">534</b>（前几日低吸位，已快速收复）</span><span class="lv lv-t">触发 <b class="num">600</b> 上方之后再讨论减仓</span><span class="lv lv-r">阻力 <b class="num">600</b>（上看目标；<b class="num">27</b>/<b class="num">6</b> 前瞻估值上限 <b class="num">623</b>）</span></div>
+          <div class="op-d">他的最大持仓，当日收盘价创历史新高、放量走势非常强；534 下方只给了几天低吸机会就上去了。后面仍上看 600（现价起约 10% 空间，与期权无关、时间不确定）；截至 27 年 6 月前瞻估值上限 623，看到 600 没有大问题。目前无减仓计划（600 上方再谈减仓）、无加仓计划（仓位已很重），纯持有。受益逻辑：新建数据中心受限→算力稀缺→超大规模云可提价，微软当日涨超 6%。</div>
+          <div class="op-q">「微软是我的一个最大持仓，今天是收盘价创了历史新高，放量走势非常的强……后面的看法仍就是上看600的上方……截止到27年的6月，他的前瞻估值的上限就在623，所以呢看到600，我认为没有什么太大的问题……没有任何减仓计划，目前就是一个持有计划。」</div>
+          <div class="op-tag"><b>催化：</b>云服务营收大幅增长（三季度已验证）、算力稀缺推动云单价提升</div>
+          <div class="op-tag"><b>风险：</b>600 上方估值接近前瞻上限 623 后空间收窄</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1125s" class="tslink">18:45 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">公开账户持仓之一，今日大涨。民主党控制国会或利好科技巨头：国债收益率回落减少云巨头资本支出融资的利息支出压力，微软是NANC民主党ETF前十大重仓（超大公司是美股最核心资产）。利空是环保审批增加数据中心成本，但博主整体倾向利好科技巨头。</div>
+          <div class="op-q">「微软、谷歌及时大涨，也盖不过其他这些跌的。」</div>
+          <div class="op-tag"><b>催化：</b>国债收益率回落、云业务资本支出融资压力减轻</div>
+          <div class="op-tag"><b>风险：</b>环保评估增加数据中心达产难度和成本</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=RJWmotsUotU&amp;t=688s" class="tslink">11:28 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-05 12:48（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
