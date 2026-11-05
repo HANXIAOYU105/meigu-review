@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · 迪士尼 (DIS)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">个股档案 · DIS</span><span class="rt"></span></nav>
+<div class="hero">
+  <p class="nm">迪士尼</p>
+  <div class="tk">DIS · 传媒</div>
+  <div class="meta">近5日 1 条观点 · 2026-11-01 ~ 2026-11-04 · 1 位博主</div>
+</div>
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势</div>
+      <p class="empty">暂无日K数据（未上市标的，无交易行情）</p>
+    </div>
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日口径</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">1</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">1</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">0</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">0</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean up">偏多</span>（均分 1.00）</p>
+  <div class="chips"><span class="chip">老李玩钱</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日无点位 · 历史累计</span></div>
+  <p class="empty">暂无价位观点</p>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日复盘记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">老李玩钱</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">账户中的主力后卫型（防御型）股票之一，今日涨幅不错。油价下跌、通胀缓和直接利好消费与防御板块，板块轮动下后卫股受益。</div>
+      <div class="op-q">「账户里的几名主力后卫队员，就是好十多、迪士尼、伯克希尔、维萨，这几只股票今天涨的也都不错。」</div>
+      <div class="op-tag"><b>催化：</b>通胀缓和利好消费板块、板块轮动至防御股</div>
+      
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=151s" class="tslink">2:31 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">通胀缓和利好消费板块</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">板块轮动至防御股</span><span class="tag-date">11/4</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素 <span class="asof">近5日口径</span></div>
+  <span class="empty">—</span>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日</span></div>
+  <div class="day">
+      <div class="day-h">11/4</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">老李玩钱</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">账户中的主力后卫型（防御型）股票之一，今日涨幅不错。油价下跌、通胀缓和直接利好消费与防御板块，板块轮动下后卫股受益。</div>
+          <div class="op-q">「账户里的几名主力后卫队员，就是好十多、迪士尼、伯克希尔、维萨，这几只股票今天涨的也都不错。」</div>
+          <div class="op-tag"><b>催化：</b>通胀缓和利好消费板块、板块轮动至防御股</div>
+          
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=151s" class="tslink">2:31 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-05 13:20（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
