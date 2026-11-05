@@ -13,6 +13,13 @@
  *   7) 修复：中文模糊匹配误伤（"数据库"→Datadog）、博主+标的降级丢过滤、缺结论段
  *   8) 中文 bigram 检索兜底（替代整词 includes），停用字过滤
  *
+ * v3.5 蒸馏智能化（2026-11-06）：构建期蒸馏层，site.js 构建时调用 buildDigests / buildMentions / buildDailyBrief
+ *   写入 qa-data.json（digests / mentions / briefs），回答首屏改为「蒸馏结论」而非裸列表：
+ *   ① 每标的蒸馏简报（多空分布+情绪轨迹+看多主线+主要顾虑+共识目标价+最新表态）
+ *   ② 大盘综述提及索引（综述里提到该标的的原文片段，引用进标的问题）
+ *   ③ 每日市场蒸馏速览（当日博主 tone 分布+较前日变化+主题归纳+代表性综述）
+ *   另：修复 scoreOf 不识别「偏多/偏空」；opportunity 支持「止盈/该卖/离场」反向视角；博主页加 tone 轨迹条
+ *
  * 浏览器端：scripts/site.js 构建时去掉 export 后内联进 site/qa.js
  * Node 端：  import { answerQuery, greet } from './src/qa-engine.js'
  *
@@ -98,6 +105,8 @@ function scoreOf(s) {
   if (/强烈看空/.test(t)) return -2;
   if (/中性偏多/.test(t)) return 0.5;
   if (/中性偏空/.test(t)) return -0.5;
+  if (/偏多/.test(t)) return 0.7; // 大盘综述 tone 值（2026-11-06 修复：原先落入默认 0 被当中性）
+  if (/偏空/.test(t)) return -0.7;
   if (/看多|买入|增持/.test(t)) return 1;
   if (/看空|卖出|减仓|回避/.test(t)) return -1;
   return 0;
@@ -196,7 +205,7 @@ function parseQuery(data, raw, prevCtx) {
     compare: /对比|和.{1,12}(比|比较)|哪个更|谁更|\bvs\b|相比|两个(都|谁)|还是/,
     price: /多少钱|什么价|现价|股价|价格|涨了多少|跌了多少|涨了|跌了|涨幅|跌幅|行情(如何|怎么样)?$/,
     risk: /风险|危险|担心|恐慌|崩|会不会跌|要跌|要崩|回调|止损/,
-    opportunity: /能买|可以买|该买|要不要买|入场|进场|抄底|机会|建仓|上车|加仓/,
+    opportunity: /能买|可以买|该买|要不要买|入场|进场|抄底|机会|建仓|上车|加仓|止盈|离场|还能拿|拿住|要不要卖|该卖/,
     levels: /点位|支撑|压力|阻力|目标价?|触发|价位/,
   };
 
@@ -215,7 +224,7 @@ function parseQuery(data, raw, prevCtx) {
   else if (/中性|观望/.test(ql)) r.stance = 'flat';
 
   // 2) 大盘意图（排除站点名类词）
-  r.market = (/大盘|整个市场|市场情绪|整体走势/.test(ql) || /^\s*美股.{0,6}(怎么样|如何|走势|行情|怎么看)?\s*$/.test(ql)) && !/博主|复盘|日报|档案|网站/.test(ql);
+  r.market = (/大盘|整个市场|市场情绪|整体走势/.test(ql) || /^\s*(今天|昨天|昨日|当前|目前|现在|最新)?\s*美股.{0,6}(怎么样|如何|走势|行情|怎么看)?\s*$/.test(ql)) && !/博主|复盘|日报|档案|网站/.test(ql);
 
   // 3) 日期：昨天/前天/上周/11月3日/11.3（"最近/最新"只影响排序，不再强设日期过滤）
   const allDates = [...new Set([...data.ops.map((o) => o.d), ...data.sums.map((s) => s.d)])].filter(Boolean).sort();
@@ -338,6 +347,110 @@ function consensus(ops) {
   return { tgt: pick('tgt'), sup: pick('sup'), res: pick('res'), ent: pick('ent') };
 }
 
+// ── 构建期蒸馏层（v3.5）：site.js 构建时调用，产物写入 qa-data.json ──
+
+/** ① 每标的蒸馏简报：全历史观点 → 一段结论式文字（digests[ticker] = HTML 片段，动态文本均已 esc） */
+function buildDigests(data) {
+  const out = {};
+  const cutoff5 = data.cutoff5 || '';
+  const byT = new Map();
+  for (const o of data.ops || []) { if (!byT.has(o.t)) byT.set(o.t, []); byT.get(o.t).push(o); }
+  for (const [tk, list] of byT) {
+    if (list.length < 3) continue; // 观点太少不值得蒸馏，问答端自动回退原始统计卡
+    const st = statsOf(list);
+    let traj = '';
+    if (cutoff5) {
+      const rec = list.filter((o) => o.d >= cutoff5), pri = list.filter((o) => o.d < cutoff5);
+      if (rec.length >= 2 && pri.length >= 2) {
+        const a = rec.reduce((x, o) => x + scoreOf(o.s), 0) / rec.length;
+        const b = pri.reduce((x, o) => x + scoreOf(o.s), 0) / pri.length;
+        const d = a - b;
+        if (Math.abs(d) >= 0.25) traj = d > 0 ? '，近 5 日情绪较前期<b class="qup">走强</b>' : '，近 5 日情绪较前期<b class="qdn">转弱</b>';
+      }
+    }
+    const b1 = st.up > 0 ? reasonTags(list, 1).list[0] : null;
+    const r1 = st.down > 0 ? reasonTags(list, -1).list[0] : null;
+    const cs = consensus(list);
+    const last = [...list].sort((x, y) => String(y.d).localeCompare(String(x.d)))[0];
+    const thTxt = last && last.th ? `${esc(String(last.th).slice(0, 46))}${String(last.th).length > 46 ? '…' : ''}` : '';
+    out[tk] =
+      `综合 <b>${st.n}</b> 条观点：看多 <b class="qup">${st.up}</b> · 中性 ${st.flat} · 看空 <b class="qdn">${st.down}</b>，整体<b>${leanText(st.avg)}</b>${traj}。` +
+      (b1 || r1 ? `${b1 ? `看多主线「${esc(b1.label)}」（${b1.n} 条）` : ''}${r1 ? `${b1 ? '；' : ''}主要顾虑「${esc(r1.label)}」（${r1.n} 条）` : ''}。` : '') +
+      (cs.tgt ? `共识目标价 <b>${cs.tgt.med}</b>${cs.tgt.n > 1 ? `（${cs.tgt.n} 个数值，${cs.tgt.min}~${cs.tgt.max}）` : ''}。` : '') +
+      (last ? `最新表态：${esc(last.c)} ${fmtD(last.d)}「${esc(last.s)}」${thTxt ? '——' + thTxt : ''}。` : '');
+  }
+  return out;
+}
+
+/** ② 大盘综述提及索引：扫描每期综述文本中的标的别名 → mentions[ticker] = [{d,c,tone,frag,u}]（每标的最多 4 条，最新在前） */
+function buildMentions(data) {
+  const out = {};
+  const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const locate = (hay, key) => {
+    if (/^[\x00-\x7f]+$/.test(key)) {
+      const m = hay.match(new RegExp(`(?:^|[^A-Za-z0-9])(${escRe(key)})(?:[^A-Za-z0-9]|$)`, 'i'));
+      return m ? m.index + 1 : -1;
+    }
+    return hay.indexOf(key);
+  };
+  for (const s of data.sums || []) {
+    const hay = `${s.t || ''}　${s.sm || ''}`;
+    for (const t of data.tickers || []) {
+      const keys = [t.ticker, ...(t.aliases || []), t.name].filter(Boolean).map(String)
+        .filter((k) => k.length >= 2 && !ALIAS_BLACKLIST.has(k.toLowerCase()))
+        .sort((a, b) => b.length - a.length); // 长词优先，命中更准的别名
+      let pos = -1, used = '';
+      for (const k of keys) { const i = locate(hay, k); if (i >= 0) { pos = i; used = k; break; } }
+      if (pos < 0) continue;
+      const st = Math.max(0, pos - 24), en = Math.min(hay.length, pos + used.length + 60);
+      (out[t.ticker] = out[t.ticker] || []).push({
+        d: s.d, c: s.c, tone: s.tone, u: s.u, kw: used,
+        frag: (st > 0 ? '…' : '') + hay.slice(st, en) + (en < hay.length ? '…' : ''),
+      });
+    }
+  }
+  for (const k of Object.keys(out)) {
+    out[k].sort((a, b) => String(b.d).localeCompare(String(a.d)));
+    out[k] = out[k].slice(0, 4);
+  }
+  return out;
+}
+
+/** ③ 每日市场蒸馏：综述按日聚合 → briefs[date] = {n,up,down,flat,avg,delta,themes,pick} */
+function buildDailyBrief(data) {
+  const out = {};
+  const byD = new Map();
+  for (const s of data.sums || []) { if (!s.d) continue; if (!byD.has(s.d)) byD.set(s.d, []); byD.get(s.d).push(s); }
+  const dates = [...byD.keys()].sort();
+  let prevAvg = null;
+  for (const d of dates) {
+    const list = byD.get(d);
+    let sum = 0, up = 0, down = 0, flat = 0;
+    for (const s of list) {
+      const v = scoreOf(s.tone); sum += v;
+      if (v > 0.3) up++; else if (v < -0.3) down++; else flat++;
+    }
+    const avg = sum / list.length;
+    const themes = reasonTags(list.map((s) => ({ th: s.sm || '', title: s.t || '' })), 0).list.slice(0, 3).map((x) => ({ label: x.label, n: x.n }));
+    let pick = null;
+    for (const s of list) {
+      const v = Math.abs(scoreOf(s.tone));
+      if (!pick || v > pick.v || (v === pick.v && (s.sm || '').length > (pick.s.sm || '').length)) pick = { s, v };
+    }
+    let delta = '';
+    if (prevAvg != null) {
+      const dd = avg - prevAvg;
+      if (Math.abs(dd) >= 0.2) delta = dd > 0 ? `，较前一日<b class="qup">更乐观</b>` : `，较前一日<b class="qdn">更谨慎</b>`;
+    }
+    out[d] = {
+      n: list.length, up, down, flat, avg: Math.round(avg * 100) / 100, delta, themes,
+      pick: pick ? { c: pick.s.c, txt: String(pick.s.sm || '').slice(0, 132) } : null,
+    };
+    prevAvg = avg;
+  }
+  return out;
+}
+
 /** 立场翻转：同一博主对「同一标的」相邻两次观点比较（key=频道+标的，避免跨标的误判）
  *  kind: flip=方向改变（看多↔看空/中性）/ strengthen=同向加强 / weaken=同向减弱 */
 function flipMap(ops) {
@@ -437,10 +550,36 @@ function priceLine(pr) {
   return `<div class="qa-lv">${out.join('')}</div>`;
 }
 
-/** 标的结论段：多空分布 + 最新价 + 共识价位 + 最近翻转 */
-function leadCard(data, t, ops, extra) {
-  const st = statsOf(ops);
+/** 每日蒸馏速览卡（市场/日期问答开头） */
+function briefCard(data, d, titleTxt) {
+  const b = (data.briefs || {})[d];
+  if (!b || !b.n) return '';
+  const themes = b.themes && b.themes.length
+    ? `<div class="qa-note" style="margin-top:5px">主题归纳：${b.themes.map((x) => `<span class="qa-tag">${esc(x.label)} ×${x.n}</span>`).join(' ')}</div>`
+    : '';
+  return `<div class="qa-brief"><div class="qa-brief-h">🧠 ${esc(titleTxt || `${fmtD(d)} 蒸馏速览`)}（${b.n} 位博主：多 <b class="qup">${b.up}</b> · 空 <b class="qdn">${b.down}</b> · 中性 ${b.flat}）${b.delta || ''}</div>
+    ${b.pick ? `<div class="qa-brief-txt"><span class="qa-ch">${esc(b.pick.c)}</span> ${esc(b.pick.txt)}${String(b.pick.txt || '').length >= 132 ? '…' : ''}</div>` : ''}${themes}</div>`;
+}
+
+/** 综述提及段：引用大盘综述里提到该标的的原文片段（窗口以命中词为中心，命中词加粗） */
+function mentionSection(data, t) {
+  const mens = (data.mentions || {})[t.ticker];
+  if (!mens || !mens.length) return '';
+  const bold = (frag, kw) => {
+    const e = esc(kw || '');
+    return e && frag.includes(e) ? frag.replace(e, `<b>${e}</b>`) : frag;
+  };
+  return `<div class="qa-h">📌 大盘综述提及</div>` + mens.slice(0, 2).map((m) => `<div class="qa-ment"><span class="qa-ch">${esc(m.c)}</span><span class="qa-date">${fmtD(m.d)}</span><span class="qa-ment-tone ${stanceCls(m.tone)}">${esc(m.tone || '')}</span>${bold(esc(m.frag), m.kw)}</div>`).join('');
+}
+
+/** 标的结论段：优先用构建期蒸馏简报（全库口径）；带博主/日期限定时用局部统计卡，否则「最新表态」会答非所问 */
+function leadCard(data, t, ops, extra, noDigest) {
+  const dig = noDigest ? null : (data.digests || {})[t.ticker];
   const pr = (data.prices || {})[t.ticker];
+  if (dig) {
+    return `<div class="qa-brief"><div class="qa-brief-h">🧠 ${esc(t.name)}（${esc(t.ticker)}）蒸馏简报${extra ? ` · ${esc(extra)}` : ''}</div><div class="qa-brief-txt">${dig}</div>${pr ? priceLine(pr) : ''}</div>`;
+  }
+  const st = statsOf(ops);
   const cs = consensus(ops);
   const flip = flipMap(ops);
   let flipTxt = '';
@@ -623,7 +762,7 @@ function greet(data) {
   chips.push('<button class="qa-chip" data-q="最近有什么变化">最近有什么变化</button>');
   chips.push('<button class="qa-chip" data-q="半导体板块怎么看">半导体板块</button>');
   return `<div class="qa-h">👋 我基于每日爬取的博主观点数据库回答</div>
-  <div class="qa-note">已收录 <b>${(data.ops || []).length}</b> 条观点 · <b>${(data.sums || []).length}</b> 期大盘综述 · 数据截至 <b>${fmtD(data.asOf)}</b>。<br>能问：观点 / 点位 / 价格 / 风险 / <b>看多看空理由</b> / <b>谁最看好</b> / <b>最近有什么变化</b> / <b>某个板块</b> / 标的对比，也支持追问。</div>
+  <div class="qa-note">已收录 <b>${(data.ops || []).length}</b> 条观点 · <b>${(data.sums || []).length}</b> 期大盘综述，回答以「蒸馏简报」开头（多空分布 / 情绪轨迹 / 看多主线与顾虑 / 共识目标价）。数据截至 <b>${fmtD(data.asOf)}</b>。<br>能问：XX怎么看 / 为什么看多看空 / 还能买吗 · 该卖吗 / 谁最看好 / 最近有什么变化 / 某板块 / 今天美股怎么样，支持追问。</div>
   <div class="qa-chips">${chips.join('')}</div>`;
 }
 
@@ -640,7 +779,11 @@ function answerQuery(data, raw, prevCtx) {
 
   // ── 大盘（排除具体标的/板块提问）──
   if (p.market && !p.tickers.length && !p.sector) {
-    const parts = [indicesBlock(data)];
+    const parts = [];
+    const bd = p.date || data.asOf || (data.sums[0] && data.sums[0].d);
+    const brief = briefCard(data, bd, p.date ? `${fmtD(p.date)} 蒸馏速览` : '今日蒸馏速览');
+    if (brief) parts.push(brief);
+    parts.push(indicesBlock(data));
     const byCh = new Map();
     for (const s of data.sums) if (!byCh.has(s.c)) byCh.set(s.c, s);
     const latest = [...byCh.values()].sort((a, b) => String(b.d).localeCompare(a.d)).slice(0, 8);
@@ -696,6 +839,7 @@ function answerQuery(data, raw, prevCtx) {
       const base = recent5.length ? recent5 : scoped;
       const head = `${t.name}（${t.ticker}）${t.isHolding ? '⭐' : ''}${p.channel ? ` — 博主「${p.channel.name}」` : ''}`;
       const rangeTxt = p.channel ? `博主「${p.channel.name}」近 5 日` : '';
+      const scopedCard = !!(p.channel || p.date || p.dateRange); // 限定口径下不用全库蒸馏简报
 
       // 排名
       if (p.intent === 'ranking') {
@@ -712,7 +856,7 @@ function answerQuery(data, raw, prevCtx) {
         const allFlips = [...flip.entries()].sort((a, b) => String(b[0].d).localeCompare(String(a[0].d)));
         const turns = allFlips.filter(([, f]) => f.kind === 'flip');
         const soft = allFlips.filter(([, f]) => f.kind !== 'flip');
-        parts.push(leadCard(data, t, base, ''));
+        parts.push(leadCard(data, t, base, '', scopedCard));
         if (turns.length) {
           parts.push(`<div class="qa-h">🔄 ${esc(t.name)}的立场转向（${turns.length} 处）</div>`);
           parts.push(turns.slice(0, 6).map(([o, f]) => `<div class="qa-op">
@@ -734,7 +878,8 @@ function answerQuery(data, raw, prevCtx) {
         const wantShort = /看空|跌|风险|利空|回调/.test(p.q) && !/看多|涨|机会/.test(p.q);
         const wantLong = /看多|涨|机会|看好|利好/.test(p.q) && !/看空|跌|风险/.test(p.q);
         const dir = wantShort ? -1 : wantLong ? 1 : 0;
-        parts.push(leadCard(data, t, base, ''));
+        parts.push(leadCard(data, t, base, '', scopedCard));
+        parts.push(mentionSection(data, t));
         parts.push(reasonBlock(base, dir, dir < 0 ? '🧠 为什么看空（理由归纳）' : dir > 0 ? '🧠 为什么看多（理由归纳）' : '🧠 观点逻辑归纳'));
         const keep = (o) => (dir < 0 ? scoreOf(o.s) < -0.3 : dir > 0 ? scoreOf(o.s) > 0.3 : true);
         parts.push(`<div class="qa-h">🎬 代表观点</div>` + opSection(base.filter(keep), 6));
@@ -764,16 +909,18 @@ function answerQuery(data, raw, prevCtx) {
 
       // 风险
       if (p.intent === 'risk') {
-        parts.push(leadCard(data, t, base, ''));
+        parts.push(leadCard(data, t, base, '', scopedCard));
+        parts.push(mentionSection(data, t));
         parts.push(reasonBlock(base, -1, '⚠️ 风险点归纳'));
         parts.push(`<div class="qa-h">🎬 看空/谨慎观点</div>` + opSection(base.filter((o) => scoreOf(o.s) < -0.3), 6) + opSection(base.filter((o) => scoreOf(o.s) >= -0.3), 2));
         continue;
       }
 
-      // 机会
+      // 机会 / 止盈离场（问"该卖吗/止盈"时切到看空视角）
       if (p.intent === 'opportunity') {
         const cs = consensus(base);
-        parts.push(leadCard(data, t, base, ''));
+        parts.push(leadCard(data, t, base, '', scopedCard));
+        parts.push(mentionSection(data, t));
         if (cs.ent || cs.sup || cs.tgt) {
           parts.push(`<div class="qa-note">💡 博主给出的可操作位置：${[
             cs.ent ? `买点中位 <b>${cs.ent.med}</b>（${cs.ent.min}~${cs.ent.max}）` : '',
@@ -781,8 +928,13 @@ function answerQuery(data, raw, prevCtx) {
             cs.tgt ? `目标中位 <b>${cs.tgt.med}</b>` : '',
           ].filter(Boolean).join(' · ')}</div>`);
         }
-        parts.push(reasonBlock(base, 1, '🧠 看多理由'));
-        parts.push(`<div class="qa-h">🎬 含点位的看多观点</div>` + opSection(base.filter((o) => scoreOf(o.s) > 0.3), 6, true));
+        if (/卖|离场|止盈|减仓|下车/.test(p.q)) {
+          parts.push(reasonBlock(base, -1, '⚠️ 了结/看空视角'));
+          parts.push(`<div class="qa-h">🎬 看空/谨慎观点</div>` + opSection(base.filter((o) => scoreOf(o.s) < -0.3), 5) + opSection(base.filter((o) => scoreOf(o.s) >= -0.3), 2));
+        } else {
+          parts.push(reasonBlock(base, 1, '🧠 看多理由'));
+          parts.push(`<div class="qa-h">🎬 含点位的看多观点</div>` + opSection(base.filter((o) => scoreOf(o.s) > 0.3), 6, true));
+        }
         continue;
       }
 
@@ -799,7 +951,8 @@ function answerQuery(data, raw, prevCtx) {
       }
 
       // 默认 views
-      parts.push(leadCard(data, t, base, rangeTxt));
+      parts.push(leadCard(data, t, base, rangeTxt, scopedCard));
+      parts.push(mentionSection(data, t));
       if (!base.length) {
         const fallback = data.ops.filter((o) => o.t === t.ticker && (!p.channel || o.c === p.channel.name));
         parts.push(`<div class="qa-note">${p.channel ? `博主「${p.channel.name}」` : ''}${p.date ? fmtD(p.date) + ' ' : ''}${p.date ? '没有观点' : '近 5 日没有新观点'}${fallback.length ? '，以下是该博主的历史记录：' : '，以下是全站历史记录：'}</div>`);
@@ -824,7 +977,11 @@ function answerQuery(data, raw, prevCtx) {
     const topT = [...byT.entries()].sort((a, b) => b[1].length - a[1].length).slice(0, 4);
     const nameOf = new Map((data.tickers || []).map((t) => [t.ticker, t.name]));
     parts.push(`<div class="qa-sum">「${esc(ch.name)}」共 <b>${st.n}</b> 条观点：看多 <b class="qup">${st.up}</b> · 看空 <b class="qdn">${st.down}</b> · 中性 ${st.flat} → <span class="qa-lean ${leanCls(st.avg)}">${leanText(st.avg)}</span>
-      <div class="qa-note" style="margin:6px 0 0">最常提到：${topT.map(([tk, l]) => `${esc(nameOf.get(tk) || tk)}（${l.length}）`).join('、') || '—'}</div></div>`);
+      <div class="qa-note" style="margin:6px 0 0">最常提到：${topT.map(([tk, l]) => `${esc(nameOf.get(tk) || tk)}（${l.length}）`).join('、') || '—'}</div>
+      ${(() => {
+        const chSums = data.sums.filter((s) => s.g === ch.slug || s.c === ch.name).slice(0, 5);
+        return chSums.length >= 2 ? `<div class="qa-traj">近 ${chSums.length} 期大盘研判：${chSums.slice().reverse().map((s) => `<span class="qa-tone ${leanCls(scoreOf(s.tone))}">${fmtD(s.d)} ${esc(String(s.tone || '').replace('中性偏多', '偏多').replace('中性偏空', '偏空'))}</span>`).join('')}</div>` : '';
+      })()}</div>`);
     if (!p.stance && !p.date && !p.dateRange) {
       const sums = data.sums.filter((s) => s.g === ch.slug || s.c === ch.name).slice(0, 2);
       if (sums.length) parts.push(`<div class="qa-h">${esc(ch.name)} 的大盘研判（最近）</div>` + sums.map(summaryCard).join(''));
@@ -838,8 +995,13 @@ function answerQuery(data, raw, prevCtx) {
     const inR = (o) => (p.date ? o.d === p.date : o.d >= p.dateRange[0] && o.d <= p.dateRange[1]);
     const sums = data.sums.filter(inR);
     const ops = data.ops.filter(inR);
-    const parts = [`<div class="qa-h">${p.date ? fmtD(p.date) : `${fmtD(p.dateRange[0])} ~ ${fmtD(p.dateRange[1])}`} 复盘（${ops.length} 条观点 · ${sums.length} 期综述）</div>`];
-    if (sums.length) parts.push(...sums.slice(0, 3).map(summaryCard));
+    const parts = [];
+    if (p.date) {
+      const brief = briefCard(data, p.date, `${fmtD(p.date)} 复盘蒸馏`);
+      if (brief) parts.push(brief);
+    }
+    parts.push(`<div class="qa-h">${p.date ? fmtD(p.date) : `${fmtD(p.dateRange[0])} ~ ${fmtD(p.dateRange[1])}`} 复盘（${ops.length} 条观点 · ${sums.length} 期综述）</div>`);
+    if (sums.length) parts.push(...sums.slice(0, 4).map(summaryCard));
     parts.push(opSection(ops, 12));
     return { html: parts.join('') || `<div class="qa-note">数据库中没有该日期的记录。</div>`, ctx };
   }
