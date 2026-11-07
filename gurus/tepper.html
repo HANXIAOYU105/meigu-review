@@ -77,10 +77,13 @@
   .g-fact{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
   .g-fact b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   /* 大佬持仓卡片（2026-11-07 替代表格：任何宽度都不会挤压换行溢出） */
-  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;}
+  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;transition:border-color .15s,box-shadow .15s;}
+  .grow:hover{border-color:var(--link);box-shadow:0 2px 12px rgba(26,60,110,.10);}
   .gr-r1{display:flex;align-items:center;gap:8px;min-width:0;}
   .gr-idx{flex:none;min-width:20px;height:20px;border-radius:6px;background:var(--accent-soft);color:var(--link);font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;}
-  .gr-issuer{flex:1;min-width:0;font-size:12.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .gr-issuer{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;overflow:hidden;}
+  .gr-cn{font-size:13.5px;font-weight:800;color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.3;}
+  .gr-en{font-size:11px;color:var(--muted-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:.2px;}
   .gr-wt{flex:none;font-weight:800;font-size:14px;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   .gr-wt.dim{color:var(--muted-2);font-weight:600;font-size:12px;}
   .gr-bar{height:4px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:8px 0 7px;}
@@ -88,7 +91,7 @@
   .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
-  .g-tk{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--text-strong);margin-right:7px;font-size:12.5px;}
+  .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
   .g-note{font-size:12px;color:var(--muted);line-height:1.75;margin:10px 0 0;}
@@ -151,7 +154,7 @@
 <div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">1</span>
-        <span class="g-tk">AMZN</span><span class="gr-issuer">AMAZON COM INC</span>
+        <span class="g-tk" title="亚马逊">AMZN</span><span class="gr-issuer"><span class="gr-cn">亚马逊</span><span class="gr-en">AMAZON COM INC</span></span>
         <span class="gr-wt">15.4%</span>
       </div>
       <div class="gr-bar"><i style="width:15.4%"></i></div>
@@ -163,7 +166,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">2</span>
-        <span class="g-tk">MU</span><span class="gr-issuer">MICRON TECHNOLOGY INC</span>
+        <span class="g-tk" title="美光科技">MU</span><span class="gr-issuer"><span class="gr-cn">美光科技</span><span class="gr-en">MICRON TECHNOLOGY INC</span></span>
         <span class="gr-wt">14.6%</span>
       </div>
       <div class="gr-bar"><i style="width:14.6%"></i></div>
@@ -175,7 +178,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">3</span>
-        <span class="g-tk">TSM</span><span class="gr-issuer">TAIWAN SEMICONDUCTOR MANUFAC</span>
+        <span class="g-tk" title="台积电">TSM</span><span class="gr-issuer"><span class="gr-cn">台积电</span><span class="gr-en">TAIWAN SEMICONDUCTOR MANUFAC</span></span>
         <span class="gr-wt">10.2%</span>
       </div>
       <div class="gr-bar"><i style="width:10.2%"></i></div>
@@ -187,7 +190,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">4</span>
-        <span class="g-tk">GOOGL</span><span class="gr-issuer">ALPHABET INC</span>
+        <span class="g-tk" title="谷歌·A类">GOOGL</span><span class="gr-issuer"><span class="gr-cn">谷歌·A类</span><span class="gr-en">ALPHABET INC</span></span>
         <span class="gr-wt">8.5%</span>
       </div>
       <div class="gr-bar"><i style="width:8.5%"></i></div>
@@ -199,7 +202,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">5</span>
-        <span class="g-tk">UBER</span><span class="gr-issuer">UBER TECHNOLOGIES INC</span>
+        <span class="g-tk" title="优步">UBER</span><span class="gr-issuer"><span class="gr-cn">优步</span><span class="gr-en">UBER TECHNOLOGIES INC</span></span>
         <span class="gr-wt">7.2%</span>
       </div>
       <div class="gr-bar"><i style="width:7.2%"></i></div>
@@ -211,7 +214,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">6</span>
-        <span class="gr-issuer">ISHARES INC</span>
+        <span class="gr-issuer"><span class="gr-cn">安硕 ETF(贝莱德)</span><span class="gr-en">ISHARES INC</span></span>
         <span class="gr-wt">6.3%</span>
       </div>
       <div class="gr-bar"><i style="width:6.3%"></i></div>
@@ -223,7 +226,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">7</span>
-        <span class="g-tk">META</span><span class="gr-issuer">META PLATFORMS INC</span>
+        <span class="g-tk" title="Meta 平台">META</span><span class="gr-issuer"><span class="gr-cn">Meta 平台</span><span class="gr-en">META PLATFORMS INC</span></span>
         <span class="gr-wt">4.9%</span>
       </div>
       <div class="gr-bar"><i style="width:4.9%"></i></div>
@@ -235,7 +238,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">8</span>
-        <span class="g-tk">VST</span><span class="gr-issuer">VISTRA CORP</span>
+        <span class="g-tk" title="Vistra 电力">VST</span><span class="gr-issuer"><span class="gr-cn">Vistra 电力</span><span class="gr-en">VISTRA CORP</span></span>
         <span class="gr-wt">4.5%</span>
       </div>
       <div class="gr-bar"><i style="width:4.5%"></i></div>
@@ -247,7 +250,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">9</span>
-        <span class="g-tk">NVDA</span><span class="gr-issuer">NVIDIA CORPORATION</span>
+        <span class="g-tk" title="英伟达">NVDA</span><span class="gr-issuer"><span class="gr-cn">英伟达</span><span class="gr-en">NVIDIA CORPORATION</span></span>
         <span class="gr-wt">3.9%</span>
       </div>
       <div class="gr-bar"><i style="width:3.9%"></i></div>
@@ -259,7 +262,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">10</span>
-        <span class="g-tk">NRG</span><span class="gr-issuer">NRG ENERGY INC</span>
+        <span class="g-tk" title="NRG 能源">NRG</span><span class="gr-issuer"><span class="gr-cn">NRG 能源</span><span class="gr-en">NRG ENERGY INC</span></span>
         <span class="gr-wt">3.3%</span>
       </div>
       <div class="gr-bar"><i style="width:3.3%"></i></div>
@@ -271,7 +274,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">11</span>
-        <span class="g-tk">AAPL</span><span class="gr-issuer">APPLE INC</span>
+        <span class="g-tk" title="苹果">AAPL</span><span class="gr-issuer"><span class="gr-cn">苹果</span><span class="gr-en">APPLE INC</span></span>
         <span class="gr-wt">3.1%</span>
       </div>
       <div class="gr-bar"><i style="width:3.1%"></i></div>
@@ -283,7 +286,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">12</span>
-        <span class="g-tk">BABA</span><span class="gr-issuer">ALIBABA GROUP HLDG LTD</span>
+        <span class="g-tk" title="阿里巴巴">BABA</span><span class="gr-issuer"><span class="gr-cn">阿里巴巴</span><span class="gr-en">ALIBABA GROUP HLDG LTD</span></span>
         <span class="gr-wt">2.5%</span>
       </div>
       <div class="gr-bar"><i style="width:2.5%"></i></div>
@@ -295,7 +298,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">13</span>
-        <span class="g-tk">BA</span><span class="gr-issuer">BOEING CO</span>
+        <span class="g-tk" title="波音">BA</span><span class="gr-issuer"><span class="gr-cn">波音</span><span class="gr-en">BOEING CO</span></span>
         <span class="gr-wt">2.2%</span>
       </div>
       <div class="gr-bar"><i style="width:2.2%"></i></div>
@@ -307,7 +310,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">14</span>
-        <span class="g-tk">LRCX</span><span class="gr-issuer">LAM RESEARCH CORP</span>
+        <span class="g-tk" title="泛林半导体">LRCX</span><span class="gr-issuer"><span class="gr-cn">泛林半导体</span><span class="gr-en">LAM RESEARCH CORP</span></span>
         <span class="gr-wt">2.1%</span>
       </div>
       <div class="gr-bar"><i style="width:2.1%"></i></div>
@@ -319,7 +322,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">15</span>
-        <span class="g-tk">BIDU</span><span class="gr-issuer">BAIDU INC</span>
+        <span class="g-tk" title="百度">BIDU</span><span class="gr-issuer"><span class="gr-cn">百度</span><span class="gr-en">BAIDU INC</span></span>
         <span class="gr-wt">1.9%</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
@@ -333,5 +336,5 @@
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.08 00:57 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.08 01:17 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

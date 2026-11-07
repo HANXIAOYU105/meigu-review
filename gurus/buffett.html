@@ -77,10 +77,13 @@
   .g-fact{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
   .g-fact b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   /* 大佬持仓卡片（2026-11-07 替代表格：任何宽度都不会挤压换行溢出） */
-  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;}
+  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;transition:border-color .15s,box-shadow .15s;}
+  .grow:hover{border-color:var(--link);box-shadow:0 2px 12px rgba(26,60,110,.10);}
   .gr-r1{display:flex;align-items:center;gap:8px;min-width:0;}
   .gr-idx{flex:none;min-width:20px;height:20px;border-radius:6px;background:var(--accent-soft);color:var(--link);font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;}
-  .gr-issuer{flex:1;min-width:0;font-size:12.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .gr-issuer{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;overflow:hidden;}
+  .gr-cn{font-size:13.5px;font-weight:800;color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.3;}
+  .gr-en{font-size:11px;color:var(--muted-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:.2px;}
   .gr-wt{flex:none;font-weight:800;font-size:14px;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   .gr-wt.dim{color:var(--muted-2);font-weight:600;font-size:12px;}
   .gr-bar{height:4px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:8px 0 7px;}
@@ -88,7 +91,7 @@
   .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
-  .g-tk{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--text-strong);margin-right:7px;font-size:12.5px;}
+  .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
   .g-note{font-size:12px;color:var(--muted);line-height:1.75;margin:10px 0 0;}
@@ -151,7 +154,7 @@
 <div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">1</span>
-        <span class="g-tk">AAPL</span><span class="gr-issuer">APPLE INC</span>
+        <span class="g-tk" title="苹果">AAPL</span><span class="gr-issuer"><span class="gr-cn">苹果</span><span class="gr-en">APPLE INC</span></span>
         <span class="gr-wt">22%</span>
       </div>
       <div class="gr-bar"><i style="width:22%"></i></div>
@@ -163,7 +166,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">2</span>
-        <span class="g-tk">AXP</span><span class="gr-issuer">AMERICAN EXPRESS CO</span>
+        <span class="g-tk" title="美国运通">AXP</span><span class="gr-issuer"><span class="gr-cn">美国运通</span><span class="gr-en">AMERICAN EXPRESS CO</span></span>
         <span class="gr-wt">17.1%</span>
       </div>
       <div class="gr-bar"><i style="width:17.1%"></i></div>
@@ -175,7 +178,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">3</span>
-        <span class="g-tk">KO</span><span class="gr-issuer">COCA COLA CO</span>
+        <span class="g-tk" title="可口可乐">KO</span><span class="gr-issuer"><span class="gr-cn">可口可乐</span><span class="gr-en">COCA COLA CO</span></span>
         <span class="gr-wt">10.9%</span>
       </div>
       <div class="gr-bar"><i style="width:10.9%"></i></div>
@@ -187,7 +190,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">4</span>
-        <span class="g-tk">GOOGL</span><span class="gr-issuer">ALPHABET INC</span>
+        <span class="g-tk" title="谷歌·A类">GOOGL</span><span class="gr-issuer"><span class="gr-cn">谷歌·A类</span><span class="gr-en">ALPHABET INC</span></span>
         <span class="gr-wt">9.4%</span>
       </div>
       <div class="gr-bar"><i style="width:9.4%"></i></div>
@@ -199,7 +202,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">5</span>
-        <span class="g-tk">BAC</span><span class="gr-issuer">BANK OF AMER CORP</span>
+        <span class="g-tk" title="美国银行">BAC</span><span class="gr-issuer"><span class="gr-cn">美国银行</span><span class="gr-en">BANK OF AMER CORP</span></span>
         <span class="gr-wt">9.2%</span>
       </div>
       <div class="gr-bar"><i style="width:9.2%"></i></div>
@@ -211,7 +214,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">6</span>
-        <span class="g-tk">CVX</span><span class="gr-issuer">CHEVRON CORPORATION</span>
+        <span class="g-tk" title="雪佛龙">CVX</span><span class="gr-issuer"><span class="gr-cn">雪佛龙</span><span class="gr-en">CHEVRON CORPORATION</span></span>
         <span class="gr-wt">4.7%</span>
       </div>
       <div class="gr-bar"><i style="width:4.7%"></i></div>
@@ -223,7 +226,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">7</span>
-        <span class="g-tk">OXY</span><span class="gr-issuer">OCCIDENTAL PETE CORP</span>
+        <span class="g-tk" title="西方石油">OXY</span><span class="gr-issuer"><span class="gr-cn">西方石油</span><span class="gr-en">OCCIDENTAL PETE CORP</span></span>
         <span class="gr-wt">4.3%</span>
       </div>
       <div class="gr-bar"><i style="width:4.3%"></i></div>
@@ -235,7 +238,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">8</span>
-        <span class="g-tk">CB</span><span class="gr-issuer">CHUBB LIMITED</span>
+        <span class="g-tk" title="安达保险">CB</span><span class="gr-issuer"><span class="gr-cn">安达保险</span><span class="gr-en">CHUBB LIMITED</span></span>
         <span class="gr-wt">3.9%</span>
       </div>
       <div class="gr-bar"><i style="width:3.9%"></i></div>
@@ -247,7 +250,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">9</span>
-        <span class="g-tk">MCO</span><span class="gr-issuer">MOODYS CORP</span>
+        <span class="g-tk" title="穆迪">MCO</span><span class="gr-issuer"><span class="gr-cn">穆迪</span><span class="gr-en">MOODYS CORP</span></span>
         <span class="gr-wt">3.7%</span>
       </div>
       <div class="gr-bar"><i style="width:3.7%"></i></div>
@@ -259,7 +262,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">10</span>
-        <span class="g-tk">GOOGL</span><span class="gr-issuer">ALPHABET INC</span>
+        <span class="g-tk" title="谷歌·A类">GOOGL</span><span class="gr-issuer"><span class="gr-cn">谷歌·A类</span><span class="gr-en">ALPHABET INC</span></span>
         <span class="gr-wt">3.2%</span>
       </div>
       <div class="gr-bar"><i style="width:3.2%"></i></div>
@@ -271,7 +274,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">11</span>
-        <span class="g-tk">KHC</span><span class="gr-issuer">KRAFT HEINZ CO</span>
+        <span class="g-tk" title="卡夫亨氏">KHC</span><span class="gr-issuer"><span class="gr-cn">卡夫亨氏</span><span class="gr-en">KRAFT HEINZ CO</span></span>
         <span class="gr-wt">2.6%</span>
       </div>
       <div class="gr-bar"><i style="width:2.6%"></i></div>
@@ -283,7 +286,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">12</span>
-        <span class="g-tk">DVA</span><span class="gr-issuer">DAVITA INC</span>
+        <span class="g-tk" title="达维塔·透析服务">DVA</span><span class="gr-issuer"><span class="gr-cn">达维塔·透析服务</span><span class="gr-en">DAVITA INC</span></span>
         <span class="gr-wt">2.1%</span>
       </div>
       <div class="gr-bar"><i style="width:2.1%"></i></div>
@@ -295,7 +298,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">13</span>
-        <span class="g-tk">DAL</span><span class="gr-issuer">DELTA AIR LINES INC</span>
+        <span class="g-tk" title="达美航空">DAL</span><span class="gr-issuer"><span class="gr-cn">达美航空</span><span class="gr-en">DELTA AIR LINES INC</span></span>
         <span class="gr-wt">1.8%</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
@@ -307,7 +310,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">14</span>
-        <span class="g-tk">SIRI</span><span class="gr-issuer">SIRIUSXM HOLDINGS INC</span>
+        <span class="g-tk" title="天狼星XM广播">SIRI</span><span class="gr-issuer"><span class="gr-cn">天狼星XM广播</span><span class="gr-en">SIRIUSXM HOLDINGS INC</span></span>
         <span class="gr-wt">1.2%</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
@@ -319,7 +322,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">15</span>
-        <span class="g-tk">VRSN</span><span class="gr-issuer">VERISIGN INC</span>
+        <span class="g-tk" title="威瑞信">VRSN</span><span class="gr-issuer"><span class="gr-cn">威瑞信</span><span class="gr-en">VERISIGN INC</span></span>
         <span class="gr-wt">0.8%</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
@@ -333,5 +336,5 @@
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.08 00:57 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.08 01:17 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

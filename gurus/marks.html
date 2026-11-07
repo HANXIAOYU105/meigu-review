@@ -77,10 +77,13 @@
   .g-fact{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
   .g-fact b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   /* 大佬持仓卡片（2026-11-07 替代表格：任何宽度都不会挤压换行溢出） */
-  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;}
+  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;transition:border-color .15s,box-shadow .15s;}
+  .grow:hover{border-color:var(--link);box-shadow:0 2px 12px rgba(26,60,110,.10);}
   .gr-r1{display:flex;align-items:center;gap:8px;min-width:0;}
   .gr-idx{flex:none;min-width:20px;height:20px;border-radius:6px;background:var(--accent-soft);color:var(--link);font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;}
-  .gr-issuer{flex:1;min-width:0;font-size:12.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .gr-issuer{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px;overflow:hidden;}
+  .gr-cn{font-size:13.5px;font-weight:800;color:var(--text-strong);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.3;}
+  .gr-en{font-size:11px;color:var(--muted-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;letter-spacing:.2px;}
   .gr-wt{flex:none;font-weight:800;font-size:14px;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   .gr-wt.dim{color:var(--muted-2);font-weight:600;font-size:12px;}
   .gr-bar{height:4px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:8px 0 7px;}
@@ -88,7 +91,7 @@
   .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
-  .g-tk{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--text-strong);margin-right:7px;font-size:12.5px;}
+  .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
   .g-note{font-size:12px;color:var(--muted);line-height:1.75;margin:10px 0 0;}
@@ -151,7 +154,7 @@
 <div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">1</span>
-        <span class="g-tk">STT</span><span class="gr-issuer">STATE STREET CORP</span>
+        <span class="g-tk" title="道富集团">STT</span><span class="gr-issuer"><span class="gr-cn">道富集团</span><span class="gr-en">STATE STREET CORP</span></span>
         <span class="gr-wt">14%</span>
       </div>
       <div class="gr-bar"><i style="width:14%"></i></div>
@@ -163,7 +166,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">2</span>
-        <span class="g-tk">QQQ</span><span class="gr-issuer">INVESCO QQQ TRUST SERIES 1</span>
+        <span class="g-tk" title="纳指100 ETF">QQQ</span><span class="gr-issuer"><span class="gr-cn">纳指100 ETF</span><span class="gr-en">INVESCO QQQ TRUST SERIES 1</span></span>
         <span class="gr-wt">9%</span>
       </div>
       <div class="gr-bar"><i style="width:9%"></i></div>
@@ -175,7 +178,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">3</span>
-        <span class="g-tk">TRMD</span><span class="gr-issuer">TORM PLC</span>
+        <span class="g-tk" title="TORM 油轮航运">TRMD</span><span class="gr-issuer"><span class="gr-cn">TORM 油轮航运</span><span class="gr-en">TORM PLC</span></span>
         <span class="gr-wt">7.3%</span>
       </div>
       <div class="gr-bar"><i style="width:7.3%"></i></div>
@@ -187,7 +190,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">4</span>
-        <span class="g-tk">EXE</span><span class="gr-issuer">EXPAND ENERGY CORP</span>
+        <span class="g-tk" title="Expand 能源(天然气)">EXE</span><span class="gr-issuer"><span class="gr-cn">Expand 能源(天然气)</span><span class="gr-en">EXPAND ENERGY CORP</span></span>
         <span class="gr-wt">6.6%</span>
       </div>
       <div class="gr-bar"><i style="width:6.6%"></i></div>
@@ -199,7 +202,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">5</span>
-        <span class="g-tk">GTX</span><span class="gr-issuer">GARRETT MOTION INC</span>
+        <span class="g-tk" title="盖瑞特动力">GTX</span><span class="gr-issuer"><span class="gr-cn">盖瑞特动力</span><span class="gr-en">GARRETT MOTION INC</span></span>
         <span class="gr-wt">3.8%</span>
       </div>
       <div class="gr-bar"><i style="width:3.8%"></i></div>
@@ -211,7 +214,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">6</span>
-        <span class="g-tk">AU</span><span class="gr-issuer">ANGLOGOLD ASHANTI PLC</span>
+        <span class="g-tk" title="盎格鲁黄金">AU</span><span class="gr-issuer"><span class="gr-cn">盎格鲁黄金</span><span class="gr-en">ANGLOGOLD ASHANTI PLC</span></span>
         <span class="gr-wt">3.6%</span>
       </div>
       <div class="gr-bar"><i style="width:3.6%"></i></div>
@@ -223,7 +226,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">7</span>
-        <span class="g-tk">CORZ</span><span class="gr-issuer">CORE SCIENTIFIC INC</span>
+        <span class="g-tk" title="Core Scientific 矿企">CORZ</span><span class="gr-issuer"><span class="gr-cn">Core Scientific 矿企</span><span class="gr-en">CORE SCIENTIFIC INC</span></span>
         <span class="gr-wt">3.5%</span>
       </div>
       <div class="gr-bar"><i style="width:3.5%"></i></div>
@@ -235,7 +238,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">8</span>
-        <span class="g-tk">INDV</span><span class="gr-issuer">INDIVIOR PHARMACEUTICALS INC</span>
+        <span class="g-tk" title="Indivior 制药">INDV</span><span class="gr-issuer"><span class="gr-cn">Indivior 制药</span><span class="gr-en">INDIVIOR PHARMACEUTICALS INC</span></span>
         <span class="gr-wt">3.5%</span>
       </div>
       <div class="gr-bar"><i style="width:3.5%"></i></div>
@@ -247,7 +250,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">9</span>
-        <span class="g-tk">TDS</span><span class="gr-issuer">TELEPHONE AND DATA SYSTEMS INC</span>
+        <span class="g-tk" title="电话与数据系统">TDS</span><span class="gr-issuer"><span class="gr-cn">电话与数据系统</span><span class="gr-en">TELEPHONE AND DATA SYSTEMS INC</span></span>
         <span class="gr-wt">2.7%</span>
       </div>
       <div class="gr-bar"><i style="width:2.7%"></i></div>
@@ -259,7 +262,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">10</span>
-        <span class="g-tk">VNOM</span><span class="gr-issuer">VIPER ENERGY INC</span>
+        <span class="g-tk" title="蝰蛇能源">VNOM</span><span class="gr-issuer"><span class="gr-cn">蝰蛇能源</span><span class="gr-en">VIPER ENERGY INC</span></span>
         <span class="gr-wt">2.2%</span>
       </div>
       <div class="gr-bar"><i style="width:2.2%"></i></div>
@@ -271,7 +274,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">11</span>
-        <span class="g-tk">TLN</span><span class="gr-issuer">TALEN ENERGY CORP</span>
+        <span class="g-tk" title="塔伦能源">TLN</span><span class="gr-issuer"><span class="gr-cn">塔伦能源</span><span class="gr-en">TALEN ENERGY CORP</span></span>
         <span class="gr-wt">1.8%</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
@@ -283,7 +286,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">12</span>
-        <span class="g-tk">B</span><span class="gr-issuer">BARRICK MINING CORP</span>
+        <span class="g-tk" title="巴里克矿业">B</span><span class="gr-issuer"><span class="gr-cn">巴里克矿业</span><span class="gr-en">BARRICK MINING CORP</span></span>
         <span class="gr-wt">1.6%</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
@@ -295,7 +298,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">13</span>
-        <span class="g-tk">ITUB</span><span class="gr-issuer">ITAU UNIBANCO HOLDING SA</span>
+        <span class="g-tk" title="伊塔乌银行(巴西)">ITUB</span><span class="gr-issuer"><span class="gr-cn">伊塔乌银行(巴西)</span><span class="gr-en">ITAU UNIBANCO HOLDING SA</span></span>
         <span class="gr-wt">1.4%</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
@@ -307,7 +310,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">14</span>
-        <span class="g-tk">LBTYA</span><span class="gr-issuer">LIBERTY GLOBAL LTD</span>
+        <span class="g-tk" title="自由全球">LBTYA</span><span class="gr-issuer"><span class="gr-cn">自由全球</span><span class="gr-en">LIBERTY GLOBAL LTD</span></span>
         <span class="gr-wt">1.3%</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
@@ -319,7 +322,7 @@
     </div><div class="grow">
       <div class="gr-r1">
         <span class="gr-idx">15</span>
-        <span class="g-tk">OCSL</span><span class="gr-issuer">OAKTREE SPECIALTY LENDING CORP</span>
+        <span class="g-tk" title="橡树专业信贷">OCSL</span><span class="gr-issuer"><span class="gr-cn">橡树专业信贷</span><span class="gr-en">OAKTREE SPECIALTY LENDING CORP</span></span>
         <span class="gr-wt">1.3%</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
@@ -333,5 +336,5 @@
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.08 00:57 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.08 01:17 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>
