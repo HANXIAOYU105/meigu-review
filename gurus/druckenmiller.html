@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>斯坦利·德鲁肯米勒 · 最新持仓 · 美股博主复盘</title>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--text:#1a1a1a;--text-strong:#111;--muted:#5b6472;--muted-2:#6b7280;--border:#e5e8ee;--border-soft:#f0f2f5;--accent:#1e3a5f;--accent-soft:#eef2ff;--link:#2c5282;--up:#c53030;--up-bg:#fde8e8;--down:#1e7d43;--down-bg:#e6f6ec;--flat-bg:#eef1f5;--flat-fg:#4a5568;--warn:#b45309;--warn-bg:#fef3e2;}
+  @media (prefers-color-scheme: dark){:root{--bg:#0f1115;--card:#171a21;--text:#e8eaf0;--text-strong:#fff;--muted:#a7aebc;--muted-2:#8b93a3;--border:#2a2f3a;--border-soft:#232833;--accent:#7fa3d9;--accent-soft:#1e2a44;--link:#7fb0ff;--up:#ff8f8f;--up-bg:#3a1d1d;--down:#5fd08a;--down-bg:#123526;--flat-bg:#232833;--flat-fg:#a7aebc;--warn:#e8b06a;--warn-bg:#3a2a16;}}
+  *{box-sizing:border-box;} body{margin:0;padding:12px;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.6;}
+  .wrap{max-width:680px;margin:0 auto;} a{color:inherit;} a:focus-visible,button:focus-visible{outline:2px solid var(--link);outline-offset:2px;}
+  .back{display:inline-block;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;font-size:13px;font-weight:600;color:var(--link);text-decoration:none;margin-bottom:10px;}
+  .back:hover{border-color:var(--accent);}
+  h1{font-size:19px;font-weight:800;color:var(--text-strong);margin:8px 0 2px;} .sub{font-size:12.5px;color:var(--muted);margin:0 0 14px;}
+  .bcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px 15px;margin-bottom:9px;}
+  .bcard:hover{border-color:var(--accent);}
+  .b-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .b-name{font-size:15px;font-weight:800;color:var(--text-strong);}
+  .b-tag{font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:5px;flex:none;}
+  .b-tag.en{color:var(--link);background:var(--accent-soft);}
+  .b-tag.wk{color:var(--warn);background:var(--warn-bg);}
+  .b-meta{margin-left:auto;font-size:11.5px;color:var(--muted);}
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .b-sec{margin-top:9px;}
+  .b-lab{font-size:11.5px;font-weight:700;color:var(--muted-2);margin-bottom:3px;}
+  .b-fwd,.b-sum{margin:0 0 4px;font-size:13px;line-height:1.7;color:var(--text);}
+  .b-sum{color:var(--muted);font-size:12.5px;}
+  .b-traj{margin-top:9px;padding-top:8px;border-top:1px dashed var(--border-soft);font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
+  .tj{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none;}
+  .d-up{background:var(--up);} .d-dn{background:var(--down);} .d-fl{background:#9aa2ad;}
+  .arr{color:var(--muted-2);}
+  .tone-strip{display:flex;flex-wrap:wrap;gap:5px 14px;font-size:12.5px;color:var(--muted);}
+  .tone-strip b{color:var(--text-strong);}
+  @media (max-width:420px){ table{font-size:12px;} th,td{padding:7px 6px;} .b-traj{font-size:11.5px;} .bcard{padding:11px 12px;} }
+  .b-latest{margin-top:8px;font-size:12.5px;color:var(--muted);border-top:1px dashed var(--border-soft);padding-top:7px;}
+  .b-latest b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .legend-tip{font-size:12px;color:var(--muted-2);background:var(--accent-soft);border-radius:8px;padding:8px 11px;margin-bottom:12px;line-height:1.7;}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  th{text-align:left;padding:9px 8px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;white-space:nowrap;}
+  td{padding:9px 8px;border-bottom:1px solid var(--border-soft);vertical-align:top;overflow-wrap:break-word;word-break:break-word;}
+  tr:last-child td{border-bottom:none;}
+  .num{font-family:ui-monospace,Menlo,monospace;font-weight:700;color:var(--text-strong);font-variant-numeric:tabular-nums;}
+  .badge{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:20px;white-space:nowrap;}
+  .bg-ok{background:var(--up-bg);color:var(--up);} .bg-bad{background:var(--down-bg);color:var(--down);}
+  .bg-pend{background:var(--flat-bg);color:var(--flat-fg);}
+  .trk-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 13px;margin-bottom:7px;}
+  .trk-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;}
+  .trk-tk{font-weight:800;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .trk-ch{color:var(--muted);font-size:12px;} .trk-d{color:var(--muted-2);font-size:11.5px;margin-left:auto;}
+  .trk-lv{margin-top:6px;display:flex;flex-direction:column;gap:3px;font-size:12px;}
+  .trk-lv span{color:var(--muted);}
+  .empty{color:var(--muted);font-size:13px;padding:14px 0;}
+  .ava{width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;flex:none;letter-spacing:.5px;box-shadow:0 2px 6px rgba(0,0,0,.18);}
+  .bar{display:inline-block;width:62px;height:7px;border-radius:4px;background:var(--accent-soft);overflow:hidden;vertical-align:middle;margin-left:7px;}
+  .bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--link),#7aa7ff);}
+  /* 追踪大佬持仓（2026-11-07）：列表卡片 + 详情页 */
+  .ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:10px;}
+  .gcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px 14px;text-decoration:none;color:var(--text);transition:.15s;display:block;}
+  .gcard:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 16px rgba(30,58,95,.09);}
+  .g-top{display:flex;align-items:center;gap:10px;}
+  .g-id{min-width:0;flex:1;}
+  .g-name{font-size:14px;font-weight:800;color:var(--text-strong);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .g-entity{font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.45;}
+  .g-tag{flex:none;font-size:10px;font-weight:700;color:var(--link);background:var(--accent-soft);border-radius:20px;padding:2px 7px;white-space:nowrap;}
+  .g-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px;}
+  .g-chip{font-size:11px;background:var(--bg);border:1px solid var(--border-soft);border-radius:6px;padding:2px 7px;color:var(--text);white-space:nowrap;}
+  .g-chip b{font-family:ui-monospace,Menlo,monospace;color:var(--text-strong);}
+  .g-chip.dim{color:var(--muted);}
+  .g-meta{font-size:11px;color:var(--muted-2);margin-top:8px;line-height:1.5;}
+  .g-meta b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .gava{border-radius:50%;object-fit:cover;flex:none;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(15,23,42,.18);}
+  .gava-letter{color:#fff;font-weight:800;letter-spacing:.5px;}
+  .g-hero{display:flex;align-items:center;gap:14px;margin:2px 0 10px;}
+  .g-hero-name{font-size:19px;font-weight:800;color:var(--text-strong);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .g-hero-sub{font-size:12.5px;color:var(--muted);margin-top:3px;}
+  .g-intro{font-size:13px;color:var(--text);line-height:1.8;background:var(--accent-soft);border-radius:10px;padding:10px 13px;margin:0 0 10px;}
+  .g-facts{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px;}
+  .g-fact{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
+  .g-fact b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .gtable{table-layout:fixed;}
+  .g-tk{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--text-strong);margin-right:7px;font-size:12.5px;}
+  .g-issuer{color:var(--text);font-size:12.5px;}
+  .g-dim{color:var(--muted-2);font-size:11.5px;}
+  .g-note{font-size:12px;color:var(--muted);line-height:1.75;margin:10px 0 0;}
+  footer{text-align:center;color:var(--muted-2);font-size:11.5px;padding:20px 0 10px;margin-top:20px;border-top:1px solid var(--border);}
+</style></head><body><div class="wrap">
+<a class="back" href="/">← 返回首页</a>
+<h1>斯坦利·德鲁肯米勒 · 最新持仓</h1>
+<p class="sub">Duquesne Family Office 美股持仓追踪</p>
+
+<a class="back" href="/gurus/index.html">← 返回持仓列表</a>
+<div class="g-hero"><span class="gava gava-letter" style="width:72px;height:72px;background:#10b981;font-size:29px;">斯</span><div>
+  <div class="g-hero-name">斯坦利·德鲁肯米勒 <span class="g-tag">全球宏观</span></div>
+  <div class="g-hero-sub">Duquesne Family Office · 宏观交易传奇 · Stanley Druckenmiller</div>
+</div></div>
+<p class="g-intro">曾替索罗斯管理量子基金并主导 1992 年狙击英镑。杜肯家族办公室换仓果断、集中度高，13F 里偏好大型科技成长股，也敢快速清仓，常被解读为聪明钱的情绪温度计。</p>
+<div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">披露日 <b>2026-08-14</b></span><span class="g-fact">披露总市值 <b>52.11亿$</b></span><span class="g-fact">核查于 <b>2026-11-07</b></span><span class="g-fact">SEC 13F-HR</span></div>
+<div class="tbl-wrap"><table class="gtable">
+  <colgroup><col style="width:34px"><col style="width:auto"><col style="width:96px"><col style="width:128px"><col style="width:74px"></colgroup>
+  <tr><th>#</th><th>标的 / 发行人</th><th>持仓市值</th><th>占比</th><th>股数</th></tr>
+  <tr>
+      <td class="g-dim">1</td>
+      <td><span class="g-tk">NTRA</span><span class="g-issuer">Natera Inc</span></td>
+      <td class="num">8.65亿$</td>
+      <td><span class="num">16.6%</span><span class="bar"><i style="width:16.6%"></i></span></td>
+      <td class="num">318.6万</td>
+      
+    </tr><tr>
+      <td class="g-dim">2</td>
+      <td><span class="g-tk">INSM</span><span class="g-issuer">Insmed Inc</span></td>
+      <td class="num">2.96亿$</td>
+      <td><span class="num">5.7%</span><span class="bar"><i style="width:5.7%"></i></span></td>
+      <td class="num">277.5万</td>
+      
+    </tr><tr>
+      <td class="g-dim">3</td>
+      <td><span class="g-tk">TSM</span><span class="g-issuer">Taiwan Semiconductor Manufac</span></td>
+      <td class="num">2.82亿$</td>
+      <td><span class="num">5.4%</span><span class="bar"><i style="width:5.4%"></i></span></td>
+      <td class="num">59.0万</td>
+      
+    </tr><tr>
+      <td class="g-dim">4</td>
+      <td><span class="g-issuer">Ishares Inc</span></td>
+      <td class="num">2.64亿$</td>
+      <td><span class="num">5.1%</span><span class="bar"><i style="width:5.1%"></i></span></td>
+      <td class="num">766.4万</td>
+      
+    </tr><tr>
+      <td class="g-dim">5</td>
+      <td><span class="g-tk">AMZN</span><span class="g-issuer">Amazon Com Inc</span></td>
+      <td class="num">2.39亿$</td>
+      <td><span class="num">4.6%</span><span class="bar"><i style="width:4.6%"></i></span></td>
+      <td class="num">100.1万</td>
+      
+    </tr><tr>
+      <td class="g-dim">6</td>
+      <td><span class="g-tk">STM</span><span class="g-issuer">Stmicroelectronics N V</span></td>
+      <td class="num">2.32亿$</td>
+      <td><span class="num">4.5%</span><span class="bar"><i style="width:4.5%"></i></span></td>
+      <td class="num">310.3万</td>
+      
+    </tr><tr>
+      <td class="g-dim">7</td>
+      <td><span class="g-issuer">Invesco Exchange Traded Fd T</span></td>
+      <td class="num">1.91亿$</td>
+      <td><span class="num">3.7%</span><span class="bar"><i style="width:3.7%"></i></span></td>
+      <td class="num">89.5万</td>
+      
+    </tr><tr>
+      <td class="g-dim">8</td>
+      <td><span class="g-tk">YPF</span><span class="g-issuer">Ypf Sociedad Anonima</span></td>
+      <td class="num">1.43亿$</td>
+      <td><span class="num">2.7%</span><span class="bar"><i style="width:3%"></i></span></td>
+      <td class="num">313.9万</td>
+      
+    </tr><tr>
+      <td class="g-dim">9</td>
+      <td><span class="g-tk">CDW</span><span class="g-issuer">Cdw Corp</span></td>
+      <td class="num">1.40亿$</td>
+      <td><span class="num">2.7%</span><span class="bar"><i style="width:3%"></i></span></td>
+      <td class="num">99.4万</td>
+      
+    </tr><tr>
+      <td class="g-dim">10</td>
+      <td><span class="g-tk">TBBB</span><span class="g-issuer">Bbb Foods Inc</span></td>
+      <td class="num">1.21亿$</td>
+      <td><span class="num">2.3%</span><span class="bar"><i style="width:3%"></i></span></td>
+      <td class="num">290.2万</td>
+      
+    </tr><tr>
+      <td class="g-dim">11</td>
+      <td><span class="g-tk">GOOGL</span><span class="g-issuer">Alphabet Inc</span></td>
+      <td class="num">1.20亿$</td>
+      <td><span class="num">2.3%</span><span class="bar"><i style="width:3%"></i></span></td>
+      <td class="num">33.6万</td>
+      
+    </tr><tr>
+      <td class="g-dim">12</td>
+      <td><span class="g-tk">STX</span><span class="g-issuer">Seagate Technology Hldngs Pl</span></td>
+      <td class="num">1.18亿$</td>
+      <td><span class="num">2.3%</span><span class="bar"><i style="width:3%"></i></span></td>
+      <td class="num">12.2万</td>
+      
+    </tr><tr>
+      <td class="g-dim">13</td>
+      <td><span class="g-tk">FOXA</span><span class="g-issuer">Fox Corp</span></td>
+      <td class="num">1.15亿$</td>
+      <td><span class="num">2.2%</span><span class="bar"><i style="width:3%"></i></span></td>
+      <td class="num">220.5万</td>
+      
+    </tr><tr>
+      <td class="g-dim">14</td>
+      <td><span class="g-tk">UAL</span><span class="g-issuer">United Airls Hldgs Inc</span></td>
+      <td class="num">1.08亿$</td>
+      <td><span class="num">2.1%</span><span class="bar"><i style="width:3%"></i></span></td>
+      <td class="num">79.5万</td>
+      
+    </tr><tr>
+      <td class="g-dim">15</td>
+      <td><span class="g-tk">SE</span><span class="g-issuer">Sea Ltd</span></td>
+      <td class="num">1.05亿$</td>
+      <td><span class="num">2%</span><span class="bar"><i style="width:3%"></i></span></td>
+      <td class="num">110.0万</td>
+      
+    </tr>
+</table></div>
+<p class="g-note">另有其他 75 个发行人合计占比约 35.7%（未逐项列出）。</p>
+
+
+<p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
+<footer>生成于 11.07 23:28 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+</div></body></html>

@@ -35,8 +35,9 @@
   .hero{background:linear-gradient(135deg,#1e3a5f 0%,#274b78 100%);color:#fff;border-radius:14px;padding:20px 18px;position:relative;overflow:hidden;}
   .hero-row{display:flex;gap:12px;align-items:stretch;margin-bottom:12px;}
   .hero-row .hero{flex:1;min-width:0;}
-  /* 「蒸馏大博主」跳转框：与 hero 同风格的深蓝渐变，桌面并排右侧、窄屏堆叠成横条 */
-  .hero-link{flex:0 0 208px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#35619f 0%,#5b83c9 100%);color:#fff;border-radius:14px;padding:16px 15px;text-decoration:none;position:relative;overflow:hidden;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;}
+  /* 「蒸馏大博主 / 追踪大佬持仓」跳转框：与 hero 同风格的深蓝渐变，桌面并排右侧竖排、窄屏堆叠成横条 */
+  .hero-links{flex:0 0 224px;display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .hero-link{flex:1;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#35619f 0%,#5b83c9 100%);color:#fff;border-radius:14px;padding:16px 15px;text-decoration:none;position:relative;overflow:hidden;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;}
   .hero-link::after{content:"";position:absolute;right:-30px;top:-45px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.09);}
   .hero-link:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,58,95,.35);filter:brightness(1.06);}
   .hero-link:active{transform:translateY(0);}
@@ -202,12 +203,17 @@
     <span><b>484</b>条观点</span>
     <span><b>65</b>份内容</span>
   </div>
-  <div class="stamp">更新 11.07 12:06</div>
+  <div class="stamp">更新 11.07 23:28</div>
 </header>
 <a class="hero-link" href="https://distilled-bloggers.app.workbuddy.host/?sharecode=QMAOBRSUYW" target="_blank" rel="noopener" title="打开「蒸馏大博主」（新窗口）">
   <span class="hl-name">✨ 蒸馏大博主</span>
   <span class="hl-desc">AI 蒸馏的博主精华速览</span>
   <span class="hl-cta">点击跳转 ↗</span>
+</a>
+<a class="hero-link" href="/gurus/index.html" title="查看巴菲特、段永平、木头姐等 11 位大佬的最新美股持仓">
+  <span class="hl-name">🏛️ 追踪大佬持仓</span>
+  <span class="hl-desc">巴菲特 / 佩洛西 / 达利欧 / 段永平… 13F 每日核查</span>
+  <span class="hl-cta">查看持仓 ↗</span>
 </a>
 </div>
 
@@ -711,7 +717,7 @@
   <a href="/data/opinions-latest.csv" style="color:var(--link)" download>⬇ 观点数据 CSV（484 条）</a> ·
   <a href="/track-record.html" style="color:var(--link)">🎯 命中率追踪</a><br>
   💬 右下角新增「问一问」：点开即可基于观点数据库提问，得到蒸馏简报式回答 ·
-  数据截至 2026-11-06 · 生成于 11.07 12:06 · 仅供学习研究，不构成投资建议
+  数据截至 2026-11-06 · 生成于 11.07 23:28 · 仅供学习研究，不构成投资建议
 </footer>
 <button id="toTop" type="button" aria-label="回到顶部">↑</button>
 </div>
