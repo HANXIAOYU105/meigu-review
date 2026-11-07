@@ -76,7 +76,18 @@
   .g-facts{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px;}
   .g-fact{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
   .g-fact b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
-  .gtable{table-layout:fixed;}
+  /* 大佬持仓卡片（2026-11-07 替代表格：任何宽度都不会挤压换行溢出） */
+  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;}
+  .gr-r1{display:flex;align-items:center;gap:8px;min-width:0;}
+  .gr-idx{flex:none;min-width:20px;height:20px;border-radius:6px;background:var(--accent-soft);color:var(--link);font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;}
+  .gr-issuer{flex:1;min-width:0;font-size:12.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .gr-wt{flex:none;font-weight:800;font-size:14px;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .gr-wt.dim{color:var(--muted-2);font-weight:600;font-size:12px;}
+  .gr-bar{height:4px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:8px 0 7px;}
+  .gr-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--link),#7aa7ff);}
+  .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
+  .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
+  .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
   .g-tk{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--text-strong);margin-right:7px;font-size:12.5px;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
@@ -94,119 +105,190 @@
 </div></div>
 <p class="g-intro">价值投资代表人物，60 年年化约 20%。13F 披露伯克希尔公司整体美股长仓：重仓苹果、美国运通、可口可乐、美国银行等，风格极度集中、长期持有，现金储备常被视为市场风向标。</p>
 <div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">披露日 <b>2026-08-14</b></span><span class="g-fact">披露总市值 <b>2992.5亿$</b></span><span class="g-fact">核查于 <b>2026-11-07</b></span><span class="g-fact">SEC 13F-HR</span></div>
-<div class="tbl-wrap"><table class="gtable">
-  <colgroup><col style="width:34px"><col style="width:auto"><col style="width:96px"><col style="width:128px"><col style="width:74px"></colgroup>
-  <tr><th>#</th><th>标的 / 发行人</th><th>持仓市值</th><th>占比</th><th>股数</th></tr>
-  <tr>
-      <td class="g-dim">1</td>
-      <td><span class="g-tk">AAPL</span><span class="g-issuer">APPLE INC</span></td>
-      <td class="num">659.5亿$</td>
-      <td><span class="num">22%</span><span class="bar"><i style="width:22%"></i></span></td>
-      <td class="num">2.28亿</td>
+<div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">1</span>
+        <span class="g-tk">AAPL</span><span class="gr-issuer">APPLE INC</span>
+        <span class="gr-wt">22%</span>
+      </div>
+      <div class="gr-bar"><i style="width:22%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>659.5亿$</b></span>
+        <span>股数 <b>2.28亿</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">2</td>
-      <td><span class="g-tk">AXP</span><span class="g-issuer">AMERICAN EXPRESS CO</span></td>
-      <td class="num">512.8亿$</td>
-      <td><span class="num">17.1%</span><span class="bar"><i style="width:17.1%"></i></span></td>
-      <td class="num">1.52亿</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">2</span>
+        <span class="g-tk">AXP</span><span class="gr-issuer">AMERICAN EXPRESS CO</span>
+        <span class="gr-wt">17.1%</span>
+      </div>
+      <div class="gr-bar"><i style="width:17.1%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>512.8亿$</b></span>
+        <span>股数 <b>1.52亿</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">3</td>
-      <td><span class="g-tk">KO</span><span class="g-issuer">COCA COLA CO</span></td>
-      <td class="num">325.1亿$</td>
-      <td><span class="num">10.9%</span><span class="bar"><i style="width:10.9%"></i></span></td>
-      <td class="num">4.00亿</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">3</span>
+        <span class="g-tk">KO</span><span class="gr-issuer">COCA COLA CO</span>
+        <span class="gr-wt">10.9%</span>
+      </div>
+      <div class="gr-bar"><i style="width:10.9%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>325.1亿$</b></span>
+        <span>股数 <b>4.00亿</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">4</td>
-      <td><span class="g-tk">GOOGL</span><span class="g-issuer">ALPHABET INC</span></td>
-      <td class="num">281.6亿$</td>
-      <td><span class="num">9.4%</span><span class="bar"><i style="width:9.4%"></i></span></td>
-      <td class="num">7879.1万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">4</span>
+        <span class="g-tk">GOOGL</span><span class="gr-issuer">ALPHABET INC</span>
+        <span class="gr-wt">9.4%</span>
+      </div>
+      <div class="gr-bar"><i style="width:9.4%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>281.6亿$</b></span>
+        <span>股数 <b>7879.1万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">5</td>
-      <td><span class="g-tk">BAC</span><span class="g-issuer">BANK OF AMER CORP</span></td>
-      <td class="num">275.4亿$</td>
-      <td><span class="num">9.2%</span><span class="bar"><i style="width:9.2%"></i></span></td>
-      <td class="num">4.83亿</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">5</span>
+        <span class="g-tk">BAC</span><span class="gr-issuer">BANK OF AMER CORP</span>
+        <span class="gr-wt">9.2%</span>
+      </div>
+      <div class="gr-bar"><i style="width:9.2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>275.4亿$</b></span>
+        <span>股数 <b>4.83亿</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">6</td>
-      <td><span class="g-tk">CVX</span><span class="g-issuer">CHEVRON CORPORATION</span></td>
-      <td class="num">139.9亿$</td>
-      <td><span class="num">4.7%</span><span class="bar"><i style="width:4.7%"></i></span></td>
-      <td class="num">8437.6万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">6</span>
+        <span class="g-tk">CVX</span><span class="gr-issuer">CHEVRON CORPORATION</span>
+        <span class="gr-wt">4.7%</span>
+      </div>
+      <div class="gr-bar"><i style="width:4.7%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>139.9亿$</b></span>
+        <span>股数 <b>8437.6万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">7</td>
-      <td><span class="g-tk">OXY</span><span class="g-issuer">OCCIDENTAL PETE CORP</span></td>
-      <td class="num">128.7亿$</td>
-      <td><span class="num">4.3%</span><span class="bar"><i style="width:4.3%"></i></span></td>
-      <td class="num">2.65亿</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">7</span>
+        <span class="g-tk">OXY</span><span class="gr-issuer">OCCIDENTAL PETE CORP</span>
+        <span class="gr-wt">4.3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:4.3%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>128.7亿$</b></span>
+        <span>股数 <b>2.65亿</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">8</td>
-      <td><span class="g-tk">CB</span><span class="g-issuer">CHUBB LIMITED</span></td>
-      <td class="num">116.7亿$</td>
-      <td><span class="num">3.9%</span><span class="bar"><i style="width:3.9%"></i></span></td>
-      <td class="num">3424.9万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">8</span>
+        <span class="g-tk">CB</span><span class="gr-issuer">CHUBB LIMITED</span>
+        <span class="gr-wt">3.9%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.9%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>116.7亿$</b></span>
+        <span>股数 <b>3424.9万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">9</td>
-      <td><span class="g-tk">MCO</span><span class="g-issuer">MOODYS CORP</span></td>
-      <td class="num">111.7亿$</td>
-      <td><span class="num">3.7%</span><span class="bar"><i style="width:3.7%"></i></span></td>
-      <td class="num">2467.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">9</span>
+        <span class="g-tk">MCO</span><span class="gr-issuer">MOODYS CORP</span>
+        <span class="gr-wt">3.7%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.7%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>111.7亿$</b></span>
+        <span>股数 <b>2467.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">10</td>
-      <td><span class="g-tk">GOOGL</span><span class="g-issuer">ALPHABET INC</span></td>
-      <td class="num">96.06亿$</td>
-      <td><span class="num">3.2%</span><span class="bar"><i style="width:3.2%"></i></span></td>
-      <td class="num">2718.8万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">10</span>
+        <span class="g-tk">GOOGL</span><span class="gr-issuer">ALPHABET INC</span>
+        <span class="gr-wt">3.2%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>96.06亿$</b></span>
+        <span>股数 <b>2718.8万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">11</td>
-      <td><span class="g-tk">KHC</span><span class="g-issuer">KRAFT HEINZ CO</span></td>
-      <td class="num">76.91亿$</td>
-      <td><span class="num">2.6%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">3.26亿</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">11</span>
+        <span class="g-tk">KHC</span><span class="gr-issuer">KRAFT HEINZ CO</span>
+        <span class="gr-wt">2.6%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.6%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>76.91亿$</b></span>
+        <span>股数 <b>3.26亿</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">12</td>
-      <td><span class="g-tk">DVA</span><span class="g-issuer">DAVITA INC</span></td>
-      <td class="num">64.25亿$</td>
-      <td><span class="num">2.1%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">2888.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">12</span>
+        <span class="g-tk">DVA</span><span class="gr-issuer">DAVITA INC</span>
+        <span class="gr-wt">2.1%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.1%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>64.25亿$</b></span>
+        <span>股数 <b>2888.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">13</td>
-      <td><span class="g-tk">DAL</span><span class="g-issuer">DELTA AIR LINES INC</span></td>
-      <td class="num">53.69亿$</td>
-      <td><span class="num">1.8%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">5732.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">13</span>
+        <span class="g-tk">DAL</span><span class="gr-issuer">DELTA AIR LINES INC</span>
+        <span class="gr-wt">1.8%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>53.69亿$</b></span>
+        <span>股数 <b>5732.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">14</td>
-      <td><span class="g-tk">SIRI</span><span class="g-issuer">SIRIUSXM HOLDINGS INC</span></td>
-      <td class="num">36.87亿$</td>
-      <td><span class="num">1.2%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">1.25亿</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">14</span>
+        <span class="g-tk">SIRI</span><span class="gr-issuer">SIRIUSXM HOLDINGS INC</span>
+        <span class="gr-wt">1.2%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>36.87亿$</b></span>
+        <span>股数 <b>1.25亿</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">15</td>
-      <td><span class="g-tk">VRSN</span><span class="g-issuer">VERISIGN INC</span></td>
-      <td class="num">22.61亿$</td>
-      <td><span class="num">0.8%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">899.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">15</span>
+        <span class="g-tk">VRSN</span><span class="gr-issuer">VERISIGN INC</span>
+        <span class="gr-wt">0.8%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>22.61亿$</b></span>
+        <span>股数 <b>899.0万</b></span>
+      </div>
       
-    </tr>
-</table></div>
+    </div>
 <p class="g-note">另有其他 14 个发行人合计占比约 3%（未逐项列出）。</p>
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.07 23:31 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.08 00:39 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

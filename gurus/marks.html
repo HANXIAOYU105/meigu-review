@@ -76,7 +76,18 @@
   .g-facts{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px;}
   .g-fact{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
   .g-fact b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
-  .gtable{table-layout:fixed;}
+  /* 大佬持仓卡片（2026-11-07 替代表格：任何宽度都不会挤压换行溢出） */
+  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;}
+  .gr-r1{display:flex;align-items:center;gap:8px;min-width:0;}
+  .gr-idx{flex:none;min-width:20px;height:20px;border-radius:6px;background:var(--accent-soft);color:var(--link);font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;}
+  .gr-issuer{flex:1;min-width:0;font-size:12.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .gr-wt{flex:none;font-weight:800;font-size:14px;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .gr-wt.dim{color:var(--muted-2);font-weight:600;font-size:12px;}
+  .gr-bar{height:4px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:8px 0 7px;}
+  .gr-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--link),#7aa7ff);}
+  .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
+  .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
+  .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
   .g-tk{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--text-strong);margin-right:7px;font-size:12.5px;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
@@ -94,119 +105,190 @@
 </div></div>
 <p class="g-intro">以投资者备忘录与《周期》闻名，擅长不良债务与信用投资。13F 权益仓位较少、以基金载体为主，其备忘录对市场风险周期的判断比持仓本身更有参考价值。</p>
 <div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">披露日 <b>2026-08-14</b></span><span class="g-fact">披露总市值 <b>72.06亿$</b></span><span class="g-fact">核查于 <b>2026-11-07</b></span><span class="g-fact">SEC 13F-HR</span></div>
-<div class="tbl-wrap"><table class="gtable">
-  <colgroup><col style="width:34px"><col style="width:auto"><col style="width:96px"><col style="width:128px"><col style="width:74px"></colgroup>
-  <tr><th>#</th><th>标的 / 发行人</th><th>持仓市值</th><th>占比</th><th>股数</th></tr>
-  <tr>
-      <td class="g-dim">1</td>
-      <td><span class="g-tk">STT</span><span class="g-issuer">STATE STREET CORP</span></td>
-      <td class="num">10.12亿$</td>
-      <td><span class="num">14%</span><span class="bar"><i style="width:14%"></i></span></td>
-      <td class="num">135.5万</td>
+<div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">1</span>
+        <span class="g-tk">STT</span><span class="gr-issuer">STATE STREET CORP</span>
+        <span class="gr-wt">14%</span>
+      </div>
+      <div class="gr-bar"><i style="width:14%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>10.12亿$</b></span>
+        <span>股数 <b>135.5万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">2</td>
-      <td><span class="g-tk">QQQ</span><span class="g-issuer">INVESCO QQQ TRUST SERIES 1</span></td>
-      <td class="num">6.52亿$</td>
-      <td><span class="num">9%</span><span class="bar"><i style="width:9%"></i></span></td>
-      <td class="num">88.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">2</span>
+        <span class="g-tk">QQQ</span><span class="gr-issuer">INVESCO QQQ TRUST SERIES 1</span>
+        <span class="gr-wt">9%</span>
+      </div>
+      <div class="gr-bar"><i style="width:9%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>6.52亿$</b></span>
+        <span>股数 <b>88.5万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">3</td>
-      <td><span class="g-tk">TRMD</span><span class="g-issuer">TORM PLC</span></td>
-      <td class="num">5.24亿$</td>
-      <td><span class="num">7.3%</span><span class="bar"><i style="width:7.3%"></i></span></td>
-      <td class="num">2033.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">3</span>
+        <span class="g-tk">TRMD</span><span class="gr-issuer">TORM PLC</span>
+        <span class="gr-wt">7.3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:7.3%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>5.24亿$</b></span>
+        <span>股数 <b>2033.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">4</td>
-      <td><span class="g-tk">EXE</span><span class="g-issuer">EXPAND ENERGY CORP</span></td>
-      <td class="num">4.78亿$</td>
-      <td><span class="num">6.6%</span><span class="bar"><i style="width:6.6%"></i></span></td>
-      <td class="num">523.7万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">4</span>
+        <span class="g-tk">EXE</span><span class="gr-issuer">EXPAND ENERGY CORP</span>
+        <span class="gr-wt">6.6%</span>
+      </div>
+      <div class="gr-bar"><i style="width:6.6%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>4.78亿$</b></span>
+        <span>股数 <b>523.7万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">5</td>
-      <td><span class="g-tk">GTX</span><span class="g-issuer">GARRETT MOTION INC</span></td>
-      <td class="num">2.75亿$</td>
-      <td><span class="num">3.8%</span><span class="bar"><i style="width:3.8%"></i></span></td>
-      <td class="num">759.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">5</span>
+        <span class="g-tk">GTX</span><span class="gr-issuer">GARRETT MOTION INC</span>
+        <span class="gr-wt">3.8%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.8%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>2.75亿$</b></span>
+        <span>股数 <b>759.5万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">6</td>
-      <td><span class="g-tk">AU</span><span class="g-issuer">ANGLOGOLD ASHANTI PLC</span></td>
-      <td class="num">2.57亿$</td>
-      <td><span class="num">3.6%</span><span class="bar"><i style="width:3.6%"></i></span></td>
-      <td class="num">317.9万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">6</span>
+        <span class="g-tk">AU</span><span class="gr-issuer">ANGLOGOLD ASHANTI PLC</span>
+        <span class="gr-wt">3.6%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.6%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>2.57亿$</b></span>
+        <span>股数 <b>317.9万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">7</td>
-      <td><span class="g-tk">CORZ</span><span class="g-issuer">CORE SCIENTIFIC INC</span></td>
-      <td class="num">2.56亿$</td>
-      <td><span class="num">3.5%</span><span class="bar"><i style="width:3.5%"></i></span></td>
-      <td class="num">999.4万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">7</span>
+        <span class="g-tk">CORZ</span><span class="gr-issuer">CORE SCIENTIFIC INC</span>
+        <span class="gr-wt">3.5%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.5%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>2.56亿$</b></span>
+        <span>股数 <b>999.4万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">8</td>
-      <td><span class="g-tk">INDV</span><span class="g-issuer">INDIVIOR PHARMACEUTICALS INC</span></td>
-      <td class="num">2.51亿$</td>
-      <td><span class="num">3.5%</span><span class="bar"><i style="width:3.5%"></i></span></td>
-      <td class="num">612.7万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">8</span>
+        <span class="g-tk">INDV</span><span class="gr-issuer">INDIVIOR PHARMACEUTICALS INC</span>
+        <span class="gr-wt">3.5%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.5%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>2.51亿$</b></span>
+        <span>股数 <b>612.7万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">9</td>
-      <td><span class="g-tk">TDS</span><span class="g-issuer">TELEPHONE AND DATA SYSTEMS INC</span></td>
-      <td class="num">1.96亿$</td>
-      <td><span class="num">2.7%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">528.3万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">9</span>
+        <span class="g-tk">TDS</span><span class="gr-issuer">TELEPHONE AND DATA SYSTEMS INC</span>
+        <span class="gr-wt">2.7%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.7%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>1.96亿$</b></span>
+        <span>股数 <b>528.3万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">10</td>
-      <td><span class="g-tk">VNOM</span><span class="g-issuer">VIPER ENERGY INC</span></td>
-      <td class="num">1.61亿$</td>
-      <td><span class="num">2.2%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">379.1万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">10</span>
+        <span class="g-tk">VNOM</span><span class="gr-issuer">VIPER ENERGY INC</span>
+        <span class="gr-wt">2.2%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>1.61亿$</b></span>
+        <span>股数 <b>379.1万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">11</td>
-      <td><span class="g-tk">TLN</span><span class="g-issuer">TALEN ENERGY CORP</span></td>
-      <td class="num">1.27亿$</td>
-      <td><span class="num">1.8%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">33.1万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">11</span>
+        <span class="g-tk">TLN</span><span class="gr-issuer">TALEN ENERGY CORP</span>
+        <span class="gr-wt">1.8%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>1.27亿$</b></span>
+        <span>股数 <b>33.1万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">12</td>
-      <td><span class="g-tk">B</span><span class="g-issuer">BARRICK MINING CORP</span></td>
-      <td class="num">1.18亿$</td>
-      <td><span class="num">1.6%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">320.6万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">12</span>
+        <span class="g-tk">B</span><span class="gr-issuer">BARRICK MINING CORP</span>
+        <span class="gr-wt">1.6%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>1.18亿$</b></span>
+        <span>股数 <b>320.6万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">13</td>
-      <td><span class="g-tk">ITUB</span><span class="g-issuer">ITAU UNIBANCO HOLDING SA</span></td>
-      <td class="num">97.9百万$</td>
-      <td><span class="num">1.4%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">1197.8万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">13</span>
+        <span class="g-tk">ITUB</span><span class="gr-issuer">ITAU UNIBANCO HOLDING SA</span>
+        <span class="gr-wt">1.4%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>97.9百万$</b></span>
+        <span>股数 <b>1197.8万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">14</td>
-      <td><span class="g-tk">LBTYA</span><span class="g-issuer">LIBERTY GLOBAL LTD</span></td>
-      <td class="num">97.2百万$</td>
-      <td><span class="num">1.3%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">855.1万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">14</span>
+        <span class="g-tk">LBTYA</span><span class="gr-issuer">LIBERTY GLOBAL LTD</span>
+        <span class="gr-wt">1.3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>97.2百万$</b></span>
+        <span>股数 <b>855.1万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">15</td>
-      <td><span class="g-tk">OCSL</span><span class="g-issuer">OAKTREE SPECIALTY LENDING CORP</span></td>
-      <td class="num">94.0百万$</td>
-      <td><span class="num">1.3%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">787.2万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">15</span>
+        <span class="g-tk">OCSL</span><span class="gr-issuer">OAKTREE SPECIALTY LENDING CORP</span>
+        <span class="gr-wt">1.3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>94.0百万$</b></span>
+        <span>股数 <b>787.2万</b></span>
+      </div>
       
-    </tr>
-</table></div>
+    </div>
 <p class="g-note">另有其他 128 个发行人合计占比约 35.9%（未逐项列出）。</p>
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.07 23:31 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.08 00:39 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

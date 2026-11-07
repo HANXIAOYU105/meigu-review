@@ -76,7 +76,18 @@
   .g-facts{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px;}
   .g-fact{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
   .g-fact b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
-  .gtable{table-layout:fixed;}
+  /* 大佬持仓卡片（2026-11-07 替代表格：任何宽度都不会挤压换行溢出） */
+  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;}
+  .gr-r1{display:flex;align-items:center;gap:8px;min-width:0;}
+  .gr-idx{flex:none;min-width:20px;height:20px;border-radius:6px;background:var(--accent-soft);color:var(--link);font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;}
+  .gr-issuer{flex:1;min-width:0;font-size:12.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .gr-wt{flex:none;font-weight:800;font-size:14px;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .gr-wt.dim{color:var(--muted-2);font-weight:600;font-size:12px;}
+  .gr-bar{height:4px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:8px 0 7px;}
+  .gr-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--link),#7aa7ff);}
+  .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
+  .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
+  .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
   .g-tk{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--text-strong);margin-right:7px;font-size:12.5px;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
@@ -94,119 +105,190 @@
 </div></div>
 <p class="g-intro">坚定押注 AI、基因科技、自动驾驶等颠覆性创新。ARK 系 ETF 每日公布买卖明细，13F 与每日调仓可互相印证，高换手、高集中，是成长股情绪的放大器。</p>
 <div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">披露日 <b>2026-08-14</b></span><span class="g-fact">披露总市值 <b>154.0亿$</b></span><span class="g-fact">核查于 <b>2026-11-07</b></span><span class="g-fact">SEC 13F-HR</span></div>
-<div class="tbl-wrap"><table class="gtable">
-  <colgroup><col style="width:34px"><col style="width:auto"><col style="width:96px"><col style="width:128px"><col style="width:74px"></colgroup>
-  <tr><th>#</th><th>标的 / 发行人</th><th>持仓市值</th><th>占比</th><th>股数</th></tr>
-  <tr>
-      <td class="g-dim">1</td>
-      <td><span class="g-tk">TSLA</span><span class="g-issuer">Tesla Inc</span></td>
-      <td class="num">11.61亿$</td>
-      <td><span class="num">7.5%</span><span class="bar"><i style="width:7.5%"></i></span></td>
-      <td class="num">276.0万</td>
+<div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">1</span>
+        <span class="g-tk">TSLA</span><span class="gr-issuer">Tesla Inc</span>
+        <span class="gr-wt">7.5%</span>
+      </div>
+      <div class="gr-bar"><i style="width:7.5%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>11.61亿$</b></span>
+        <span>股数 <b>276.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">2</td>
-      <td><span class="g-tk">AMD</span><span class="g-issuer">Advanced Micro Devices Inc</span></td>
-      <td class="num">8.23亿$</td>
-      <td><span class="num">5.3%</span><span class="bar"><i style="width:5.3%"></i></span></td>
-      <td class="num">141.6万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">2</span>
+        <span class="g-tk">AMD</span><span class="gr-issuer">Advanced Micro Devices Inc</span>
+        <span class="gr-wt">5.3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:5.3%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>8.23亿$</b></span>
+        <span>股数 <b>141.6万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">3</td>
-      <td><span class="g-tk">SPCX</span><span class="g-issuer">Space Exploration Technologies Corp</span></td>
-      <td class="num">7.65亿$</td>
-      <td><span class="num">5%</span><span class="bar"><i style="width:5%"></i></span></td>
-      <td class="num">447.8万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">3</span>
+        <span class="g-tk">SPCX</span><span class="gr-issuer">Space Exploration Technologies Corp</span>
+        <span class="gr-wt">5%</span>
+      </div>
+      <div class="gr-bar"><i style="width:5%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>7.65亿$</b></span>
+        <span>股数 <b>447.8万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">4</td>
-      <td><span class="g-tk">TEM</span><span class="g-issuer">Tempus AI Inc</span></td>
-      <td class="num">5.81亿$</td>
-      <td><span class="num">3.8%</span><span class="bar"><i style="width:3.8%"></i></span></td>
-      <td class="num">1002.3万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">4</span>
+        <span class="g-tk">TEM</span><span class="gr-issuer">Tempus AI Inc</span>
+        <span class="gr-wt">3.8%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.8%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>5.81亿$</b></span>
+        <span>股数 <b>1002.3万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">5</td>
-      <td><span class="g-tk">HOOD</span><span class="g-issuer">Robinhood Markets Inc</span></td>
-      <td class="num">5.25亿$</td>
-      <td><span class="num">3.4%</span><span class="bar"><i style="width:3.4%"></i></span></td>
-      <td class="num">523.6万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">5</span>
+        <span class="g-tk">HOOD</span><span class="gr-issuer">Robinhood Markets Inc</span>
+        <span class="gr-wt">3.4%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.4%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>5.25亿$</b></span>
+        <span>股数 <b>523.6万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">6</td>
-      <td><span class="g-tk">CRSP</span><span class="g-issuer">CRISPR Therapeutics AG</span></td>
-      <td class="num">5.16亿$</td>
-      <td><span class="num">3.4%</span><span class="bar"><i style="width:3.4%"></i></span></td>
-      <td class="num">946.1万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">6</span>
+        <span class="g-tk">CRSP</span><span class="gr-issuer">CRISPR Therapeutics AG</span>
+        <span class="gr-wt">3.4%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.4%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>5.16亿$</b></span>
+        <span>股数 <b>946.1万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">7</td>
-      <td><span class="g-tk">SHOP</span><span class="g-issuer">Shopify Inc</span></td>
-      <td class="num">4.75亿$</td>
-      <td><span class="num">3.1%</span><span class="bar"><i style="width:3.1%"></i></span></td>
-      <td class="num">415.6万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">7</span>
+        <span class="g-tk">SHOP</span><span class="gr-issuer">Shopify Inc</span>
+        <span class="gr-wt">3.1%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.1%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>4.75亿$</b></span>
+        <span>股数 <b>415.6万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">8</td>
-      <td><span class="g-tk">TWST</span><span class="g-issuer">Twist Bioscience Corp</span></td>
-      <td class="num">4.68亿$</td>
-      <td><span class="num">3%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">455.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">8</span>
+        <span class="g-tk">TWST</span><span class="gr-issuer">Twist Bioscience Corp</span>
+        <span class="gr-wt">3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>4.68亿$</b></span>
+        <span>股数 <b>455.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">9</td>
-      <td><span class="g-tk">TXG</span><span class="g-issuer">10X Genomics Inc</span></td>
-      <td class="num">3.84亿$</td>
-      <td><span class="num">2.5%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">1000.3万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">9</span>
+        <span class="g-tk">TXG</span><span class="gr-issuer">10X Genomics Inc</span>
+        <span class="gr-wt">2.5%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.5%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.84亿$</b></span>
+        <span>股数 <b>1000.3万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">10</td>
-      <td><span class="g-tk">AMZN</span><span class="g-issuer">Amazon.com Inc</span></td>
-      <td class="num">3.79亿$</td>
-      <td><span class="num">2.5%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">159.1万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">10</span>
+        <span class="g-tk">AMZN</span><span class="gr-issuer">Amazon.com Inc</span>
+        <span class="gr-wt">2.5%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.5%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.79亿$</b></span>
+        <span>股数 <b>159.1万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">11</td>
-      <td><span class="g-tk">PLTR</span><span class="g-issuer">Palantir Technologies Inc</span></td>
-      <td class="num">3.75亿$</td>
-      <td><span class="num">2.4%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">321.2万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">11</span>
+        <span class="g-tk">PLTR</span><span class="gr-issuer">Palantir Technologies Inc</span>
+        <span class="gr-wt">2.4%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.4%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.75亿$</b></span>
+        <span>股数 <b>321.2万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">12</td>
-      <td><span class="g-tk">GOOGL</span><span class="g-issuer">Alphabet Inc</span></td>
-      <td class="num">3.69亿$</td>
-      <td><span class="num">2.4%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">104.3万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">12</span>
+        <span class="g-tk">GOOGL</span><span class="gr-issuer">Alphabet Inc</span>
+        <span class="gr-wt">2.4%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.4%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.69亿$</b></span>
+        <span>股数 <b>104.3万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">13</td>
-      <td><span class="g-tk">COIN</span><span class="g-issuer">Coinbase Global Inc</span></td>
-      <td class="num">3.67亿$</td>
-      <td><span class="num">2.4%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">251.1万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">13</span>
+        <span class="g-tk">COIN</span><span class="gr-issuer">Coinbase Global Inc</span>
+        <span class="gr-wt">2.4%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.4%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.67亿$</b></span>
+        <span>股数 <b>251.1万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">14</td>
-      <td><span class="g-tk">RBLX</span><span class="g-issuer">ROBLOX Corp</span></td>
-      <td class="num">3.52亿$</td>
-      <td><span class="num">2.3%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">646.6万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">14</span>
+        <span class="g-tk">RBLX</span><span class="gr-issuer">ROBLOX Corp</span>
+        <span class="gr-wt">2.3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.3%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.52亿$</b></span>
+        <span>股数 <b>646.6万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">15</td>
-      <td><span class="g-tk">BEAM</span><span class="g-issuer">Beam Therapeutics Inc</span></td>
-      <td class="num">3.51亿$</td>
-      <td><span class="num">2.3%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">1023.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">15</span>
+        <span class="g-tk">BEAM</span><span class="gr-issuer">Beam Therapeutics Inc</span>
+        <span class="gr-wt">2.3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.3%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.51亿$</b></span>
+        <span>股数 <b>1023.5万</b></span>
+      </div>
       
-    </tr>
-</table></div>
+    </div>
 <p class="g-note">另有其他 175 个发行人合计占比约 47.5%（未逐项列出）。</p>
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.07 23:31 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.08 00:39 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

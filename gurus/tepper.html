@@ -76,7 +76,18 @@
   .g-facts{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px;}
   .g-fact{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
   .g-fact b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
-  .gtable{table-layout:fixed;}
+  /* 大佬持仓卡片（2026-11-07 替代表格：任何宽度都不会挤压换行溢出） */
+  .grow{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:8px;}
+  .gr-r1{display:flex;align-items:center;gap:8px;min-width:0;}
+  .gr-idx{flex:none;min-width:20px;height:20px;border-radius:6px;background:var(--accent-soft);color:var(--link);font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;}
+  .gr-issuer{flex:1;min-width:0;font-size:12.5px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .gr-wt{flex:none;font-weight:800;font-size:14px;color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  .gr-wt.dim{color:var(--muted-2);font-weight:600;font-size:12px;}
+  .gr-bar{height:4px;border-radius:3px;background:var(--accent-soft);overflow:hidden;margin:8px 0 7px;}
+  .gr-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--link),#7aa7ff);}
+  .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
+  .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
+  .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
   .g-tk{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--text-strong);margin-right:7px;font-size:12.5px;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
@@ -94,119 +105,190 @@
 </div></div>
 <p class="g-intro">高盛出身的信贷交易奇才，卡罗莱纳黑豹队老板。仓位极其集中（常 2-3 只占大半），敢于 All-in 超跌资产，「泰珀指数」对纳指期货夜盘都有短时冲击力。</p>
 <div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">披露日 <b>2026-08-14</b></span><span class="g-fact">披露总市值 <b>77.25亿$</b></span><span class="g-fact">核查于 <b>2026-11-07</b></span><span class="g-fact">SEC 13F-HR</span></div>
-<div class="tbl-wrap"><table class="gtable">
-  <colgroup><col style="width:34px"><col style="width:auto"><col style="width:96px"><col style="width:128px"><col style="width:74px"></colgroup>
-  <tr><th>#</th><th>标的 / 发行人</th><th>持仓市值</th><th>占比</th><th>股数</th></tr>
-  <tr>
-      <td class="g-dim">1</td>
-      <td><span class="g-tk">AMZN</span><span class="g-issuer">AMAZON COM INC</span></td>
-      <td class="num">11.92亿$</td>
-      <td><span class="num">15.4%</span><span class="bar"><i style="width:15.4%"></i></span></td>
-      <td class="num">500.0万</td>
+<div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">1</span>
+        <span class="g-tk">AMZN</span><span class="gr-issuer">AMAZON COM INC</span>
+        <span class="gr-wt">15.4%</span>
+      </div>
+      <div class="gr-bar"><i style="width:15.4%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>11.92亿$</b></span>
+        <span>股数 <b>500.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">2</td>
-      <td><span class="g-tk">MU</span><span class="g-issuer">MICRON TECHNOLOGY INC</span></td>
-      <td class="num">11.25亿$</td>
-      <td><span class="num">14.6%</span><span class="bar"><i style="width:14.6%"></i></span></td>
-      <td class="num">97.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">2</span>
+        <span class="g-tk">MU</span><span class="gr-issuer">MICRON TECHNOLOGY INC</span>
+        <span class="gr-wt">14.6%</span>
+      </div>
+      <div class="gr-bar"><i style="width:14.6%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>11.25亿$</b></span>
+        <span>股数 <b>97.5万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">3</td>
-      <td><span class="g-tk">TSM</span><span class="g-issuer">TAIWAN SEMICONDUCTOR MANUFAC</span></td>
-      <td class="num">7.88亿$</td>
-      <td><span class="num">10.2%</span><span class="bar"><i style="width:10.2%"></i></span></td>
-      <td class="num">165.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">3</span>
+        <span class="g-tk">TSM</span><span class="gr-issuer">TAIWAN SEMICONDUCTOR MANUFAC</span>
+        <span class="gr-wt">10.2%</span>
+      </div>
+      <div class="gr-bar"><i style="width:10.2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>7.88亿$</b></span>
+        <span>股数 <b>165.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">4</td>
-      <td><span class="g-tk">GOOGL</span><span class="g-issuer">ALPHABET INC</span></td>
-      <td class="num">6.54亿$</td>
-      <td><span class="num">8.5%</span><span class="bar"><i style="width:8.5%"></i></span></td>
-      <td class="num">185.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">4</span>
+        <span class="g-tk">GOOGL</span><span class="gr-issuer">ALPHABET INC</span>
+        <span class="gr-wt">8.5%</span>
+      </div>
+      <div class="gr-bar"><i style="width:8.5%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>6.54亿$</b></span>
+        <span>股数 <b>185.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">5</td>
-      <td><span class="g-tk">UBER</span><span class="g-issuer">UBER TECHNOLOGIES INC</span></td>
-      <td class="num">5.55亿$</td>
-      <td><span class="num">7.2%</span><span class="bar"><i style="width:7.2%"></i></span></td>
-      <td class="num">769.4万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">5</span>
+        <span class="g-tk">UBER</span><span class="gr-issuer">UBER TECHNOLOGIES INC</span>
+        <span class="gr-wt">7.2%</span>
+      </div>
+      <div class="gr-bar"><i style="width:7.2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>5.55亿$</b></span>
+        <span>股数 <b>769.4万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">6</td>
-      <td><span class="g-issuer">ISHARES INC</span></td>
-      <td class="num">4.90亿$</td>
-      <td><span class="num">6.3%</span><span class="bar"><i style="width:6.3%"></i></span></td>
-      <td class="num">242.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">6</span>
+        <span class="gr-issuer">ISHARES INC</span>
+        <span class="gr-wt">6.3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:6.3%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>4.90亿$</b></span>
+        <span>股数 <b>242.5万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">7</td>
-      <td><span class="g-tk">META</span><span class="g-issuer">META PLATFORMS INC</span></td>
-      <td class="num">3.80亿$</td>
-      <td><span class="num">4.9%</span><span class="bar"><i style="width:4.9%"></i></span></td>
-      <td class="num">67.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">7</span>
+        <span class="g-tk">META</span><span class="gr-issuer">META PLATFORMS INC</span>
+        <span class="gr-wt">4.9%</span>
+      </div>
+      <div class="gr-bar"><i style="width:4.9%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.80亿$</b></span>
+        <span>股数 <b>67.5万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">8</td>
-      <td><span class="g-tk">VST</span><span class="g-issuer">VISTRA CORP</span></td>
-      <td class="num">3.51亿$</td>
-      <td><span class="num">4.5%</span><span class="bar"><i style="width:4.5%"></i></span></td>
-      <td class="num">221.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">8</span>
+        <span class="g-tk">VST</span><span class="gr-issuer">VISTRA CORP</span>
+        <span class="gr-wt">4.5%</span>
+      </div>
+      <div class="gr-bar"><i style="width:4.5%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.51亿$</b></span>
+        <span>股数 <b>221.5万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">9</td>
-      <td><span class="g-tk">NVDA</span><span class="g-issuer">NVIDIA CORPORATION</span></td>
-      <td class="num">3.05亿$</td>
-      <td><span class="num">3.9%</span><span class="bar"><i style="width:3.9%"></i></span></td>
-      <td class="num">152.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">9</span>
+        <span class="g-tk">NVDA</span><span class="gr-issuer">NVIDIA CORPORATION</span>
+        <span class="gr-wt">3.9%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.9%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>3.05亿$</b></span>
+        <span>股数 <b>152.5万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">10</td>
-      <td><span class="g-tk">NRG</span><span class="g-issuer">NRG ENERGY INC</span></td>
-      <td class="num">2.57亿$</td>
-      <td><span class="num">3.3%</span><span class="bar"><i style="width:3.3%"></i></span></td>
-      <td class="num">176.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">10</span>
+        <span class="g-tk">NRG</span><span class="gr-issuer">NRG ENERGY INC</span>
+        <span class="gr-wt">3.3%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.3%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>2.57亿$</b></span>
+        <span>股数 <b>176.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">11</td>
-      <td><span class="g-tk">AAPL</span><span class="g-issuer">APPLE INC</span></td>
-      <td class="num">2.42亿$</td>
-      <td><span class="num">3.1%</span><span class="bar"><i style="width:3.1%"></i></span></td>
-      <td class="num">83.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">11</span>
+        <span class="g-tk">AAPL</span><span class="gr-issuer">APPLE INC</span>
+        <span class="gr-wt">3.1%</span>
+      </div>
+      <div class="gr-bar"><i style="width:3.1%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>2.42亿$</b></span>
+        <span>股数 <b>83.5万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">12</td>
-      <td><span class="g-tk">BABA</span><span class="g-issuer">ALIBABA GROUP HLDG LTD</span></td>
-      <td class="num">1.92亿$</td>
-      <td><span class="num">2.5%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">200.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">12</span>
+        <span class="g-tk">BABA</span><span class="gr-issuer">ALIBABA GROUP HLDG LTD</span>
+        <span class="gr-wt">2.5%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.5%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>1.92亿$</b></span>
+        <span>股数 <b>200.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">13</td>
-      <td><span class="g-tk">BA</span><span class="g-issuer">BOEING CO</span></td>
-      <td class="num">1.73亿$</td>
-      <td><span class="num">2.2%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">80.0万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">13</span>
+        <span class="g-tk">BA</span><span class="gr-issuer">BOEING CO</span>
+        <span class="gr-wt">2.2%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>1.73亿$</b></span>
+        <span>股数 <b>80.0万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">14</td>
-      <td><span class="g-tk">LRCX</span><span class="g-issuer">LAM RESEARCH CORP</span></td>
-      <td class="num">1.66亿$</td>
-      <td><span class="num">2.1%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">38.3万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">14</span>
+        <span class="g-tk">LRCX</span><span class="gr-issuer">LAM RESEARCH CORP</span>
+        <span class="gr-wt">2.1%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2.1%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>1.66亿$</b></span>
+        <span>股数 <b>38.3万</b></span>
+      </div>
       
-    </tr><tr>
-      <td class="g-dim">15</td>
-      <td><span class="g-tk">BIDU</span><span class="g-issuer">BAIDU INC</span></td>
-      <td class="num">1.48亿$</td>
-      <td><span class="num">1.9%</span><span class="bar"><i style="width:3%"></i></span></td>
-      <td class="num">129.5万</td>
+    </div><div class="grow">
+      <div class="gr-r1">
+        <span class="gr-idx">15</span>
+        <span class="g-tk">BIDU</span><span class="gr-issuer">BAIDU INC</span>
+        <span class="gr-wt">1.9%</span>
+      </div>
+      <div class="gr-bar"><i style="width:2%"></i></div>
+      <div class="gr-r2">
+        <span>市值 <b>1.48亿$</b></span>
+        <span>股数 <b>129.5万</b></span>
+      </div>
       
-    </tr>
-</table></div>
+    </div>
 <p class="g-note">另有其他 12 个发行人合计占比约 9.3%（未逐项列出）。</p>
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.07 23:31 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.08 00:39 · 仅供学习研究，不构成投资建议 · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>
