@@ -139,6 +139,16 @@
   #mqInput:focus{border-color:var(--link);}
   #mqSend{border:none;border-radius:10px;padding:9px 16px;background:linear-gradient(135deg,#1e3a5f,#274b78);color:#fff;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;flex:0 0 auto;}
   @media (max-width:480px){ #mqPanel{width:calc(100vw - 16px);right:8px;bottom:8px;height:78vh;} }
+  /* 打字中动画 */
+  .mq-typing{display:flex;gap:5px;align-items:center;padding:13px 14px;}
+  .mq-typing span{width:7px;height:7px;border-radius:50%;background:var(--muted-2,#8a93a6);animation:mqBlink 1.2s infinite;}
+  .mq-typing span:nth-child(2){animation-delay:.2s;}
+  .mq-typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes mqBlink{0%,80%,100%{opacity:.25;transform:translateY(0);}40%{opacity:1;transform:translateY(-3px);}}
+  /* 独立子页：聊天窗铺满内容区（替代右下角弹窗形态） */
+  .mq-page #mqPanel{position:static;width:100%;max-width:860px;height:min(70vh,660px);margin:0 auto 18px;display:flex;box-shadow:0 10px 34px rgba(0,0,0,.14);}
+  .mq-page #mqInput{font-size:14.5px;padding:11px 14px;}
+  .mq-page #mqSend{padding:11px 20px;}
 </style></head><body><div class="wrap">
 <a class="back" href="/">← 返回首页</a>
 <h1>沃伦·巴菲特 · 最新持仓</h1>
@@ -336,5 +346,5 @@
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.08 11:23 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.08 11:29 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

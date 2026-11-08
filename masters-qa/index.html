@@ -139,20 +139,30 @@
   #mqInput:focus{border-color:var(--link);}
   #mqSend{border:none;border-radius:10px;padding:9px 16px;background:linear-gradient(135deg,#1e3a5f,#274b78);color:#fff;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;flex:0 0 auto;}
   @media (max-width:480px){ #mqPanel{width:calc(100vw - 16px);right:8px;bottom:8px;height:78vh;} }
+  /* 打字中动画 */
+  .mq-typing{display:flex;gap:5px;align-items:center;padding:13px 14px;}
+  .mq-typing span{width:7px;height:7px;border-radius:50%;background:var(--muted-2,#8a93a6);animation:mqBlink 1.2s infinite;}
+  .mq-typing span:nth-child(2){animation-delay:.2s;}
+  .mq-typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes mqBlink{0%,80%,100%{opacity:.25;transform:translateY(0);}40%{opacity:1;transform:translateY(-3px);}}
+  /* 独立子页：聊天窗铺满内容区（替代右下角弹窗形态） */
+  .mq-page #mqPanel{position:static;width:100%;max-width:860px;height:min(70vh,660px);margin:0 auto 18px;display:flex;box-shadow:0 10px 34px rgba(0,0,0,.14);}
+  .mq-page #mqInput{font-size:14.5px;padding:11px 14px;}
+  .mq-page #mqSend{padding:11px 20px;}
 </style></head><body><div class="wrap">
 <a class="back" href="/">← 返回首页</a>
 
 
-<div class="mq-hero">
+<div class="mq-page"><div class="mq-hero">
   <div class="mq-hero-t">🧙 问问大师</div>
   <div class="mq-hero-s">价值投资 · 量化 · 趋势交易三大流派 17 位大师坐镇，理论与实践并列作答</div>
   <div class="mq-hero-c">流派冲突时并列呈现，只给思考框架，不构成投资建议</div>
 </div>
 <div id="mqPanel" class="open" role="dialog" aria-label="问问大师">
-  <div class="mq-head"><b>🧙 问问大师</b><span>每条答案带出处【大师 · 著作 · 理论】</span><a class="mq-embed" href="/gurus/index.html" title="切换为持仓页内弹窗">📋 持仓页</a></div>
+  <div class="mq-head"><b>🧙 问问大师</b><span>每条答案带出处【大师 · 著作 · 理论】</span><a class="mq-embed" href="/gurus/index.html" title="查看大师持仓">📋 大师持仓</a></div>
   <div id="mqMsgs"></div>
   <div class="mq-inputbar"><input id="mqInput" type="text" placeholder="例如：大跌要不要抄底？巴菲特现在重仓什么？" aria-label="输入问题"><button id="mqSend" type="button">发送</button></div>
-</div>
+</div></div>
 <script src="/masters-qa.js"></script>
-<footer>生成于 11.08 11:23 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.08 11:29 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

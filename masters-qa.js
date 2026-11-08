@@ -382,26 +382,31 @@ function answerQuery(data, q, ctx) {
 window.MQEngine={answerQuery:answerQuery,greet:greet};
 })();
 (function(){
-  var openBtns=document.querySelectorAll('.mq-open'),panel=document.getElementById('mqPanel'),closeB=document.getElementById('mqClose'),
+  var panel=document.getElementById('mqPanel'),closeB=document.getElementById('mqClose'),
       input=document.getElementById('mqInput'),sendB=document.getElementById('mqSend'),msgs=document.getElementById('mqMsgs');
-  if(!panel||!window.MQEngine||!input) return;
-  var DATA=null,loading=false,CTX=null,GURU='';
+  if(!panel||!window.MQEngine||!input||!msgs) return;
+  var DATA=null,loading=false,CTX=null,GURU='',autoQ='';
   var ob=document.querySelector('.mq-open'); if(ob) GURU=ob.getAttribute('data-guru')||'';
   try{var qm=location.search.match(/[?&]guru=([^&]+)/); if(qm) GURU=decodeURIComponent(qm[1]);}catch(e){}
-  function scroll(){msgs.scrollTop=msgs.scrollHeight;}
+  try{var pm=location.search.match(/[?&]q=([^&]+)/); if(pm) autoQ=decodeURIComponent(pm[1]).replace(/\+/g,' ');}catch(e){}
+  function scroll(){try{msgs.scrollTop=msgs.scrollHeight;}catch(e){}}
   function addBot(html){var w=document.createElement('div');w.className='mq-bot';var b=document.createElement('div');b.className='mq-bub';b.innerHTML=html;w.appendChild(b);msgs.appendChild(w);b.querySelectorAll('[data-q]').forEach(function(el){el.addEventListener('click',function(){ask(el.getAttribute('data-q'));});});scroll();}
   function addUser(t){var w=document.createElement('div');w.className='mq-user';var b=document.createElement('div');b.className='mq-bub';b.textContent=t;w.appendChild(b);msgs.appendChild(w);scroll();}
-  function load(){if(DATA||loading)return;loading=true;addBot('<div class="mq-note">正在加载大师知识库…</div>');
-    fetch('/masters-qa-data.json').then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();}).then(function(j){DATA=j;msgs.innerHTML='';addBot(window.MQEngine.greet(j,GURU));}).catch(function(){var b=msgs.querySelector('.mq-bub');if(b)b.innerHTML='知识库加载失败，请刷新重试';loading=false;});}
-  function openP(){panel.classList.add('open');load();try{input.focus();}catch(e){}}
-  function closeP(){panel.classList.remove('open');}
-  openBtns.forEach(function(b){b.addEventListener('click',openP);});
-  closeB.addEventListener('click',closeP);
+  function typing(){var w=document.createElement('div');w.className='mq-bot';var b=document.createElement('div');b.className='mq-bub mq-typing';b.innerHTML='<span></span><span></span><span></span>';w.appendChild(b);msgs.appendChild(w);scroll();return w;}
+  function load(cb){if(DATA){if(cb)cb();return;}
+    if(loading){if(cb)setTimeout(function(){load(cb);},120);return;}
+    loading=true;addBot('<div class="mq-note">正在加载大师知识库…</div>');
+    fetch('/masters-qa-data.json').then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();}).then(function(j){DATA=j;loading=false;msgs.innerHTML='';addBot(window.MQEngine.greet(j,GURU));if(cb)cb();}).catch(function(){loading=false;var b=msgs.querySelector('.mq-bub');if(b)b.innerHTML='知识库加载失败，请刷新重试';});}
   function ask(text){text=String(text||'').trim();if(!text)return;addUser(text);input.value='';
-    setTimeout(function(){var out;try{out=window.MQEngine.answerQuery(DATA,text,CTX);}catch(e){out={html:'解析出错，换个问法试试～'};}
+    var t=typing();
+    setTimeout(function(){load(function(){
+      if(t&&t.parentNode)t.parentNode.removeChild(t);
+      var out;try{out=window.MQEngine.answerQuery(DATA,text,CTX);}catch(e){out={html:'解析出错，换个问法试试～'};}
       if(out&&out.ctx&&(out.ctx.guru||out.ctx.ticker))CTX=out.ctx;
-      addBot((out&&out.html)||'没有找到相关内容');},80);}
-  sendB.addEventListener('click',function(){ask(input.value);});
+      addBot((out&&out.html)||'没有找到相关内容');});},420);}
+  if(sendB) sendB.addEventListener('click',function(){ask(input.value);});
   input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ask(input.value);}});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('open'))closeP();});
+  if(closeB) closeB.addEventListener('click',function(){panel.classList.remove('open');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('open'))panel.classList.remove('open');});
+  load(); if(autoQ) ask(autoQ);
 })();
