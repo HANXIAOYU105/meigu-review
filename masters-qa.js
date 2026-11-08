@@ -33,6 +33,55 @@ const PRON_RE = /^(那|那么)?(他|她|它|这位|该大师|这位大师)/;
 // 通用停用词：防止中文模糊匹配误伤
 const GENERIC = ['怎么样', '怎么办', '怎么看', '什么意思', '为什么', '请问', '帮忙', '帮我', '一下', '应该', '需要', '可以'];
 
+// 查询归一化：把口语变体折叠为标准触发词（仅用于意图匹配，不影响原文 ticker 识别）
+const NORM = [
+  [/值不值得|值得吗|值吗|值得投资|能投资吗/, '值得买'],
+  [/拿不拿得住|拿得住吗/, '拿不住'],
+  [/怕不怕|慌不慌|慌了吗|慌不/, '恐慌'],
+  [/梭哈|全仓押|all\s?in/i, '满仓'],
+  [/买几只|持几只|几只股票/, '几只股票'],
+  [/贵了吗|是不是贵|算贵吗/, '贵不贵'],
+  [/够便宜吗|算便宜吗|便宜了吗/, '低估'],
+  [/回本|翻身/, '解套'],
+  [/过山车/, '大起大落'],
+  [/翻倍了|赚了不少|获利/, '止盈'],
+];
+function normalize(ql) {
+  let s = ql;
+  for (const [re, to] of NORM) if (re.test(s)) s = s.replace(re, to);
+  return s;
+}
+
+// 同义词扩展（2026-11-08 智能化①）：用户口语词 → 意图关键词，匹配不到时扩展重试
+const SYN = {
+  接盘: '抄底', 低吸: '抄底', 补仓: '抄底', 摊低成本: '抄底', 加仓: '越跌越买',
+  腰斩: '大跌', 跌成狗: '大跌', 跌惨: '大跌', 跌麻: '大跌', 绿了: '大跌', 回调: '大跌', 调整: '大跌',
+  认赔: '止损', 割了: '止损', 砍仓: '止损', 清仓: '卖出', 卖掉: '卖出', 卖了: '卖出', 落袋: '落袋为安',
+  套住: '被套', 深套: '被套', 解套: '被套', 死扛: '扛单',
+  配资: '加杠杆', 借债: '借钱',
+  太贵: '贵不贵', 价格合理: '合理价格', 性价比: '估值', 高估: '泡沫',
+  心慌: '恐慌', 发慌: '恐慌', 害怕: '恐慌', 睡不着: '失眠', emo: '情绪', 上头: '情绪', 冲动: '情绪',
+  崩了: '崩盘', 股灾: '崩盘', 过热: '泡沫', 到顶: '见顶', 天花板: '见顶',
+  菜鸟: '新手', 零基础: '新手', 刚开户: '新手', 从哪开始: '入门', 起步: '入门',
+  挑股票: '选股', 好生意: '好公司', 护城河: '好公司',
+  定投: '指数基金', 宽基: '指数基金', 纳指: '指数基金', 窄基: '指数基金',
+  亏了: '亏钱', 赔了: '亏钱', 交学费: '复盘', 被收割: '复盘', 反省: '反思',
+  滚雪球: '复利', 慢慢变富: '复利',
+  技术分析: '技术面', k线: '技术面', macd: '技术面',
+  跟单: '消息', 抄作业: '消息', 跟风: '消息',
+  不熟: '看不懂', 热门股: '好公司',
+};
+function expandQuery(ql) {
+  let ex = ' ' + ql + ' ';
+  for (const [k, v] of Object.entries(SYN)) {
+    if (k === k.toLowerCase() ? ex.toLowerCase().includes(k) : ex.includes(k)) ex += ' ' + v;
+  }
+  return ex;
+}
+
+// 追问代词（配合 ctx.guru / ctx.ticker）
+const PRON_TK_RE = /^(那|那么)?(它|这家公司|这公司|这只|这个股|该股|同一家)/;
+
 const fmtMoney = (v) => {
   if (!Number.isFinite(v) || v <= 0) return '';
   if (v >= 1e12) return `${(v / 1e12).toFixed(2)}万亿$`;
@@ -70,6 +119,7 @@ function findGuru(data, q, ctx) {
 
 function findTickers(data, q) {
   const found = new Set();
+  const unknown = new Set(); // 2026-11-08 智能化②：识别"问了但库中无持仓"的标的
   // 中文别名
   for (const [cn, tk] of Object.entries(data.tickerAlias || {})) {
     if (q.includes(cn.toLowerCase())) found.add(tk);
@@ -77,12 +127,14 @@ function findTickers(data, q) {
   // 英文代码（大写词 2-6 位，含 BRK.B 形态）
   const uppers = String(q).match(/\b[A-Z]{2,6}(?:\.[A-Z]{1,2})?\b/g) || [];
   for (const u of uppers) {
-    if ((data.holdings || {})[u]) found.add(u);
+    if ((data.holdings || {})[u]) { found.add(u); continue; }
+    let known = false;
     for (const alias of Object.values(data.tickerAlias || {})) {
-      if (alias === u) { found.add(u); break; }
+      if (alias === u) { known = true; found.add(u); break; }
     }
+    if (!known) unknown.add(u);
   }
-  return [...found];
+  return { known: [...found], unknown: [...unknown] };
 }
 
 function scoreIntents(data, q) {
@@ -96,7 +148,7 @@ function scoreIntents(data, q) {
     if (s > 0) scored.push([s, it]);
   }
   scored.sort((a, b) => b[0] - a[0]);
-  return scored.map((x) => x[1]);
+  return scored;
 }
 
 // ── 持仓数据分支 ──
@@ -149,26 +201,60 @@ function answerTickerHoldings(data, tk) {
 
 function answerTickerWithTheory(data, tk) {
   const base = answerTickerHoldings(data, tk);
-  const dip = (data.intents || []).find((x) => x.id === 'valuation');
-  const cards = dip ? dip.cards.slice(0, 2).map(cardHtml).join('') : '';
+  const dl = data.deps || {};
+  const pick = ['valuation', 'dip', 'selection', 'quality', 'risk'].map((id) => dl[id]).filter(Boolean).slice(0, 2);
+  const cards = pick.length
+    ? pick.map((it) => it.cards.slice(0, 1).map(cardHtml).join('')).join('')
+    : '';
+  const lead = pick.length ? `<div class="mq-lead">至于「能不能买」——大师们不预测个股，只给框架：</div>` : '';
+  const name = tickerName(data, tk);
   return {
     html: base.html
-      + `<div class="mq-lead">至于「能不能买」——大师们不预测个股，只给框架：</div>${cards}`
+      + `${lead}${cards}`
+      + chipsHtml([`谁在买${name}？`, `${name}贵不贵？`])
       + `<div class="mq-note">博主们的具体观点请用首页右下角「问一问」查询（基于每日观点数据库）。</div>${noteHtml()}`,
+    ctx: { ticker: tk },
+  };
+}
+
+// 未收录标的（2026-11-08 智能化③）：明确告知不在披露持仓，并给通用判断框架
+function answerUnknownTicker(data, tk) {
+  return {
+    html: `<div class="mq-lead"><b>${esc(tk)}</b> 目前<b>没有</b>出现在 12 位跟踪大佬的最新披露持仓里（13F 滞后最长 45 天，不含空头/期权/债券——也可能他们确实没买）。</div>`
+      + `<div class="mq-lead">如果你想自己判断它值不值得买，两条通用框架：</div>`
+      + `<div class="mq-card"><div class="mq-src">【巴菲特 · 致股东的信 · 能力圈】</div><div class="mq-core">先问自己：这家公司十年后靠什么赚钱？答不上来就归入"太难"那一类，直接跳过。</div></div>`
+      + `<div class="mq-card"><div class="mq-src">【格雷厄姆 · 《聪明的投资者》 · 安全边际】</div><div class="mq-core">只在价格明显低于保守估算的内在价值时出手，给自己留足容错空间。</div></div>`
+      + chipsHtml(['怎么判断一只股票贵不贵？', '普通人不会选股怎么办？', '听说的一只股票能买吗？'])
+      + noteHtml(),
     ctx: { ticker: tk },
   };
 }
 
 // ── 意图分支 ──
 function answerIntents(data, intents, ctx) {
-  const primary = intents[0];
-  const secondary = intents[1];
+  const [pS, primary] = intents[0];
+  const sec = intents[1];
   const cards = primary.cards.slice(0, 4).map(cardHtml).join('');
-  const secCards = secondary ? secondary.cards.slice(0, 1).map(cardHtml).join('') : '';
   const conflict = primary.conflict ? `<div class="mq-conflict">⚖️ ${esc(primary.conflict)}</div>` : '';
-  const chips = [...(primary.chips || []), ...(secondary ? secondary.chips || [] : [])];
+  const chips = [...(primary.chips || [])];
+  // 复合视角：两个意图得分都高时并列回答
+  let head = esc(primary.intro);
+  if (sec && pS >= 5 && sec[0] >= 5) {
+    const secCards = sec[1].cards.slice(0, 2).map(cardHtml).join('');
+    head = `你的问题涉及两个层面，分开说：<br><b>①</b> ${esc(primary.intro)}<br><b>②</b> ${esc(sec[1].intro)}`;
+    return {
+      html: `<div class="mq-lead">${head}</div>${cards}${secCards}${conflict}${chipsHtml([...chips, ...(sec[1].chips || [])])}${noteHtml()}`,
+      ctx: { ...ctx },
+    };
+  }
+  // 弱命中补充参考
+  let extraHtml = '';
+  if (sec && pS < 5 && sec[0] >= 2) {
+    extraHtml = `<div class="mq-card mq-weak"><div class="mq-src">可能也相关</div><div class="mq-core">【${esc(sec[1].label)}】——点击下方推荐问题查看该视角的完整回答。</div></div>`;
+    chips.push(...(sec[1].chips || []).slice(0, 2));
+  }
   return {
-    html: `<div class="mq-lead">${esc(primary.intro)}</div>${cards}${secCards}${conflict}${chipsHtml(chips)}${noteHtml()}`,
+    html: `<div class="mq-lead">${head}</div>${cards}${extraHtml}${conflict}${chipsHtml(chips)}${noteHtml()}`,
     ctx: { ...ctx },
   };
 }
@@ -240,7 +326,8 @@ function answerQuery(data, q, ctx) {
   if (/^(你好|您好|hi|hello|嗨|在吗|哈喽)/.test(ql)) return { html: greet(data, ctx && ctx.guru), ctx: {} };
 
   const guru = findGuru(data, ql, ctx);
-  const tickers = findTickers(data, raw);
+  const ft = findTickers(data, raw);
+  const tickers = ft.known;
   const isHoldQ = HOLD_RE.test(raw);
   const isBuyQ = BUY_RE.test(raw);
 
@@ -273,8 +360,17 @@ function answerQuery(data, q, ctx) {
     if (intents.length) return answerIntents(data, intents, { ticker: tickers[0] });
     return answerTickerHoldings(data, tickers[0]);
   }
-  // ⑥ 意图命中
-  const intents = scoreIntents(data, ql);
+  // ⑤′ 未收录标的（2026-11-08 智能化②）：短句直接点名某代码但库里没有 → 明说 + 给框架
+  if (!tickers.length && ft.unknown.length && raw.length <= 14 && !isHoldQ) {
+    return answerUnknownTicker(data, ft.unknown[0]);
+  }
+  // ⑥ 意图命中（先直配，弱命中时用同义词扩展重试——2026-11-08 智能化①）
+  let intents = scoreIntents(data, ql);
+  if (!intents.length || intents[0][0] < 4) {
+    const ex = expandQuery(ql);
+    const i2 = scoreIntents(data, ex);
+    if (i2.length && (!intents.length || i2[0][0] > intents[0][0])) intents = i2;
+  }
   if (intents.length) return answerIntents(data, intents, { guru: guru || (ctx && ctx.guru) || null });
   // ⑦ 流派总览
   const schoolsIntent = (data.intents || []).find((x) => x.id === 'schools');
@@ -291,6 +387,7 @@ window.MQEngine={answerQuery:answerQuery,greet:greet};
   if(!panel||!window.MQEngine||!input) return;
   var DATA=null,loading=false,CTX=null,GURU='';
   var ob=document.querySelector('.mq-open'); if(ob) GURU=ob.getAttribute('data-guru')||'';
+  try{var qm=location.search.match(/[?&]guru=([^&]+)/); if(qm) GURU=decodeURIComponent(qm[1]);}catch(e){}
   function scroll(){msgs.scrollTop=msgs.scrollHeight;}
   function addBot(html){var w=document.createElement('div');w.className='mq-bot';var b=document.createElement('div');b.className='mq-bub';b.innerHTML=html;w.appendChild(b);msgs.appendChild(w);b.querySelectorAll('[data-q]').forEach(function(el){el.addEventListener('click',function(){ask(el.getAttribute('data-q'));});});scroll();}
   function addUser(t){var w=document.createElement('div');w.className='mq-user';var b=document.createElement('div');b.className='mq-bub';b.textContent=t;w.appendChild(b);msgs.appendChild(w);scroll();}

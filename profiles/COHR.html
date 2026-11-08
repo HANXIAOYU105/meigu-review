@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · Coherent（光通信） (COHR)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  /* 关键指标卡（K线上方，2026-11-05）：紧凑网格，窄屏不溢出 */
+  .fm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:5px;}
+  .fm{background:var(--flat-bg);border-radius:7px;padding:5px 7px;min-width:0;overflow:hidden;}
+  .fm-wide{grid-column:1 / -1;}
+  .fm-l{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .fm-v{font-size:12.5px;font-weight:700;color:var(--text-strong);margin-top:1px;font-variant-numeric:tabular-nums;overflow-wrap:break-word;word-break:break-word;}
+  .fm-v .rng{font-size:11px;letter-spacing:-0.3px;white-space:nowrap;}
+  .fm-chg{font-size:11px;font-weight:600;}
+  @media (max-width:480px){ .fm-grid{grid-template-columns:repeat(4,1fr);} }
+  .fm-up{color:var(--up-fg);}
+  .fm-down{color:var(--down-fg);}
+  /* 期权墙区块（2026-11-06）：口径说明小字 + 到期分档 GEX 红绿 */
+  .ow-note{font-size:11.5px;color:var(--muted-2);margin-top:8px;line-height:1.5;}
+  .ow-gex-up{color:var(--up-fg);font-weight:700;}
+  .ow-gex-dn{color:var(--down-fg);font-weight:700;}
+  /* 期权墙到期分档选项卡（2026-11-06）：纯 CSS radio 切换，零 JS */
+  .ow-tabs{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:10px;}
+  .ow-tabs input{display:none;}
+  .ow-tabs label{cursor:pointer;padding:3px 12px;border-radius:14px;font-size:12px;background:var(--flat-bg);color:var(--text);user-select:none;}
+  .ow-tabs input:checked+label{background:var(--accent);color:#fff;font-weight:600;}
+  .ow-pane{display:none;flex-basis:100%;min-width:0;}
+  #owt0:checked~.p0,#owt1:checked~.p1,#owt2:checked~.p2,#owt3:checked~.p3,#owt4:checked~.p4,#owt5:checked~.p5{display:block;}
+  .ow-sum{font-size:12px;color:var(--muted);margin:4px 0 6px;}
+  .ow-pane p.empty{margin:6px 0;}
+  /* 折叠区（2026-11-06）：关键指标/期权墙次要内容默认收起，原生 details 零 JS */
+  details.fold{margin-top:8px;}
+  details.fold>summary{list-style:none;cursor:pointer;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;user-select:none;padding:4px 2px;border-radius:6px;}
+  details.fold>summary::-webkit-details-marker{display:none;}
+  details.fold>summary::before{content:'▸';display:inline-block;font-size:11px;color:var(--muted-2);transition:transform .15s;}
+  details.fold[open]>summary::before{transform:rotate(90deg);}
+  details.fold[open]>summary{margin-bottom:8px;}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">个股档案 · COHR</span><span class="rt"></span></nav>
+<div class="hero">
+  <p class="nm">Coherent（光通信）</p>
+  <div class="tk">COHR · 光通信</div>
+  <div class="meta">近5日 1 条观点 · 2026-11-02 ~ 2026-11-06 · 1 位博主</div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">📊 关键指标 <span class="asof">截至美东 2026-11-07 收盘 · Yahoo Finance</span></div>
+  <div class="fm-grid"><div class="fm"><div class="fm-l">最新收盘</div><div class="fm-v">192.81 <span class="fm-chg fm-up">↑+13.58%</span></div></div><div class="fm"><div class="fm-l">总市值</div><div class="fm-v">380亿</div></div><div class="fm"><div class="fm-l">市盈率 TTM</div><div class="fm-v">39.9</div></div><div class="fm"><div class="fm-l">预期市盈率</div><div class="fm-v">12.4</div></div></div>
+  <details class="fold"><summary>展开其余 7 项指标</summary><div class="fm-grid"><div class="fm"><div class="fm-l">市净率</div><div class="fm-v">3.35</div></div><div class="fm"><div class="fm-l">股息率 TTM</div><div class="fm-v">0%</div></div><div class="fm"><div class="fm-l">Beta 波动</div><div class="fm-v">2.23</div></div><div class="fm"><div class="fm-l">营收 TTM</div><div class="fm-v">79.1亿</div></div><div class="fm"><div class="fm-l">毛利率</div><div class="fm-v">38.2%</div></div><div class="fm"><div class="fm-l">净资产收益率</div><div class="fm-v">9.3%</div></div><div class="fm"><div class="fm-l">52周区间</div><div class="fm-v"><span class="rng">130.42~440</span></div></div></div></details>
+</div>
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势 <span class="asof">Coherent · 最近 60 个交易日 · 红涨绿跌</span></div>
+      <svg viewBox="0 0 640 220" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Coherent 日K"><line x1="8" y1="12.0" x2="600" y2="12.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="15.0" font-size="9" fill="rgba(140,150,165,0.9)">370</text><line x1="8" y1="58.5" x2="600" y2="58.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="61.5" font-size="9" fill="rgba(140,150,165,0.9)">316</text><line x1="8" y1="105.0" x2="600" y2="105.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="108.0" font-size="9" fill="rgba(140,150,165,0.9)">261</text><line x1="8" y1="151.5" x2="600" y2="151.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="154.5" font-size="9" fill="rgba(140,150,165,0.9)">207</text><line x1="8" y1="198.0" x2="600" y2="198.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="201.0" font-size="9" fill="rgba(140,150,165,0.9)">152</text><line x1="12.9" y1="32.7" x2="12.9" y2="57.3" stroke="#1fbf75" stroke-width="1"/><rect x="10.0" y="47.6" width="5.9" height="2.3" fill="#1fbf75"/><line x1="22.8" y1="18.9" x2="22.8" y2="46.2" stroke="#e5484d" stroke-width="1"/><rect x="19.8" y="28.3" width="5.9" height="15.1" fill="#e5484d"/><line x1="32.7" y1="46.9" x2="32.7" y2="67.3" stroke="#1fbf75" stroke-width="1"/><rect x="29.7" y="51.0" width="5.9" height="15.5" fill="#1fbf75"/><line x1="42.5" y1="61.8" x2="42.5" y2="85.0" stroke="#1fbf75" stroke-width="1"/><rect x="39.6" y="64.2" width="5.9" height="18.4" fill="#1fbf75"/><line x1="52.4" y1="79.2" x2="52.4" y2="90.9" stroke="#1fbf75" stroke-width="1"/><rect x="49.4" y="79.2" width="5.9" height="1.3" fill="#1fbf75"/><line x1="62.3" y1="68.6" x2="62.3" y2="86.1" stroke="#1fbf75" stroke-width="1"/><rect x="59.3" y="74.6" width="5.9" height="6.4" fill="#1fbf75"/><line x1="72.1" y1="89.1" x2="72.1" y2="103.9" stroke="#e5484d" stroke-width="1"/><rect x="69.2" y="92.9" width="5.9" height="1.0" fill="#e5484d"/><line x1="82.0" y1="79.1" x2="82.0" y2="87.9" stroke="#e5484d" stroke-width="1"/><rect x="79.0" y="82.1" width="5.9" height="1.0" fill="#e5484d"/><line x1="91.9" y1="76.4" x2="91.9" y2="86.1" stroke="#e5484d" stroke-width="1"/><rect x="88.9" y="76.8" width="5.9" height="6.9" fill="#e5484d"/><line x1="101.7" y1="65.6" x2="101.7" y2="79.7" stroke="#1fbf75" stroke-width="1"/><rect x="98.8" y="68.9" width="5.9" height="7.1" fill="#1fbf75"/><line x1="111.6" y1="79.4" x2="111.6" y2="90.7" stroke="#1fbf75" stroke-width="1"/><rect x="108.6" y="81.0" width="5.9" height="8.7" fill="#1fbf75"/><line x1="121.5" y1="87.3" x2="121.5" y2="93.2" stroke="#1fbf75" stroke-width="1"/><rect x="118.5" y="88.8" width="5.9" height="2.1" fill="#1fbf75"/><line x1="131.3" y1="92.4" x2="131.3" y2="102.1" stroke="#e5484d" stroke-width="1"/><rect x="128.4" y="95.8" width="5.9" height="1.3" fill="#e5484d"/><line x1="141.2" y1="95.4" x2="141.2" y2="103.0" stroke="#e5484d" stroke-width="1"/><rect x="138.2" y="98.7" width="5.9" height="1.0" fill="#e5484d"/><line x1="151.1" y1="98.7" x2="151.1" y2="110.1" stroke="#1fbf75" stroke-width="1"/><rect x="148.1" y="100.2" width="5.9" height="2.1" fill="#1fbf75"/><line x1="160.9" y1="85.8" x2="160.9" y2="102.6" stroke="#e5484d" stroke-width="1"/><rect x="158.0" y="87.5" width="5.9" height="10.4" fill="#e5484d"/><line x1="170.8" y1="58.6" x2="170.8" y2="88.1" stroke="#e5484d" stroke-width="1"/><rect x="167.8" y="70.4" width="5.9" height="17.8" fill="#e5484d"/><line x1="180.7" y1="60.6" x2="180.7" y2="70.4" stroke="#e5484d" stroke-width="1"/><rect x="177.7" y="69.0" width="5.9" height="1.4" fill="#e5484d"/><line x1="190.5" y1="63.5" x2="190.5" y2="80.3" stroke="#1fbf75" stroke-width="1"/><rect x="187.6" y="75.3" width="5.9" height="2.5" fill="#1fbf75"/><line x1="200.4" y1="61.2" x2="200.4" y2="78.4" stroke="#e5484d" stroke-width="1"/><rect x="197.4" y="67.4" width="5.9" height="1.9" fill="#e5484d"/><line x1="210.3" y1="84.8" x2="210.3" y2="101.4" stroke="#1fbf75" stroke-width="1"/><rect x="207.3" y="85.8" width="5.9" height="14.7" fill="#1fbf75"/><line x1="220.1" y1="89.5" x2="220.1" y2="98.1" stroke="#e5484d" stroke-width="1"/><rect x="217.2" y="96.6" width="5.9" height="1.0" fill="#e5484d"/><line x1="230.0" y1="76.6" x2="230.0" y2="90.7" stroke="#e5484d" stroke-width="1"/><rect x="227.0" y="80.6" width="5.9" height="8.0" fill="#e5484d"/><line x1="239.9" y1="61.4" x2="239.9" y2="80.4" stroke="#1fbf75" stroke-width="1"/><rect x="236.9" y="69.5" width="5.9" height="5.9" fill="#1fbf75"/><line x1="249.7" y1="56.3" x2="249.7" y2="70.2" stroke="#e5484d" stroke-width="1"/><rect x="246.8" y="57.2" width="5.9" height="9.9" fill="#e5484d"/><line x1="259.6" y1="44.0" x2="259.6" y2="57.8" stroke="#1fbf75" stroke-width="1"/><rect x="256.6" y="49.4" width="5.9" height="4.2" fill="#1fbf75"/><line x1="269.5" y1="52.0" x2="269.5" y2="67.7" stroke="#e5484d" stroke-width="1"/><rect x="266.5" y="63.1" width="5.9" height="1.0" fill="#e5484d"/><line x1="279.3" y1="61.6" x2="279.3" y2="73.3" stroke="#1fbf75" stroke-width="1"/><rect x="276.4" y="61.7" width="5.9" height="9.8" fill="#1fbf75"/><line x1="289.2" y1="71.2" x2="289.2" y2="80.4" stroke="#1fbf75" stroke-width="1"/><rect x="286.2" y="76.3" width="5.9" height="3.7" fill="#1fbf75"/><line x1="299.1" y1="70.5" x2="299.1" y2="80.3" stroke="#1fbf75" stroke-width="1"/><rect x="296.1" y="73.8" width="5.9" height="1.8" fill="#1fbf75"/><line x1="308.9" y1="72.5" x2="308.9" y2="92.6" stroke="#1fbf75" stroke-width="1"/><rect x="306.0" y="80.5" width="5.9" height="6.5" fill="#1fbf75"/><line x1="318.8" y1="69.7" x2="318.8" y2="84.1" stroke="#e5484d" stroke-width="1"/><rect x="315.8" y="78.6" width="5.9" height="1.9" fill="#e5484d"/><line x1="328.7" y1="72.4" x2="328.7" y2="87.1" stroke="#1fbf75" stroke-width="1"/><rect x="325.7" y="76.5" width="5.9" height="5.8" fill="#1fbf75"/><line x1="338.5" y1="52.2" x2="338.5" y2="83.6" stroke="#e5484d" stroke-width="1"/><rect x="335.6" y="55.6" width="5.9" height="24.9" fill="#e5484d"/><line x1="348.4" y1="39.3" x2="348.4" y2="58.8" stroke="#e5484d" stroke-width="1"/><rect x="345.4" y="40.4" width="5.9" height="17.4" fill="#e5484d"/><line x1="358.3" y1="36.4" x2="358.3" y2="49.4" stroke="#1fbf75" stroke-width="1"/><rect x="355.3" y="37.1" width="5.9" height="6.2" fill="#1fbf75"/><line x1="368.1" y1="36.8" x2="368.1" y2="45.2" stroke="#e5484d" stroke-width="1"/><rect x="365.2" y="39.3" width="5.9" height="1.8" fill="#e5484d"/><line x1="378.0" y1="39.3" x2="378.0" y2="57.6" stroke="#e5484d" stroke-width="1"/><rect x="375.0" y="42.5" width="5.9" height="4.7" fill="#e5484d"/><line x1="387.9" y1="47.4" x2="387.9" y2="73.0" stroke="#1fbf75" stroke-width="1"/><rect x="384.9" y="54.6" width="5.9" height="15.4" fill="#1fbf75"/><line x1="397.7" y1="44.7" x2="397.7" y2="70.0" stroke="#1fbf75" stroke-width="1"/><rect x="394.8" y="56.2" width="5.9" height="5.0" fill="#1fbf75"/><line x1="407.6" y1="66.9" x2="407.6" y2="85.5" stroke="#1fbf75" stroke-width="1"/><rect x="404.6" y="66.9" width="5.9" height="15.3" fill="#1fbf75"/><line x1="417.5" y1="80.1" x2="417.5" y2="94.2" stroke="#e5484d" stroke-width="1"/><rect x="414.5" y="80.5" width="5.9" height="10.3" fill="#e5484d"/><line x1="427.3" y1="84.8" x2="427.3" y2="104.5" stroke="#1fbf75" stroke-width="1"/><rect x="424.4" y="88.1" width="5.9" height="15.2" fill="#1fbf75"/><line x1="437.2" y1="112.7" x2="437.2" y2="126.9" stroke="#e5484d" stroke-width="1"/><rect x="434.2" y="114.1" width="5.9" height="1.0" fill="#e5484d"/><line x1="447.1" y1="115.8" x2="447.1" y2="130.3" stroke="#1fbf75" stroke-width="1"/><rect x="444.1" y="116.7" width="5.9" height="12.5" fill="#1fbf75"/><line x1="456.9" y1="119.6" x2="456.9" y2="130.1" stroke="#1fbf75" stroke-width="1"/><rect x="454.0" y="120.5" width="5.9" height="9.5" fill="#1fbf75"/><line x1="466.8" y1="126.0" x2="466.8" y2="142.0" stroke="#e5484d" stroke-width="1"/><rect x="463.8" y="130.1" width="5.9" height="6.0" fill="#e5484d"/><line x1="476.7" y1="120.0" x2="476.7" y2="129.2" stroke="#1fbf75" stroke-width="1"/><rect x="473.7" y="122.8" width="5.9" height="2.5" fill="#1fbf75"/><line x1="486.5" y1="136.3" x2="486.5" y2="153.5" stroke="#1fbf75" stroke-width="1"/><rect x="483.6" y="137.5" width="5.9" height="13.1" fill="#1fbf75"/><line x1="496.4" y1="144.1" x2="496.4" y2="154.2" stroke="#e5484d" stroke-width="1"/><rect x="493.4" y="149.3" width="5.9" height="1.2" fill="#e5484d"/><line x1="506.3" y1="135.4" x2="506.3" y2="149.7" stroke="#e5484d" stroke-width="1"/><rect x="503.3" y="138.9" width="5.9" height="7.6" fill="#e5484d"/><line x1="516.1" y1="125.8" x2="516.1" y2="138.3" stroke="#e5484d" stroke-width="1"/><rect x="513.2" y="126.7" width="5.9" height="6.6" fill="#e5484d"/><line x1="526.0" y1="120.6" x2="526.0" y2="129.5" stroke="#1fbf75" stroke-width="1"/><rect x="523.0" y="122.8" width="5.9" height="1.0" fill="#1fbf75"/><line x1="535.9" y1="117.3" x2="535.9" y2="131.8" stroke="#1fbf75" stroke-width="1"/><rect x="532.9" y="120.0" width="5.9" height="5.5" fill="#1fbf75"/><line x1="545.7" y1="137.9" x2="545.7" y2="153.9" stroke="#1fbf75" stroke-width="1"/><rect x="542.8" y="142.6" width="5.9" height="5.8" fill="#1fbf75"/><line x1="555.6" y1="141.0" x2="555.6" y2="158.4" stroke="#1fbf75" stroke-width="1"/><rect x="552.6" y="144.7" width="5.9" height="12.6" fill="#1fbf75"/><line x1="565.5" y1="145.3" x2="565.5" y2="156.2" stroke="#e5484d" stroke-width="1"/><rect x="562.5" y="150.8" width="5.9" height="2.1" fill="#e5484d"/><line x1="575.3" y1="152.5" x2="575.3" y2="168.2" stroke="#1fbf75" stroke-width="1"/><rect x="572.4" y="156.5" width="5.9" height="4.9" fill="#1fbf75"/><line x1="585.2" y1="166.9" x2="585.2" y2="191.1" stroke="#1fbf75" stroke-width="1"/><rect x="582.2" y="170.4" width="5.9" height="12.6" fill="#1fbf75"/><line x1="595.1" y1="160.9" x2="595.1" y2="175.1" stroke="#e5484d" stroke-width="1"/><rect x="592.1" y="163.3" width="5.9" height="2.8" fill="#e5484d"/><polyline points="12.9,50.0 22.8,28.3 32.7,66.5 42.5,82.7 52.4,80.5 62.3,80.9 72.1,92.9 82.0,82.1 91.9,76.8 101.7,75.9 111.6,89.7 121.5,90.9 131.3,95.8 141.2,98.7 151.1,102.3 160.9,87.5 170.8,70.4 180.7,69.0 190.5,77.8 200.4,67.4 210.3,100.5 220.1,96.6 230.0,80.6 239.9,75.4 249.7,57.2 259.6,53.7 269.5,63.1 279.3,71.5 289.2,80.0 299.1,75.6 308.9,87.0 318.8,78.6 328.7,82.4 338.5,55.6 348.4,40.4 358.3,43.3 368.1,39.3 378.0,42.5 387.9,70.0 397.7,61.2 407.6,82.2 417.5,80.5 427.3,103.3 437.2,114.1 447.1,129.2 456.9,129.9 466.8,130.1 476.7,125.2 486.5,150.6 496.4,149.3 506.3,138.9 516.1,126.7 526.0,123.5 535.9,125.5 545.7,148.4 555.6,157.3 565.5,150.8 575.3,161.4 585.2,183.0 595.1,163.3" fill="none" stroke="#4d8dff" stroke-width="1.4" stroke-opacity="0.85"/><text x="12.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/14</text><text x="111.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/28</text><text x="210.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/14</text><text x="308.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/28</text><text x="407.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/12</text><text x="506.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/26</text><text x="595.1" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/6</text></svg>
+    </div>
+
+
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日口径</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">1</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">1</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">0</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">0</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean up">偏多</span>（均分 1.00）</p>
+  <div class="chips"><span class="chip">XTrader猫姐美股</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
+  <div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>11/6</td><td>今年她自己不再做LITE（<b class="num">800</b>止损离场后到此为止），COHR作为光通信的替代观察标的，感兴趣的话可以在评论区提出，回头 <a href="https://www.youtube.com/watch?v=cx8wu3sEpQk&amp;t=508s" class="tslink">⏱8:28</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>11/6</td><td>左侧关注阶段，等她后续详细分析或右侧信号 <a href="https://www.youtube.com/watch?v=cx8wu3sEpQk&amp;t=508s" class="tslink">⏱8:28</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr>
+        </table></div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日复盘记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">XTrader猫姐美股</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="op-date">·11/6</span></span><span class="st up">看多/观望·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 左侧关注阶段，等她后续详细分析或右侧信号</span><span class="lv">目标 今年她自己不再做LITE（<b class="num">800</b>止损离场后到此为止），COHR作为光通信的替代观察标的，感兴趣的话可以在评论区提出，回头</span></div>
+      <div class="op-d">光通信里她觉得COHR其实也不错，现在处于左侧，先再关注一段时间；今年她自己不再做LITE（800止损离场后到此为止），COHR作为光通信的替代观察标的，感兴趣的话可以在评论区提出，回头有时间再详细分析。</div>
+      <div class="op-q">「另外一只光通信的，其实COHR我觉得也不错，那我们现在在左侧，再关注他一段时间……可以在评论区提出你感兴趣的个股，我们回头如果有时间的话可以给大家分析。」</div>
+      <div class="op-tag"><b>催化：</b>光通信板块跌深后的左侧修复机会、受存储板块（MRBL）企稳带动</div>
+      <div class="op-tag"><b>风险：</b>左侧位置、资金流出未确认结束、光通信整体受存储板块牵制</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=cx8wu3sEpQk&amp;t=508s" class="tslink">8:28 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">光通信板块跌深后的左侧修复机会</span><span class="tag-date">11/6</span></div><div class="tag-item"><span class="tag-fg">受存储板块（MRBL）企稳带动</span><span class="tag-date">11/6</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">左侧位置、资金流出未确认结束</span><span class="tag-date">11/6</span></div><div class="tag-item"><span class="tag-fg">光通信整体受存储板块牵制</span><span class="tag-date">11/6</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日</span></div>
+  <div class="day">
+      <div class="day-h">11/6</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">XTrader猫姐美股</span><span class="st up">看多/观望·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 左侧关注阶段，等她后续详细分析或右侧信号</span><span class="lv">目标 今年她自己不再做LITE（<b class="num">800</b>止损离场后到此为止），COHR作为光通信的替代观察标的，感兴趣的话可以在评论区提出，回头</span></div>
+          <div class="op-d">光通信里她觉得COHR其实也不错，现在处于左侧，先再关注一段时间；今年她自己不再做LITE（800止损离场后到此为止），COHR作为光通信的替代观察标的，感兴趣的话可以在评论区提出，回头有时间再详细分析。</div>
+          <div class="op-q">「另外一只光通信的，其实COHR我觉得也不错，那我们现在在左侧，再关注他一段时间……可以在评论区提出你感兴趣的个股，我们回头如果有时间的话可以给大家分析。」</div>
+          <div class="op-tag"><b>催化：</b>光通信板块跌深后的左侧修复机会、受存储板块（MRBL）企稳带动</div>
+          <div class="op-tag"><b>风险：</b>左侧位置、资金流出未确认结束、光通信整体受存储板块牵制</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=cx8wu3sEpQk&amp;t=508s" class="tslink">8:28 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-08 11:23（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
