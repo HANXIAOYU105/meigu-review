@@ -92,6 +92,7 @@ const SYN = {
   跟单: '消息', 抄作业: '消息', 跟风: '消息',
   不熟: '看不懂', 热门股: '好公司',
   短线: '波段', 频繁交易: '波段', 手痒: '波段',
+  踏空: '错过', 眼红: '错过', 追不上: '错过', 涨没我: '错过',
 };
 function expandQuery(ql) {
   let ex = ' ' + ql + ' ';
@@ -120,6 +121,43 @@ function chipsHtml(list) {
 }
 function noteHtml() {
   return `<div class="mq-note">以上为大师思考框架，不构成投资建议。</div>`;
+}
+
+// ── v3：情境引擎——识别提问者的处境，回答先接住具体处境再上理论 ──
+const SITUATIONS = [
+  { id: 'trapped', re: /跌了|亏了|亏掉|被套|套住|套牢|深套|腰斩|回不了本|翻不了身|绿了|割在|重挫/,
+    echo: '你现在持仓浮亏', pivot: '先拆掉「成本价」这个心理锚：大师们从不按买入价做决策——只问「如果今天空仓，按现在的价格我还愿意买它吗」。愿意，浮亏就不是卖的理由；不愿意，浮盈也该走。' },
+  { id: 'profit', re: /涨了|赚了|翻倍|获利|浮盈|大赚|赚不少|回本了/,
+    echo: '你现在有浮盈', pivot: '卖出的理由应该是「价格超过了我估算的价值」，而不是「我已经赚够了」——后者会让你早早卖掉赢家、死守输家。' },
+  { id: 'fear', re: /恐慌|害怕|慌了|睡不着|失眠|焦虑|心慌|吓到|发毛|坐不住/,
+    echo: '你现在很不安', pivot: '睡不着本身就是仓位信号：减到睡得着为止。但先分清你怕的是「价格波动」还是「价值受损」——前者是噪音，后者才是风险。' },
+  { id: 'crash', re: /崩了|暴跌|股灾|大盘跌|市场跌|全线|千股|连续下跌|股灾/,
+    echo: '市场正在暴跌', pivot: '暴跌时只回答两个问题：①我手里的公司价值受损了吗？②价格是否已明显低于价值？两个都否——这是别人的恐慌，可能是你的机会；第一个是——那就是风险，该跑。' },
+  { id: 'leverage', re: /杠杆|配资|借钱|融资|贷款|加马/,
+    echo: '你在考虑用杠杆', pivot: '杠杆改变的不是收益大小，是「你能等多久」——它把「等得起」变成「等不起」。段永平三铁律第一条之一就是不做空不借钱。' },
+  { id: 'miss', re: /踏空|错过|追高|来不及|别人都赚|眼红|追不追/,
+    echo: '你怕错过行情', pivot: '能力圈之外的行情不属于你——你错过的只是「别人的钱」。为追热点改规则的人，多数把上一轮的盈利还了回去。' },
+  { id: 'itchy', re: /手痒|频繁|天天交易|忍不住|做t|短线|波段/,
+    echo: '你的交易频率有点高', pivot: '利弗莫尔的教训：真正的大钱来自「坐着不动」。先算摩擦成本：一年 100 次交易的手续费+印花税 vs 5 次——频率本身就是亏损来源之一。' },
+  { id: 'hesitate', re: /纠结|拿不准|犹豫|要不要|该不该|不知道该|迷茫/,
+    echo: '你在犹豫', pivot: '把大决定拆成三个小问题：①这家公司十年后还在吗？②我看得懂它赚钱的方式吗？③现在价格留足容错了吗？三个都过，再谈买。' },
+];
+function detectSituation(ql, raw) {
+  for (const s of SITUATIONS) {
+    if (s.re.test(ql)) {
+      // v3 数字感知：呼应问题里的具体数字（跌了30%、赚20%…）
+      const nm = (raw || '').match(/(跌|亏|涨|赚|回撤|回吐|浮亏|浮盈|跌|赚)[^0-9]{0,4}\d+(\.\d+)?\s*(%|％|个点|点|成|倍)/);
+      const num = nm ? `（你提到 ${nm[0].replace(/\s+/g, '')}）` : '';
+      return `<div class="mq-situ">🎯 <b>${esc(s.echo)}</b>${esc(num)}——大师级的第一反应：<br>${esc(s.pivot)}</div>`;
+    }
+  }
+  return '';
+}
+
+// ── v3：大师原话直答（最相关引语前置）──
+function directHtml(c) {
+  if (!c || !c.q) return '';
+  return `<div class="mq-direct">「${esc(c.q)}」<span class="mq-direct-src">—— ${esc(c.m)} · ${esc(c.t)}</span></div>`;
 }
 
 // ── v2：中文 bigram 相似度 ──
@@ -524,16 +562,23 @@ function answerIntents(data, intents, ctx, query) {
   const [pS, primary] = intents[0];
   const sec = intents[1];
   // v2：卡片按问题相关度重排
-  const cards = rerankCards(primary.cards, query || '').slice(0, 4).map(cardHtml).join('');
+  const ranked = rerankCards(primary.cards, query || '');
+  // v3：大师原话直答前置（最相关引语）
+  const situ = detectSituation(String(query || ''), String(query || ''));
+  const shortQ = (query || '').length <= 6;
+  const direct = situ ? '' : directHtml(ranked[0]);
+  const restFrom = direct ? 1 : 0;
+  const restCount = shortQ ? 1 : 3;
+  const cards = direct + ranked.slice(restFrom, restFrom + restCount).map(cardHtml).join('');
   const conflict = primary.conflict ? `<div class="mq-conflict">⚖️ ${esc(primary.conflict)}</div>` : '';
   const chips = [...(primary.chips || [])];
-  let head = esc(primary.intro);
+  let head = situ ? '' : esc(primary.intro);
   // 复合视角：两个意图得分都高时并列回答
   if (sec && pS >= 5 && sec[0] >= 5) {
     const secCards = rerankCards(sec[1].cards, query || '').slice(0, 2).map(cardHtml).join('');
-    head = `你的问题涉及两个层面，分开说：<br><b>①</b> ${esc(primary.intro)}<br><b>②</b> ${esc(sec[1].intro)}`;
+    head = situ ? head : `你的问题涉及两个层面，分开说：<br><b>①</b> ${esc(primary.intro)}<br><b>②</b> ${esc(sec[1].intro)}`;
     return {
-      html: `<div class="mq-lead">${head}</div>${cards}${secCards}${conflict}${chipsHtml([...chips, ...(sec[1].chips || [])])}${noteHtml()}`,
+      html: `${situ || ''}<div class="mq-lead">${head}</div>${cards}${secCards}${conflict}${chipsHtml([...chips, ...(sec[1].chips || [])])}${noteHtml()}`,
       ctx: { ...ctx, intentId: primary.id },
     };
   }
@@ -553,17 +598,23 @@ function answerIntents(data, intents, ctx, query) {
     chips.push(`${shortName(data, thHits[0].gid)}的${thHits[0].th.t}`);
   }
   return {
-    html: `<div class="mq-lead">${head}</div>${cards}${extraHtml}${conflict}${chipsHtml(chips)}${noteHtml()}`,
+    html: `${situ || ''}<div class="mq-lead">${head}</div>${cards}${extraHtml}${conflict}${chipsHtml(chips)}${noteHtml()}`,
     ctx: { ...ctx, intentId: primary.id, theoryHits: thHits.map((h) => ({ gid: h.gid, t: h.th.t })) },
   };
 }
 
 // ── v2：理论检索答案（长尾问题兜底）──
-function answerTheories(data, hits) {
+function answerTheories(data, hits, query) {
   const shown = hits.slice(0, 4);
+  // v3：直答前置 + 中置信反问引导
+  const situ = detectSituation(String(query || ''), String(query || ''));
+  const direct = situ ? '' : directHtml({ m: shortName(data, shown[0].gid), t: shown[0].th.t, q: shown[0].th.q });
+  const unsure = shown[0].score < 2.8 && !situ
+    ? `<div class="mq-lead">我不完全确定你想问哪个方向，先按最接近的理论答——不对的话点下方推荐换个问法：</div>`
+    : '';
+  const lead = unsure || (situ ? '' : `<div class="mq-lead">从 ${((data.theoryMeta || {}).count) || 129} 条大师理论里检索，最贴合你问题的几条（跨流派、按相关度排序）：</div>`);
   return {
-    html: `<div class="mq-lead">从 ${((data.theoryMeta || {}).count) || 129} 条大师理论里检索，最贴合你问题的几条（跨流派、按相关度排序）：</div>`
-      + shown.map((h) => theoryCard(data, h)).join('')
+    html: `${situ || ''}${lead}${direct}${shown.slice(direct ? 1 : 0).map((h) => theoryCard(data, h)).join('')}`
       + chipsHtml(hits.slice(4, 6).map((h) => `${shortName(data, h.gid)}的${h.th.t}`).concat(['新手应该从哪学起？']))
       + noteHtml(),
     ctx: { theoryHits: hits.map((h) => ({ gid: h.gid, t: h.th.t })) },
@@ -621,8 +672,9 @@ function answerGuruProfile(data, gid, query, intent) {
   }
   // v2：动态追问 chips——该大师的其它理论名
   const theoryChips = thList.slice(0, 3).map((th) => th.t);
+  const situ = detectSituation(String(query || ''), String(query || ''));
   return {
-    html: `<div class="mq-lead"><b>${esc(master.name || gid)}</b>（${esc(prof.school)}）——${esc(prof.desc)}</div>${holdLine}${prof.cards.map(cardHtml).join('')}${ownCards}${chipsHtml([...(prof.follow || []), ...theoryChips])}${noteHtml()}`,
+    html: `${situ || ''}<div class="mq-lead"><b>${esc(master.name || gid)}</b>（${esc(prof.school)}）——${esc(prof.desc)}</div>${holdLine}${prof.cards.map(cardHtml).join('')}${ownCards}${chipsHtml([...(prof.follow || []), ...theoryChips])}${noteHtml()}`,
     ctx: { guru: gid },
   };
 }
@@ -664,7 +716,29 @@ function greet(data, gid) {
 }
 
 function answerQuery(data, q, ctx) {
-  const raw = String(q || '').trim();
+  const raw0 = String(q || '').trim();
+  if (!raw0) return { html: '', ctx: {} };
+  // v3 多问句拆分：第一段主答，其余问题转为可点击的追问按钮
+  const segs = raw0.split(/[？?。！\n]+/).map((s) => s.trim()).filter((s) => s.length >= 3);
+  const out = answerQueryCore(data, segs.length ? segs[0] : raw0, ctx);
+  if (!out || !out.html) return out;
+  // v3 会话内大师记忆：记下用户问过谁，追问「还有吗」及对照时可用
+  if (out.ctx && out.ctx.guru) {
+    const seen = { ...((ctx && ctx.seen) || {}) };
+    seen[out.ctx.guru] = (seen[out.ctx.guru] || 0) + 1;
+    out.ctx.seen = seen;
+  }
+  const more = segs.slice(1, 3).filter((s) => s.length <= 24);
+  if (more.length) {
+    const chipHtml = `<div class="mq-chips">${more.map((m) => `<button class="mq-chip" data-q="${esc(m)}" type="button">追问：${esc(m)}</button>`).join('')}</div>`;
+    out.html = out.html.includes('<div class="mq-note">')
+      ? out.html.replace('<div class="mq-note">', chipHtml + '<div class="mq-note">')
+      : out.html + chipHtml;
+  }
+  return out;
+}
+
+function answerQueryCore(data, raw, ctx) {
   const ql = raw.toLowerCase();
   if (!ql) return { html: '', ctx: {} };
 
@@ -742,13 +816,22 @@ function answerQuery(data, q, ctx) {
     return answerIntents(data, intents, { guru: guru || (ctx && ctx.guru) || null }, ql);
   }
   if (thHits.length && thHits[0].score >= 2.2) {
-    return answerTheories(data, thHits);
+    return answerTheories(data, thHits, ql);
   }
   if (intents.length) return answerIntents(data, intents, { guru: guru || (ctx && ctx.guru) || null }, ql);
   // ⑦ 流派总览
   const schoolsIntent = (data.intents || []).find((x) => x.id === 'schools');
   if (schoolsIntent && (schoolsIntent.kw || []).some((kw) => ql.includes(kw))) return answerSchools(data);
-  // ⑧ 兜底
+  // ⑧ v3：有明确处境但没命中知识库 → 至少接住处境，不冷冰冰兜底
+  const situLast = detectSituation(raw, raw);
+  if (situLast) {
+    return {
+      html: `${situLast}<div class="mq-lead">结合你的处境，先给你几条最通用的追问方向（换个更具体的问法会答得更准）：</div>`
+        + chipsHtml(data.hot || []) + noteHtml(),
+      ctx: {},
+    };
+  }
+  // ⑨ 兜底
   return answerFallback(data);
 }
 
