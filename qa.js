@@ -199,6 +199,7 @@ function parseQuery(data, raw, prevCtx) {
 
   const re = {
     why: /为什么|为何|凭什么|理由|原因|逻辑|依据|怎么会|哪来的|利空|利好/,
+    timeline: /时间线|轨迹|演变|观点史|历史观点|立场.{0,4}史|一路以来|变化过程|态度史/,
     change: /变化|变了|变没变|转向|转多|转空|调仓|立场.{0,4}(变|改)|态度.{0,4}(变|转)|有什么新|新动向/,
     ranking: /谁(最|更)|哪个博主(最|更|比较)|哪位(最|更)|最看好|最看空|最坚定|最准|排名|排行|榜单|榜首/,
     overview: /有什么$|收录|多少个|多少条|数据量|能问|可以问|怎么用|你是谁|介绍一下你|有什么功能|帮助|数据.{0,3}(概况|总览|全貌)|覆盖了/,
@@ -209,8 +210,9 @@ function parseQuery(data, raw, prevCtx) {
     levels: /点位|支撑|压力|阻力|目标价?|触发|价位/,
   };
 
-  // 1) 意图（优先级：理由 > 变化 > 排名 > 概览 > 对比 > 价格 > 风险 > 机会 > 点位）
+  // 1) 意图（优先级：理由 > 时间线 > 变化 > 排名 > 概览 > 对比 > 价格 > 风险 > 机会 > 点位）
   if (re.why.test(ql)) r.intent = 'why';
+  else if (re.timeline.test(ql)) r.intent = 'timeline';
   else if (re.change.test(ql)) r.intent = 'change';
   else if (re.ranking.test(ql)) r.intent = 'ranking';
   else if (re.overview.test(ql) && !/怎么看|多少钱|观点|涨|跌/.test(ql)) r.intent = 'overview';
@@ -639,6 +641,75 @@ function rankBoard(ops, dir) {
     </div>`).join('');
 }
 
+/** v4 观点时间线：该标的按频道分组的完整表态轨迹（flip 标记立场翻转） */
+function timelineAnswer(data, t, p) {
+  const all = data.ops.filter((o) => o.t === t.ticker && (!p.channel || o.g === p.channel.slug || o.c === p.channel.name));
+  if (!all.length) return `<div class="qa-note">数据库里还没有 ${esc(t.name)} 的观点记录。</div>`;
+  const byCh = new Map();
+  for (const o of all) {
+    if (!byCh.has(o.c)) byCh.set(o.c, []);
+    byCh.get(o.c).push(o);
+  }
+  const flips = flipMap(all);
+  const parts = [`<div class="qa-sum">🕒 ${esc(t.name)}（${esc(t.ticker)}）观点时间线 · ${byCh.size} 位博主 · 共 ${all.length} 次表态</div>`];
+  const chans = [...byCh.entries()].sort((a, b) => b[1].length - a[1].length);
+  for (const [ch, list] of chans) {
+    const sorted = [...list].sort((a, b) => String(a.d).localeCompare(String(b.d)));
+    const traj = sorted.map((o) => {
+      const f = flips[`${o.c}|${o.t}`];
+      const tag = f && f.d === o.d ? ` <span class="qa-st ${f.to > 0 ? 'up' : 'down'}">${flipTag(f)}</span>` : '';
+      return `<span class="qa-tone ${leanCls(scoreOf(o.s))}" title="${esc(o.th || o.s)}">${fmtD(o.d)} ${esc(String(o.s || '').replace('中性偏多', '偏多').replace('中性偏空', '偏空'))}${tag}</span>`;
+    }).join('<span class="qa-note" style="display:inline;margin:0 2px">→</span>');
+    parts.push(`<div class="qa-h">📺 ${esc(ch)} · ${list.length} 次表态</div><div class="qa-traj">${traj}</div>`);
+    parts.push(opSection(sorted.slice(-2).reverse(), 2, false));
+  }
+  parts.push(`<div class="qa-note">时间轴从左到右由早到近，鼠标停在色块上看当时的一句话理由。<span class="qa-st up">↑转多</span> / <span class="qa-st down">↓转空</span> 标记立场翻转的时刻。</div>`);
+  return parts.join('');
+}
+
+/** v4 站内验证：标的的历史点位/表态与现价对照（完整逐条判定在命中率页） */
+function verifyAnswer(data, t) {
+  const ops = data.ops.filter((o) => o.t === t.ticker);
+  if (!ops.length) return null;
+  const pr = (data.prices || {})[t.ticker];
+  const cs = consensus(ops);
+  const parts = [`<div class="qa-sum">🎯 ${esc(t.name)}（${esc(t.ticker)}）：他们说过的，跟现在对一下</div>`];
+  if (pr && cs.tgt) {
+    const gap = ((cs.tgt.med - pr.c) / pr.c) * 100;
+    parts.push(`<div class="qa-lvi" style="display:block">共识目标价中位 <b>${esc(String(cs.tgt.med))}</b> vs 现价 <b>${num1(pr.c)}</b> → ${
+      gap >= 0 ? `按中位数还有 <b class="qup">${gap.toFixed(1)}%</b> 空间` : `现价已超出中位数 <b class="qdn">${Math.abs(gap).toFixed(1)}%</b>`
+    }${cs.tgt.n ? `（${cs.tgt.n} 条目标价聚合）` : ''}</div>`);
+  }
+  if (pr && (cs.sup || cs.res)) {
+    const seg = [];
+    if (cs.sup) seg.push(`共识支撑 <b>${esc(String(cs.sup.med))}</b>（现价${pr.c <= cs.sup.med ? '<b class="qdn">已跌破</b>' : `下方 ${((pr.c - cs.sup.med) / pr.c * 100).toFixed(1)}%`}）`);
+    if (cs.res) seg.push(`共识压力 <b>${esc(String(cs.res.med))}</b>（现价${pr.c >= cs.res.med ? '<b class="qup">已突破</b>' : `上方 ${((cs.res.med - pr.c) / pr.c * 100).toFixed(1)}%`}）`);
+    parts.push(`<div class="qa-lvi" style="display:block">${seg.join(' · ')}</div>`);
+  }
+  if (pr && pr.d5 != null) {
+    const recent = [...ops].sort((a, b) => String(b.d).localeCompare(String(a.d))).slice(0, 5);
+    parts.push(`<div class="qa-h">最近表态 vs 实际走势（近 5 日 ${pctTxt(pr.d5)}）</div>`);
+    parts.push(recent.map((o) => {
+      const sc = scoreOf(o.s);
+      const hit = sc > 0.3 ? pr.d5 > 0 : sc < -0.3 ? pr.d5 < 0 : null;
+      const v = hit == null ? '—' : hit ? '<b class="qup">✓方向对</b>' : '<b class="qdn">✗暂跑输</b>';
+      return `<div class="qa-lvi" style="display:block">${fmtD(o.d)} · ${esc(o.c)} · ${esc(o.s)} → ${v}</div>`;
+    }).join(''));
+  } else if (!pr) {
+    parts.push(`<div class="qa-note">暂无实时价格数据，先看表态记录。</div>`);
+  }
+  parts.push(`<div class="qa-note">「暂跑输」≠ 说错了：5 日窗口太短，且「该买」可能是分批建仓视角。方向/支撑/目标逐条自动判定在命中率页。</div>`);
+  parts.push(`<div class="qa-act"><a class="qa-link" href="${esc(data.siteBase || '/')}track-record.html" target="_blank" rel="noopener">打开 🎯 命中率追踪（逐条判定） →</a></div>`);
+  return parts.join('');
+}
+
+/** v4 动态追问：按当前标的生成 4 个追问按钮（Perplexica 式 related questions） */
+function ctxChips(data, t) {
+  const n = t.name;
+  const qs = [`${n}的目标价和点位`, `${n}的观点时间线`, `${n}他们说的准不准`, `谁最看好${n}`];
+  return `<div class="qa-h">接着问</div><div class="qa-chips">${qs.map((q) => `<button class="qa-chip" data-q="${esc(q)}">${esc(q)}</button>`).join('')}</div>`;
+}
+
 function helpHtml(data) {
   const seen = new Set();
   const holdChips = [];
@@ -762,7 +833,7 @@ function greet(data) {
   chips.push('<button class="qa-chip" data-q="最近有什么变化">最近有什么变化</button>');
   chips.push('<button class="qa-chip" data-q="半导体板块怎么看">半导体板块</button>');
   return `<div class="qa-h">👋 我基于每日爬取的博主观点数据库回答</div>
-  <div class="qa-note">已收录 <b>${(data.ops || []).length}</b> 条观点 · <b>${(data.sums || []).length}</b> 期大盘综述，回答以「蒸馏简报」开头（多空分布 / 情绪轨迹 / 看多主线与顾虑 / 共识目标价）。数据截至 <b>${fmtD(data.asOf)}</b>。<br>能问：XX怎么看 / 为什么看多看空 / 还能买吗 · 该卖吗 / 谁最看好 / 最近有什么变化 / 某板块 / 今天美股怎么样，支持追问。</div>
+  <div class="qa-note">已收录 <b>${(data.ops || []).length}</b> 条观点 · <b>${(data.sums || []).length}</b> 期大盘综述，回答以「蒸馏简报」开头（多空分布 / 情绪轨迹 / 看多主线与顾虑 / 共识目标价）。数据截至 <b>${fmtD(data.asOf)}</b>。<br>能问：XX怎么看 / 为什么看多看空 / 还能买吗 · 该卖吗 / 谁最看好 / XX的观点时间线 / XX他们说的准不准 / 最近有什么变化 / 某板块 / 今天美股怎么样，支持追问。</div>
   <div class="qa-chips">${chips.join('')}</div>`;
 }
 
@@ -796,8 +867,12 @@ function answerQuery(data, raw, prevCtx) {
   // ── 板块 ──
   if (p.sector && !p.tickers.length) return sectorAnswer(data, p.sector, p);
 
-  // ── 命中率 ──
-  if (/命中|胜率|准不准|准确/.test(p.q)) {
+  // ── 命中率/验证（有标的 → 站内对照分析；无标的 → 引导到命中率页）──
+  if (/命中|胜率|准不准|准确|验证|打脸|说得准|灵不灵/.test(p.q)) {
+    if (p.tickers.length) {
+      const v = verifyAnswer(data, p.tickers[0]);
+      if (v) return { html: v + ctxChips(data, p.tickers[0]), ctx };
+    }
     return { html: `<div class="qa-h">🎯 博主命中率</div><div class="qa-note">命中率追踪页按「观点发布后 5 个交易日」用实际行情自动验证每位博主的方向/支撑/目标判定：</div><div class="qa-act"><a class="qa-link" href="${esc(data.siteBase || '/')}track-record.html" target="_blank" rel="noopener">打开 🎯 命中率追踪 →</a></div>`, ctx };
   }
 
@@ -938,6 +1013,12 @@ function answerQuery(data, raw, prevCtx) {
         continue;
       }
 
+      // 时间线（完整表态轨迹 + 立场翻转标记）
+      if (p.intent === 'timeline') {
+        parts.push(timelineAnswer(data, t, p));
+        continue;
+      }
+
       // 点位（全量历史聚合，才能看到较早给出、仍在生效的目标价/支撑位）
       if (p.intent === 'levels') {
         const lvOps = all.filter(hasLevels);
@@ -962,7 +1043,7 @@ function answerQuery(data, raw, prevCtx) {
       parts.push(`<div class="qa-h">🎬 相关观点</div>` + opSection(base, 8));
     }
     const html = parts.filter(Boolean).join('');
-    return { html: html || helpHtml(data), ctx };
+    return { html: (html || helpHtml(data)) + (html ? ctxChips(data, p.tickers[0]) : ''), ctx };
   }
 
   // ── 博主 ──

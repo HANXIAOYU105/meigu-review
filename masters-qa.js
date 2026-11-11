@@ -376,6 +376,47 @@ function answerTickerWithTheory(data, tk) {
   };
 }
 
+// v4：大师 × 标的交叉（「巴菲特怎么看英伟达」）：他的持仓事实 + 他自己的理论视角 + 其他大师对照
+function answerGuruOnTicker(data, gid, tk, ql) {
+  const gname = (data.masters || {})[gid]?.name || shortName(data, gid);
+  const name = tickerName(data, tk);
+  const gt = (data.guruTickers || {})[gid];
+  const pos = gt && (gt.pos || []).find((p) => String(p.t).toUpperCase() === String(tk).toUpperCase());
+  const holdFact = pos
+    ? `<div class="mq-lead"><b>持仓事实</b>：${esc(gname)}最新披露持仓里有 <b>${esc(tk)}</b>${pos.n ? `（${esc(pos.n)}）` : ''}，占其美股长仓 <b>${num1(pos.w)}%</b>${gt.asOf ? `（报告期 ${esc(gt.asOf)}）` : ''}。</div>`
+    : `<div class="mq-lead"><b>持仓事实</b>：${esc(gname)}最新披露持仓里<b>没有</b>${esc(tk)}（13F 滞后最长 45 天、不含期权空头——也可能确实没买，或仓位太小未披露）。</div>`;
+  let th = scoreTheoriesOf(data, ql, gid, 2);
+  let own = '';
+  if (th.length) {
+    own = `<div class="mq-lead">用${esc(gname)}自己的框架看这个标的：</div>${th.map((h) => theoryCard(data, h)).join('')}`;
+  } else {
+    /* 理论库没直接命中标的话题 → 退到该大师画像核心卡 */
+    const prof = (data.guruProfiles || {})[gid];
+    const core = prof && prof.cards && prof.cards.slice(0, 1);
+    if (core && core.length) own = `<div class="mq-lead">先看${esc(gname)}的核心思想：</div>${core.map(cardHtml).join('')}`;
+  }
+  const intents = scoreIntents(data, ql);
+  let crossCard = intents.length && intents[0].cards
+    ? intents[0].cards.find((c) => c.m && c.m !== gname)
+    : null;
+  if (!crossCard) {
+    /* 意图未命中 → 从其他大师的画像核心卡里取一张对照（确定性顺序） */
+    const profs = (data.guruProfiles || {});
+    for (const og of Object.keys(profs)) {
+      if (og === gid) continue;
+      const oc = profs[og] && profs[og].cards && profs[og].cards[0];
+      if (oc && oc.m && oc.m !== gname) { crossCard = oc; break; }
+    }
+  }
+  const cross = crossCard ? `<div class="mq-lead">其他大师的对照：</div>${cardHtml(crossCard)}` : '';
+  return {
+    html: `<div class="mq-lead">${esc(gname)} × ${esc(name)}（${esc(tk)}）</div>${holdFact}${own}${cross}`
+      + chipsHtml([`${gname}的持仓`, `谁在买${name}？`, `${gname}的理论体系`])
+      + noteHtml(),
+    ctx: { guru: gid, ticker: tk },
+  };
+}
+
 // 未收录标的：明确告知不在披露持仓，并给通用判断框架
 function answerUnknownTicker(data, tk) {
   return {
@@ -701,6 +742,20 @@ function answerFallback(data) {
 }
 
 // ── 主入口 ──
+// v4 每日一句：从可查证语录里按日期稳定抽取一条（同一天所有人看到同一条）
+function dailyQuote(data) {
+  const Q = data.quotes || {};
+  const all = [];
+  for (const [gid, arr] of Object.entries(Q)) {
+    for (const it of arr || []) if (it && it.q) all.push({ gid, q: it.q, src: it.src || '' });
+  }
+  if (!all.length) return '';
+  const seed = String(data.asOf || '').split(/[^0-9]/).reduce((a, p) => a + (+p || 0), 0) + all.length;
+  const pick = all[seed % all.length];
+  const nm = (data.masters || {})[pick.gid]?.name || shortName(data, pick.gid);
+  return `<div class="mq-card"><div class="mq-src">💡 今日一句 · 【${esc(nm)}】</div><div class="mq-quote">「${esc(pick.q)}」</div>${pick.src ? `<div class="mq-core">${esc(pick.src)}</div>` : ''}</div>`;
+}
+
 function greet(data, gid) {
   const prof = gid ? (data.guruProfiles || {})[gid] : null;
   const thCount = ((data.theoryMeta || {}).count) || Object.values(data.theories || {}).reduce((n, l) => n + l.length, 0);
@@ -712,7 +767,7 @@ function greet(data, gid) {
     }
     return `<div class="mq-lead">本页跟踪 <b>${esc((data.guruNames || {})[gid] || gid)}</b> 的最新披露持仓。其理论体系暂未收录，但你可以问任何投资问题——17 位大师会按流派出场作答。</div>${chipsHtml(data.hot)}`;
   }
-  return `<div class="mq-lead">你好，我是<b>投资大师智能体</b> 🧙 基于 17 位大师的深度知识库（${thCount} 条理论 + ${qCount} 条可查证语录，价值/量化/趋势/宏观四派）+ 本页 12 位大佬的最新 13F 持仓，带出处的解答。</div>${chipsHtml(data.hot)}<div class="mq-note">试试点上面的问题，或直接输入——比如「该不该用杠杆」「巴菲特现在重仓什么」「芒格说过什么名言」「止损和卖出有什么区别」。</div>`;
+  return `<div class="mq-lead">你好，我是<b>投资大师智能体</b> 🧙 基于 17 位大师的深度知识库（${thCount} 条理论 + ${qCount} 条可查证语录，价值/量化/趋势/宏观四派）+ 本页 12 位大佬的最新 13F 持仓，带出处的解答。</div>${dailyQuote(data)}${chipsHtml(data.hot)}<div class="mq-note">试试点上面的问题，或直接输入——比如「该不该用杠杆」「巴菲特现在重仓什么」「巴菲特怎么看英伟达」「芒格说过什么名言」「止损和卖出有什么区别」。</div>`;
 }
 
 function answerQuery(data, q, ctx) {
@@ -762,6 +817,8 @@ function answerQueryCore(data, raw, ctx) {
 
   // ① 标的 + 持仓问询：谁重仓了 X / X 谁在买
   if (tickers.length && isHoldQ) return answerTickerHoldings(data, tickers[0]);
+  // ①b v4 大师 × 标的交叉（非持仓问询）：巴菲特怎么看英伟达 → 持仓事实 + 他的理论 + 对照
+  if (guru && tickers.length && !isHoldQ) return answerGuruOnTicker(data, guru, tickers[0], ql);
   // ② 多位大师 + 持仓问询 → 持仓对比（v2）
   if (gurus.length >= 2 && isHoldQ && !tickers.length) return answerCompareGurus(data, gurus.slice(0, 2), ql);
   // ②b 单大师 + 持仓问询：巴菲特买了什么
