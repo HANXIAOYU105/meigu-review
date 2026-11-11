@@ -9,6 +9,7 @@
     --accent:#1e3a5f; --link:#2c5282;
     --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
     --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+    --warn:#b45309; --warn-bg:#fef3e2;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -17,6 +18,7 @@
       --accent:#7fa3d9; --link:#7fb0ff;
       --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
       --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+      --warn:#e8b06a; --warn-bg:#3a2a16;
     }
   }
   body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
@@ -49,6 +51,9 @@
   @media (max-width:480px){ .fm-grid{grid-template-columns:repeat(4,1fr);} }
   .fm-up{color:var(--up-fg);}
   .fm-down{color:var(--down-fg);}
+  /* Gamma 市场状态（2026-11-11）：正 gamma=压制波动（蓝），负 gamma=放大波动（橙警示） */
+  .fm-pos{color:var(--link);}
+  .fm-neg{color:var(--warn);}
   /* 期权墙区块（2026-11-06）：口径说明小字 + 到期分档 GEX 红绿 */
   .ow-note{font-size:11.5px;color:var(--muted-2);margin-top:8px;line-height:1.5;}
   .ow-gex-up{color:var(--up-fg);font-weight:700;}
@@ -201,7 +206,7 @@
       <div class="op">
       <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·11/10</span></span><span class="st flat">中性/观望·长期</span></div>
       <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">747</b>（近期最低）；<b class="num">722</b> 以下均为长线价值区</span><span class="lv lv-e">买点 <b class="num">722</b> 以下（长线建仓区）；<b class="num">777</b> 附近可小仓试，<b class="num">797</b> 现价偏早</span><span class="lv lv-t">触发 跌至<b class="num">722</b>以下分批做长线；技术面未出现结构前不追，等更低位置</span></div>
-      <div class="op-d">电力设备爆发式增长峰值已结束，后续进入稳定轨道（低双位数可以，30%-50%不可能，产能有限、排产长）。26年12月前瞻EPS 945-1260（中位约1020）、27年前瞻770-1027（中位898），同比衰退约21%。若只求电力长期稳步扩容慢牛，722以下都算长线位置；现价797，距最低747只差一点，777也很近，激进者可提前，但技术面这里没什么可做的。</div>
+      <div class="op-d">电力设备爆发式增长峰值已结束，后续进入稳定轨道（低双位数可以，30%-50%不可能，产能有限、排产长）。26年12月前瞻EPS 945-1260、27年前瞻770-1027（中位898），同比衰退约21%。若只求电力长期稳步扩容慢牛，722以下都算长线位置；现价797，距最低747只差一点，777也很近，激进者可提前，但技术面这里没什么可做的。</div>
       <div class="op-q">「电力设备制造商最大的爆发式的增长期的峰值已经结束了，后续他们会进入稳定合理的增长轨道……如果你仍旧看好电力在未来的一个发展，其实GEV现在所处的位置，往下走一点点就是长线位置，尽管还没得到，最低才747，还差一点点，722以下就都是长线位置了……现在797，你这个777也很近，你要一次激进的也行，只不过技术面的这个地方是没有什么可做的。」</div>
       <div class="op-tag"><b>催化：</b>电力/电网长期扩容需求（与AI无关的自然增长）、27年GAP一次性费用调整落地后EPS口径恢复</div>
       <div class="op-tag"><b>风险：</b>爆发期已过，增速回落至低双位数将压制估值、27年前瞻EPS同比衰退约21%、技术面当前位置缺乏做多结构</div>
@@ -236,7 +241,7 @@
         </div><div class="op">
           <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·长期</span></div>
           <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">747</b>（近期最低）；<b class="num">722</b> 以下均为长线价值区</span><span class="lv lv-e">买点 <b class="num">722</b> 以下（长线建仓区）；<b class="num">777</b> 附近可小仓试，<b class="num">797</b> 现价偏早</span><span class="lv lv-t">触发 跌至<b class="num">722</b>以下分批做长线；技术面未出现结构前不追，等更低位置</span></div>
-          <div class="op-d">电力设备爆发式增长峰值已结束，后续进入稳定轨道（低双位数可以，30%-50%不可能，产能有限、排产长）。26年12月前瞻EPS 945-1260（中位约1020）、27年前瞻770-1027（中位898），同比衰退约21%。若只求电力长期稳步扩容慢牛，722以下都算长线位置；现价797，距最低747只差一点，777也很近，激进者可提前，但技术面这里没什么可做的。</div>
+          <div class="op-d">电力设备爆发式增长峰值已结束，后续进入稳定轨道（低双位数可以，30%-50%不可能，产能有限、排产长）。26年12月前瞻EPS 945-1260、27年前瞻770-1027（中位898），同比衰退约21%。若只求电力长期稳步扩容慢牛，722以下都算长线位置；现价797，距最低747只差一点，777也很近，激进者可提前，但技术面这里没什么可做的。</div>
           <div class="op-q">「电力设备制造商最大的爆发式的增长期的峰值已经结束了，后续他们会进入稳定合理的增长轨道……如果你仍旧看好电力在未来的一个发展，其实GEV现在所处的位置，往下走一点点就是长线位置，尽管还没得到，最低才747，还差一点点，722以下就都是长线位置了……现在797，你这个777也很近，你要一次激进的也行，只不过技术面的这个地方是没有什么可做的。」</div>
           <div class="op-tag"><b>催化：</b>电力/电网长期扩容需求（与AI无关的自然增长）、27年GAP一次性费用调整落地后EPS口径恢复</div>
           <div class="op-tag"><b>风险：</b>爆发期已过，增速回落至低双位数将压制估值、27年前瞻EPS同比衰退约21%、技术面当前位置缺乏做多结构</div>
@@ -246,4 +251,4 @@
 </div>
 
 <nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
-<div class="bstamp">页面构建于 11-11 23:22（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
+<div class="bstamp">页面构建于 11-12 00:15（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>

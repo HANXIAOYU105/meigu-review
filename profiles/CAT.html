@@ -9,6 +9,7 @@
     --accent:#1e3a5f; --link:#2c5282;
     --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
     --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+    --warn:#b45309; --warn-bg:#fef3e2;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -17,6 +18,7 @@
       --accent:#7fa3d9; --link:#7fb0ff;
       --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
       --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+      --warn:#e8b06a; --warn-bg:#3a2a16;
     }
   }
   body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
@@ -49,6 +51,9 @@
   @media (max-width:480px){ .fm-grid{grid-template-columns:repeat(4,1fr);} }
   .fm-up{color:var(--up-fg);}
   .fm-down{color:var(--down-fg);}
+  /* Gamma 市场状态（2026-11-11）：正 gamma=压制波动（蓝），负 gamma=放大波动（橙警示） */
+  .fm-pos{color:var(--link);}
+  .fm-neg{color:var(--warn);}
   /* 期权墙区块（2026-11-06）：口径说明小字 + 到期分档 GEX 红绿 */
   .ow-note{font-size:11.5px;color:var(--muted-2);margin-top:8px;line-height:1.5;}
   .ow-gex-up{color:var(--up-fg);font-weight:700;}
@@ -169,7 +174,7 @@
   <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日无点位 · 历史累计</span></div>
   <div class="lvg"><div class="lvg-h">🟢 支撑位</div>
           <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
-          <tr><td>NaNa说美股</td><td>11/4</td><td><b class="num">120</b>周均线（等待回踩观察企稳） <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=819s" class="tslink">⏱13:39</a></td><td class="vfy vfy-ok" title="守住 120（已过 4/5 日）">✅</td></tr><tr><td>NaNa说美股</td><td>11/4</td><td>前面<b class="num">2025-2026</b>年涨太多了，现在估值回归，等股价回踩<b class="num">120</b>周均线再看能不能企稳 <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=819s" class="tslink">⏱13:39</a></td><td class="vfy vfy-bad" title="跌破 2025，最低 550.81">❌</td></tr>
+          <tr><td>NaNa说美股</td><td>11/4</td><td><b class="num">120</b>周均线（等待回踩观察企稳） <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=819s" class="tslink">⏱13:39</a></td><td class="vfy vfy-ok" title="守住 120（已过 4/5 日）">✅</td></tr>
         </table></div></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
           <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
           <tr><td>NaNa说美股</td><td>11/4</td><td>回踩<b class="num">120</b>周均线企稳后 <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=819s" class="tslink">⏱13:39</a></td><td class="vfy vfy-pending" title="最低 550.81，未给到 120（已过 4/5 日）">⏳</td></tr>
@@ -194,7 +199,7 @@
       
     </div><div class="op">
       <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/4</span></span><span class="st flat">中性/观望·中期</span></div>
-      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">120</b>周均线（等待回踩观察企稳）</span><span class="lv lv-e">买点 回踩<b class="num">120</b>周均线企稳后</span><span class="lv lv-t">触发 回踩<b class="num">120</b>周均线企稳</span><span class="lv lv-s">支撑 前面<b class="num">2025-2026</b>年涨太多了，现在估值回归，等股价回踩<b class="num">120</b>周均线再看能不能企稳</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">120</b>周均线（等待回踩观察企稳）</span><span class="lv lv-e">买点 回踩<b class="num">120</b>周均线企稳后</span><span class="lv lv-t">触发 回踩<b class="num">120</b>周均线企稳</span></div>
       <div class="op-d">CAT跌5.23%。向数据中心供货的工业股都不行，且前面2025-2026年涨太多了，现在估值回归。策略：等股价回踩120周均线再看能不能企稳。</div>
       <div class="op-q">「CAT股价今天跌了5.23%。前面2025-2026年涨太多了，现在估值回归，等股价回踩120周均线再看能不能企稳。」</div>
       <div class="op-tag"><b>催化：</b>回踩120周均线企稳后再评估</div>
@@ -255,7 +260,7 @@
       <div class="day-h">11/4</div>
       <div class="op">
           <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性/观望·中期</span></div>
-          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">120</b>周均线（等待回踩观察企稳）</span><span class="lv lv-e">买点 回踩<b class="num">120</b>周均线企稳后</span><span class="lv lv-t">触发 回踩<b class="num">120</b>周均线企稳</span><span class="lv lv-s">支撑 前面<b class="num">2025-2026</b>年涨太多了，现在估值回归，等股价回踩<b class="num">120</b>周均线再看能不能企稳</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">120</b>周均线（等待回踩观察企稳）</span><span class="lv lv-e">买点 回踩<b class="num">120</b>周均线企稳后</span><span class="lv lv-t">触发 回踩<b class="num">120</b>周均线企稳</span></div>
           <div class="op-d">CAT跌5.23%。向数据中心供货的工业股都不行，且前面2025-2026年涨太多了，现在估值回归。策略：等股价回踩120周均线再看能不能企稳。</div>
           <div class="op-q">「CAT股价今天跌了5.23%。前面2025-2026年涨太多了，现在估值回归，等股价回踩120周均线再看能不能企稳。」</div>
           <div class="op-tag"><b>催化：</b>回踩120周均线企稳后再评估</div>
@@ -266,4 +271,4 @@
 </div>
 
 <nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
-<div class="bstamp">页面构建于 11-11 23:22（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
+<div class="bstamp">页面构建于 11-12 00:15（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>

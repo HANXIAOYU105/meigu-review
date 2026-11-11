@@ -101,6 +101,12 @@
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
   .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
+  /* 13F 环比标记（2026-11-11）：红涨绿跌 */
+  .chg-up{color:var(--up);font-weight:800;}
+  .chg-down{color:var(--down);font-weight:800;}
+  .chg-new{display:inline-block;font-size:10px;font-weight:700;color:var(--warn);background:var(--warn-bg);border-radius:5px;padding:1px 6px;white-space:nowrap;}
+  .g-drop{background:var(--card);border:1px dashed var(--border);border-radius:12px;padding:10px 13px;margin:2px 0 10px;font-size:12.5px;color:var(--muted);line-height:1.9;}
+  .g-drop b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
   .g-note{font-size:12px;color:var(--muted);line-height:1.75;margin:10px 0 0;}
@@ -173,7 +179,7 @@
   <div class="g-hero-sub">贝莱德 BlackRock, Inc. · 全球最大资管 · iShares 发行方 · BlackRock</div>
 </div></div>
 <p class="g-intro">管理资产超 11 万亿$的全球最大资管公司。注意：其 13F 几乎全部是旗下 ETF 与指数基金的底仓（「替全市场持股的镜像」），前几大持仓≈全市场市值排序，反映的是市场全貌而非主动观点；适合看整体结构，不宜直接解读为「贝莱德在买入」。</p>
-<div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">披露日 <b>2026-08-07</b></span><span class="g-fact">披露总市值 <b>6.73万亿$</b></span><span class="g-fact">核查于 <b>2026-11-10</b></span><span class="g-fact">SEC 13F-HR</span></div>
+<div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">环比 <b>2026-03-31</b></span><span class="g-fact">披露日 <b>2026-08-07</b></span><span class="g-fact">披露总市值 <b>6.73万亿$</b></span><span class="g-fact">核查于 <b>2026-11-11</b></span><span class="g-fact">SEC 13F-HR</span></div>
 
 <div class="grow">
       <div class="gr-r1">
@@ -185,6 +191,7 @@
       <div class="gr-r2">
         <span>市值 <b>3888.7亿$</b></span>
         <span>股数 <b>19.43亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：19.29亿 → 19.43亿">▲ +0.8%</span>
       </div>
       
     </div><div class="grow">
@@ -197,6 +204,7 @@
       <div class="gr-r2">
         <span>市值 <b>3370.1亿$</b></span>
         <span>股数 <b>11.65亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：11.45亿 → 11.65亿">▲ +1.7%</span>
       </div>
       
     </div><div class="grow">
@@ -209,6 +217,7 @@
       <div class="gr-r2">
         <span>市值 <b>2265.9亿$</b></span>
         <span>股数 <b>6.07亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：5.93亿 → 6.07亿">▲ +2.4%</span>
       </div>
       
     </div><div class="grow">
@@ -221,6 +230,7 @@
       <div class="gr-r2">
         <span>市值 <b>1789.5亿$</b></span>
         <span>股数 <b>7.51亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：7.37亿 → 7.51亿">▲ +1.9%</span>
       </div>
       
     </div><div class="grow">
@@ -233,6 +243,7 @@
       <div class="gr-r2">
         <span>市值 <b>1647.4亿$</b></span>
         <span>股数 <b>4.61亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：4.47亿 → 4.61亿">▲ +3.1%</span>
       </div>
       
     </div><div class="grow">
@@ -245,6 +256,7 @@
       <div class="gr-r2">
         <span>市值 <b>1504.5亿$</b></span>
         <span>股数 <b>3.98亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：3.86亿 → 3.98亿">▲ +3.2%</span>
       </div>
       
     </div><div class="grow">
@@ -257,6 +269,7 @@
       <div class="gr-r2">
         <span>市值 <b>1307.0亿$</b></span>
         <span>股数 <b>3.70亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：3.65亿 → 3.70亿">▲ +1.4%</span>
       </div>
       
     </div><div class="grow">
@@ -269,6 +282,7 @@
       <div class="gr-r2">
         <span>市值 <b>1210.4亿$</b></span>
         <span>股数 <b>1.05亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：1.03亿 → 1.05亿">▲ +1.5%</span>
       </div>
       
     </div><div class="grow">
@@ -281,6 +295,7 @@
       <div class="gr-r2">
         <span>市值 <b>977.0亿$</b></span>
         <span>股数 <b>1.73亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：1.69亿 → 1.73亿">▲ +2.7%</span>
       </div>
       
     </div><div class="grow">
@@ -293,6 +308,7 @@
       <div class="gr-r2">
         <span>市值 <b>901.0亿$</b></span>
         <span>股数 <b>2.14亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：2.08亿 → 2.14亿">▲ +2.9%</span>
       </div>
       
     </div><div class="grow">
@@ -305,6 +321,7 @@
       <div class="gr-r2">
         <span>市值 <b>873.1亿$</b></span>
         <span>股数 <b>1.50亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：1.46亿 → 1.50亿">▲ +3.1%</span>
       </div>
       
     </div><div class="grow">
@@ -317,6 +334,7 @@
       <div class="gr-r2">
         <span>市值 <b>810.1亿$</b></span>
         <span>股数 <b>6754.0万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：6649.4万 → 6754.0万">▲ +1.6%</span>
       </div>
       
     </div><div class="grow">
@@ -329,6 +347,7 @@
       <div class="gr-r2">
         <span>市值 <b>675.3亿$</b></span>
         <span>股数 <b>2.06亿</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：2.08亿 → 2.06亿">▼ -0.9%</span>
       </div>
       
     </div><div class="grow">
@@ -341,6 +360,7 @@
       <div class="gr-r2">
         <span>市值 <b>667.7亿$</b></span>
         <span>股数 <b>8915.2万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：8745.3万 → 8915.2万">▲ +1.9%</span>
       </div>
       
     </div><div class="grow">
@@ -353,12 +373,14 @@
       <div class="gr-r2">
         <span>市值 <b>606.4亿$</b></span>
         <span>股数 <b>1.21亿</b></span>
+        
       </div>
       
     </div>
+<div class="g-drop">📉 <b>较上一报告期（2026-03-31）已调出前 15 大</b>：<b>XOM</b> EXXON MOBIL CORP（此前占比 1%）、<b>JNJ</b> JOHNSON &amp; JOHNSON（此前占比 0.9%）</div>
 <p class="g-note">另有其他 5638 个发行人合计占比约 48.6%（未逐项列出）。</p>
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.11 23:22 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.12 00:15 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

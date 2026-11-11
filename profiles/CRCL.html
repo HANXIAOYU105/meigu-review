@@ -9,6 +9,7 @@
     --accent:#1e3a5f; --link:#2c5282;
     --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
     --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+    --warn:#b45309; --warn-bg:#fef3e2;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -17,6 +18,7 @@
       --accent:#7fa3d9; --link:#7fb0ff;
       --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
       --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+      --warn:#e8b06a; --warn-bg:#3a2a16;
     }
   }
   body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
@@ -49,6 +51,9 @@
   @media (max-width:480px){ .fm-grid{grid-template-columns:repeat(4,1fr);} }
   .fm-up{color:var(--up-fg);}
   .fm-down{color:var(--down-fg);}
+  /* Gamma 市场状态（2026-11-11）：正 gamma=压制波动（蓝），负 gamma=放大波动（橙警示） */
+  .fm-pos{color:var(--link);}
+  .fm-neg{color:var(--warn);}
   /* 期权墙区块（2026-11-06）：口径说明小字 + 到期分档 GEX 红绿 */
   .ow-note{font-size:11.5px;color:var(--muted-2);margin-top:8px;line-height:1.5;}
   .ow-gex-up{color:var(--up-fg);font-weight:700;}
@@ -289,4 +294,4 @@
 </div>
 
 <nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
-<div class="bstamp">页面构建于 11-11 23:22（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
+<div class="bstamp">页面构建于 11-12 00:15（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>

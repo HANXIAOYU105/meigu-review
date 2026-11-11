@@ -101,6 +101,12 @@
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
   .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
+  /* 13F 环比标记（2026-11-11）：红涨绿跌 */
+  .chg-up{color:var(--up);font-weight:800;}
+  .chg-down{color:var(--down);font-weight:800;}
+  .chg-new{display:inline-block;font-size:10px;font-weight:700;color:var(--warn);background:var(--warn-bg);border-radius:5px;padding:1px 6px;white-space:nowrap;}
+  .g-drop{background:var(--card);border:1px dashed var(--border);border-radius:12px;padding:10px 13px;margin:2px 0 10px;font-size:12.5px;color:var(--muted);line-height:1.9;}
+  .g-drop b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
   .g-note{font-size:12px;color:var(--muted);line-height:1.75;margin:10px 0 0;}
@@ -173,7 +179,7 @@
   <div class="g-hero-sub">先锋集团 The Vanguard Group · 指数基金之父 · 全球第二大资管 · Vanguard</div>
 </div></div>
 <p class="g-intro">博格创立的指数化投资巨头，管理资产超 9 万亿$。13F 以旗下指数基金与 ETF 底仓为主，是一张「全市场被动资金配置表」：结构变化反映被动资金的流向，不代表主动判断。博格的名言「不要在草堆里找针，直接买下整堆草」正是其哲学。</p>
-<div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">披露日 <b>2026-08-13</b></span><span class="g-fact">披露总市值 <b>4.68万亿$</b></span><span class="g-fact">核查于 <b>2026-11-10</b></span><span class="g-fact">SEC 13F-HR</span></div>
+<div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">环比 <b>2026-03-31</b></span><span class="g-fact">披露日 <b>2026-08-13</b></span><span class="g-fact">披露总市值 <b>4.68万亿$</b></span><span class="g-fact">核查于 <b>2026-11-11</b></span><span class="g-fact">SEC 13F-HR</span></div>
 
 <div class="grow">
       <div class="gr-r1">
@@ -185,6 +191,7 @@
       <div class="gr-r2">
         <span>市值 <b>3083.0亿$</b></span>
         <span>股数 <b>15.41亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：15.39亿 → 15.41亿">▲ +0.1%</span>
       </div>
       
     </div><div class="grow">
@@ -197,6 +204,7 @@
       <div class="gr-r2">
         <span>市值 <b>2775.3亿$</b></span>
         <span>股数 <b>9.59亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：9.54亿 → 9.59亿">▲ +0.6%</span>
       </div>
       
     </div><div class="grow">
@@ -209,6 +217,7 @@
       <div class="gr-r2">
         <span>市值 <b>1809.9亿$</b></span>
         <span>股数 <b>4.85亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：4.83亿 → 4.85亿">▲ +0.5%</span>
       </div>
       
     </div><div class="grow">
@@ -221,6 +230,7 @@
       <div class="gr-r2">
         <span>市值 <b>1515.3亿$</b></span>
         <span>股数 <b>6.36亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：6.31亿 → 6.36亿">▲ +0.7%</span>
       </div>
       
     </div><div class="grow">
@@ -233,6 +243,7 @@
       <div class="gr-r2">
         <span>市值 <b>1368.6亿$</b></span>
         <span>股数 <b>3.83亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：3.78亿 → 3.83亿">▲ +1.2%</span>
       </div>
       
     </div><div class="grow">
@@ -245,6 +256,7 @@
       <div class="gr-r2">
         <span>市值 <b>1167.9亿$</b></span>
         <span>股数 <b>3.09亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：3.08亿 → 3.09亿">▲ +0.4%</span>
       </div>
       
     </div><div class="grow">
@@ -257,6 +269,7 @@
       <div class="gr-r2">
         <span>市值 <b>1084.5亿$</b></span>
         <span>股数 <b>3.07亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：3.02亿 → 3.07亿">▲ +1.5%</span>
       </div>
       
     </div><div class="grow">
@@ -269,6 +282,7 @@
       <div class="gr-r2">
         <span>市值 <b>850.2亿$</b></span>
         <span>股数 <b>7366.0万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：7313.7万 → 7366.0万">▲ +0.7%</span>
       </div>
       
     </div><div class="grow">
@@ -281,6 +295,7 @@
       <div class="gr-r2">
         <span>市值 <b>808.0亿$</b></span>
         <span>股数 <b>1.43亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：1.42亿 → 1.43亿">▲ +0.9%</span>
       </div>
       
     </div><div class="grow">
@@ -293,6 +308,7 @@
       <div class="gr-r2">
         <span>市值 <b>774.0亿$</b></span>
         <span>股数 <b>1.84亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：1.83亿 → 1.84亿">▲ +0.6%</span>
       </div>
       
     </div><div class="grow">
@@ -305,6 +321,7 @@
       <div class="gr-r2">
         <span>市值 <b>642.0亿$</b></span>
         <span>股数 <b>5352.9万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：5336.2万 → 5352.9万">▲ +0.3%</span>
       </div>
       
     </div><div class="grow">
@@ -317,6 +334,7 @@
       <div class="gr-r2">
         <span>市值 <b>618.7亿$</b></span>
         <span>股数 <b>1.07亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：1.06亿 → 1.07亿">▲ +0.5%</span>
       </div>
       
     </div><div class="grow">
@@ -329,6 +347,7 @@
       <div class="gr-r2">
         <span>市值 <b>592.3亿$</b></span>
         <span>股数 <b>1.18亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：1.17亿 → 1.18亿">▲ +0.8%</span>
       </div>
       
     </div><div class="grow">
@@ -341,6 +360,7 @@
       <div class="gr-r2">
         <span>市值 <b>528.9亿$</b></span>
         <span>股数 <b>1.62亿</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：1.65亿 → 1.62亿">▼ -2.2%</span>
       </div>
       
     </div><div class="grow">
@@ -353,12 +373,14 @@
       <div class="gr-r2">
         <span>市值 <b>399.3亿$</b></span>
         <span>股数 <b>1.57亿</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：1.57亿 → 1.57亿">▲ +0.4%</span>
       </div>
       
     </div>
+<div class="g-drop">📉 <b>较上一报告期（2026-03-31）已调出前 15 大</b>：<b>XOM</b> EXXON MOBIL CORP（此前占比 1.2%）、<b>WMT</b> WALMART INC（此前占比 0.9%）</div>
 <p class="g-note">另有其他 4077 个发行人合计占比约 50%（未逐项列出）。</p>
 
 <p class="g-note">ℹ️ Vanguard 2026 年起将 13F 拆分为多家子公司分别申报（原主实体 Vanguard Group Inc 已停止单独申报），本页取其中申报规模最大的 Vanguard Capital Management LLC（SEC EDGAR CIK 0002100119），不代表 Vanguard 全部美股底仓。</p>
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.11 23:22 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.12 00:15 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

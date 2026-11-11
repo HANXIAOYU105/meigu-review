@@ -101,6 +101,12 @@
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
   .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
+  /* 13F 环比标记（2026-11-11）：红涨绿跌 */
+  .chg-up{color:var(--up);font-weight:800;}
+  .chg-down{color:var(--down);font-weight:800;}
+  .chg-new{display:inline-block;font-size:10px;font-weight:700;color:var(--warn);background:var(--warn-bg);border-radius:5px;padding:1px 6px;white-space:nowrap;}
+  .g-drop{background:var(--card);border:1px dashed var(--border);border-radius:12px;padding:10px 13px;margin:2px 0 10px;font-size:12.5px;color:var(--muted);line-height:1.9;}
+  .g-drop b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
   .g-note{font-size:12px;color:var(--muted);line-height:1.75;margin:10px 0 0;}
@@ -173,7 +179,7 @@
   <div class="g-hero-sub">桥水基金 Bridgewater · 创始人 ·「投资界的乔布斯」 · Ray Dalio</div>
 </div></div>
 <p class="g-intro">全球最大对冲基金创始人，以《原则》与全天候资产配置闻名。13F 反映桥水的 ETF 核心与行业轮动仓位，体量大、分散广，方向性变化（如加仓新兴市场）信号意义强。</p>
-<div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">披露日 <b>2026-08-14</b></span><span class="g-fact">披露总市值 <b>243.8亿$</b></span><span class="g-fact">核查于 <b>2026-11-10</b></span><span class="g-fact">SEC 13F-HR</span></div>
+<div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">环比 <b>2026-03-31</b></span><span class="g-fact">披露日 <b>2026-08-14</b></span><span class="g-fact">披露总市值 <b>243.8亿$</b></span><span class="g-fact">核查于 <b>2026-11-11</b></span><span class="g-fact">SEC 13F-HR</span></div>
 
 <div class="grow">
       <div class="gr-r1">
@@ -185,6 +191,7 @@
       <div class="gr-r2">
         <span>市值 <b>39.73亿$</b></span>
         <span>股数 <b>532.0万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：436.5万 → 532.0万">▲ +21.9%</span>
       </div>
       
     </div><div class="grow">
@@ -197,6 +204,7 @@
       <div class="gr-r2">
         <span>市值 <b>22.48亿$</b></span>
         <span>股数 <b>300.2万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：267.9万 → 300.2万">▲ +12.1%</span>
       </div>
       
     </div><div class="grow">
@@ -209,6 +217,7 @@
       <div class="gr-r2">
         <span>市值 <b>7.74亿$</b></span>
         <span>股数 <b>386.6万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：469.3万 → 386.6万">▼ -17.6%</span>
       </div>
       
     </div><div class="grow">
@@ -221,6 +230,7 @@
       <div class="gr-r2">
         <span>市值 <b>4.98亿$</b></span>
         <span>股数 <b>131.8万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：183.5万 → 131.8万">▼ -28.2%</span>
       </div>
       
     </div><div class="grow">
@@ -233,6 +243,7 @@
       <div class="gr-r2">
         <span>市值 <b>4.83亿$</b></span>
         <span>股数 <b>202.5万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：438.9万 → 202.5万">▼ -53.8%</span>
       </div>
       
     </div><div class="grow">
@@ -245,6 +256,7 @@
       <div class="gr-r2">
         <span>市值 <b>4.73亿$</b></span>
         <span>股数 <b>132.2万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：199.8万 → 132.2万">▼ -33.8%</span>
       </div>
       
     </div><div class="grow">
@@ -257,6 +269,7 @@
       <div class="gr-r2">
         <span>市值 <b>4.07亿$</b></span>
         <span>股数 <b>93.8万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：157.1万 → 93.8万">▼ -40.3%</span>
       </div>
       
     </div><div class="grow">
@@ -269,6 +282,7 @@
       <div class="gr-r2">
         <span>市值 <b>3.15亿$</b></span>
         <span>股数 <b>45.8万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：15.9万 → 45.8万">▲ +189%</span>
       </div>
       
     </div><div class="grow">
@@ -281,6 +295,7 @@
       <div class="gr-r2">
         <span>市值 <b>3.13亿$</b></span>
         <span>股数 <b>53.9万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：129.3万 → 53.9万">▼ -58.3%</span>
       </div>
       
     </div><div class="grow">
@@ -293,6 +308,7 @@
       <div class="gr-r2">
         <span>市值 <b>2.80亿$</b></span>
         <span>股数 <b>138.5万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：176.6万 → 138.5万">▼ -21.6%</span>
       </div>
       
     </div><div class="grow">
@@ -305,6 +321,7 @@
       <div class="gr-r2">
         <span>市值 <b>2.66亿$</b></span>
         <span>股数 <b>71.2万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：108.5万 → 71.2万">▼ -34.4%</span>
       </div>
       
     </div><div class="grow">
@@ -317,6 +334,7 @@
       <div class="gr-r2">
         <span>市值 <b>2.52亿$</b></span>
         <span>股数 <b>269.5万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：231.7万 → 269.5万">▲ +16.3%</span>
       </div>
       
     </div><div class="grow">
@@ -329,6 +347,7 @@
       <div class="gr-r2">
         <span>市值 <b>2.11亿$</b></span>
         <span>股数 <b>29.1万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：56.0万 → 29.1万">▼ -48%</span>
       </div>
       
     </div><div class="grow">
@@ -341,6 +360,7 @@
       <div class="gr-r2">
         <span>市值 <b>2.10亿$</b></span>
         <span>股数 <b>143.3万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：159.2万 → 143.3万">▼ -10%</span>
       </div>
       
     </div><div class="grow">
@@ -353,12 +373,14 @@
       <div class="gr-r2">
         <span>市值 <b>1.93亿$</b></span>
         <span>股数 <b>20.0万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：32.9万 → 20.0万">▼ -39.3%</span>
       </div>
       
     </div>
+<div class="g-drop">📉 <b>较上一报告期（2026-03-31）已调出前 15 大</b>：<b>MU</b> 美光科技（此前占比 2.2%）、<b>GEV</b> GE VERNOVA INC（此前占比 1.7%）、<b>TSM</b> 台积电（此前占比 1.6%）</div>
 <p class="g-note">另有其他 982 个发行人合计占比约 48.5%（未逐项列出）。</p>
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.11 23:22 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.12 00:15 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

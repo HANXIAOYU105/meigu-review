@@ -101,6 +101,12 @@
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
   .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
+  /* 13F 环比标记（2026-11-11）：红涨绿跌 */
+  .chg-up{color:var(--up);font-weight:800;}
+  .chg-down{color:var(--down);font-weight:800;}
+  .chg-new{display:inline-block;font-size:10px;font-weight:700;color:var(--warn);background:var(--warn-bg);border-radius:5px;padding:1px 6px;white-space:nowrap;}
+  .g-drop{background:var(--card);border:1px dashed var(--border);border-radius:12px;padding:10px 13px;margin:2px 0 10px;font-size:12.5px;color:var(--muted);line-height:1.9;}
+  .g-drop b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
   .g-note{font-size:12px;color:var(--muted);line-height:1.75;margin:10px 0 0;}
@@ -173,7 +179,7 @@
   <div class="g-hero-sub">伯克希尔·哈撒韦 · 董事长兼 CEO ·「奥马哈先知」 · Warren Buffett</div>
 </div></div>
 <p class="g-intro">价值投资代表人物，60 年年化约 20%。13F 披露伯克希尔公司整体美股长仓：重仓苹果、美国运通、可口可乐、美国银行等，风格极度集中、长期持有，现金储备常被视为市场风向标。</p>
-<div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">披露日 <b>2026-08-14</b></span><span class="g-fact">披露总市值 <b>2992.5亿$</b></span><span class="g-fact">核查于 <b>2026-11-10</b></span><span class="g-fact">SEC 13F-HR</span></div>
+<div class="g-facts"><span class="g-fact">报告期 <b>2026-06-30</b></span><span class="g-fact">环比 <b>2026-03-31</b></span><span class="g-fact">披露日 <b>2026-08-14</b></span><span class="g-fact">披露总市值 <b>2992.5亿$</b></span><span class="g-fact">核查于 <b>2026-11-11</b></span><span class="g-fact">SEC 13F-HR</span></div>
 <div class="g-cash">
     <div class="g-cash-h">💰 伯克希尔现金持仓比例走势 · 近 16 期 13F 报告期</div>
     <div class="g-cash-sub">口径：财报现金储备（现金及短期投资）÷（现金储备 + 13F 披露美股长仓市值）</div>
@@ -191,6 +197,7 @@
       <div class="gr-r2">
         <span>市值 <b>659.5亿$</b></span>
         <span>股数 <b>2.28亿</b></span>
+        
       </div>
       
     </div><div class="grow">
@@ -203,6 +210,7 @@
       <div class="gr-r2">
         <span>市值 <b>512.8亿$</b></span>
         <span>股数 <b>1.52亿</b></span>
+        
       </div>
       
     </div><div class="grow">
@@ -215,6 +223,7 @@
       <div class="gr-r2">
         <span>市值 <b>325.1亿$</b></span>
         <span>股数 <b>4.00亿</b></span>
+        
       </div>
       
     </div><div class="grow">
@@ -227,6 +236,7 @@
       <div class="gr-r2">
         <span>市值 <b>281.6亿$</b></span>
         <span>股数 <b>7879.1万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：5425.0万 → 7879.1万">▲ +45.2%</span>
       </div>
       
     </div><div class="grow">
@@ -239,6 +249,7 @@
       <div class="gr-r2">
         <span>市值 <b>275.4亿$</b></span>
         <span>股数 <b>4.83亿</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：5.14亿 → 4.83亿">▼ -5.9%</span>
       </div>
       
     </div><div class="grow">
@@ -251,6 +262,7 @@
       <div class="gr-r2">
         <span>市值 <b>139.9亿$</b></span>
         <span>股数 <b>8437.6万</b></span>
+        
       </div>
       
     </div><div class="grow">
@@ -263,6 +275,7 @@
       <div class="gr-r2">
         <span>市值 <b>128.7亿$</b></span>
         <span>股数 <b>2.65亿</b></span>
+        
       </div>
       
     </div><div class="grow">
@@ -275,6 +288,7 @@
       <div class="gr-r2">
         <span>市值 <b>116.7亿$</b></span>
         <span>股数 <b>3424.9万</b></span>
+        
       </div>
       
     </div><div class="grow">
@@ -287,6 +301,7 @@
       <div class="gr-r2">
         <span>市值 <b>111.7亿$</b></span>
         <span>股数 <b>2467.0万</b></span>
+        
       </div>
       
     </div><div class="grow">
@@ -299,6 +314,7 @@
       <div class="gr-r2">
         <span>市值 <b>96.06亿$</b></span>
         <span>股数 <b>2718.8万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：358.5万 → 2718.8万">▲ +658.3%</span>
       </div>
       
     </div><div class="grow">
@@ -311,6 +327,7 @@
       <div class="gr-r2">
         <span>市值 <b>76.91亿$</b></span>
         <span>股数 <b>3.26亿</b></span>
+        
       </div>
       
     </div><div class="grow">
@@ -323,6 +340,7 @@
       <div class="gr-r2">
         <span>市值 <b>64.25亿$</b></span>
         <span>股数 <b>2888.0万</b></span>
+        <span class="chg-down" title="与上一季度 13F 相比的持股数变化：3010.1万 → 2888.0万">▼ -4.1%</span>
       </div>
       
     </div><div class="grow">
@@ -335,6 +353,7 @@
       <div class="gr-r2">
         <span>市值 <b>53.69亿$</b></span>
         <span>股数 <b>5732.0万</b></span>
+        <span class="chg-up" title="与上一季度 13F 相比的持股数变化：3980.9万 → 5732.0万">▲ +44%</span>
       </div>
       
     </div><div class="grow">
@@ -347,6 +366,7 @@
       <div class="gr-r2">
         <span>市值 <b>36.87亿$</b></span>
         <span>股数 <b>1.25亿</b></span>
+        
       </div>
       
     </div><div class="grow">
@@ -359,12 +379,14 @@
       <div class="gr-r2">
         <span>市值 <b>22.61亿$</b></span>
         <span>股数 <b>899.0万</b></span>
+        
       </div>
       
     </div>
+<div class="g-drop">📉 <b>较上一报告期（2026-03-31）已调出前 15 大</b>：<b>KR</b> KROGER CO（此前占比 1.4%）</div>
 <p class="g-note">另有其他 14 个发行人合计占比约 3%（未逐项列出）。</p>
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.11 23:22 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.12 00:15 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>
