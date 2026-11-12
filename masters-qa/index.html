@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8">
+<html lang="zh-CN"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fSHh+WinXRf/Z1Ve1QIKYlnjzHMYRsoQGYNtBXp9Q0Y='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>问问大师 · 美股博主复盘</title>
 <style>
@@ -168,7 +169,15 @@
   .mq-page #mqPanel{position:static;width:100%;max-width:860px;height:min(70vh,660px);margin:0 auto 18px;display:flex;box-shadow:0 10px 34px rgba(0,0,0,.14);}
   .mq-page #mqInput{font-size:14.5px;padding:11px 14px;}
   .mq-page #mqSend{padding:11px 20px;}
-</style></head><body><div class="wrap">
+</style>
+<script>
+(function(){
+  var show=function(img){img.style.display='none';var n=img.nextElementSibling;if(n)n.style.display='inline-flex';};
+  document.addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&t.hasAttribute('data-gava'))show(t);},true);
+  document.addEventListener('DOMContentLoaded',function(){var a=document.querySelectorAll('img[data-gava]');for(var i=0;i<a.length;i++){var im=a[i];if(im.complete&&im.naturalWidth===0)show(im);}});
+})();
+</script>
+</head><body><div class="wrap">
 <a class="back" href="/">← 返回首页</a>
 
 
@@ -183,5 +192,5 @@
   <div class="mq-inputbar"><input id="mqInput" type="text" placeholder="例如：大跌要不要抄底？巴菲特现在重仓什么？" aria-label="输入问题"><button id="mqSend" type="button">发送</button></div>
 </div></div>
 <script src="/masters-qa.js"></script>
-<footer>生成于 11.12 00:15 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.12 11:55 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

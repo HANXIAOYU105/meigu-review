@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8">
+<html lang="zh-CN"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fSHh+WinXRf/Z1Ve1QIKYlnjzHMYRsoQGYNtBXp9Q0Y='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>但斌 · 最新持仓 · 美股博主复盘</title>
 <style>
@@ -168,13 +169,21 @@
   .mq-page #mqPanel{position:static;width:100%;max-width:860px;height:min(70vh,660px);margin:0 auto 18px;display:flex;box-shadow:0 10px 34px rgba(0,0,0,.14);}
   .mq-page #mqInput{font-size:14.5px;padding:11px 14px;}
   .mq-page #mqSend{padding:11px 20px;}
-</style></head><body><div class="wrap">
+</style>
+<script>
+(function(){
+  var show=function(img){img.style.display='none';var n=img.nextElementSibling;if(n)n.style.display='inline-flex';};
+  document.addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&t.hasAttribute('data-gava'))show(t);},true);
+  document.addEventListener('DOMContentLoaded',function(){var a=document.querySelectorAll('img[data-gava]');for(var i=0;i<a.length;i++){var im=a[i];if(im.complete&&im.naturalWidth===0)show(im);}});
+})();
+</script>
+</head><body><div class="wrap">
 <a class="back" href="/">← 返回首页</a>
 <h1>但斌 · 最新持仓</h1>
 <p class="sub">东方港湾 董事长 美股持仓追踪</p>
 
 <a class="back" href="/gurus/index.html">← 返回持仓列表</a>
-<div class="g-hero"><img class="gava" src="/img/gurus/danbin.jpg" alt="但斌" loading="lazy" style="width:72px;height:72px" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="gava gava-letter" style="width:72px;height:72px;background:#e0b64f;font-size:29px;display:none;">但</span><div>
+<div class="g-hero"><img class="gava" src="/img/gurus/danbin.jpg" alt="但斌" loading="lazy" style="width:72px;height:72px" data-gava="1"><span class="gava gava-letter" style="width:72px;height:72px;background:#e0b64f;font-size:29px;display:none;">但</span><div>
   <div class="g-hero-name">但斌 <span class="g-tag">AI 长牛</span></div>
   <div class="g-hero-sub">东方港湾 董事长 · 国内私募 · 美股重仓派 · Dan Bin</div>
 </div></div>
@@ -356,5 +365,5 @@
 
 <p class="g-note">ℹ️ 13F 披露其 Oriental Harbor Investment Master Fund（海外基金）美股持仓；2026-11-05 其自述：高位卖出策略回笼资金正从硬件转向 AI 应用方向（已买入 SpaceX、亚马逊），部分产品因合同约束仅投 A 股/港股。</p>
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.12 00:15 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.12 11:55 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

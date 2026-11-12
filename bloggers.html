@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8">
+<html lang="zh-CN"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-fSHh+WinXRf/Z1Ve1QIKYlnjzHMYRsoQGYNtBXp9Q0Y='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>博主大盘研判 · 美股博主复盘</title>
 <style>
@@ -168,25 +169,33 @@
   .mq-page #mqPanel{position:static;width:100%;max-width:860px;height:min(70vh,660px);margin:0 auto 18px;display:flex;box-shadow:0 10px 34px rgba(0,0,0,.14);}
   .mq-page #mqInput{font-size:14.5px;padding:11px 14px;}
   .mq-page #mqSend{padding:11px 20px;}
-</style></head><body><div class="wrap">
+</style>
+<script>
+(function(){
+  var show=function(img){img.style.display='none';var n=img.nextElementSibling;if(n)n.style.display='inline-flex';};
+  document.addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&t.hasAttribute('data-gava'))show(t);},true);
+  document.addEventListener('DOMContentLoaded',function(){var a=document.querySelectorAll('img[data-gava]');for(var i=0;i<a.length;i++){var im=a[i];if(im.complete&&im.naturalWidth===0)show(im);}});
+})();
+</script>
+</head><body><div class="wrap">
 <a class="back" href="/">← 返回首页</a>
 <h1>博主大盘研判</h1>
 <p class="sub">8 位博主对美股大盘的当前态度与未来走势看法 · 每日随最新视频/帖文更新</p>
-<div class="legend-tip"><div style="font-weight:700;color:var(--text-strong);margin-bottom:4px">📊 8 位博主最新大盘态度</div><div class="tone-strip"><span style="color:var(--up)">🔴 偏多 <b>2</b></span><span>⚪ 中性 <b>2</b></span><span style="color:var(--down)">🟢 偏空 <b>4</b></span></div></div><div class="bcard">
+<div class="legend-tip"><div style="font-weight:700;color:var(--text-strong);margin-bottom:4px">📊 8 位博主最新大盘态度</div><div class="tone-strip"><span style="color:var(--up)">🔴 偏多 <b>3</b></span><span>⚪ 中性 <b>3</b></span><span style="color:var(--down)">🟢 偏空 <b>2</b></span></div></div><div class="bcard">
     <div class="b-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="ava" style="background:#ef4444">视</span><span class="b-name">视野环球财经</span>
-      <span class="b-meta">观点日期 11.10</span><span class="badge bg-pend">中性</span></div>
-    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">本轮最大的宏观变量是「从降息转向加息」：10月CPI整体+0.4%、核心+0.3%双双超预期，核心已连续3月约0.3%，正好踩中沃勒给出的加息50bp阈值，货币市场对12月收紧的定价已达27.5bp（25bp加息近100%、50bp约10%）。</p><p class="b-fwd">10年美债收益率单日涨2.16%重回5%，只要在5%上方停留时间越长，对科技股情绪、尤其是极需外部融资的数据中心/AI基建越不利——借贷成本水涨船高会直接吞噬营收与利润。</p></div>
-    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">美东11月10日周二，四大指数小幅收低，标普成分股涨跌各半，成交量较前一日萎缩，属于典型的横向调整。盘后CRWV（CoreWeave）财报营收利润率、业绩指引全面超预期，但股价多轮剧烈震荡，波动甚至小于期权市场押注。10…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-fl"></i>11.4 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.9 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.10 中性</span></div>
+      <span class="b-meta">观点日期 11.11</span><span class="badge bg-ok">偏多</span></div>
+    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">他的核心判断是「事件驱动的裂缝 + 技术面的关键阻力」同时到来：英伟达这次不是普通的公司治理问题，而是全球 AI 算力龙头失去唯一一任 CEO 的连续性问题，直接影响 2027 年之后的技术路线、政府关系和大单销售能力，所以他会用仓位表态而不是嘴上乐观。</p><p class="b-fwd">对大盘则相对温和：这轮反弹最简单、阻力最小的部分已经走完，接下来进入压力区，能不能过 759-776 决定是反转还是继续震荡；</p></div>
+    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">美东 11 月 11 日周三，四大指数大涨，纳指 100 领涨 2%，半导体 30 支成分股全部上涨，标普广度 332 家上涨、168 家下跌，盘中走势风平浪静、高开后也没有明显回落。真正的变化发生在盘后：华尔街日报报道…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.9 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.10 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.11 偏多</span></div>
   </div><div class="bcard">
     <div class="b-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="ava" style="background:#ec4899">N</span><span class="b-name">NaNa说美股</span>
-      <span class="b-meta">观点日期 11.10</span><span class="badge bg-bad">偏空</span></div>
-    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">通胀依然顽固，CPI高于预期进一步支持12月加息；</p><p class="b-fwd">博主不相信美联储会一次性加息50个基点，但认为市场可能会炒作加50个基点。</p></div>
-    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">10月CPI整体环比+0.4%、核心环比+0.3%均高于预期，通胀顽固强化12月加息预期，沃勒放鹰甚至提及可能加息50个基点，美债遭遇2025年4月以来最猛烈抛售之一，纳指期货盘前一度跳水1.4%，三大股指最终集体收跌。…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-fl"></i>11.4 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.6 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.9 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.10 偏空</span></div>
+      <span class="b-meta">观点日期 11.11</span><span class="badge bg-pend">中性</span></div>
+    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">但 CPI 冲击并未消化，联储官员接连放鹰（古尔斯比称服务业通胀未降、价格压力在蔓延；</p><p class="b-fwd">Paulson 称进一步加息合适），明天美债开市就要消化这些负面信息，FOMO 情绪可能降温。</p></div>
+    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">11 月 11 日周三，CoreWeave 的强劲业绩、美俄乌三方会谈以及美伊外交努力共同提振情绪，三大股指全线上扬，科技股是主要推动力，软件和互联网零售偏弱但跌幅不大。CRWV 绩后暴涨，一己之力救活了大哥英伟达和整个…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.6 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.9 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.10 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.11 中性</span></div>
   </div><div class="bcard">
     <div class="b-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="ava" style="background:#8b5cf6">阳</span><span class="b-name">阳光财经</span>
-      <span class="b-meta">观点日期 11.10</span><span class="badge bg-pend">中性</span></div>
-    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">10月整体CPI环比上涨0.4%超预期的0.3%，核心CPI 0.3%与9月持平，权重最大的住房（房租）涨0.3%，能源涨0.7%、汽油环比涨1%推升整体水平；</p><p class="b-fwd">CPI发布后加息预期上升，市场出现12月加息50bp的声音，12月9日加息概率100%（90.5%加25bp、9.5%加50bp）；</p></div>
-    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">大盘小幅回调属上周四暴跌大反弹后的正常整固：标普跌0.38%收小阳线，纳指两连阳重回年线偏乐观，费半在英伟达连跌拖累下仅小跌0.35%显示韧性。利空在于10月CPI超预期、12月加息预期升温、10年期美债收益率逼近5%，…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-fl"></i>11.4 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.6 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.9 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.10 中性</span></div>
+      <span class="b-meta">观点日期 11.11</span><span class="badge bg-ok">偏多</span></div>
+    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">她特别强调纳指的超级周期特征——大多数交易日都站在年线上方，只有少数时间跌破，所以年线下方的抄底成功率并不低，这次上周四五短暂跌破年线后又连收三根阳线站回来，正是这个规律的又一次验证。</p><p class="b-fwd">对 Anthropic 的 IPO 则保持冷静：短期有炒新热度，但 1.4 万亿的发行估值已经把未来的增长故事提前透支。</p></div>
+    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">11 月 11 日周三，标普上涨 98.45 点、涨幅 1.31% 回到 7619 点，纳指涨 400.31 点、涨幅 1.6%，道指涨 254.60 点、涨幅 0.49%。她认为上周四那场「民主党股灾」只跌了一天：民主…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.6 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.9 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.10 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.11 偏多</span></div>
   </div><div class="bcard">
     <div class="b-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="ava" style="background:#8b5cf6">老</span><span class="b-name">老李玩钱</span>
       <span class="b-meta">观点日期 11.4</span><span class="badge bg-ok">偏多</span></div>
@@ -194,14 +203,14 @@
     <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">中期选举结果落地，民主党横扫两院，不确定性消除，美股三大指数大涨但严重分化：道指涨近3%领涨，传统周期、金融、消费与防御板块受益；科技板块内部轮动，加大AI资本支出的科技巨头（微软、苹果、谷歌、亚马逊）大涨，而半导体芯片…</p></div>
   </div><div class="bcard">
     <div class="b-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="ava" style="background:#10b981">美</span><span class="b-name">美投侃新闻</span>
-      <span class="b-meta">观点日期 11.10</span><span class="badge bg-bad">偏空</span></div>
-    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">10月CPI环比0.4%、核心CPI环比0.3%双双超预期；</p><p class="b-fwd">达拉斯联储主席洛根倾向短期至少再加息两次。</p></div>
-    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">10月CPI全面超预期，核心通胀连续第三个月环比上涨0.3%，叠加沃勒放话若通胀偏热12月或加息50个基点，12月不加息概率清零，美债收益率飙升（2年期升破4.7%，10年期盘中一度上5%），美股全线收低。AI交易承压，…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-up"></i>11.4 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.6 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.9 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.10 偏空</span></div>
+      <span class="b-meta">观点日期 11.11</span><span class="badge bg-pend">中性</span></div>
+    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">本期主线是「英伟达的治理风险如何重定价」：19 家机构三天内更新研报，5 家下调目标价、两家把头号推荐剔除，美银把走向分成留任/僵持/升级三档，最坏情形会动到盈利预期而不只是估值。</p><p class="b-fwd">他们的核心结论是：如果黄仁勋不再是 CEO，英伟达估值起码要打八折、中性一点要给七折，所以这波下跌一点都不冤。</p></div>
+    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">受 CoreWeave 财报超预期推动，美股全线走高，纳指收复大选后的全部跌幅：CRWV 上调营收展望并强调客户预付款，缓解了市场对其扩张融资能力的担忧，股价大涨近 25%，重新点燃 AI 交易，半导体与存储纷纷大涨，台…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.6 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.9 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.10 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.11 中性</span></div>
   </div><div class="bcard">
     <div class="b-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="ava" style="background:#4d8dff">T</span><span class="b-name">The Trading Apologist</span><span class="b-tag en">EN</span>
       <span class="b-meta">观点日期 11.6</span><span class="badge bg-bad">偏空</span></div>
     <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">中期选举后的政策走向若被机构视为先例，半导体板块正在去风险、重新估值。</p><p class="b-fwd">历史类比：纳指像 1998，标普像 1978（中期选举大跌后反弹，随后滚入 1980-82 熊市）；</p></div>
-    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">本周抛售高度集中在科技股。纳指已触及量度跌幅目标但作者判断还会再跌一点，进入 25800-26200 支撑区（对应 2025 年底前高一带，20月线届时也将上移到该区域形成共振）；标普尚未超卖、目标位仍指向更低（7250…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-dn"></i>11.4 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.6 偏空</span></div>
+    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">本周抛售高度集中在科技股。纳指已触及量度跌幅目标但作者判断还会再跌一点，进入 25800-26200 支撑区（对应 2025 年底前高一带，20月线届时也将上移到该区域形成共振）；标普尚未超卖、目标位仍指向更低（7250…</p></div>
   </div><div class="bcard">
     <div class="b-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="ava" style="background:#4d8dff">T</span><span class="b-name">The Investor Channel</span><span class="b-tag en">EN</span>
       <span class="b-meta">观点日期 11.6</span><span class="badge bg-bad">偏空</span></div>
@@ -209,9 +218,9 @@
     <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">中期选举'蓝色浪潮'后半导体、数据中心与AI股大幅下挫，但博主认为选举只是'方便的借口'：真正压力来自融资成本上升、数据中心建设放缓以及企业IT预算从OpenAI/Anthropic等前沿实验室转向本地部署与开源模型。他…</p></div>
   </div><div class="bcard">
     <div class="b-h" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="ava" style="background:#06b6d4">X</span><span class="b-name">XTrader猫姐美股</span><span class="b-tag wk">周更</span>
-      <span class="b-meta">观点日期 11.10</span><span class="badge bg-ok">偏多</span></div>
-    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">她的框架是「先看半导体、再看大盘」：SOXL 52 这条程序性支撑是本周风险偏好的总开关，守住则大盘反弹有效，跌破则趋势反转证伪。</p><p class="b-fwd">猫姐盘中跟踪半导体三倍做多ETF SOXL：前一日会员复盘给出的关键点位是52，规则是「守住即可」；</p></div>
-    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">猫姐盘中跟踪半导体三倍做多ETF SOXL：前一日会员复盘给出的关键点位是52，规则是「守住即可」；今日SOXL直接开在52附近并防守成功，随后即开启反弹。她强调本周要盯SOXL的指标性象征意义——半导体能否走强，对整个…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.6 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.9 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.10 偏多</span></div>
+      <span class="b-meta">观点日期 11.11</span><span class="badge bg-pend">中性</span></div>
+    <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">她认为大盘的中枢在几个月里没有被改变过，周线级别的动能仍在原方向，所以这轮波动属于区间内反复而非趋势反转；</p><p class="b-fwd">关键线是唯一有效的判据——有效突破才算反转，突破不了就继续按震荡思维做，不加仓、不裸空。</p></div>
+    <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">猫姐用标普 SPY 收盘价校验系统点位：周三 SPY 收在 759.81，与她几个月前给出的关键点位只差 0.24 点，这已是第 N 次系统测算出的点位与收盘价或最高价差距仅在小数点后，说明算法相当贴近主力行为。她由此给…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-dn"></i>11.5 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.6 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.9 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.10 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.11 中性</span></div>
   </div>
-<footer>生成于 11.12 00:15 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.12 11:55 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>
