@@ -101,7 +101,7 @@
   .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
-  .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
+  .g-tk{display:inline-flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;min-width:26px;box-sizing:border-box;}
   /* 13F 环比标记（2026-11-11）：红涨绿跌 */
   .chg-up{color:var(--up);font-weight:800;}
   .chg-down{color:var(--down);font-weight:800;}
@@ -116,8 +116,8 @@
   .mq-open{display:flex;align-items:center;gap:10px;width:100%;margin:0 0 12px;border:none;border-radius:12px;padding:13px 16px;background:linear-gradient(135deg,#1e3a5f,#274b78);color:#fff;font-size:14px;font-weight:700;cursor:pointer;text-align:left;font-family:inherit;box-shadow:0 4px 14px rgba(30,58,95,.28);transition:.15s;}
   .mq-open:hover{filter:brightness(1.12);transform:translateY(-1px);}
   .mq-open b{font-size:15px;flex:none;}
-  .mq-open span{font-size:12px;font-weight:400;opacity:.85;flex:1;min-width:0;}
-  .mq-open .mq-go{flex:none;font-style:normal;font-size:16px;opacity:.8;}
+  .mq-open span{font-size:12px;font-weight:400;opacity:.85;flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .mq-open .mq-go{flex:none;font-style:normal;font-size:16px;opacity:.8;white-space:nowrap;}
   @media (prefers-color-scheme: dark){ .mq-open{background:linear-gradient(135deg,#24466e,#33507c);} .mq-head,.mq-user .mq-bub,#mqSend{background:linear-gradient(135deg,#24466e,#33507c);} }
   #mqPanel{position:fixed;right:12px;bottom:12px;width:min(430px,calc(100vw - 24px));height:min(640px,72vh);z-index:90;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.35);display:none;flex-direction:column;overflow:hidden;}
   #mqPanel.open{display:flex;}
@@ -194,7 +194,7 @@
       <div class="gr-r1">
         <span class="gr-idx">1</span>
         <span class="g-tk" title="苹果">AAPL</span><span class="gr-issuer"><span class="gr-cn">苹果</span><span class="gr-en">APPLE INC</span></span>
-        <span class="gr-wt">41.1%</span>
+        <span class="gr-wt">41.1 %</span>
       </div>
       <div class="gr-bar"><i style="width:41.1%"></i></div>
       <div class="gr-r2">
@@ -207,7 +207,7 @@
       <div class="gr-r1">
         <span class="gr-idx">2</span>
         <span class="g-tk" title="伯克希尔·哈撒韦B">BRK.B</span><span class="gr-issuer"><span class="gr-cn">伯克希尔·哈撒韦B</span><span class="gr-en">BERKSHIRE HATHAWAY INC DEL</span></span>
-        <span class="gr-wt">24.2%</span>
+        <span class="gr-wt">24.2 %</span>
       </div>
       <div class="gr-bar"><i style="width:24.2%"></i></div>
       <div class="gr-r2">
@@ -220,7 +220,7 @@
       <div class="gr-r1">
         <span class="gr-idx">3</span>
         <span class="g-tk" title="拼多多">PDD</span><span class="gr-issuer"><span class="gr-cn">拼多多</span><span class="gr-en">PDD HOLDINGS INC</span></span>
-        <span class="gr-wt">10%</span>
+        <span class="gr-wt">10 %</span>
       </div>
       <div class="gr-bar"><i style="width:10%"></i></div>
       <div class="gr-r2">
@@ -233,7 +233,7 @@
       <div class="gr-r1">
         <span class="gr-idx">4</span>
         <span class="g-tk" title="特斯拉">TSLA</span><span class="gr-issuer"><span class="gr-cn">特斯拉</span><span class="gr-en">TESLA INC</span></span>
-        <span class="gr-wt">7.4%</span>
+        <span class="gr-wt">7.4 %</span>
       </div>
       <div class="gr-bar"><i style="width:7.4%"></i></div>
       <div class="gr-r2">
@@ -246,7 +246,7 @@
       <div class="gr-r1">
         <span class="gr-idx">5</span>
         <span class="g-tk" title="英伟达">NVDA</span><span class="gr-issuer"><span class="gr-cn">英伟达</span><span class="gr-en">NVIDIA CORPORATION</span></span>
-        <span class="gr-wt">6.6%</span>
+        <span class="gr-wt">6.6 %</span>
       </div>
       <div class="gr-bar"><i style="width:6.6%"></i></div>
       <div class="gr-r2">
@@ -259,7 +259,7 @@
       <div class="gr-r1">
         <span class="gr-idx">6</span>
         <span class="g-tk" title="谷歌·A类">GOOGL</span><span class="gr-issuer"><span class="gr-cn">谷歌·A类</span><span class="gr-en">ALPHABET INC</span></span>
-        <span class="gr-wt">3.6%</span>
+        <span class="gr-wt">3.6 %</span>
       </div>
       <div class="gr-bar"><i style="width:3.6%"></i></div>
       <div class="gr-r2">
@@ -272,7 +272,7 @@
       <div class="gr-r1">
         <span class="gr-idx">7</span>
         <span class="g-tk" title="西方石油">OXY</span><span class="gr-issuer"><span class="gr-cn">西方石油</span><span class="gr-en">OCCIDENTAL PETE CORP</span></span>
-        <span class="gr-wt">2.6%</span>
+        <span class="gr-wt">2.6 %</span>
       </div>
       <div class="gr-bar"><i style="width:2.6%"></i></div>
       <div class="gr-r2">
@@ -285,7 +285,7 @@
       <div class="gr-r1">
         <span class="gr-idx">8</span>
         <span class="g-tk" title="微软">MSFT</span><span class="gr-issuer"><span class="gr-cn">微软</span><span class="gr-en">MICROSOFT CORP</span></span>
-        <span class="gr-wt">1.5%</span>
+        <span class="gr-wt">1.5 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -298,7 +298,7 @@
       <div class="gr-r1">
         <span class="gr-idx">9</span>
         <span class="g-tk" title="Credo 连接芯片">CRDO</span><span class="gr-issuer"><span class="gr-cn">Credo 连接芯片</span><span class="gr-en">CREDO TECHNOLOGY GROUP HOLDI</span></span>
-        <span class="gr-wt">1%</span>
+        <span class="gr-wt">1 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -311,7 +311,7 @@
       <div class="gr-r1">
         <span class="gr-idx">10</span>
         <span class="g-tk" title="联合健康">UNH</span><span class="gr-issuer"><span class="gr-cn">联合健康</span><span class="gr-en">UNITEDHEALTH GROUP INC</span></span>
-        <span class="gr-wt">0.9%</span>
+        <span class="gr-wt">0.9 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -324,7 +324,7 @@
       <div class="gr-r1">
         <span class="gr-idx">11</span>
         <span class="g-tk" title="迪士尼">DIS</span><span class="gr-issuer"><span class="gr-cn">迪士尼</span><span class="gr-en">DISNEY WALT CO</span></span>
-        <span class="gr-wt">0.9%</span>
+        <span class="gr-wt">0.9 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -337,7 +337,7 @@
       <div class="gr-r1">
         <span class="gr-idx">12</span>
         <span class="g-tk" title="阿里巴巴">BABA</span><span class="gr-issuer"><span class="gr-cn">阿里巴巴</span><span class="gr-en">ALIBABA GROUP HLDG LTD</span></span>
-        <span class="gr-wt">0.2%</span>
+        <span class="gr-wt">0.2 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -350,7 +350,7 @@
       <div class="gr-r1">
         <span class="gr-idx">13</span>
         <span class="g-tk" title="Circle 稳定币">CRCL</span><span class="gr-issuer"><span class="gr-cn">Circle 稳定币</span><span class="gr-en">CIRCLE INTERNET GROUP INC</span></span>
-        <span class="gr-wt">0.1%</span>
+        <span class="gr-wt">0.1 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -391,5 +391,5 @@
 
 <p class="g-note">ℹ️ 13F 仅覆盖其 H&amp;H International Investment 的美股部分；另有贵州茅台（A股，2026-09-28 再买 3 万股）、腾讯控股（港股）与泡泡玛特（港股，持股比例一度升至 7.7%）等非美股仓位，通过雪球「大道无形我有型」发言与港交所权益披露跟踪。</p>
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.13 11:48 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.13 17:40 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

@@ -101,7 +101,7 @@
   .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
-  .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
+  .g-tk{display:inline-flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;min-width:26px;box-sizing:border-box;}
   /* 13F 环比标记（2026-11-11）：红涨绿跌 */
   .chg-up{color:var(--up);font-weight:800;}
   .chg-down{color:var(--down);font-weight:800;}
@@ -116,8 +116,8 @@
   .mq-open{display:flex;align-items:center;gap:10px;width:100%;margin:0 0 12px;border:none;border-radius:12px;padding:13px 16px;background:linear-gradient(135deg,#1e3a5f,#274b78);color:#fff;font-size:14px;font-weight:700;cursor:pointer;text-align:left;font-family:inherit;box-shadow:0 4px 14px rgba(30,58,95,.28);transition:.15s;}
   .mq-open:hover{filter:brightness(1.12);transform:translateY(-1px);}
   .mq-open b{font-size:15px;flex:none;}
-  .mq-open span{font-size:12px;font-weight:400;opacity:.85;flex:1;min-width:0;}
-  .mq-open .mq-go{flex:none;font-style:normal;font-size:16px;opacity:.8;}
+  .mq-open span{font-size:12px;font-weight:400;opacity:.85;flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .mq-open .mq-go{flex:none;font-style:normal;font-size:16px;opacity:.8;white-space:nowrap;}
   @media (prefers-color-scheme: dark){ .mq-open{background:linear-gradient(135deg,#24466e,#33507c);} .mq-head,.mq-user .mq-bub,#mqSend{background:linear-gradient(135deg,#24466e,#33507c);} }
   #mqPanel{position:fixed;right:12px;bottom:12px;width:min(430px,calc(100vw - 24px));height:min(640px,72vh);z-index:90;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.35);display:none;flex-direction:column;overflow:hidden;}
   #mqPanel.open{display:flex;}
@@ -194,7 +194,7 @@
       <div class="gr-r1">
         <span class="gr-idx">1</span>
         <span class="g-tk" title="英伟达">NVDA</span><span class="gr-issuer"><span class="gr-cn">英伟达</span><span class="gr-en">NVIDIA CORPORATION</span></span>
-        <span class="gr-wt">9.2%</span>
+        <span class="gr-wt">9.2 %</span>
       </div>
       <div class="gr-bar"><i style="width:9.2%"></i></div>
       <div class="gr-r2">
@@ -207,7 +207,7 @@
       <div class="gr-r1">
         <span class="gr-idx">2</span>
         <span class="g-tk" title="苹果">AAPL</span><span class="gr-issuer"><span class="gr-cn">苹果</span><span class="gr-en">APPLE INC</span></span>
-        <span class="gr-wt">5.3%</span>
+        <span class="gr-wt">5.3 %</span>
       </div>
       <div class="gr-bar"><i style="width:5.3%"></i></div>
       <div class="gr-r2">
@@ -220,7 +220,7 @@
       <div class="gr-r1">
         <span class="gr-idx">3</span>
         <span class="g-tk" title="微软">MSFT</span><span class="gr-issuer"><span class="gr-cn">微软</span><span class="gr-en">MICROSOFT CORP</span></span>
-        <span class="gr-wt">4.5%</span>
+        <span class="gr-wt">4.5 %</span>
       </div>
       <div class="gr-bar"><i style="width:4.5%"></i></div>
       <div class="gr-r2">
@@ -233,7 +233,7 @@
       <div class="gr-r1">
         <span class="gr-idx">4</span>
         <span class="g-tk" title="谷歌·A类">GOOGL</span><span class="gr-issuer"><span class="gr-cn">谷歌·A类</span><span class="gr-en">ALPHABET INC</span></span>
-        <span class="gr-wt">3.7%</span>
+        <span class="gr-wt">3.7 %</span>
       </div>
       <div class="gr-bar"><i style="width:3.7%"></i></div>
       <div class="gr-r2">
@@ -246,7 +246,7 @@
       <div class="gr-r1">
         <span class="gr-idx">5</span>
         <span class="g-tk" title="亚马逊">AMZN</span><span class="gr-issuer"><span class="gr-cn">亚马逊</span><span class="gr-en">AMAZON COM INC</span></span>
-        <span class="gr-wt">3.5%</span>
+        <span class="gr-wt">3.5 %</span>
       </div>
       <div class="gr-bar"><i style="width:3.5%"></i></div>
       <div class="gr-r2">
@@ -259,7 +259,7 @@
       <div class="gr-r1">
         <span class="gr-idx">6</span>
         <span class="g-tk" title="Meta 平台">META</span><span class="gr-issuer"><span class="gr-cn">Meta 平台</span><span class="gr-en">META PLATFORMS INC</span></span>
-        <span class="gr-wt">3.2%</span>
+        <span class="gr-wt">3.2 %</span>
       </div>
       <div class="gr-bar"><i style="width:3.2%"></i></div>
       <div class="gr-r2">
@@ -272,7 +272,7 @@
       <div class="gr-r1">
         <span class="gr-idx">7</span>
         <span class="g-tk" title="博通">AVGO</span><span class="gr-issuer"><span class="gr-cn">博通</span><span class="gr-en">BROADCOM INC</span></span>
-        <span class="gr-wt">1.9%</span>
+        <span class="gr-wt">1.9 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -285,7 +285,7 @@
       <div class="gr-r1">
         <span class="gr-idx">8</span>
         <span class="g-tk" title="谷歌·A类">GOOGL</span><span class="gr-issuer"><span class="gr-cn">谷歌·A类</span><span class="gr-en">ALPHABET INC</span></span>
-        <span class="gr-wt">1.7%</span>
+        <span class="gr-wt">1.7 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -298,7 +298,7 @@
       <div class="gr-r1">
         <span class="gr-idx">9</span>
         <span class="g-tk" title="美光科技">MU</span><span class="gr-issuer"><span class="gr-cn">美光科技</span><span class="gr-en">MICRON TECHNOLOGY INC</span></span>
-        <span class="gr-wt">1.6%</span>
+        <span class="gr-wt">1.6 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -311,7 +311,7 @@
       <div class="gr-r1">
         <span class="gr-idx">10</span>
         <span class="g-tk" title="SpaceX(追踪载体)">SPCX</span><span class="gr-issuer"><span class="gr-cn">SpaceX(追踪载体)</span><span class="gr-en">SPACE EXPLORATION TECHN CORP</span></span>
-        <span class="gr-wt">1.6%</span>
+        <span class="gr-wt">1.6 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -324,7 +324,7 @@
       <div class="gr-r1">
         <span class="gr-idx">11</span>
         <span class="g-tk">LLY</span><span class="gr-issuer">ELI LILLY &amp; CO</span>
-        <span class="gr-wt">1.5%</span>
+        <span class="gr-wt">1.5 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -337,7 +337,7 @@
       <div class="gr-r1">
         <span class="gr-idx">12</span>
         <span class="g-tk" title="超威半导体">AMD</span><span class="gr-issuer"><span class="gr-cn">超威半导体</span><span class="gr-en">ADVANCED MICRO DEVICES INC</span></span>
-        <span class="gr-wt">1.4%</span>
+        <span class="gr-wt">1.4 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -350,7 +350,7 @@
       <div class="gr-r1">
         <span class="gr-idx">13</span>
         <span class="g-tk" title="台积电">TSM</span><span class="gr-issuer"><span class="gr-cn">台积电</span><span class="gr-en">TAIWAN SEMICONDUCTOR MANUFAC</span></span>
-        <span class="gr-wt">1.3%</span>
+        <span class="gr-wt">1.3 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -363,7 +363,7 @@
       <div class="gr-r1">
         <span class="gr-idx">14</span>
         <span class="g-tk">XOM</span><span class="gr-issuer">EXXONMOBIL HOLDINGS CORP</span>
-        <span class="gr-wt">1%</span>
+        <span class="gr-wt">1 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -376,7 +376,7 @@
       <div class="gr-r1">
         <span class="gr-idx">15</span>
         <span class="g-tk">V</span><span class="gr-issuer">VISA INC</span>
-        <span class="gr-wt">0.7%</span>
+        <span class="gr-wt">0.7 %</span>
       </div>
       <div class="gr-bar"><i style="width:2%"></i></div>
       <div class="gr-r2">
@@ -386,10 +386,10 @@
       </div>
       
     </div>
-<div class="g-drop">📉 <b>较上一报告期（2026-06-30）已调出前 15 大</b>：<b>GEV</b> GE VERNOVA INC（此前占比 0.8%）、GE AEROSPACE（此前占比 0.8%）</div>
+<div class="g-drop">📉 <b>较上一报告期（2026-06-30）已调出前 15 大</b>：<b>GEV</b> GE VERNOVA INC（此前占比 0.8 %）、GE AEROSPACE（此前占比 0.8 %）</div>
 <p class="g-note">另有其他 5757 个发行人合计占比约 43.6%（未逐项列出）。</p>
 
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.13 11:48 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.13 17:40 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>

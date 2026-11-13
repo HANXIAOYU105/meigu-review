@@ -101,7 +101,7 @@
   .gr-r2{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);}
   .gr-r2 b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;font-weight:700;}
   .gr-note{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border-soft);padding-top:6px;}
-  .g-tk{display:inline-flex;align-items:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;}
+  .g-tk{display:inline-flex;align-items:center;justify-content:center;font-family:ui-monospace,Menlo,monospace;font-weight:800;color:var(--link);background:var(--accent-soft);border-radius:6px;padding:2px 7px;margin-right:7px;font-size:11.5px;flex:none;cursor:help;min-width:26px;box-sizing:border-box;}
   /* 13F 环比标记（2026-11-11）：红涨绿跌 */
   .chg-up{color:var(--up);font-weight:800;}
   .chg-down{color:var(--down);font-weight:800;}
@@ -116,8 +116,8 @@
   .mq-open{display:flex;align-items:center;gap:10px;width:100%;margin:0 0 12px;border:none;border-radius:12px;padding:13px 16px;background:linear-gradient(135deg,#1e3a5f,#274b78);color:#fff;font-size:14px;font-weight:700;cursor:pointer;text-align:left;font-family:inherit;box-shadow:0 4px 14px rgba(30,58,95,.28);transition:.15s;}
   .mq-open:hover{filter:brightness(1.12);transform:translateY(-1px);}
   .mq-open b{font-size:15px;flex:none;}
-  .mq-open span{font-size:12px;font-weight:400;opacity:.85;flex:1;min-width:0;}
-  .mq-open .mq-go{flex:none;font-style:normal;font-size:16px;opacity:.8;}
+  .mq-open span{font-size:12px;font-weight:400;opacity:.85;flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .mq-open .mq-go{flex:none;font-style:normal;font-size:16px;opacity:.8;white-space:nowrap;}
   @media (prefers-color-scheme: dark){ .mq-open{background:linear-gradient(135deg,#24466e,#33507c);} .mq-head,.mq-user .mq-bub,#mqSend{background:linear-gradient(135deg,#24466e,#33507c);} }
   #mqPanel{position:fixed;right:12px;bottom:12px;width:min(430px,calc(100vw - 24px));height:min(640px,72vh);z-index:90;background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.35);display:none;flex-direction:column;overflow:hidden;}
   #mqPanel.open{display:flex;}
@@ -194,7 +194,7 @@
       <div class="gr-r1">
         <span class="gr-idx">1</span>
         <span class="g-tk" title="博通">AVGO</span><span class="gr-issuer"><span class="gr-cn">博通</span><span class="gr-en">博通 Broadcom</span></span>
-        <span class="gr-wt">28.1%</span>
+        <span class="gr-wt">28.1 %</span>
       </div>
       <div class="gr-bar"><i style="width:28.1%"></i></div>
       <div class="gr-r2">
@@ -207,7 +207,7 @@
       <div class="gr-r1">
         <span class="gr-idx">2</span>
         <span class="g-tk" title="英伟达">NVDA</span><span class="gr-issuer"><span class="gr-cn">英伟达</span><span class="gr-en">英伟达 NVIDIA</span></span>
-        <span class="gr-wt">26.7%</span>
+        <span class="gr-wt">26.7 %</span>
       </div>
       <div class="gr-bar"><i style="width:26.7%"></i></div>
       <div class="gr-r2">
@@ -220,7 +220,7 @@
       <div class="gr-r1">
         <span class="gr-idx">3</span>
         <span class="g-tk" title="Bloom 能源">BE</span><span class="gr-issuer"><span class="gr-cn">Bloom 能源</span><span class="gr-en">Bloom Energy（清洁电力）</span></span>
-        <span class="gr-wt">8.8%</span>
+        <span class="gr-wt">8.8 %</span>
       </div>
       <div class="gr-bar"><i style="width:8.8%"></i></div>
       <div class="gr-r2">
@@ -233,7 +233,7 @@
       <div class="gr-r1">
         <span class="gr-idx">4</span>
         <span class="g-tk" title="联博资管">AB</span><span class="gr-issuer"><span class="gr-cn">联博资管</span><span class="gr-en">AllianceBernstein</span></span>
-        <span class="gr-wt">7.9%</span>
+        <span class="gr-wt">7.9 %</span>
       </div>
       <div class="gr-bar"><i style="width:7.9%"></i></div>
       <div class="gr-r2">
@@ -246,7 +246,7 @@
       <div class="gr-r1">
         <span class="gr-idx">5</span>
         <span class="g-tk" title="英特尔">INTC</span><span class="gr-issuer"><span class="gr-cn">英特尔</span><span class="gr-en">英特尔 Intel</span></span>
-        <span class="gr-wt">4.8%</span>
+        <span class="gr-wt">4.8 %</span>
       </div>
       <div class="gr-bar"><i style="width:4.8%"></i></div>
       <div class="gr-r2">
@@ -259,7 +259,7 @@
       <div class="gr-r1">
         <span class="gr-idx">6</span>
         <span class="g-tk" title="派拓网络">PANW</span><span class="gr-issuer"><span class="gr-cn">派拓网络</span><span class="gr-en">Palo Alto Networks</span></span>
-        <span class="gr-wt">4.6%</span>
+        <span class="gr-wt">4.6 %</span>
       </div>
       <div class="gr-bar"><i style="width:4.6%"></i></div>
       <div class="gr-r2">
@@ -272,7 +272,7 @@
       <div class="gr-r1">
         <span class="gr-idx">7</span>
         <span class="g-tk" title="谷歌·C类">GOOG</span><span class="gr-issuer"><span class="gr-cn">谷歌·C类</span><span class="gr-en">谷歌 Alphabet</span></span>
-        <span class="gr-wt">4.4%</span>
+        <span class="gr-wt">4.4 %</span>
       </div>
       <div class="gr-bar"><i style="width:4.4%"></i></div>
       <div class="gr-r2">
@@ -287,5 +287,5 @@
 <p class="g-note">ℹ️ 金额为区间披露（非精确值），占比按追踪机构口径近似；交易多由配偶保罗·佩洛西账户操作。近 115 笔披露交易净买入约 7440 万美元，2026-01 曾把约 1200 万美元 AAPL/NVDA/AMZN/GOOGL 正股换成 2027 年 LEAP 期权。</p>
 
 <p class="g-note">⏳ 13F 为季度披露、滞后最长 45 天，仅反映美股长仓（不含空头 / 债券 / 期货）；本页由脚本每日自动核查 EDGAR，有新披露即更新。仅供学习研究，不构成投资建议。</p>
-<footer>生成于 11.13 11:48 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.13 17:40 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>
