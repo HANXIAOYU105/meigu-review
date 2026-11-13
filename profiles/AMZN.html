@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-gowcSnPCTEPl8tnB4OUtOYpTwNuhEscdVMm6dE9Mlb8='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · 亚马逊 (AMZN)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+    --warn:#b45309; --warn-bg:#fef3e2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+      --warn:#e8b06a; --warn-bg:#3a2a16;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  /* 关键指标卡（K线上方，2026-11-05）：紧凑网格，窄屏不溢出 */
+  .fm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:5px;}
+  .fm{background:var(--flat-bg);border-radius:7px;padding:5px 7px;min-width:0;overflow:hidden;}
+  .fm-wide{grid-column:1 / -1;}
+  .fm-l{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .fm-v{font-size:12.5px;font-weight:700;color:var(--text-strong);margin-top:1px;font-variant-numeric:tabular-nums;overflow-wrap:break-word;word-break:break-word;}
+  .fm-v .rng{font-size:11px;letter-spacing:-0.3px;white-space:nowrap;}
+  .fm-chg{font-size:11px;font-weight:600;}
+  @media (max-width:480px){ .fm-grid{grid-template-columns:repeat(4,1fr);} }
+  .fm-up{color:var(--up-fg);}
+  .fm-down{color:var(--down-fg);}
+  /* Gamma 市场状态（2026-11-11）：正 gamma=压制波动（蓝），负 gamma=放大波动（橙警示） */
+  .fm-pos{color:var(--link);}
+  .fm-neg{color:var(--warn);}
+  /* 期权墙区块（2026-11-06）：口径说明小字 + 到期分档 GEX 红绿 */
+  .ow-note{font-size:11.5px;color:var(--muted-2);margin-top:8px;line-height:1.5;}
+  .ow-gex-up{color:var(--up-fg);font-weight:700;}
+  .ow-gex-dn{color:var(--down-fg);font-weight:700;}
+  /* 期权墙到期分档选项卡（2026-11-06）：纯 CSS radio 切换，零 JS */
+  .ow-tabs{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:10px;}
+  .ow-tabs input{display:none;}
+  .ow-tabs label{cursor:pointer;padding:3px 12px;border-radius:14px;font-size:12px;background:var(--flat-bg);color:var(--text);user-select:none;}
+  .ow-tabs input:checked+label{background:var(--accent);color:#fff;font-weight:600;}
+  .ow-pane{display:none;flex-basis:100%;min-width:0;}
+  #owt0:checked~.p0,#owt1:checked~.p1,#owt2:checked~.p2,#owt3:checked~.p3,#owt4:checked~.p4,#owt5:checked~.p5{display:block;}
+  .ow-sum{font-size:12px;color:var(--muted);margin:4px 0 6px;}
+  .ow-pane p.empty{margin:6px 0;}
+  /* 折叠区（2026-11-06）：关键指标/期权墙次要内容默认收起，原生 details 零 JS */
+  details.fold{margin-top:8px;}
+  details.fold>summary{list-style:none;cursor:pointer;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;user-select:none;padding:4px 2px;border-radius:6px;}
+  details.fold>summary::-webkit-details-marker{display:none;}
+  details.fold>summary::before{content:'▸';display:inline-block;font-size:11px;color:var(--muted-2);transition:transform .15s;}
+  details.fold[open]>summary::before{transform:rotate(90deg);}
+  details.fold[open]>summary{margin-bottom:8px;}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">个股档案 · AMZN</span><span class="rt"></span></nav>
+<div class="hero">
+  <p class="nm">亚马逊</p>
+  <div class="tk">AMZN · 电商云计算</div>
+  <div class="meta">近5日 0 条观点（近5日无提及，展示历史） · 历史 10/27~11/6 · 7 位博主</div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">📊 关键指标 <span class="asof">截至美东 2026-11-12 收盘 · Yahoo Finance</span></div>
+  <div class="fm-grid"><div class="fm"><div class="fm-l">最新收盘</div><div class="fm-v">267.44 <span class="fm-chg fm-up">↑+0.48%</span></div></div><div class="fm"><div class="fm-l">总市值</div><div class="fm-v">2.89万亿</div></div><div class="fm"><div class="fm-l">市盈率 TTM</div><div class="fm-v">21.6</div></div><div class="fm"><div class="fm-l">预期市盈率</div><div class="fm-v">24.5</div></div></div>
+  <details class="fold"><summary>展开其余 7 项指标</summary><div class="fm-grid"><div class="fm"><div class="fm-l">市净率</div><div class="fm-v">4.71</div></div><div class="fm"><div class="fm-l">股息率 TTM</div><div class="fm-v">0%</div></div><div class="fm"><div class="fm-l">Beta 波动</div><div class="fm-v">1.50</div></div><div class="fm"><div class="fm-l">营收 TTM</div><div class="fm-v">7975亿</div></div><div class="fm"><div class="fm-l">毛利率</div><div class="fm-v">51.4%</div></div><div class="fm"><div class="fm-l">净资产收益率</div><div class="fm-v">27.4%</div></div><div class="fm"><div class="fm-l">52周区间</div><div class="fm-v"><span class="rng">196~287.2</span></div></div></div></details>
+</div>
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势 <span class="asof">AMZN · 最近 60 个交易日 · 红涨绿跌</span></div>
+      <svg viewBox="0 0 640 220" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AMZN 日K"><line x1="8" y1="12.0" x2="600" y2="12.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="15.0" font-size="9" fill="rgba(140,150,165,0.9)">277</text><line x1="8" y1="58.5" x2="600" y2="58.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="61.5" font-size="9" fill="rgba(140,150,165,0.9)">265</text><line x1="8" y1="105.0" x2="600" y2="105.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="108.0" font-size="9" fill="rgba(140,150,165,0.9)">252</text><line x1="8" y1="151.5" x2="600" y2="151.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="154.5" font-size="9" fill="rgba(140,150,165,0.9)">240</text><line x1="8" y1="198.0" x2="600" y2="198.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="201.0" font-size="9" fill="rgba(140,150,165,0.9)">228</text><line x1="12.9" y1="62.0" x2="12.9" y2="78.1" stroke="#1fbf75" stroke-width="1"/><rect x="10.0" y="64.5" width="5.9" height="11.4" fill="#1fbf75"/><line x1="22.8" y1="72.3" x2="22.8" y2="87.4" stroke="#1fbf75" stroke-width="1"/><rect x="19.8" y="73.6" width="5.9" height="7.9" fill="#1fbf75"/><line x1="32.7" y1="63.9" x2="32.7" y2="79.9" stroke="#e5484d" stroke-width="1"/><rect x="29.7" y="68.6" width="5.9" height="9.3" fill="#e5484d"/><line x1="42.5" y1="61.8" x2="42.5" y2="77.0" stroke="#1fbf75" stroke-width="1"/><rect x="39.6" y="66.9" width="5.9" height="5.4" fill="#1fbf75"/><line x1="52.4" y1="68.7" x2="52.4" y2="82.9" stroke="#1fbf75" stroke-width="1"/><rect x="49.4" y="71.6" width="5.9" height="3.7" fill="#1fbf75"/><line x1="62.3" y1="77.6" x2="62.3" y2="95.0" stroke="#1fbf75" stroke-width="1"/><rect x="59.3" y="79.2" width="5.9" height="11.1" fill="#1fbf75"/><line x1="72.1" y1="48.0" x2="72.1" y2="84.7" stroke="#e5484d" stroke-width="1"/><rect x="69.2" y="52.3" width="5.9" height="30.4" fill="#e5484d"/><line x1="82.0" y1="60.0" x2="82.0" y2="87.1" stroke="#1fbf75" stroke-width="1"/><rect x="79.0" y="62.0" width="5.9" height="15.2" fill="#1fbf75"/><line x1="91.9" y1="92.0" x2="91.9" y2="106.6" stroke="#e5484d" stroke-width="1"/><rect x="88.9" y="95.4" width="5.9" height="1.0" fill="#e5484d"/><line x1="101.7" y1="90.4" x2="101.7" y2="101.1" stroke="#e5484d" stroke-width="1"/><rect x="98.8" y="95.1" width="5.9" height="2.7" fill="#e5484d"/><line x1="111.6" y1="78.2" x2="111.6" y2="91.3" stroke="#e5484d" stroke-width="1"/><rect x="108.6" y="80.5" width="5.9" height="10.1" fill="#e5484d"/><line x1="121.5" y1="72.2" x2="121.5" y2="94.0" stroke="#1fbf75" stroke-width="1"/><rect x="118.5" y="79.8" width="5.9" height="2.1" fill="#1fbf75"/><line x1="131.3" y1="83.9" x2="131.3" y2="96.0" stroke="#e5484d" stroke-width="1"/><rect x="128.4" y="87.7" width="5.9" height="1.1" fill="#e5484d"/><line x1="141.2" y1="96.2" x2="141.2" y2="111.4" stroke="#1fbf75" stroke-width="1"/><rect x="138.2" y="102.1" width="5.9" height="2.7" fill="#1fbf75"/><line x1="151.1" y1="102.0" x2="151.1" y2="115.4" stroke="#e5484d" stroke-width="1"/><rect x="148.1" y="106.7" width="5.9" height="6.7" fill="#e5484d"/><line x1="160.9" y1="85.4" x2="160.9" y2="102.0" stroke="#e5484d" stroke-width="1"/><rect x="158.0" y="88.4" width="5.9" height="10.1" fill="#e5484d"/><line x1="170.8" y1="91.5" x2="170.8" y2="111.0" stroke="#e5484d" stroke-width="1"/><rect x="167.8" y="100.5" width="5.9" height="1.5" fill="#e5484d"/><line x1="180.7" y1="101.6" x2="180.7" y2="124.2" stroke="#1fbf75" stroke-width="1"/><rect x="177.7" y="105.4" width="5.9" height="14.3" fill="#1fbf75"/><line x1="190.5" y1="116.6" x2="190.5" y2="135.2" stroke="#1fbf75" stroke-width="1"/><rect x="187.6" y="120.9" width="5.9" height="8.0" fill="#1fbf75"/><line x1="200.4" y1="103.6" x2="200.4" y2="116.6" stroke="#e5484d" stroke-width="1"/><rect x="197.4" y="109.3" width="5.9" height="1.0" fill="#e5484d"/><line x1="210.3" y1="93.5" x2="210.3" y2="106.8" stroke="#e5484d" stroke-width="1"/><rect x="207.3" y="99.9" width="5.9" height="3.0" fill="#e5484d"/><line x1="220.1" y1="78.3" x2="220.1" y2="100.3" stroke="#e5484d" stroke-width="1"/><rect x="217.2" y="82.2" width="5.9" height="7.7" fill="#e5484d"/><line x1="230.0" y1="80.1" x2="230.0" y2="99.6" stroke="#1fbf75" stroke-width="1"/><rect x="227.0" y="94.7" width="5.9" height="1.0" fill="#1fbf75"/><line x1="239.9" y1="98.9" x2="239.9" y2="122.2" stroke="#1fbf75" stroke-width="1"/><rect x="236.9" y="102.6" width="5.9" height="14.0" fill="#1fbf75"/><line x1="249.7" y1="112.2" x2="249.7" y2="130.3" stroke="#e5484d" stroke-width="1"/><rect x="246.8" y="116.1" width="5.9" height="12.6" fill="#e5484d"/><line x1="259.6" y1="110.5" x2="259.6" y2="124.4" stroke="#e5484d" stroke-width="1"/><rect x="256.6" y="115.0" width="5.9" height="4.2" fill="#e5484d"/><line x1="269.5" y1="122.2" x2="269.5" y2="133.5" stroke="#1fbf75" stroke-width="1"/><rect x="266.5" y="126.4" width="5.9" height="1.8" fill="#1fbf75"/><line x1="279.3" y1="118.1" x2="279.3" y2="132.0" stroke="#1fbf75" stroke-width="1"/><rect x="276.4" y="126.1" width="5.9" height="1.0" fill="#1fbf75"/><line x1="289.2" y1="104.7" x2="289.2" y2="128.5" stroke="#e5484d" stroke-width="1"/><rect x="286.2" y="117.0" width="5.9" height="8.8" fill="#e5484d"/><line x1="299.1" y1="106.9" x2="299.1" y2="128.3" stroke="#1fbf75" stroke-width="1"/><rect x="296.1" y="107.8" width="5.9" height="12.7" fill="#1fbf75"/><line x1="308.9" y1="100.5" x2="308.9" y2="113.7" stroke="#e5484d" stroke-width="1"/><rect x="306.0" y="108.1" width="5.9" height="1.0" fill="#e5484d"/><line x1="318.8" y1="96.8" x2="318.8" y2="113.1" stroke="#e5484d" stroke-width="1"/><rect x="315.8" y="108.6" width="5.9" height="4.5" fill="#e5484d"/><line x1="328.7" y1="88.8" x2="328.7" y2="109.8" stroke="#e5484d" stroke-width="1"/><rect x="325.7" y="90.2" width="5.9" height="10.8" fill="#e5484d"/><line x1="338.5" y1="75.8" x2="338.5" y2="101.9" stroke="#e5484d" stroke-width="1"/><rect x="335.6" y="76.6" width="5.9" height="21.3" fill="#e5484d"/><line x1="348.4" y1="76.9" x2="348.4" y2="99.6" stroke="#1fbf75" stroke-width="1"/><rect x="345.4" y="77.3" width="5.9" height="21.3" fill="#1fbf75"/><line x1="358.3" y1="65.9" x2="358.3" y2="91.3" stroke="#e5484d" stroke-width="1"/><rect x="355.3" y="67.2" width="5.9" height="22.2" fill="#e5484d"/><line x1="368.1" y1="62.5" x2="368.1" y2="79.1" stroke="#1fbf75" stroke-width="1"/><rect x="365.2" y="67.0" width="5.9" height="11.1" fill="#1fbf75"/><line x1="378.0" y1="65.7" x2="378.0" y2="82.3" stroke="#1fbf75" stroke-width="1"/><rect x="375.0" y="78.4" width="5.9" height="3.2" fill="#1fbf75"/><line x1="387.9" y1="77.7" x2="387.9" y2="103.8" stroke="#1fbf75" stroke-width="1"/><rect x="384.9" y="83.8" width="5.9" height="14.7" fill="#1fbf75"/><line x1="397.7" y1="92.8" x2="397.7" y2="118.9" stroke="#e5484d" stroke-width="1"/><rect x="394.8" y="96.0" width="5.9" height="14.5" fill="#e5484d"/><line x1="407.6" y1="93.1" x2="407.6" y2="119.0" stroke="#1fbf75" stroke-width="1"/><rect x="404.6" y="94.7" width="5.9" height="19.1" fill="#1fbf75"/><line x1="417.5" y1="62.4" x2="417.5" y2="94.3" stroke="#e5484d" stroke-width="1"/><rect x="414.5" y="67.2" width="5.9" height="27.0" fill="#e5484d"/><line x1="427.3" y1="56.3" x2="427.3" y2="74.8" stroke="#1fbf75" stroke-width="1"/><rect x="424.4" y="61.1" width="5.9" height="5.4" fill="#1fbf75"/><line x1="437.2" y1="60.0" x2="437.2" y2="79.0" stroke="#1fbf75" stroke-width="1"/><rect x="434.2" y="66.2" width="5.9" height="1.3" fill="#1fbf75"/><line x1="447.1" y1="82.3" x2="447.1" y2="121.3" stroke="#1fbf75" stroke-width="1"/><rect x="444.1" y="83.2" width="5.9" height="29.2" fill="#1fbf75"/><line x1="456.9" y1="113.8" x2="456.9" y2="127.1" stroke="#1fbf75" stroke-width="1"/><rect x="454.0" y="118.1" width="5.9" height="3.2" fill="#1fbf75"/><line x1="466.8" y1="110.8" x2="466.8" y2="124.2" stroke="#1fbf75" stroke-width="1"/><rect x="463.8" y="115.8" width="5.9" height="1.4" fill="#1fbf75"/><line x1="476.7" y1="96.3" x2="476.7" y2="118.6" stroke="#e5484d" stroke-width="1"/><rect x="473.7" y="102.2" width="5.9" height="10.0" fill="#e5484d"/><line x1="486.5" y1="93.7" x2="486.5" y2="106.4" stroke="#e5484d" stroke-width="1"/><rect x="483.6" y="96.6" width="5.9" height="6.0" fill="#e5484d"/><line x1="496.4" y1="117.0" x2="496.4" y2="146.6" stroke="#1fbf75" stroke-width="1"/><rect x="493.4" y="125.2" width="5.9" height="11.8" fill="#1fbf75"/><line x1="506.3" y1="145.5" x2="506.3" y2="191.1" stroke="#e5484d" stroke-width="1"/><rect x="503.3" y="149.9" width="5.9" height="29.3" fill="#e5484d"/><line x1="516.1" y1="99.5" x2="516.1" y2="142.7" stroke="#e5484d" stroke-width="1"/><rect x="513.2" y="130.2" width="5.9" height="9.8" fill="#e5484d"/><line x1="526.0" y1="104.6" x2="526.0" y2="129.2" stroke="#e5484d" stroke-width="1"/><rect x="523.0" y="111.2" width="5.9" height="7.9" fill="#e5484d"/><line x1="535.9" y1="33.3" x2="535.9" y2="61.9" stroke="#e5484d" stroke-width="1"/><rect x="532.9" y="53.8" width="5.9" height="4.5" fill="#e5484d"/><line x1="545.7" y1="26.8" x2="545.7" y2="105.3" stroke="#1fbf75" stroke-width="1"/><rect x="542.8" y="33.5" width="5.9" height="42.0" fill="#1fbf75"/><line x1="555.6" y1="60.7" x2="555.6" y2="81.9" stroke="#1fbf75" stroke-width="1"/><rect x="552.6" y="77.1" width="5.9" height="1.9" fill="#1fbf75"/><line x1="565.5" y1="18.9" x2="565.5" y2="50.5" stroke="#1fbf75" stroke-width="1"/><rect x="562.5" y="41.4" width="5.9" height="9.0" fill="#1fbf75"/><line x1="575.3" y1="28.1" x2="575.3" y2="53.3" stroke="#e5484d" stroke-width="1"/><rect x="572.4" y="35.6" width="5.9" height="17.5" fill="#e5484d"/><line x1="585.2" y1="20.6" x2="585.2" y2="55.3" stroke="#1fbf75" stroke-width="1"/><rect x="582.2" y="25.7" width="5.9" height="27.5" fill="#1fbf75"/><line x1="595.1" y1="25.4" x2="595.1" y2="49.4" stroke="#1fbf75" stroke-width="1"/><rect x="592.1" y="46.7" width="5.9" height="1.8" fill="#1fbf75"/><polyline points="12.9,75.9 22.8,81.5 32.7,68.6 42.5,72.4 52.4,75.3 62.3,90.4 72.1,52.3 82.0,77.2 91.9,95.4 101.7,95.1 111.6,80.5 121.5,81.9 131.3,87.7 141.2,104.8 151.1,106.7 160.9,88.4 170.8,100.5 180.7,119.7 190.5,128.9 200.4,109.3 210.3,99.9 220.1,82.2 230.0,95.1 239.9,116.5 249.7,116.1 259.6,115.0 269.5,128.2 279.3,126.3 289.2,117.0 299.1,120.4 308.9,108.1 318.8,108.6 328.7,90.2 338.5,76.6 348.4,98.6 358.3,67.2 368.1,78.1 378.0,81.7 387.9,98.5 397.7,96.0 407.6,113.8 417.5,67.2 427.3,66.5 437.2,67.5 447.1,112.4 456.9,121.3 466.8,117.2 476.7,102.2 486.5,96.6 496.4,137.1 506.3,149.9 516.1,130.2 526.0,111.2 535.9,53.8 545.7,75.6 555.6,79.0 565.5,50.4 575.3,35.6 585.2,53.2 595.1,48.5" fill="none" stroke="#4d8dff" stroke-width="1.4" stroke-opacity="0.85"/><text x="12.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">8/20</text><text x="111.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/3</text><text x="210.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">9/18</text><text x="308.9" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/2</text><text x="407.6" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/16</text><text x="506.3" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">10/30</text><text x="595.1" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/12</text></svg>
+    </div>
+
+<div class="sec">
+  <div class="sec-h">🧱 期权墙 · Gamma 敞口 <span class="asof">截至美东 2026-11-11 收盘 · CBOE 延迟行情（约15分钟） · 每日更新 · OI 覆盖率 84%</span></div>
+  <div class="fm-grid"><div class="fm" title="看涨未平仓合约（OI）最大的行权价，常形成上方阻力/磁吸位"><div class="fm-l">Call 墙</div><div class="fm-v fm-up">275</div></div><div class="fm" title="看跌未平仓合约（OI）最大的行权价，常形成下方支撑/磁吸位"><div class="fm-l">Put 墙</div><div class="fm-v fm-down">250</div></div><div class="fm" title="每 1% 波动的做市商 gamma 对冲敞口：正值抑制波动，负值放大波动"><div class="fm-l">Gamma 敞口</div><div class="fm-v fm-up">8.2亿$</div></div><div class="fm" title="净 gamma 敞口由负转正的价位（用 CBOE 的 IV 按 Black-Scholes 重算现价 ±20% 各价位的敞口曲线）；现价升穿该位 → 转入正 gamma 区"><div class="fm-l">翻转位</div><div class="fm-v ">245.68</div></div><div class="fm" title="现价在 Gamma 翻转位上方：做市商对冲方向抑制波动，行情倾向区间震荡、回落常有承接"><div class="fm-l">市场状态</div><div class="fm-v fm-pos">正γ区</div></div><div class="fm" title="到期时让期权买方总赔付最小的价格（最大痛点）"><div class="fm-l">Max Pain</div><div class="fm-v ">265</div></div></div>
+  <div class="ow-tabs"><input type="radio" name="owtab" id="owt0" checked><label for="owt0">总览</label><input type="radio" name="owtab" id="owt1"><label for="owt1">≤3日</label><input type="radio" name="owtab" id="owt2"><label for="owt2">4~10日</label><input type="radio" name="owtab" id="owt3"><label for="owt3">11~30日</label><input type="radio" name="owtab" id="owt4"><label for="owt4">31~60日</label><input type="radio" name="owtab" id="owt5"><label for="owt5">60日+</label><div class="ow-pane p0"><div class="ow-sum">总览 · OI 合计 474.1万手 · 净 GEX 8.2亿$ · 翻转位 245.68（现价上方）</div><svg viewBox="0 0 680 302" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="亚马逊 期权墙 总览"><line x1="10" y1="140" x2="670" y2="140" stroke="rgba(128,128,128,0.16)" stroke-width="1"/><text x="10" y="15" font-size="9.5" fill="rgba(140,150,165,0.95)">▲ Call OI 峰值 15.8万</text><rect x="2.0" y="118.1" width="16.0" height="21.9" fill="#e5484d" fill-opacity="0.82"/><rect x="2.0" y="148.0" width="16.0" height="54.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="28.4" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="28.4" y="148.0" width="16.0" height="4.5" fill="#1fbf75" fill-opacity="0.82"/><rect x="54.8" y="111.1" width="16.0" height="28.9" fill="#e5484d" fill-opacity="0.82"/><rect x="54.8" y="148.0" width="16.0" height="90.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="81.2" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="81.2" y="148.0" width="16.0" height="2.9" fill="#1fbf75" fill-opacity="0.82"/><rect x="107.6" y="114.1" width="16.0" height="25.9" fill="#e5484d" fill-opacity="0.82"/><rect x="107.6" y="148.0" width="16.0" height="55.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="134.0" y="138.0" width="16.0" height="2.0" fill="#e5484d" fill-opacity="0.82"/><rect x="134.0" y="148.0" width="16.0" height="7.6" fill="#1fbf75" fill-opacity="0.82"/><rect x="160.4" y="43.7" width="16.0" height="96.3" fill="#e5484d" fill-opacity="0.82"/><rect x="160.4" y="148.0" width="16.0" height="102.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="186.8" y="137.7" width="16.0" height="2.3" fill="#e5484d" fill-opacity="0.82"/><rect x="186.8" y="148.0" width="16.0" height="4.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="213.2" y="106.6" width="16.0" height="33.4" fill="#e5484d" fill-opacity="0.82"/><rect x="213.2" y="148.0" width="16.0" height="43.5" fill="#1fbf75" fill-opacity="0.82"/><rect x="239.6" y="136.5" width="16.0" height="3.5" fill="#e5484d" fill-opacity="0.82"/><rect x="239.6" y="148.0" width="16.0" height="2.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="266.0" y="73.5" width="16.0" height="66.5" fill="#e5484d" fill-opacity="0.82"/><rect x="266.0" y="148.0" width="16.0" height="72.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="292.4" y="137.3" width="16.0" height="2.7" fill="#e5484d" fill-opacity="0.82"/><rect x="292.4" y="148.0" width="16.0" height="6.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="318.8" y="86.7" width="16.0" height="53.3" fill="#e5484d" fill-opacity="0.82"/><rect x="318.8" y="148.0" width="16.0" height="29.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="345.2" y="133.6" width="16.0" height="6.4" fill="#e5484d" fill-opacity="0.82"/><rect x="345.2" y="148.0" width="16.0" height="2.5" fill="#1fbf75" fill-opacity="0.82"/><rect x="371.6" y="51.5" width="16.0" height="88.5" fill="#e5484d" fill-opacity="0.82"/><rect x="371.6" y="148.0" width="16.0" height="53.9" fill="#1fbf75" fill-opacity="0.82"/><rect x="398.0" y="133.6" width="16.0" height="6.4" fill="#e5484d" fill-opacity="0.82"/><rect x="398.0" y="148.0" width="16.0" height="2.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="424.4" y="28.0" width="16.0" height="112.0" fill="#e5484d" fill-opacity="0.82"/><rect x="424.4" y="148.0" width="16.0" height="12.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="450.8" y="135.5" width="16.0" height="4.5" fill="#e5484d" fill-opacity="0.82"/><rect x="450.8" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="477.2" y="43.8" width="16.0" height="96.2" fill="#e5484d" fill-opacity="0.82"/><rect x="477.2" y="148.0" width="16.0" height="28.6" fill="#1fbf75" fill-opacity="0.82"/><rect x="503.6" y="133.6" width="16.0" height="6.4" fill="#e5484d" fill-opacity="0.82"/><rect x="503.6" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="530.0" y="71.3" width="16.0" height="68.7" fill="#e5484d" fill-opacity="0.82"/><rect x="530.0" y="148.0" width="16.0" height="6.9" fill="#1fbf75" fill-opacity="0.82"/><rect x="556.4" y="138.4" width="16.0" height="1.6" fill="#e5484d" fill-opacity="0.82"/><rect x="556.4" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="582.8" y="57.3" width="16.0" height="82.7" fill="#e5484d" fill-opacity="0.82"/><rect x="582.8" y="148.0" width="16.0" height="12.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="609.2" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="609.2" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="635.6" y="88.4" width="16.0" height="51.6" fill="#e5484d" fill-opacity="0.82"/><rect x="635.6" y="148.0" width="16.0" height="2.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="662.0" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><text x="432.4" y="15" font-size="10.5" font-weight="700" fill="#e5484d" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▲Call墙 275</text><line x1="343.3" y1="24" x2="343.3" y2="256" stroke="#4d8dff" stroke-width="1.4" stroke-dasharray="4 3"/><text x="343.3" y="296" font-size="10.5" font-weight="700" fill="#4d8dff" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">现价 266.56</text><text x="10.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">235</text><text x="89.2" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">242.5</text><text x="168.4" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">250</text><text x="247.6" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">257.5</text><text x="326.8" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">265</text><text x="406.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">272.5</text><text x="485.2" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">280</text><text x="564.4" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">287.5</text><text x="643.6" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">295</text><text x="670.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">297.5</text><text x="168.4" y="283" font-size="10.5" font-weight="700" fill="#1fbf75" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▼Put墙 250</text></svg></div><div class="ow-pane p1"><div class="ow-sum">≤3日 · OI 合计 19.4万手 · 净 GEX 1.3亿$ · Call墙 270 / Put墙 250 · 翻转位 254.7（现价上方）</div><svg viewBox="0 0 680 302" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="亚马逊 期权墙 ≤3日"><line x1="10" y1="140" x2="670" y2="140" stroke="rgba(128,128,128,0.16)" stroke-width="1"/><text x="10" y="15" font-size="9.5" fill="rgba(140,150,165,0.95)">▲ Call OI 峰值 1.5万</text><rect x="2.0" y="138.6" width="16.0" height="1.4" fill="#e5484d" fill-opacity="0.82"/><rect x="2.0" y="148.0" width="16.0" height="36.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="28.4" y="136.9" width="16.0" height="3.1" fill="#e5484d" fill-opacity="0.82"/><rect x="28.4" y="148.0" width="16.0" height="22.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="54.8" y="131.7" width="16.0" height="8.3" fill="#e5484d" fill-opacity="0.82"/><rect x="54.8" y="148.0" width="16.0" height="29.5" fill="#1fbf75" fill-opacity="0.82"/><rect x="81.2" y="138.9" width="16.0" height="1.1" fill="#e5484d" fill-opacity="0.82"/><rect x="81.2" y="148.0" width="16.0" height="17.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="107.6" y="133.8" width="16.0" height="6.2" fill="#e5484d" fill-opacity="0.82"/><rect x="107.6" y="148.0" width="16.0" height="38.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="134.0" y="131.6" width="16.0" height="8.4" fill="#e5484d" fill-opacity="0.82"/><rect x="134.0" y="148.0" width="16.0" height="33.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="160.4" y="127.9" width="16.0" height="12.1" fill="#e5484d" fill-opacity="0.82"/><rect x="160.4" y="148.0" width="16.0" height="102.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="186.8" y="129.1" width="16.0" height="10.9" fill="#e5484d" fill-opacity="0.82"/><rect x="186.8" y="148.0" width="16.0" height="29.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="213.2" y="123.1" width="16.0" height="16.9" fill="#e5484d" fill-opacity="0.82"/><rect x="213.2" y="148.0" width="16.0" height="44.6" fill="#1fbf75" fill-opacity="0.82"/><rect x="239.6" y="130.3" width="16.0" height="9.7" fill="#e5484d" fill-opacity="0.82"/><rect x="239.6" y="148.0" width="16.0" height="16.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="266.0" y="51.1" width="16.0" height="88.9" fill="#e5484d" fill-opacity="0.82"/><rect x="266.0" y="148.0" width="16.0" height="62.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="292.4" y="127.4" width="16.0" height="12.6" fill="#e5484d" fill-opacity="0.82"/><rect x="292.4" y="148.0" width="16.0" height="19.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="318.8" y="66.5" width="16.0" height="73.5" fill="#e5484d" fill-opacity="0.82"/><rect x="318.8" y="148.0" width="16.0" height="26.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="345.2" y="88.7" width="16.0" height="51.3" fill="#e5484d" fill-opacity="0.82"/><rect x="345.2" y="148.0" width="16.0" height="15.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="371.6" y="28.0" width="16.0" height="112.0" fill="#e5484d" fill-opacity="0.82"/><rect x="371.6" y="148.0" width="16.0" height="67.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="398.0" y="104.5" width="16.0" height="35.5" fill="#e5484d" fill-opacity="0.82"/><rect x="398.0" y="148.0" width="16.0" height="19.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="424.4" y="95.5" width="16.0" height="44.5" fill="#e5484d" fill-opacity="0.82"/><rect x="424.4" y="148.0" width="16.0" height="4.5" fill="#1fbf75" fill-opacity="0.82"/><rect x="450.8" y="109.9" width="16.0" height="30.1" fill="#e5484d" fill-opacity="0.82"/><rect x="450.8" y="148.0" width="16.0" height="1.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="477.2" y="70.2" width="16.0" height="69.8" fill="#e5484d" fill-opacity="0.82"/><rect x="477.2" y="148.0" width="16.0" height="1.9" fill="#1fbf75" fill-opacity="0.82"/><rect x="503.6" y="84.2" width="16.0" height="55.8" fill="#e5484d" fill-opacity="0.82"/><rect x="503.6" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="530.0" y="73.2" width="16.0" height="66.8" fill="#e5484d" fill-opacity="0.82"/><rect x="530.0" y="148.0" width="16.0" height="1.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="556.4" y="129.8" width="16.0" height="10.2" fill="#e5484d" fill-opacity="0.82"/><rect x="556.4" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="582.8" y="112.6" width="16.0" height="27.4" fill="#e5484d" fill-opacity="0.82"/><rect x="582.8" y="148.0" width="16.0" height="1.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="609.2" y="132.9" width="16.0" height="7.1" fill="#e5484d" fill-opacity="0.82"/><rect x="609.2" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="635.6" y="89.9" width="16.0" height="50.1" fill="#e5484d" fill-opacity="0.82"/><rect x="662.0" y="133.2" width="16.0" height="6.8" fill="#e5484d" fill-opacity="0.82"/><text x="379.6" y="15" font-size="10.5" font-weight="700" fill="#e5484d" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▲Call墙 270</text><line x1="343.3" y1="24" x2="343.3" y2="256" stroke="#4d8dff" stroke-width="1.4" stroke-dasharray="4 3"/><text x="343.3" y="296" font-size="10.5" font-weight="700" fill="#4d8dff" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">现价 266.56</text><text x="10.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">235</text><text x="89.2" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">242.5</text><text x="168.4" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">250</text><text x="247.6" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">257.5</text><text x="326.8" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">265</text><text x="406.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">272.5</text><text x="485.2" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">280</text><text x="564.4" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">287.5</text><text x="643.6" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">295</text><text x="670.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">297.5</text><text x="168.4" y="283" font-size="10.5" font-weight="700" fill="#1fbf75" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▼Put墙 250</text></svg></div><div class="ow-pane p2"><div class="ow-sum">4~10日 · OI 合计 73.4万手 · 净 GEX 2.5亿$ · Call墙 290 / Put墙 250 · 翻转位 249.9（现价上方）</div><svg viewBox="0 0 680 302" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="亚马逊 期权墙 4~10日"><line x1="10" y1="140" x2="670" y2="140" stroke="rgba(128,128,128,0.16)" stroke-width="1"/><text x="10" y="15" font-size="9.5" fill="rgba(140,150,165,0.95)">▲ Call OI 峰值 4.1万</text><rect x="2.0" y="131.9" width="16.0" height="8.1" fill="#e5484d" fill-opacity="0.82"/><rect x="2.0" y="148.0" width="16.0" height="33.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="28.4" y="138.9" width="16.0" height="1.1" fill="#e5484d" fill-opacity="0.82"/><rect x="28.4" y="148.0" width="16.0" height="11.2" fill="#1fbf75" fill-opacity="0.82"/><rect x="54.8" y="123.8" width="16.0" height="16.2" fill="#e5484d" fill-opacity="0.82"/><rect x="54.8" y="148.0" width="16.0" height="81.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="81.2" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="81.2" y="148.0" width="16.0" height="6.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="107.6" y="124.9" width="16.0" height="15.1" fill="#e5484d" fill-opacity="0.82"/><rect x="107.6" y="148.0" width="16.0" height="49.1" fill="#1fbf75" fill-opacity="0.82"/><rect x="134.0" y="135.3" width="16.0" height="4.7" fill="#e5484d" fill-opacity="0.82"/><rect x="134.0" y="148.0" width="16.0" height="19.9" fill="#1fbf75" fill-opacity="0.82"/><rect x="160.4" y="70.9" width="16.0" height="69.1" fill="#e5484d" fill-opacity="0.82"/><rect x="160.4" y="148.0" width="16.0" height="102.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="186.8" y="135.4" width="16.0" height="4.6" fill="#e5484d" fill-opacity="0.82"/><rect x="186.8" y="148.0" width="16.0" height="9.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="213.2" y="93.2" width="16.0" height="46.8" fill="#e5484d" fill-opacity="0.82"/><rect x="213.2" y="148.0" width="16.0" height="50.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="239.6" y="130.3" width="16.0" height="9.7" fill="#e5484d" fill-opacity="0.82"/><rect x="239.6" y="148.0" width="16.0" height="5.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="266.0" y="95.6" width="16.0" height="44.4" fill="#e5484d" fill-opacity="0.82"/><rect x="266.0" y="148.0" width="16.0" height="54.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="292.4" y="134.4" width="16.0" height="5.6" fill="#e5484d" fill-opacity="0.82"/><rect x="292.4" y="148.0" width="16.0" height="19.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="318.8" y="53.8" width="16.0" height="86.2" fill="#e5484d" fill-opacity="0.82"/><rect x="318.8" y="148.0" width="16.0" height="36.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="345.2" y="134.5" width="16.0" height="5.5" fill="#e5484d" fill-opacity="0.82"/><rect x="345.2" y="148.0" width="16.0" height="4.5" fill="#1fbf75" fill-opacity="0.82"/><rect x="371.6" y="44.4" width="16.0" height="95.6" fill="#e5484d" fill-opacity="0.82"/><rect x="371.6" y="148.0" width="16.0" height="28.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="398.0" y="129.6" width="16.0" height="10.4" fill="#e5484d" fill-opacity="0.82"/><rect x="398.0" y="148.0" width="16.0" height="2.6" fill="#1fbf75" fill-opacity="0.82"/><rect x="424.4" y="38.4" width="16.0" height="101.6" fill="#e5484d" fill-opacity="0.82"/><rect x="424.4" y="148.0" width="16.0" height="7.6" fill="#1fbf75" fill-opacity="0.82"/><rect x="450.8" y="133.9" width="16.0" height="6.1" fill="#e5484d" fill-opacity="0.82"/><rect x="450.8" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="477.2" y="71.6" width="16.0" height="68.4" fill="#e5484d" fill-opacity="0.82"/><rect x="477.2" y="148.0" width="16.0" height="8.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="503.6" y="136.0" width="16.0" height="4.0" fill="#e5484d" fill-opacity="0.82"/><rect x="503.6" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="530.0" y="90.7" width="16.0" height="49.3" fill="#e5484d" fill-opacity="0.82"/><rect x="530.0" y="148.0" width="16.0" height="6.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="556.4" y="138.1" width="16.0" height="1.9" fill="#e5484d" fill-opacity="0.82"/><rect x="556.4" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="582.8" y="28.0" width="16.0" height="112.0" fill="#e5484d" fill-opacity="0.82"/><rect x="582.8" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="609.2" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="609.2" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="635.6" y="69.8" width="16.0" height="70.2" fill="#e5484d" fill-opacity="0.82"/><rect x="635.6" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="662.0" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><text x="590.8" y="15" font-size="10.5" font-weight="700" fill="#e5484d" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▲Call墙 290</text><line x1="343.3" y1="24" x2="343.3" y2="256" stroke="#4d8dff" stroke-width="1.4" stroke-dasharray="4 3"/><text x="343.3" y="296" font-size="10.5" font-weight="700" fill="#4d8dff" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">现价 266.56</text><text x="10.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">235</text><text x="89.2" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">242.5</text><text x="168.4" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">250</text><text x="247.6" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">257.5</text><text x="326.8" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">265</text><text x="406.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">272.5</text><text x="485.2" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">280</text><text x="564.4" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">287.5</text><text x="643.6" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">295</text><text x="670.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">297.5</text><text x="168.4" y="283" font-size="10.5" font-weight="700" fill="#1fbf75" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▼Put墙 250</text></svg></div><div class="ow-pane p3"><div class="ow-sum">11~30日 · OI 合计 11.3万手 · 净 GEX 0.4亿$ · Call墙 270 / Put墙 240 · 翻转位 247.37（现价上方）</div><svg viewBox="0 0 680 302" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="亚马逊 期权墙 11~30日"><line x1="10" y1="140" x2="670" y2="140" stroke="rgba(128,128,128,0.16)" stroke-width="1"/><text x="10" y="15" font-size="9.5" fill="rgba(140,150,165,0.95)">▲ Call OI 峰值 8975</text><rect x="2.0" y="134.9" width="16.0" height="5.1" fill="#e5484d" fill-opacity="0.82"/><rect x="2.0" y="148.0" width="16.0" height="79.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="29.5" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="57.0" y="127.2" width="16.0" height="12.8" fill="#e5484d" fill-opacity="0.82"/><rect x="57.0" y="148.0" width="16.0" height="102.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="84.5" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="84.5" y="148.0" width="16.0" height="1.2" fill="#1fbf75" fill-opacity="0.82"/><rect x="112.0" y="113.2" width="16.0" height="26.8" fill="#e5484d" fill-opacity="0.82"/><rect x="112.0" y="148.0" width="16.0" height="93.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="139.5" y="148.0" width="16.0" height="5.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="167.0" y="106.1" width="16.0" height="33.9" fill="#e5484d" fill-opacity="0.82"/><rect x="167.0" y="148.0" width="16.0" height="83.1" fill="#1fbf75" fill-opacity="0.82"/><rect x="194.5" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="194.5" y="148.0" width="16.0" height="2.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="222.0" y="113.9" width="16.0" height="26.1" fill="#e5484d" fill-opacity="0.82"/><rect x="222.0" y="148.0" width="16.0" height="75.1" fill="#1fbf75" fill-opacity="0.82"/><rect x="249.5" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="249.5" y="148.0" width="16.0" height="1.2" fill="#1fbf75" fill-opacity="0.82"/><rect x="277.0" y="105.2" width="16.0" height="34.8" fill="#e5484d" fill-opacity="0.82"/><rect x="277.0" y="148.0" width="16.0" height="68.9" fill="#1fbf75" fill-opacity="0.82"/><rect x="304.5" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="304.5" y="148.0" width="16.0" height="13.1" fill="#1fbf75" fill-opacity="0.82"/><rect x="332.0" y="97.5" width="16.0" height="42.5" fill="#e5484d" fill-opacity="0.82"/><rect x="332.0" y="148.0" width="16.0" height="53.9" fill="#1fbf75" fill-opacity="0.82"/><rect x="359.5" y="138.6" width="16.0" height="1.4" fill="#e5484d" fill-opacity="0.82"/><rect x="359.5" y="148.0" width="16.0" height="4.5" fill="#1fbf75" fill-opacity="0.82"/><rect x="387.0" y="28.0" width="16.0" height="112.0" fill="#e5484d" fill-opacity="0.82"/><rect x="387.0" y="148.0" width="16.0" height="49.5" fill="#1fbf75" fill-opacity="0.82"/><rect x="414.5" y="134.4" width="16.0" height="5.6" fill="#e5484d" fill-opacity="0.82"/><rect x="414.5" y="148.0" width="16.0" height="4.1" fill="#1fbf75" fill-opacity="0.82"/><rect x="442.0" y="86.0" width="16.0" height="54.0" fill="#e5484d" fill-opacity="0.82"/><rect x="442.0" y="148.0" width="16.0" height="16.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="469.5" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="469.5" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="497.0" y="60.7" width="16.0" height="79.3" fill="#e5484d" fill-opacity="0.82"/><rect x="497.0" y="148.0" width="16.0" height="7.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="524.5" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="524.5" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="552.0" y="76.6" width="16.0" height="63.4" fill="#e5484d" fill-opacity="0.82"/><rect x="552.0" y="148.0" width="16.0" height="2.4" fill="#1fbf75" fill-opacity="0.82"/><rect x="579.5" y="138.4" width="16.0" height="1.6" fill="#e5484d" fill-opacity="0.82"/><rect x="579.5" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="607.0" y="68.8" width="16.0" height="71.2" fill="#e5484d" fill-opacity="0.82"/><rect x="607.0" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="634.5" y="139.0" width="16.0" height="1.0" fill="#e5484d" fill-opacity="0.82"/><rect x="662.0" y="40.7" width="16.0" height="99.3" fill="#e5484d" fill-opacity="0.82"/><rect x="662.0" y="148.0" width="16.0" height="1.0" fill="#1fbf75" fill-opacity="0.82"/><text x="395.0" y="15" font-size="10.5" font-weight="700" fill="#e5484d" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▲Call墙 270</text><line x1="357.2" y1="24" x2="357.2" y2="256" stroke="#4d8dff" stroke-width="1.4" stroke-dasharray="4 3"/><text x="357.2" y="296" font-size="10.5" font-weight="700" fill="#4d8dff" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">现价 266.56</text><text x="10.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">235</text><text x="92.5" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">242.5</text><text x="175.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">250</text><text x="257.5" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">257.5</text><text x="340.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">265</text><text x="422.5" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">272.5</text><text x="505.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">280</text><text x="587.5" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">287.5</text><text x="670.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">295</text><text x="65.0" y="283" font-size="10.5" font-weight="700" fill="#1fbf75" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▼Put墙 240</text></svg></div><div class="ow-pane p4"><div class="ow-sum">31~60日 · OI 合计 70.2万手 · 净 GEX 1.3亿$ · Call墙 280 / Put墙 240 · 翻转位 242.31（现价上方）</div><svg viewBox="0 0 680 302" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="亚马逊 期权墙 31~60日"><line x1="10" y1="140" x2="670" y2="140" stroke="rgba(128,128,128,0.16)" stroke-width="1"/><text x="10" y="15" font-size="9.5" fill="rgba(140,150,165,0.95)">▲ Call OI 峰值 3.0万</text><rect x="2.0" y="112.7" width="16.0" height="27.3" fill="#e5484d" fill-opacity="0.82"/><rect x="2.0" y="148.0" width="16.0" height="45.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="57.0" y="119.3" width="16.0" height="20.7" fill="#e5484d" fill-opacity="0.82"/><rect x="57.0" y="148.0" width="16.0" height="102.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="112.0" y="109.5" width="16.0" height="30.5" fill="#e5484d" fill-opacity="0.82"/><rect x="112.0" y="148.0" width="16.0" height="48.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="167.0" y="70.1" width="16.0" height="69.9" fill="#e5484d" fill-opacity="0.82"/><rect x="167.0" y="148.0" width="16.0" height="73.2" fill="#1fbf75" fill-opacity="0.82"/><rect x="222.0" y="119.5" width="16.0" height="20.5" fill="#e5484d" fill-opacity="0.82"/><rect x="222.0" y="148.0" width="16.0" height="29.1" fill="#1fbf75" fill-opacity="0.82"/><rect x="277.0" y="78.5" width="16.0" height="61.5" fill="#e5484d" fill-opacity="0.82"/><rect x="277.0" y="148.0" width="16.0" height="49.6" fill="#1fbf75" fill-opacity="0.82"/><rect x="332.0" y="104.2" width="16.0" height="35.8" fill="#e5484d" fill-opacity="0.82"/><rect x="332.0" y="148.0" width="16.0" height="20.9" fill="#1fbf75" fill-opacity="0.82"/><rect x="387.0" y="80.5" width="16.0" height="59.5" fill="#e5484d" fill-opacity="0.82"/><rect x="387.0" y="148.0" width="16.0" height="25.6" fill="#1fbf75" fill-opacity="0.82"/><rect x="442.0" y="57.1" width="16.0" height="82.9" fill="#e5484d" fill-opacity="0.82"/><rect x="442.0" y="148.0" width="16.0" height="13.2" fill="#1fbf75" fill-opacity="0.82"/><rect x="497.0" y="28.0" width="16.0" height="112.0" fill="#e5484d" fill-opacity="0.82"/><rect x="497.0" y="148.0" width="16.0" height="21.9" fill="#1fbf75" fill-opacity="0.82"/><rect x="552.0" y="49.2" width="16.0" height="90.8" fill="#e5484d" fill-opacity="0.82"/><rect x="552.0" y="148.0" width="16.0" height="3.2" fill="#1fbf75" fill-opacity="0.82"/><rect x="607.0" y="84.6" width="16.0" height="55.4" fill="#e5484d" fill-opacity="0.82"/><rect x="607.0" y="148.0" width="16.0" height="6.5" fill="#1fbf75" fill-opacity="0.82"/><rect x="662.0" y="84.4" width="16.0" height="55.6" fill="#e5484d" fill-opacity="0.82"/><rect x="662.0" y="148.0" width="16.0" height="1.4" fill="#1fbf75" fill-opacity="0.82"/><text x="505.0" y="15" font-size="10.5" font-weight="700" fill="#e5484d" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▲Call墙 280</text><line x1="357.2" y1="24" x2="357.2" y2="256" stroke="#4d8dff" stroke-width="1.4" stroke-dasharray="4 3"/><text x="357.2" y="296" font-size="10.5" font-weight="700" fill="#4d8dff" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">现价 266.56</text><text x="10.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">235</text><text x="120.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">245</text><text x="230.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">255</text><text x="340.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">265</text><text x="450.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">275</text><text x="560.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">285</text><text x="670.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">295</text><text x="65.0" y="283" font-size="10.5" font-weight="700" fill="#1fbf75" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▼Put墙 240</text></svg></div><div class="ow-pane p5"><div class="ow-sum">60日+ · OI 合计 299.8万手 · 净 GEX 2.6亿$ · Call墙 275 / Put墙 250 · 翻转位 235.71（现价上方）</div><svg viewBox="0 0 680 302" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="亚马逊 期权墙 60日+"><line x1="10" y1="140" x2="670" y2="140" stroke="rgba(128,128,128,0.16)" stroke-width="1"/><text x="10" y="15" font-size="9.5" fill="rgba(140,150,165,0.95)">▲ Call OI 峰值 8.9万</text><rect x="2.0" y="114.6" width="16.0" height="25.4" fill="#e5484d" fill-opacity="0.82"/><rect x="2.0" y="148.0" width="16.0" height="62.6" fill="#1fbf75" fill-opacity="0.82"/><rect x="57.0" y="105.5" width="16.0" height="34.5" fill="#e5484d" fill-opacity="0.82"/><rect x="57.0" y="148.0" width="16.0" height="88.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="112.0" y="114.8" width="16.0" height="25.2" fill="#e5484d" fill-opacity="0.82"/><rect x="112.0" y="148.0" width="16.0" height="55.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="167.0" y="29.0" width="16.0" height="111.0" fill="#e5484d" fill-opacity="0.82"/><rect x="167.0" y="148.0" width="16.0" height="102.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="222.0" y="114.5" width="16.0" height="25.5" fill="#e5484d" fill-opacity="0.82"/><rect x="222.0" y="148.0" width="16.0" height="38.6" fill="#1fbf75" fill-opacity="0.82"/><rect x="277.0" y="81.1" width="16.0" height="58.9" fill="#e5484d" fill-opacity="0.82"/><rect x="277.0" y="148.0" width="16.0" height="83.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="332.0" y="113.7" width="16.0" height="26.3" fill="#e5484d" fill-opacity="0.82"/><rect x="332.0" y="148.0" width="16.0" height="24.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="387.0" y="76.6" width="16.0" height="63.4" fill="#e5484d" fill-opacity="0.82"/><rect x="387.0" y="148.0" width="16.0" height="68.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="442.0" y="28.0" width="16.0" height="112.0" fill="#e5484d" fill-opacity="0.82"/><rect x="442.0" y="148.0" width="16.0" height="14.7" fill="#1fbf75" fill-opacity="0.82"/><rect x="497.0" y="57.2" width="16.0" height="82.8" fill="#e5484d" fill-opacity="0.82"/><rect x="497.0" y="148.0" width="16.0" height="42.3" fill="#1fbf75" fill-opacity="0.82"/><rect x="552.0" y="88.2" width="16.0" height="51.8" fill="#e5484d" fill-opacity="0.82"/><rect x="552.0" y="148.0" width="16.0" height="9.0" fill="#1fbf75" fill-opacity="0.82"/><rect x="607.0" y="74.9" width="16.0" height="65.1" fill="#e5484d" fill-opacity="0.82"/><rect x="607.0" y="148.0" width="16.0" height="20.8" fill="#1fbf75" fill-opacity="0.82"/><rect x="662.0" y="117.7" width="16.0" height="22.3" fill="#e5484d" fill-opacity="0.82"/><rect x="662.0" y="148.0" width="16.0" height="4.6" fill="#1fbf75" fill-opacity="0.82"/><text x="450.0" y="15" font-size="10.5" font-weight="700" fill="#e5484d" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▲Call墙 275</text><line x1="357.2" y1="24" x2="357.2" y2="256" stroke="#4d8dff" stroke-width="1.4" stroke-dasharray="4 3"/><text x="357.2" y="296" font-size="10.5" font-weight="700" fill="#4d8dff" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">现价 266.56</text><text x="10.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">235</text><text x="120.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">245</text><text x="230.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">255</text><text x="340.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">265</text><text x="450.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">275</text><text x="560.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">285</text><text x="670.0" y="268" font-size="8.5" fill="rgba(140,150,165,0.95)" text-anchor="middle">295</text><text x="175.0" y="283" font-size="10.5" font-weight="700" fill="#1fbf75" text-anchor="middle" stroke="#fff" stroke-width="2.5" paint-order="stroke">▼Put墙 250</text></svg></div></div>
+  <details class="fold"><summary>展开：今日 OI 变化榜（vs 2026-11-05）</summary>
+    <div class="tbl-wrap"><table>
+      <colgroup><col style="width:25%"><col style="width:25%"><col style="width:25%"><col style="width:25%"></colgroup>
+      <tr><th>行权价</th><th>Δ Call OI</th><th>Δ Put OI</th><th title="Call+Put 合计变化，正值=资金向该行权价聚集">Δ 合计</th></tr>
+      <tr><td>230</td><td class="ow-gex-dn">-35921</td><td class="ow-gex-dn">-104050</td><td class="ow-gex-dn">-139971</td></tr><tr><td>290</td><td class="ow-gex-up">+11.7万</td><td class="ow-gex-up">+1.3万</td><td class="ow-gex-up">+13.0万</td></tr><tr><td>295</td><td class="ow-gex-up">+7.3万</td><td class="ow-gex-up">+2763</td><td class="ow-gex-up">+7.6万</td></tr><tr><td>285</td><td class="ow-gex-up">+1.7万</td><td class="ow-gex-up">+611</td><td class="ow-gex-up">+1.7万</td></tr><tr><td>270</td><td class="ow-gex-dn">-6704</td><td class="ow-gex-up">+7910</td><td class="ow-gex-up">+1206</td></tr><tr><td>255</td><td class="ow-gex-dn">-12392</td><td class="ow-gex-up">+1744</td><td class="ow-gex-dn">-10648</td></tr><tr><td>250</td><td class="ow-gex-dn">-11209</td><td class="ow-gex-up">+1339</td><td class="ow-gex-dn">-9870</td></tr><tr><td>245</td><td class="ow-gex-dn">-9538</td><td class="ow-gex-dn">-2283</td><td class="ow-gex-dn">-11821</td></tr><tr><td>240</td><td class="ow-gex-dn">-10162</td><td class="ow-gex-dn">-1555</td><td class="ow-gex-dn">-11717</td></tr><tr><td>260</td><td class="ow-gex-dn">-8575</td><td class="ow-gex-up">+2577</td><td class="ow-gex-dn">-5998</td></tr>
+    </table></div>
+    <div class="ow-note">变化 = 今日未平仓 − 上一交易日（2026-11-05），只列变化最大的 10 档。新增大额 OI 通常是新开仓/移仓：Call 端聚集压出上方阻力，Put 端聚集堆出下方支撑——即「明天的对冲位」。</div>
+  </details>
+  <details class="fold">
+    <summary>展开：到期分档数据 · 补充指标 · 口径说明</summary>
+    <div class="fm-grid" style="margin-top:2px"><div class="fm" title="看跌/看涨未平仓量之比，&gt;1 偏防守"><div class="fm-l">Put/Call OI</div><div class="fm-v ">0.78</div></div><div class="fm"><div class="fm-l">Call OI</div><div class="fm-v ">265.7万手</div></div><div class="fm"><div class="fm-l">Put OI</div><div class="fm-v ">208.4万手</div></div><div class="fm"><div class="fm-l">最近到期</div><div class="fm-v ">11/13</div></div></div>
+    <div class="lvg" style="margin-top:12px">
+  <div class="lvg-h">⏳ 按到期时间分档</div>
+  <div class="tbl-wrap"><table>
+    <colgroup><col style="width:25%"><col style="width:19%"><col style="width:17%"><col style="width:17%"><col style="width:22%"></colgroup>
+    <tr><th>到期档</th><th>OI 合计</th><th>Call 墙</th><th>Put 墙</th><th title="每 1% 波动的 gamma 敞口：正=抑制波动，负=放大波动">净 GEX</th></tr>
+    <tr><td>≤3日到期</td><td>19.4万手</td><td>270</td><td>250</td><td class="ow-gex-up">1.3亿$<div style="font-weight:400;font-size:10.5px;color:var(--muted-2);margin-top:1px">正gamma区 · 翻转 254.7</div></td></tr><tr><td>4~10日</td><td>73.4万手</td><td>290</td><td>250</td><td class="ow-gex-up">2.5亿$<div style="font-weight:400;font-size:10.5px;color:var(--muted-2);margin-top:1px">正gamma区 · 翻转 249.9</div></td></tr><tr><td>11~30日</td><td>11.3万手</td><td>270</td><td>240</td><td class="ow-gex-up">0.4亿$<div style="font-weight:400;font-size:10.5px;color:var(--muted-2);margin-top:1px">正gamma区 · 翻转 247.37</div></td></tr><tr><td>31~60日</td><td>70.2万手</td><td>280</td><td>240</td><td class="ow-gex-up">1.3亿$<div style="font-weight:400;font-size:10.5px;color:var(--muted-2);margin-top:1px">正gamma区 · 翻转 242.31</div></td></tr><tr><td>60日+（远月）</td><td>299.8万手</td><td>275</td><td>250</td><td class="ow-gex-up">2.6亿$<div style="font-weight:400;font-size:10.5px;color:var(--muted-2);margin-top:1px">正gamma区 · 翻转 235.71</div></td></tr>
+  </table></div>
+</div>
+    <div class="ow-note">红柱 = 看涨（Call）未平仓 · 绿柱 = 看跌（Put）未平仓。Call 墙 / Put 墙 = OI 最大的看涨/看跌行权价，常形成阻力/支撑与到期「磁吸」位；Gamma 敞口为正代表做市商 gamma 对冲抑制波动，为负则放大波动。总览跨全部到期日按行权价聚合，分档按到期自然日分为 ≤3日 / 4~10日 / 11~30日 / 31~60日 / 60日+ 五档独立统计（点击上方选项切换各档图表），展示现价 ±12% 范围。</div>
+    <div class="ow-note">数据口径：本链共 2,382 个未到期合约，其中 1,998 个有未平仓（覆盖率 84%）、1,952 个有可用 IV 参与 Gamma 翻转位重算；CBOE 行情延迟约 15 分钟，OI 于每日结算后更新（数据日 2026-11-11）；Gamma 翻转位为 Black-Scholes 模型近似（r=0），并非实际做市商持仓，仅供参考。</div>
+  </details>
+</div>
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日无提及 · 历史累计</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">21</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">9</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">6</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">6</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 0.14）</p>
+  <div class="chips"><span class="chip">视野环球财经</span><span class="chip">NaNa说美股</span><span class="chip">The Trading Apologist</span><span class="chip">阳光财经</span><span class="chip">The Investor Channel</span><span class="chip">美投侃新闻</span><span class="chip">老李玩钱</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日无点位 · 历史累计</span></div>
+  <div class="lvg"><div class="lvg-h">🔺 压力位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>The Trading Apologist</td><td>11/4</td><td><b class="num">272</b> <a href="https://www.youtube.com/watch?v=5-HtKsy2Uh8&amp;t=506s" class="tslink">⏱8:26</a></td><td class="vfy vfy-ok" title="触及 272 后未有效突破">✅</td></tr><tr><td>视野环球财经</td><td>11/4</td><td><b class="num">336</b>（<b class="num">27</b> 年前瞻估值上限） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1210s" class="tslink">⏱20:10</a></td><td class="vfy vfy-bad" title="有效突破 27（最高收 270.87）">❌</td></tr><tr><td>视野环球财经</td><td>11/4</td><td>前高（突破后看新高） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1210s" class="tslink">⏱20:10</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>The Investor Channel</td><td>11/6</td><td><b class="num">280-300</b>美元（需有效向上突破才能走出横盘区间） <a href="https://www.youtube.com/watch?v=AmgVOgS9Tmk&amp;t=1137s" class="tslink">⏱18:57</a></td><td class="vfy vfy-pending" title="最高 275.34，未到 280（已过 4/5 日）">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">235</b>（强支撑） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-bad" title="跌破 235，最低 229.36">❌</td></tr><tr><td>NaNa说美股</td><td>10/29</td><td>补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低） <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">⏱0:00</a></td><td class="vfy vfy-ok" title="守住 225">✅</td></tr><tr><td>The Investor Channel</td><td>10/30</td><td>低<b class="num">200</b>（支撑） <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">⏱9:10</a></td><td class="vfy vfy-ok" title="守住 200">✅</td></tr><tr><td>NaNa说美股</td><td>11/4</td><td>半年线（预期回踩位） <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=417s" class="tslink">⏱6:57</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>NaNa说美股</td><td>11/4</td><td>至少回踩半年线（下跌方向） <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=417s" class="tslink">⏱6:57</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>视野环球财经</td><td>11/4</td><td><b class="num">250</b>（<b class="num">27</b> 年前瞻估值下限） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1210s" class="tslink">⏱20:10</a></td><td class="vfy vfy-ok" title="守住 250">✅</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>11/4</td><td>任何回撤都是上车机会（市价 <b class="num">264</b> 处于前瞻下限附近） <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1210s" class="tslink">⏱20:10</a></td><td class="vfy vfy-ok" title="观察期触及 264">🎯</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">💰 目标价 / 建议卖出</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>10/27</td><td><b class="num">255</b>（期权压注） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-ok" title="已到达 255">🎯</td></tr><tr><td>视野环球财经</td><td>10/27</td><td><b class="num">275</b>（破近期高点） <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">⏱23:00</a></td><td class="vfy vfy-pending" title="最高 255.36，未到 275">⏳</td></tr><tr><td>The Trading Apologist</td><td>10/29</td><td>时间投影磨底至<b class="num">2027-2029</b> <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">⏱22:10</a></td><td class="vfy vfy-pending" title="最高 273.23，未到 2027">⏳</td></tr><tr><td>NaNa说美股</td><td>11/2</td><td><b class="num">375</b>（高盛目标价，非博主本人目标） <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=669s" class="tslink">⏱11:09</a></td><td class="vfy vfy-pending" title="最高 275.34，未到 375">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>The Trading Apologist</td><td>10/29</td><td>…破<b class="num">2023</b>年<b class="num">1</b>月以来主要周线趋势线（下… <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">⏱22:10</a></td><td class="vfy vfy-ok" title="观察期触及 1">⚡</td></tr><tr><td>The Trading Apologist</td><td>10/30</td><td>跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b> <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">⏱37:20</a></td><td class="vfy vfy-ok" title="观察期触及 200">⚡</td></tr><tr><td>NaNa说美股</td><td>11/2</td><td>相对强势延续则持有 <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=669s" class="tslink">⏱11:09</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>阳光财经</td><td>11/2</td><td>持有 <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=548s" class="tslink">⏱9:08</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr>
+        </table></div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日无复盘 · 历史记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean up">偏多</span><span class="ch-meta">5 条 · 看多 3 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">10-Q文件藏一笔最高800亿美元的担保贷款（供应商融资安排），拿AI设备做抵押、浮动利率5年期，2027Q1-2028Q3可自行决定借多少。分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来5年现金流偿还，能省眼前现金流并缓解评级压力。但信号含义是「连信用最好的大科技都开始拿设备抵押借钱」，反映AI花钱速度之快。AWS增速未达偏高市场预期，本周跌3.1%。</div>
+      <div class="op-q">「如果连信用最好的大科技也开始拿设备做抵押来借钱，那就说明AI的花钱速度已经快到连最赚钱的公司都要想办法省现金了」</div>
+      <div class="op-tag"><b>催化：</b>800亿美元担保贷款融资安排、2027资本开支明显增加</div>
+      <div class="op-tag"><b>风险：</b>AWS增速不及市场预期、现金资本开支飙升（三季度759亿）、债务从688亿飙至1809亿</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=480s" class="tslink">8:00 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/30</span></span><span class="st up">看多/买入·中期</span></div>
+      
+      <div class="op-d">分析师Steven认为：财报最大问题在广告（本季+12%大幅miss、下季指引也miss，且个人agent兴起冲击广告），AWS 39%增长虽符合预期但买方预期早到40%+算miss。但CEO明确表示2027-2028年AWS都能增40%以上（大幅高于市场38%/30%预期），未来两年AWS收入可预见性很高、股价当下合理，「这个位置的亚马逊很可能是一个不错的机会」。资本开支（含融资租赁）773亿大超预期31%，自由现金流-424亿创纪录。</div>
+      <div class="op-q">「由于未来两年AWS收入可预见性很高，股价当下又比较合理，这个位置的亚马逊很可能是一个不错的机会」</div>
+      <div class="op-tag"><b>催化：</b>AWS 2027-2028增长40%+指引、积压订单5780亿同比三位数、Trainium芯片2027年底对外销售</div>
+      <div class="op-tag"><b>风险：</b>广告业务miss（个人agent冲击）、自由现金流-424亿创纪录、AI业务利润率低</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=480s" class="tslink">8:00 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·10/31</span></span><span class="st flat">中性/持有·中期</span></div>
+      
+      <div class="op-d">亚马逊是 Anthropic 最重要的算力供应商之一，从 Anthropic 身上通过算力租赁、渠道费、研发算力三条路径获利，最低消费承诺 1100 亿（不可撤销），AWS 订单达 5000 亿级。招股书揭示亚马逊既是投资者、供应商、客户、渠道又是竞争对手，Anthropic 的资本开支是其 AWS 增长的重要来源。</div>
+      <div class="op-q">「亚马逊1100亿……都是最低消费，不管用没用都得付」</div>
+      <div class="op-tag"><b>催化：</b>AWS承接Anthropic算力需求、1100亿最低消费承诺</div>
+      <div class="op-tag"><b>风险：</b>Anthropic收入/融资跟不上导致订单延后、循环交易依赖</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=-eAneK1yPek&amp;t=1729s" class="tslink">28:49 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">亚马逊与微软同为大云主力，当日大涨超6%。放缓环境下自建模式、已有大量建好容量和电商广告现金流使其相对优势放大，市场份额有望进一步集中。</div>
+      <div class="op-q">「微软亚马逊更是大涨超6%……大云有搜索、软件、电商、广告这些核心业务，每年都有稳定的现金流支撑」</div>
+      <div class="op-tag"><b>催化：</b>存量算力涨价空间、市场份额向大云集中、电商现金流支撑资本开支</div>
+      <div class="op-tag"><b>风险：</b>审批放缓拖累新建节奏、AI交易整体承压</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=EgQshiaDUmY&amp;t=18s" class="tslink">0:18 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/5</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">亚马逊当日相对抗跌、跌幅约2%，尽管上周市场担心其现金流，这次仍大幅上涨；高盛指出稀缺产能对大云是好事，扩张受限反而令资本开支减少、自由现金流增加。</div>
+      <div class="op-q">「所以 尽管上周市场还在担心亚马逊的现金流 这次 亚马逊还是大幅上涨 用Privorotsky的话说 稀缺对拥有产能的公司是好事 但对估值建立在增量产能建设的公司来说 可能就是灾难」</div>
+      <div class="op-tag"><b>催化：</b>已通上电的算力更值钱，稀缺产能上能赚得更多、扩张受限使资本开支减少、自由现金流反而增加</div>
+      <div class="op-tag"><b>风险：</b>若估值建立在增量产能建设上，稀缺可能成为灾难</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Cz8g5HqT-VM&amp;t=546s" class="tslink">9:06 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">4 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/27</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv">目标 <b class="num">255</b>（期权压注）</span><span class="lv">目标 <b class="num">275</b>（破近期高点）</span><span class="lv lv-s">支撑 <b class="num">235</b>（强支撑）</span></div>
+      <div class="op-d">亚马逊财报（周四）期权压注255美元、上下20美元（68%概率），即7%-8%的涨跌。往上加20到275直接破近期高点265附近、确认上行趋势；往下减20到235仍是较强支撑位置，不算太紧张。看点是有没有破近期高点打新高的机会。</div>
+      <div class="op-q">「亚马逊是255美元上下20美元的波动，往上加20是275直接破近期高点……往下减到235仍旧是较强的支撑位置」</div>
+      <div class="op-tag"><b>催化：</b>破265近期高点确认上行</div>
+      <div class="op-tag"><b>风险：</b>财报波动7-8%</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">23:00 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/29</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">三季报AWS收入460亿+39.3%近五年最快、超预期，零售利润改善，但问题在广告（+12%明显放缓、低于预期208亿）和前瞻（Q4营收终值2345亿低于预期2421亿）。自由现金流-424亿大幅恶化，本季新增481亿长期债务、利息支出增长超3倍。博主认为亚马逊整体没有重大意外，只是自由现金流支出偏多且Q4会减（总额2200亿不变），综合排序「微软最好、亚马逊第二、谷歌最差」。价格已跌至技术面强支撑，此位置不是杀跌点，需看QQQ是否破位。</div>
+      <div class="op-q">「亚马逊本身并没有出现所谓的重大意外，只有自由现金流的支出稍微多一些」</div>
+      <div class="op-tag"><b>催化：</b>AWS+39.3%近五年最快、零售利润改善、维持2026年2200亿资本开支</div>
+      <div class="op-tag"><b>风险：</b>广告收入疲软、自由现金流-424亿创纪录、长期债务9个月翻倍至1731亿、利息支出增长超3倍</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1080s" class="tslink">18:00 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·10/30</span></span><span class="st flat">中性/观望·中期</span></div>
+      
+      <div class="op-d">与谷歌类似，AI营收快速增长且超预期，但自营广告略有疲软。480亿美元新债是关注AI债券市场能否重新打开的关键信号。广告疲软是偶发还是趋势需等四季度财报确认。</div>
+      <div class="op-q">「亚马逊480亿美元的新债……需要关注超大规模数据中心的利差，看债券市场是否会重新开放以承销AI项目」</div>
+      <div class="op-tag"><b>催化：</b>480亿美元新债发行</div>
+      <div class="op-tag"><b>风险：</b>广告业务疲软、AI资本开支与回报担忧</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1560s" class="tslink">26:00 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·11/4</span></span><span class="st up">看多/买入·中期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">250</b>（<b class="num">27</b> 年前瞻估值下限）</span><span class="lv lv-r">阻力 <b class="num">336</b>（<b class="num">27</b> 年前瞻估值上限）</span><span class="lv lv-e">买点 任何回撤都是上车机会（市价 <b class="num">264</b> 处于前瞻下限附近）</span><span class="lv lv-r">阻力 前高（突破后看新高）</span></div>
+      <div class="op-d">连续三天跳涨吃掉所有强压力、V 型反转直冲前高，中间没有形态调整也没给考虑时间。他无持仓，但明确：趋势已定，从现在开始任何回撤都是上车机会，上车后拿久一点别折腾。当日大放量+长上影+收盘近高点，不算有效滞涨形态。前瞻估值 250-336，市价 264 在下限附近；27 年 EPS 表面 -16 是 26 年一次性投资口径调整所致，剔除后仍同比增长且高于上次更新。后面直接等新高。</div>
+      <div class="op-q">「现在趋势已定，从现在开始任何的回撤机会都是上车机会，上了车之后就拿久一点，中间别折腾了……250-336，市价在264，前瞻估值附近下限一点点……后面就直接去等一个新高就可以了。」</div>
+      <div class="op-tag"><b>催化：</b>AWS 云营收增长+算力提价、突破前高确认趋势</div>
+      <div class="op-tag"><b>风险：</b>快速拉升后短线回撤、26 年一次性投资扰动 EPS 口径</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1210s" class="tslink">20:10 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">The Investor Channel</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·10/30</span></span><span class="st up">看多/持有·长期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 低<b class="num">200</b>（支撑）</span></div>
+      <div class="op-d">财报双miss（营收2020亿、EPS、Q4指引偏弱），但AWS+39%（Q2+37%加速）、电商与AWS未来5-10年各达万亿营收。资本开支季度770亿（史上罕见），是下跌主因。博主认为作为股东需「系好安全带」等待AWS万亿营收兑现。技术面：暴跌至230后收盘反弹至240（200日均线245下方），低200有充足支撑，仍是higher highs/higher lows结构，希望在此企稳。</div>
+      <div class="op-q">「作为亚马逊股东，你基本上只需要系好安全带，等待这些收入最终兑现」</div>
+      <div class="op-tag"><b>催化：</b>AWS+39%加速、两大业务各冲万亿营收</div>
+      <div class="op-tag"><b>风险：</b>电商/广告增速放缓、资本开支770亿</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">9:10 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·11/6</span></span><span class="st flat">中性/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">280-300</b>美元（需有效向上突破才能走出横盘区间）</span></div>
+      <div class="op-d">本周逆势大涨近8%、收于约260美元：屏蔽外部AI Agent直接下单、Alexa推出文本购物、与Uber Eats合作为Prime会员提供0配送费。技术面上周收盘在所有均线下方、本周收复200日线，但自年初以来整体横盘，除非有效突破280-300美元区间，否则大概率仍在区间内震荡。</div>
+      <div class="op-q">「Until you break really meaningfully up into like the 280s 300s, stock is probably in this range.（除非真正有效突破280、300美元区域，否则股价大概率仍在这个区间里。）」</div>
+      <div class="op-tag"><b>催化：</b>AI购物（Alexa文本购物）与Prime生态扩张（Uber Eats 0配送费合作）、对AI Agent采取防御性封闭策略，保住交易与广告关系</div>
+      <div class="op-tag"><b>风险：</b>AI Agent可能分流电商入口流量、股价横盘区间未突破，上行缺乏催化</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=AmgVOgS9Tmk&amp;t=1137s" class="tslink">18:57 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">老李玩钱</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">老李玩钱<span class="op-date">·11/4</span></span><span class="st up">看多/持有·中期</span></div>
+      
+      <div class="op-d">被老李点名为加大AI资本支出的科技巨头之一，今日大涨。民主党用电限制政策约束其数据中心扩张，资本支出预期下降改善自由现金流，华尔街此前的担忧减轻。</div>
+      <div class="op-q">「尤其是那些平常在加大AI资本支出的，什么微软、亚马逊、谷歌，这些科技巨头都大涨。」</div>
+      <div class="op-tag"><b>催化：</b>AI资本支出预期下降改善现金流</div>
+      <div class="op-tag"><b>风险：</b>AWS数据中心扩张受政策约束</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=421s" class="tslink">7:01 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 1 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·10/29</span></span><span class="st down">看空/回避·短期</span></div>
+      
+      <div class="op-d">盘后暴雷：三季度营收2019.4亿（预期2023.1亿）、EPS 1.89（预期1.96）双不及预期，与谷歌「难兄难弟」。2026资本支出维持2200亿美元，大笔投资导致负现金流，已连续两季自由现金流为负。</div>
+      <div class="op-q">「亚马逊也折价10%啊，和谷歌简直是难兄难弟啊」</div>
+      
+      <div class="op-tag"><b>风险：</b>营收利润双miss、连续两季自由现金流为负、资本支出2200亿</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=wCUn2t-uSNc&amp;t=630s" class="tslink">10:30 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/2</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 持有</span></div>
+      <div class="op-d">Ackman价值标准标的之一，逆势买入；她同样看好亚马逊当前业绩和趋势。</div>
+      <div class="op-q">「微软和亚马逊当前业绩和趋势都不错，我也看好他们的投资价值。」</div>
+      <div class="op-tag"><b>催化：</b>Ackman买入背书、业绩趋势良好</div>
+      <div class="op-tag"><b>风险：</b>AI资本开支拖累现金流</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=548s" class="tslink">9:08 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">The Trading Apologist</span><span class="lean flat">分歧/中性</span><span class="ch-meta">3 条 · 看多 1 / 看空 2</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/29</span></span><span class="st down">看空/回避·中期</span></div>
+      <div class="op-lv"><span class="lv">目标 时间投影磨底至<b class="num">2027-2029</b></span><span class="lv lv-t">触发 …破<b class="num">2023</b>年<b class="num">1</b>月以来主要周线趋势线（下…</span></div>
+      <div class="op-d">财报勉强miss：EPS 1.89 vs 预期1.97、营收2019亿 vs 预期2022亿，但市场不给余地。亮点是AWS+39%近5年最快、2027-2028增长指引超40%，但12个月自由现金流从+148亿转-424亿，超大规模云厂商融资方式转变市场仍在适应。技术面跌破2023年1月以来主要周线趋势线（下影线跌破），是决定性的性格转变。博主用时间测算：趋势低点到高点189根K线，1/3（63根）对应2027年10月、1/2对应2028年5月、2/3对应2029年1月，暗示即便反弹也可能是漫长的磨底/漂移下行，为未来一年提供逢低吸纳机会。</div>
+      <div class="op-q">「即便反弹，我感觉也会是一个漫长的磨底期，超大规模厂商未来一年可能只是反复提供逢低吸纳的机会」</div>
+      <div class="op-tag"><b>催化：</b>AWS+39%近5年最快、2027-2028增长指引超40%、周五反弹5.5%</div>
+      <div class="op-tag"><b>风险：</b>自由现金流转负424亿、跌破主要周线趋势线、融资方式转变</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">22:10 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·10/30</span></span><span class="st down">看空/回避·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b></span></div>
+      <div class="op-d">财报有亮点但市场不买账：AWS+39%近5年最快、积压订单5780亿、营业利润281亿创新高、2027-2028增长指引超40%。但资本开支773亿（同比翻倍、超预期200亿）、自由现金流12个月从+148亿转-424亿、长期债务从年初660亿增至1730亿，Jassy称2027资本开支显著提高。股价跌约12%，与谷歌类似但市场周五更愿意买亚马逊（反弹5.5%）。技术面跌破200日均线、跌破2023年1月以来的主要周线趋势线，博主用时间测算：从趋势低点到高点的1/3/1/2/2/3时间投影分别在2027年10月、2028年5月、2029年1月，暗示可能长期磨底/漂移下行。</div>
+      <div class="op-q">「即使反弹，我感觉也会是一个漫长的磨底期」</div>
+      <div class="op-tag"><b>催化：</b>AWS+39%、积压订单5780亿、周五反弹5.5%</div>
+      <div class="op-tag"><b>风险：</b>自由现金流转负424亿、长期债务激增至1730亿、跌破主要周线趋势线</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">37:20 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·11/4</span></span><span class="st up">看多/持有·短期</span></div>
+      <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">272</b></span></div>
+      <div class="op-d">亚马逊今天大涨，跳空高开冲到272，完全回补财报时的巨大日线缺口（财报日与谷歌一样跌了12%，此后低点算起4个交易日涨了16%、到高点涨14%）。在Mag 7对比中，亚马逊比微软、苹果之外的名字强得多，且可能是剩余上行空间最大的一个。算力稀缺背景下其已建成的云算力最具议价优势。</div>
+      <div class="op-q">「亚马逊度过了大日子，跳空高开冲上上轨，一路涨到272，收复了那个我们盯了很久的大日线缺口……我认为亚马逊比其他几个名字还有更多上涨空间。（Rallying all the way to 272... I think Amazon probably has more room to run than some of these others.）」</div>
+      <div class="op-tag"><b>催化：</b>数据中心立法受阻强化已建成算力者的稀缺性溢价、完全回补财报缺口，图表修复完成、Mag 7 中相对强度领先</div>
+      <div class="op-tag"><b>风险：</b>短线涨速过快，可能回补部分涨幅、AI叙事快速切换可能引发剧烈轮动</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5-HtKsy2Uh8&amp;t=506s" class="tslink">8:26 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">4 条 · 看多 1 / 看空 3</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/29</span></span><span class="st down">看空/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低）</span></div>
+      <div class="op-d">盘后闪崩12%。Q3营收2019亿+12%但净利润同比-2%均不及预期，Q4指引中规中矩。AWS增速39%为近五年最快且预计27/28年超40%，但今年资本开支约2200亿美元，自由现金流被干成-335亿（市场预期-99亿），连续第二季度为负，过去12个月-424亿。在手订单近5000亿也无济于事。</div>
+      <div class="op-q">「财务状况是不需要担忧，但是亚马逊已经从靠自由现金流投资变成靠举债投资」</div>
+      <div class="op-tag"><b>催化：</b>AWS增速指引强劲</div>
+      <div class="op-tag"><b>风险：</b>自由现金流大幅为负、资本开支侵蚀利润</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·10/30</span></span><span class="st down">看空/观望·中期</span></div>
+      
+      <div class="op-d">被称作「祸头子」，昨天盘后跳水11%但今天低开高走只收跌1.4%，说明还有抄底买盘。与谷歌类似，老登业务（电商、广告）被AI蚕食、增长乏力，只靠云业务撑门面，烧钱搞AI到现金流为负。但股价相对位置低（去年涨5%、今年涨4%），跌幅小于谷歌。</div>
+      <div class="op-q">「它的财报和谷歌本质上都差不多，都是原来的老登业务被AI蚕食了」</div>
+      
+      <div class="op-tag"><b>风险：</b>AI资本支出侵蚀现金流、电商与广告增长乏力</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=0s" class="tslink">0:00 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/2</span></span><span class="st up">看多/持有·中期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 相对强势延续则持有</span><span class="lv">目标 <b class="num">375</b>（高盛目标价，非博主本人目标）</span></div>
+      <div class="op-d">连续跑赢其他巨头（周五跌得少、今天更强）；高盛维持买入并列入确信买入名单、目标价375美元；Ackman也逆势买入（AMZN/META/MSFT合计占其组合约1/3）。她的调侃：高盛可能是自己被套了才唱多。</div>
+      <div class="op-q">「亚马逊这两天表现要远好于另外几个巨头……今天高盛又大力唱多，维持亚马逊『买入』评级，续列确信买入名单内，并给予目标价375美元。」</div>
+      <div class="op-tag"><b>催化：</b>高盛确信买入名单+目标价375、Ackman逆势买入、相对强势</div>
+      <div class="op-tag"><b>风险：</b>大盘拖累、AI资本开支压制</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=669s" class="tslink">11:09 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/4</span></span><span class="st down">看空/减仓·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 半年线（预期回踩位）</span><span class="lv lv-s">支撑 至少回踩半年线（下跌方向）</span></div>
+      <div class="op-d">亚马逊同样涨超6%，市场意淫民主党上台后不打仗没关税、物价下降利好电商。NaNa明确认为涨得有点过了：现金流都负几百亿美元了还硬涨，后面股价大概率会回落，至少回踩半年线。</div>
+      <div class="op-q">「但这完全属于意淫，我觉得这个涨的有点过了，现金流都负几百亿美元了，就硬涨，后面股价大概率会回落，至少回踩半年线。」</div>
+      
+      <div class="op-tag"><b>风险：</b>自由现金流负几百亿美元、情绪驱动涨幅回吐</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=417s" class="tslink">6:57 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂 <span class="asof">近5日无提及 · 历史累计</span></div>
+  <div class="tag-item"><span class="tag-fg">破265近期高点确认上行</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">AWS增速指引强劲</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AWS+39%近5年最快</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">2027-2028增长指引超40%</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">周五反弹5.5%</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AWS+39.3%近五年最快</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">零售利润改善</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">维持2026年2200亿资本开支</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AWS+39%加速</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">两大业务各冲万亿营收</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS+39%</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">积压订单5780亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">800亿美元担保贷款融资安排</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">2027资本开支明显增加</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS 2027-2028增长40%+指引</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">积压订单5780亿同比三位数</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Trainium芯片2027年底对外销售</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">480亿美元新债发行</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS承接Anthropic算力需求</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">1100亿最低消费承诺</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">高盛确信买入名单+目标价375</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">Ackman逆势买入</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">相对强势</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">Ackman买入背书</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">业绩趋势良好</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">数据中心立法受阻强化已建成算力者的稀缺性溢价</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">完全回补财报缺口，图表修复完成</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">Mag 7 中相对强度领先</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">存量算力涨价空间</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">市场份额向大云集中</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">电商现金流支撑资本开支</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AI资本支出预期下降改善现金流</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AWS 云营收增长+算力提价</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">突破前高确认趋势</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">已通上电的算力更值钱，稀缺产能上能赚得更多</span><span class="tag-date">11/5</span></div><div class="tag-item"><span class="tag-fg">扩张受限使资本开支减少、自由现金流反而增加</span><span class="tag-date">11/5</span></div><div class="tag-item"><span class="tag-fg">AI购物（Alexa文本购物）与Prime生态扩张（Uber Eats 0配送费合作）</span><span class="tag-date">11/6</span></div><div class="tag-item"><span class="tag-fg">对AI Agent采取防御性封闭策略，保住交易与广告关系</span><span class="tag-date">11/6</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素 <span class="asof">近5日无提及 · 历史累计</span></div>
+  <div class="tag-item"><span class="tag-fg">财报波动7-8%</span><span class="tag-date">10/27</span></div><div class="tag-item"><span class="tag-fg">自由现金流大幅为负</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">资本开支侵蚀利润</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">自由现金流转负424亿</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">跌破主要周线趋势线</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">融资方式转变</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">广告收入疲软</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">自由现金流-424亿创纪录</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">长期债务9个月翻倍至1731亿</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">利息支出增长超3倍</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">营收利润双miss</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">连续两季自由现金流为负</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">资本支出2200亿</span><span class="tag-date">10/29</span></div><div class="tag-item"><span class="tag-fg">AI资本支出侵蚀现金流</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">电商与广告增长乏力</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">电商/广告增速放缓</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">资本开支770亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">长期债务激增至1730亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AWS增速不及市场预期</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">现金资本开支飙升（三季度759亿）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">债务从688亿飙至1809亿</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">广告业务miss（个人agent冲击）</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AI业务利润率低</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">广告业务疲软</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">AI资本开支与回报担忧</span><span class="tag-date">10/30</span></div><div class="tag-item"><span class="tag-fg">Anthropic收入/融资跟不上导致订单延后</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">循环交易依赖</span><span class="tag-date">10/31</span></div><div class="tag-item"><span class="tag-fg">大盘拖累</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">AI资本开支压制</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">AI资本开支拖累现金流</span><span class="tag-date">11/2</span></div><div class="tag-item"><span class="tag-fg">自由现金流负几百亿美元</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">情绪驱动涨幅回吐</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">短线涨速过快，可能回补部分涨幅</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AI叙事快速切换可能引发剧烈轮动</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">审批放缓拖累新建节奏</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AI交易整体承压</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">AWS数据中心扩张受政策约束</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">快速拉升后短线回撤</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">26 年一次性投资扰动 EPS 口径</span><span class="tag-date">11/4</span></div><div class="tag-item"><span class="tag-fg">若估值建立在增量产能建设上，稀缺可能成为灾难</span><span class="tag-date">11/5</span></div><div class="tag-item"><span class="tag-fg">AI Agent可能分流电商入口流量</span><span class="tag-date">11/6</span></div><div class="tag-item"><span class="tag-fg">股价横盘区间未突破，上行缺乏催化</span><span class="tag-date">11/6</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日无复盘 · 历史记录</span></div>
+  <div class="day">
+      <div class="day-h">10/27</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·短期</span></div>
+          <div class="op-lv"><span class="lv">目标 <b class="num">255</b>（期权压注）</span><span class="lv">目标 <b class="num">275</b>（破近期高点）</span><span class="lv lv-s">支撑 <b class="num">235</b>（强支撑）</span></div>
+          <div class="op-d">亚马逊财报（周四）期权压注255美元、上下20美元（68%概率），即7%-8%的涨跌。往上加20到275直接破近期高点265附近、确认上行趋势；往下减20到235仍是较强支撑位置，不算太紧张。看点是有没有破近期高点打新高的机会。</div>
+          <div class="op-q">「亚马逊是255美元上下20美元的波动，往上加20是275直接破近期高点……往下减到235仍旧是较强的支撑位置」</div>
+          <div class="op-tag"><b>催化：</b>破265近期高点确认上行</div>
+          <div class="op-tag"><b>风险：</b>财报波动7-8%</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=H8eS_qeBelc&amp;t=1380s" class="tslink">23:00 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">10/29</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">看空/观望·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 补跌<b class="num">6-7</b>%至<b class="num">225-226</b>（<b class="num">7</b>月前低）</span></div>
+          <div class="op-d">盘后闪崩12%。Q3营收2019亿+12%但净利润同比-2%均不及预期，Q4指引中规中矩。AWS增速39%为近五年最快且预计27/28年超40%，但今年资本开支约2200亿美元，自由现金流被干成-335亿（市场预期-99亿），连续第二季度为负，过去12个月-424亿。在手订单近5000亿也无济于事。</div>
+          <div class="op-q">「财务状况是不需要担忧，但是亚马逊已经从靠自由现金流投资变成靠举债投资」</div>
+          <div class="op-tag"><b>催化：</b>AWS增速指引强劲</div>
+          <div class="op-tag"><b>风险：</b>自由现金流大幅为负、资本开支侵蚀利润</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5CiYlBPJMDA&amp;t=0s" class="tslink">0:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">看空/回避·中期</span></div>
+          <div class="op-lv"><span class="lv">目标 时间投影磨底至<b class="num">2027-2029</b></span><span class="lv lv-t">触发 …破<b class="num">2023</b>年<b class="num">1</b>月以来主要周线趋势线（下…</span></div>
+          <div class="op-d">财报勉强miss：EPS 1.89 vs 预期1.97、营收2019亿 vs 预期2022亿，但市场不给余地。亮点是AWS+39%近5年最快、2027-2028增长指引超40%，但12个月自由现金流从+148亿转-424亿，超大规模云厂商融资方式转变市场仍在适应。技术面跌破2023年1月以来主要周线趋势线（下影线跌破），是决定性的性格转变。博主用时间测算：趋势低点到高点189根K线，1/3（63根）对应2027年10月、1/2对应2028年5月、2/3对应2029年1月，暗示即便反弹也可能是漫长的磨底/漂移下行，为未来一年提供逢低吸纳机会。</div>
+          <div class="op-q">「即便反弹，我感觉也会是一个漫长的磨底期，超大规模厂商未来一年可能只是反复提供逢低吸纳的机会」</div>
+          <div class="op-tag"><b>催化：</b>AWS+39%近5年最快、2027-2028增长指引超40%、周五反弹5.5%</div>
+          <div class="op-tag"><b>风险：</b>自由现金流转负424亿、跌破主要周线趋势线、融资方式转变</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=poDXDi8O5NY&amp;t=1330s" class="tslink">22:10 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·中期</span></div>
+          
+          <div class="op-d">三季报AWS收入460亿+39.3%近五年最快、超预期，零售利润改善，但问题在广告（+12%明显放缓、低于预期208亿）和前瞻（Q4营收终值2345亿低于预期2421亿）。自由现金流-424亿大幅恶化，本季新增481亿长期债务、利息支出增长超3倍。博主认为亚马逊整体没有重大意外，只是自由现金流支出偏多且Q4会减（总额2200亿不变），综合排序「微软最好、亚马逊第二、谷歌最差」。价格已跌至技术面强支撑，此位置不是杀跌点，需看QQQ是否破位。</div>
+          <div class="op-q">「亚马逊本身并没有出现所谓的重大意外，只有自由现金流的支出稍微多一些」</div>
+          <div class="op-tag"><b>催化：</b>AWS+39.3%近五年最快、零售利润改善、维持2026年2200亿资本开支</div>
+          <div class="op-tag"><b>风险：</b>广告收入疲软、自由现金流-424亿创纪录、长期债务9个月翻倍至1731亿、利息支出增长超3倍</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=53SJvdzJneM&amp;t=1080s" class="tslink">18:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st down">看空/回避·短期</span></div>
+          
+          <div class="op-d">盘后暴雷：三季度营收2019.4亿（预期2023.1亿）、EPS 1.89（预期1.96）双不及预期，与谷歌「难兄难弟」。2026资本支出维持2200亿美元，大笔投资导致负现金流，已连续两季自由现金流为负。</div>
+          <div class="op-q">「亚马逊也折价10%啊，和谷歌简直是难兄难弟啊」</div>
+          
+          <div class="op-tag"><b>风险：</b>营收利润双miss、连续两季自由现金流为负、资本支出2200亿</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=wCUn2t-uSNc&amp;t=630s" class="tslink">10:30 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">10/30</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">看空/观望·中期</span></div>
+          
+          <div class="op-d">被称作「祸头子」，昨天盘后跳水11%但今天低开高走只收跌1.4%，说明还有抄底买盘。与谷歌类似，老登业务（电商、广告）被AI蚕食、增长乏力，只靠云业务撑门面，烧钱搞AI到现金流为负。但股价相对位置低（去年涨5%、今年涨4%），跌幅小于谷歌。</div>
+          <div class="op-q">「它的财报和谷歌本质上都差不多，都是原来的老登业务被AI蚕食了」</div>
+          
+          <div class="op-tag"><b>风险：</b>AI资本支出侵蚀现金流、电商与广告增长乏力</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=yKJhYNxiKqg&amp;t=0s" class="tslink">0:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">The Investor Channel</span><span class="st up">看多/持有·长期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 低<b class="num">200</b>（支撑）</span></div>
+          <div class="op-d">财报双miss（营收2020亿、EPS、Q4指引偏弱），但AWS+39%（Q2+37%加速）、电商与AWS未来5-10年各达万亿营收。资本开支季度770亿（史上罕见），是下跌主因。博主认为作为股东需「系好安全带」等待AWS万亿营收兑现。技术面：暴跌至230后收盘反弹至240（200日均线245下方），低200有充足支撑，仍是higher highs/higher lows结构，希望在此企稳。</div>
+          <div class="op-q">「作为亚马逊股东，你基本上只需要系好安全带，等待这些收入最终兑现」</div>
+          <div class="op-tag"><b>催化：</b>AWS+39%加速、两大业务各冲万亿营收</div>
+          <div class="op-tag"><b>风险：</b>电商/广告增速放缓、资本开支770亿</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=cWCZNexeV8U&amp;t=550s" class="tslink">9:10 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">看空/回避·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 跌破<b class="num">200</b>日均线，时间投影磨底至<b class="num">2028-2029</b></span></div>
+          <div class="op-d">财报有亮点但市场不买账：AWS+39%近5年最快、积压订单5780亿、营业利润281亿创新高、2027-2028增长指引超40%。但资本开支773亿（同比翻倍、超预期200亿）、自由现金流12个月从+148亿转-424亿、长期债务从年初660亿增至1730亿，Jassy称2027资本开支显著提高。股价跌约12%，与谷歌类似但市场周五更愿意买亚马逊（反弹5.5%）。技术面跌破200日均线、跌破2023年1月以来的主要周线趋势线，博主用时间测算：从趋势低点到高点的1/3/1/2/2/3时间投影分别在2027年10月、2028年5月、2029年1月，暗示可能长期磨底/漂移下行。</div>
+          <div class="op-q">「即使反弹，我感觉也会是一个漫长的磨底期」</div>
+          <div class="op-tag"><b>催化：</b>AWS+39%、积压订单5780亿、周五反弹5.5%</div>
+          <div class="op-tag"><b>风险：</b>自由现金流转负424亿、长期债务激增至1730亿、跌破主要周线趋势线</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=l--KAZjPM28&amp;t=2240s" class="tslink">37:20 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/观望·中期</span></div>
+          
+          <div class="op-d">10-Q文件藏一笔最高800亿美元的担保贷款（供应商融资安排），拿AI设备做抵押、浮动利率5年期，2027Q1-2028Q3可自行决定借多少。分析师Justin认为这是合理融资方式：无需一次性掏现金、逐步借款、用未来5年现金流偿还，能省眼前现金流并缓解评级压力。但信号含义是「连信用最好的大科技都开始拿设备抵押借钱」，反映AI花钱速度之快。AWS增速未达偏高市场预期，本周跌3.1%。</div>
+          <div class="op-q">「如果连信用最好的大科技也开始拿设备做抵押来借钱，那就说明AI的花钱速度已经快到连最赚钱的公司都要想办法省现金了」</div>
+          <div class="op-tag"><b>催化：</b>800亿美元担保贷款融资安排、2027资本开支明显增加</div>
+          <div class="op-tag"><b>风险：</b>AWS增速不及市场预期、现金资本开支飙升（三季度759亿）、债务从688亿飙至1809亿</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KCqKSpexnt0&amp;t=480s" class="tslink">8:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/买入·中期</span></div>
+          
+          <div class="op-d">分析师Steven认为：财报最大问题在广告（本季+12%大幅miss、下季指引也miss，且个人agent兴起冲击广告），AWS 39%增长虽符合预期但买方预期早到40%+算miss。但CEO明确表示2027-2028年AWS都能增40%以上（大幅高于市场38%/30%预期），未来两年AWS收入可预见性很高、股价当下合理，「这个位置的亚马逊很可能是一个不错的机会」。资本开支（含融资租赁）773亿大超预期31%，自由现金流-424亿创纪录。</div>
+          <div class="op-q">「由于未来两年AWS收入可预见性很高，股价当下又比较合理，这个位置的亚马逊很可能是一个不错的机会」</div>
+          <div class="op-tag"><b>催化：</b>AWS 2027-2028增长40%+指引、积压订单5780亿同比三位数、Trainium芯片2027年底对外销售</div>
+          <div class="op-tag"><b>风险：</b>广告业务miss（个人agent冲击）、自由现金流-424亿创纪录、AI业务利润率低</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Lt0fq82XjGk&amp;t=480s" class="tslink">8:00 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·中期</span></div>
+          
+          <div class="op-d">与谷歌类似，AI营收快速增长且超预期，但自营广告略有疲软。480亿美元新债是关注AI债券市场能否重新打开的关键信号。广告疲软是偶发还是趋势需等四季度财报确认。</div>
+          <div class="op-q">「亚马逊480亿美元的新债……需要关注超大规模数据中心的利差，看债券市场是否会重新开放以承销AI项目」</div>
+          <div class="op-tag"><b>催化：</b>480亿美元新债发行</div>
+          <div class="op-tag"><b>风险：</b>广告业务疲软、AI资本开支与回报担忧</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=K1OPHbVonjc&amp;t=1560s" class="tslink">26:00 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">10/31</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st flat">中性/持有·中期</span></div>
+          
+          <div class="op-d">亚马逊是 Anthropic 最重要的算力供应商之一，从 Anthropic 身上通过算力租赁、渠道费、研发算力三条路径获利，最低消费承诺 1100 亿（不可撤销），AWS 订单达 5000 亿级。招股书揭示亚马逊既是投资者、供应商、客户、渠道又是竞争对手，Anthropic 的资本开支是其 AWS 增长的重要来源。</div>
+          <div class="op-q">「亚马逊1100亿……都是最低消费，不管用没用都得付」</div>
+          <div class="op-tag"><b>催化：</b>AWS承接Anthropic算力需求、1100亿最低消费承诺</div>
+          <div class="op-tag"><b>风险：</b>Anthropic收入/融资跟不上导致订单延后、循环交易依赖</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=-eAneK1yPek&amp;t=1729s" class="tslink">28:49 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/2</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st up">看多/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 相对强势延续则持有</span><span class="lv">目标 <b class="num">375</b>（高盛目标价，非博主本人目标）</span></div>
+          <div class="op-d">连续跑赢其他巨头（周五跌得少、今天更强）；高盛维持买入并列入确信买入名单、目标价375美元；Ackman也逆势买入（AMZN/META/MSFT合计占其组合约1/3）。她的调侃：高盛可能是自己被套了才唱多。</div>
+          <div class="op-q">「亚马逊这两天表现要远好于另外几个巨头……今天高盛又大力唱多，维持亚马逊『买入』评级，续列确信买入名单内，并给予目标价375美元。」</div>
+          <div class="op-tag"><b>催化：</b>高盛确信买入名单+目标价375、Ackman逆势买入、相对强势</div>
+          <div class="op-tag"><b>风险：</b>大盘拖累、AI资本开支压制</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=NTnAZferrZo&amp;t=669s" class="tslink">11:09 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st up">看多/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 持有</span></div>
+          <div class="op-d">Ackman价值标准标的之一，逆势买入；她同样看好亚马逊当前业绩和趋势。</div>
+          <div class="op-q">「微软和亚马逊当前业绩和趋势都不错，我也看好他们的投资价值。」</div>
+          <div class="op-tag"><b>催化：</b>Ackman买入背书、业绩趋势良好</div>
+          <div class="op-tag"><b>风险：</b>AI资本开支拖累现金流</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=FSKlf5rRFKo&amp;t=548s" class="tslink">9:08 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/4</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">看空/减仓·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 半年线（预期回踩位）</span><span class="lv lv-s">支撑 至少回踩半年线（下跌方向）</span></div>
+          <div class="op-d">亚马逊同样涨超6%，市场意淫民主党上台后不打仗没关税、物价下降利好电商。NaNa明确认为涨得有点过了：现金流都负几百亿美元了还硬涨，后面股价大概率会回落，至少回踩半年线。</div>
+          <div class="op-q">「但这完全属于意淫，我觉得这个涨的有点过了，现金流都负几百亿美元了，就硬涨，后面股价大概率会回落，至少回踩半年线。」</div>
+          
+          <div class="op-tag"><b>风险：</b>自由现金流负几百亿美元、情绪驱动涨幅回吐</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=mbGJZQC07xM&amp;t=417s" class="tslink">6:57 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st up">看多/持有·短期</span></div>
+          <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">272</b></span></div>
+          <div class="op-d">亚马逊今天大涨，跳空高开冲到272，完全回补财报时的巨大日线缺口（财报日与谷歌一样跌了12%，此后低点算起4个交易日涨了16%、到高点涨14%）。在Mag 7对比中，亚马逊比微软、苹果之外的名字强得多，且可能是剩余上行空间最大的一个。算力稀缺背景下其已建成的云算力最具议价优势。</div>
+          <div class="op-q">「亚马逊度过了大日子，跳空高开冲上上轨，一路涨到272，收复了那个我们盯了很久的大日线缺口……我认为亚马逊比其他几个名字还有更多上涨空间。（Rallying all the way to 272... I think Amazon probably has more room to run than some of these others.）」</div>
+          <div class="op-tag"><b>催化：</b>数据中心立法受阻强化已建成算力者的稀缺性溢价、完全回补财报缺口，图表修复完成、Mag 7 中相对强度领先</div>
+          <div class="op-tag"><b>风险：</b>短线涨速过快，可能回补部分涨幅、AI叙事快速切换可能引发剧烈轮动</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5-HtKsy2Uh8&amp;t=506s" class="tslink">8:26 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">亚马逊与微软同为大云主力，当日大涨超6%。放缓环境下自建模式、已有大量建好容量和电商广告现金流使其相对优势放大，市场份额有望进一步集中。</div>
+          <div class="op-q">「微软亚马逊更是大涨超6%……大云有搜索、软件、电商、广告这些核心业务，每年都有稳定的现金流支撑」</div>
+          <div class="op-tag"><b>催化：</b>存量算力涨价空间、市场份额向大云集中、电商现金流支撑资本开支</div>
+          <div class="op-tag"><b>风险：</b>审批放缓拖累新建节奏、AI交易整体承压</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=EgQshiaDUmY&amp;t=18s" class="tslink">0:18 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">老李玩钱</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">被老李点名为加大AI资本支出的科技巨头之一，今日大涨。民主党用电限制政策约束其数据中心扩张，资本支出预期下降改善自由现金流，华尔街此前的担忧减轻。</div>
+          <div class="op-q">「尤其是那些平常在加大AI资本支出的，什么微软、亚马逊、谷歌，这些科技巨头都大涨。」</div>
+          <div class="op-tag"><b>催化：</b>AI资本支出预期下降改善现金流</div>
+          <div class="op-tag"><b>风险：</b>AWS数据中心扩张受政策约束</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=w8GM1mghKJc&amp;t=421s" class="tslink">7:01 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st up">看多/买入·中期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">250</b>（<b class="num">27</b> 年前瞻估值下限）</span><span class="lv lv-r">阻力 <b class="num">336</b>（<b class="num">27</b> 年前瞻估值上限）</span><span class="lv lv-e">买点 任何回撤都是上车机会（市价 <b class="num">264</b> 处于前瞻下限附近）</span><span class="lv lv-r">阻力 前高（突破后看新高）</span></div>
+          <div class="op-d">连续三天跳涨吃掉所有强压力、V 型反转直冲前高，中间没有形态调整也没给考虑时间。他无持仓，但明确：趋势已定，从现在开始任何回撤都是上车机会，上车后拿久一点别折腾。当日大放量+长上影+收盘近高点，不算有效滞涨形态。前瞻估值 250-336，市价 264 在下限附近；27 年 EPS 表面 -16 是 26 年一次性投资口径调整所致，剔除后仍同比增长且高于上次更新。后面直接等新高。</div>
+          <div class="op-q">「现在趋势已定，从现在开始任何的回撤机会都是上车机会，上了车之后就拿久一点，中间别折腾了……250-336，市价在264，前瞻估值附近下限一点点……后面就直接去等一个新高就可以了。」</div>
+          <div class="op-tag"><b>催化：</b>AWS 云营收增长+算力提价、突破前高确认趋势</div>
+          <div class="op-tag"><b>风险：</b>快速拉升后短线回撤、26 年一次性投资扰动 EPS 口径</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=JpvxhfYocfo&amp;t=1210s" class="tslink">20:10 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/5</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/持有·中期</span></div>
+          
+          <div class="op-d">亚马逊当日相对抗跌、跌幅约2%，尽管上周市场担心其现金流，这次仍大幅上涨；高盛指出稀缺产能对大云是好事，扩张受限反而令资本开支减少、自由现金流增加。</div>
+          <div class="op-q">「所以 尽管上周市场还在担心亚马逊的现金流 这次 亚马逊还是大幅上涨 用Privorotsky的话说 稀缺对拥有产能的公司是好事 但对估值建立在增量产能建设的公司来说 可能就是灾难」</div>
+          <div class="op-tag"><b>催化：</b>已通上电的算力更值钱，稀缺产能上能赚得更多、扩张受限使资本开支减少、自由现金流反而增加</div>
+          <div class="op-tag"><b>风险：</b>若估值建立在增量产能建设上，稀缺可能成为灾难</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Cz8g5HqT-VM&amp;t=546s" class="tslink">9:06 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/6</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">The Investor Channel</span><span class="st flat">中性/持有·中期</span></div>
+          <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">280-300</b>美元（需有效向上突破才能走出横盘区间）</span></div>
+          <div class="op-d">本周逆势大涨近8%、收于约260美元：屏蔽外部AI Agent直接下单、Alexa推出文本购物、与Uber Eats合作为Prime会员提供0配送费。技术面上周收盘在所有均线下方、本周收复200日线，但自年初以来整体横盘，除非有效突破280-300美元区间，否则大概率仍在区间内震荡。</div>
+          <div class="op-q">「Until you break really meaningfully up into like the 280s 300s, stock is probably in this range.（除非真正有效突破280、300美元区域，否则股价大概率仍在这个区间里。）」</div>
+          <div class="op-tag"><b>催化：</b>AI购物（Alexa文本购物）与Prime生态扩张（Uber Eats 0配送费合作）、对AI Agent采取防御性封闭策略，保住交易与广告关系</div>
+          <div class="op-tag"><b>风险：</b>AI Agent可能分流电商入口流量、股价横盘区间未突破，上行缺乏催化</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=AmgVOgS9Tmk&amp;t=1137s" class="tslink">18:57 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-13 11:48（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>

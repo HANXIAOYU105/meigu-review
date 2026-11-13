@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-gowcSnPCTEPl8tnB4OUtOYpTwNuhEscdVMm6dE9Mlb8='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · Anthropic (ANT)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+    --warn:#b45309; --warn-bg:#fef3e2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+      --warn:#e8b06a; --warn-bg:#3a2a16;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  /* 关键指标卡（K线上方，2026-11-05）：紧凑网格，窄屏不溢出 */
+  .fm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:5px;}
+  .fm{background:var(--flat-bg);border-radius:7px;padding:5px 7px;min-width:0;overflow:hidden;}
+  .fm-wide{grid-column:1 / -1;}
+  .fm-l{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .fm-v{font-size:12.5px;font-weight:700;color:var(--text-strong);margin-top:1px;font-variant-numeric:tabular-nums;overflow-wrap:break-word;word-break:break-word;}
+  .fm-v .rng{font-size:11px;letter-spacing:-0.3px;white-space:nowrap;}
+  .fm-chg{font-size:11px;font-weight:600;}
+  @media (max-width:480px){ .fm-grid{grid-template-columns:repeat(4,1fr);} }
+  .fm-up{color:var(--up-fg);}
+  .fm-down{color:var(--down-fg);}
+  /* Gamma 市场状态（2026-11-11）：正 gamma=压制波动（蓝），负 gamma=放大波动（橙警示） */
+  .fm-pos{color:var(--link);}
+  .fm-neg{color:var(--warn);}
+  /* 期权墙区块（2026-11-06）：口径说明小字 + 到期分档 GEX 红绿 */
+  .ow-note{font-size:11.5px;color:var(--muted-2);margin-top:8px;line-height:1.5;}
+  .ow-gex-up{color:var(--up-fg);font-weight:700;}
+  .ow-gex-dn{color:var(--down-fg);font-weight:700;}
+  /* 期权墙到期分档选项卡（2026-11-06）：纯 CSS radio 切换，零 JS */
+  .ow-tabs{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:10px;}
+  .ow-tabs input{display:none;}
+  .ow-tabs label{cursor:pointer;padding:3px 12px;border-radius:14px;font-size:12px;background:var(--flat-bg);color:var(--text);user-select:none;}
+  .ow-tabs input:checked+label{background:var(--accent);color:#fff;font-weight:600;}
+  .ow-pane{display:none;flex-basis:100%;min-width:0;}
+  #owt0:checked~.p0,#owt1:checked~.p1,#owt2:checked~.p2,#owt3:checked~.p3,#owt4:checked~.p4,#owt5:checked~.p5{display:block;}
+  .ow-sum{font-size:12px;color:var(--muted);margin:4px 0 6px;}
+  .ow-pane p.empty{margin:6px 0;}
+  /* 折叠区（2026-11-06）：关键指标/期权墙次要内容默认收起，原生 details 零 JS */
+  details.fold{margin-top:8px;}
+  details.fold>summary{list-style:none;cursor:pointer;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;user-select:none;padding:4px 2px;border-radius:6px;}
+  details.fold>summary::-webkit-details-marker{display:none;}
+  details.fold>summary::before{content:'▸';display:inline-block;font-size:11px;color:var(--muted-2);transition:transform .15s;}
+  details.fold[open]>summary::before{transform:rotate(90deg);}
+  details.fold[open]>summary{margin-bottom:8px;}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">个股档案 · ANT</span><span class="rt"></span></nav>
+<div class="hero">
+  <p class="nm">Anthropic</p>
+  <div class="tk">ANT · AI大模型</div>
+  <div class="meta">近5日 5 条观点 · 2026-11-08 ~ 2026-11-11 · 4 位博主</div>
+</div>
+
+
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势</div>
+      <p class="empty">暂无日K数据（未上市标的，无交易行情）</p>
+    </div>
+
+
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日口径</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">5</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">1</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">0</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">4</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 0.20）</p>
+  <div class="chips"><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span><span class="chip">视野环球财经</span><span class="chip">阳光财经</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
+  <div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>阳光财经</td><td>11/11</td><td><b class="num">70-78</b>美元发行价区间（绿鞋机制护盘，上市初期难跌破） <a href="https://www.youtube.com/watch?v=WImcdPu4xGs&amp;t=181s" class="tslink">⏱3:01</a></td><td class="vfy"><span class="vfy-none">—</span></td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>NaNa说美股</td><td>11/10</td><td><b class="num">70-78</b>（IPO发行价区间） <a href="https://www.youtube.com/watch?v=L9qouu123Kk&amp;t=522s" class="tslink">⏱8:42</a></td><td class="vfy"><span class="vfy-none">—</span></td></tr><tr><td>美投侃新闻</td><td>11/10</td><td>IPO发行价区间 <b class="num">70-78</b>美元（<b class="num">11</b>月<b class="num">18</b>日定价，<b class="num">19</b>日挂牌，按低开高走逻辑发行） <a href="https://www.youtube.com/watch?v=srSfWTmXrKs&amp;t=393s" class="tslink">⏱6:33</a></td><td class="vfy"><span class="vfy-none">—</span></td></tr><tr><td>阳光财经</td><td>11/10</td><td><b class="num">70 - 78</b> 美元（IPO发行价区间） <a href="https://www.youtube.com/watch?v=B0dOGilruyg&amp;t=527s" class="tslink">⏱8:47</a></td><td class="vfy"><span class="vfy-none">—</span></td></tr><tr><td>阳光财经</td><td>11/11</td><td>发行价<b class="num">70-78</b>美元区间（仅限券商开放认购且有闲置资金时参与打新） <a href="https://www.youtube.com/watch?v=WImcdPu4xGs&amp;t=181s" class="tslink">⏱3:01</a></td><td class="vfy"><span class="vfy-none">—</span></td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>视野环球财经</td><td>11/10</td><td>等IPO定价与他下周的公开概述出来后再评估，上市首日不追 <a href="https://www.youtube.com/watch?v=4OV3C6IIjhg&amp;t=1412s" class="tslink">⏱23:32</a></td><td class="vfy"><span class="vfy-none">—</span></td></tr><tr><td>阳光财经</td><td>11/11</td><td>上市初期冲高可短线参与；热度退去后不追高，等大幅回落再考虑从市场买入 <a href="https://www.youtube.com/watch?v=WImcdPu4xGs&amp;t=181s" class="tslink">⏱3:01</a></td><td class="vfy"><span class="vfy-none">—</span></td></tr>
+        </table></div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日复盘记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean up">偏多</span><span class="ch-meta">1 条 · 看多 1 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/10</span></span><span class="st up">看多/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-e">买点 IPO发行价区间 <b class="num">70-78</b>美元（<b class="num">11</b>月<b class="num">18</b>日定价，<b class="num">19</b>日挂牌，按低开高走逻辑发行）</span></div>
+      <div class="op-d">Anthropic更新招股书：发行价区间70-78美元、11月19日挂牌，上限对应估值约1.02万亿美元、完全稀释约1.4万亿美元，ARR达810亿美元。投行按低开高走压低发行价是好事，能避开糟糕IPO秀，对Anthropic与AI交易都是情绪提振，上市后可关注低吸机会。</div>
+      <div class="op-q">「而这对Anthropic对整个AI交易来说 效果都要比高开低走好上很多」</div>
+      <div class="op-tag"><b>催化：</b>11月18日定价、19日纳斯达克开始交易、AMD/博通/谷歌/美光/微软/英伟达/台积电7家按发行价认购约260亿美元、10月底ARR 810亿美元、月增速14%回升、最多募资约885亿美元，历史第一大IPO</div>
+      <div class="op-tag"><b>风险：</b>AI交易质疑升温，近期明星企业上市后普遍杀估值（Cerebrus、Quantinum破发三成以上）、实际发行可能低于78美元顶格测算的1.4万亿估值，按70美元下限完全稀释市值约1.26万亿美元、新工具与微软Office竞争引发对手反制</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=srSfWTmXrKs&amp;t=393s" class="tslink">6:33 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/10</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-e">买点 <b class="num">70 - 78</b> 美元（IPO发行价区间）</span></div>
+      <div class="op-d">Anthropic提交IPO，估值从2万亿降至1.4万亿，拟发行8.25亿股、发行价70-78美元、代码AMT，或11月19日上市，融资超643亿美元；上市后融资能力大增，博主语气偏调侃观望，同时警惕其办公产品冲击巨头。</div>
+      <div class="op-q">「将发行8.25亿股的股票,发行价70-78美元,股票代码AMT,发行日期可能在11月19日 IPO融资的规模预计将超过643亿美元」</div>
+      <div class="op-tag"><b>催化：</b>11月19日前后IPO上市、发布Claude办公套件（Sheets、白板等）扩张产品版图</div>
+      <div class="op-tag"><b>风险：</b>估值从2万亿降至1.4万亿，大模型公司自由现金流紧张、与微软、谷歌正面争夺企业办公市场，竞争激烈</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=B0dOGilruyg&amp;t=527s" class="tslink">8:47 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/11</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">70-78</b>美元发行价区间（绿鞋机制护盘，上市初期难跌破）</span><span class="lv lv-e">买点 发行价<b class="num">70-78</b>美元区间（仅限券商开放认购且有闲置资金时参与打新）</span><span class="lv lv-t">触发 上市初期冲高可短线参与；热度退去后不追高，等大幅回落再考虑从市场买入</span></div>
+      <div class="op-d">她把 Anthropic 的 IPO 拆成「打新」和「长期」两件事。打新层面：11 月 18 日定价、19 日以 ANT 上市，发行价 70-78 美元、融资 643.5 亿美元、完全稀释市值 1.4 万亿，比上月 2 万亿估值打七折，认购超预期好几倍，英伟达、微软、谷歌、台积电、博通、AMD、美光额外认购 260 亿美元，加 15% 绿鞋护盘，上市初期难跌破发行价、短线有冲高机会。但长期她非常谨慎：涨 30% 就到 1.8 万亿、市销率 22 倍，等于提前透支增长故事；公司仍亏损，未来几年要付 9000 亿美元算力租赁费，成本刚性而收入可能不及预期。结论：短线炒新可参与，追高要克制。</div>
+      <div class="op-q">「AMT上市初期可能难以跌破发行价，短线有冲高上涨的机会，毕竟炒新股炒概念……但是市场热闹过去之后，有可能就快速回落，长期看有很多不确定性，风险较大……以1.4万亿上市，哪怕上涨30%，也到了1.8万亿的水平，估值已经透支了未来的增长故事」</div>
+      <div class="op-tag"><b>催化：</b>11月18日定价、11月19日上市，认购倍数超预期好几倍、科技巨头额外认购260亿美元+15%绿鞋护盘、6个季度营收暴增45倍、12000家企业客户年付费超10万美元</div>
+      <div class="op-tag"><b>风险：</b>1.8万亿对应市销率22倍，估值透支未来增长、未来几年需支付9000亿美元算力租赁费，成本刚性、OpenAI 即将上市、谷歌与 Meta 竞争激烈，模型迭代落后即被超越、普通股无投票权，控制权集中在7人创始人团队</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=WImcdPu4xGs&amp;t=181s" class="tslink">3:01 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/10</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-e">买点 <b class="num">70-78</b>（IPO发行价区间）</span></div>
+      <div class="op-d">顶住AI板块抛售压力折价推进IPO，发行价70-78美元，估值约1.02万亿美元远低于此前2万亿；算力租赁承诺约9000亿美元既是保障也是风险，下周四上市将直接测试市场对AI资产的风险偏好与承接能力。</div>
+      <div class="op-q">「公司计划以每股70至78美元发行股票……公司估值约1.02万亿美元……此次Anthropic的大规模上市将直接测试市场对AI资产的风险偏好与承接能力。」</div>
+      <div class="op-tag"><b>催化：</b>下周三确定发行价、下周四登陆纳斯达克、IPO公开发行最多筹集644亿美元加260亿私募</div>
+      <div class="op-tag"><b>风险：</b>折价上市（估值远低于此前2万亿美元）打击AI板块情绪、Claude需求放缓、模型效率改善或客户转向更便宜竞品导致算力容量闲置、华尔街或借利空抛售为Anthropic上市腾挪资金</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=L9qouu123Kk&amp;t=522s" class="tslink">8:42 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">视野环球财经</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">视野环球财经<span class="op-date">·11/10</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 等IPO定价与他下周的公开概述出来后再评估，上市首日不追</span></div>
+      <div class="op-d">Anthropic已确定IPO时间表，下周四上市交易；上市前推出一系列办公软件套件直接对标微软，产品负责人承认目前版本还相当基础、不适合复杂财务建模等深度企业应用。他本周会在会员节目做完整IPO财务分析，公开视频下周上市前给简要概述，在此之前不给估值结论。</div>
+      <div class="op-q">「Anthropic的IPO已经是确定了，下个星期会上市交易，应该是星期四吧……他在IPO之前是发布了一系列的办公软件，是准备与微软展开竞争，导致微软瞬间跌了3个点，然后瞬间又被买回来。」</div>
+      <div class="op-tag"><b>催化：</b>下周四IPO定价与首日表现、办公套件产品迭代与用户数据</div>
+      <div class="op-tag"><b>风险：</b>新产品仍属基础版本，商业化验证不足、估值定价过高风险、与微软既竞争又合作的复杂关系</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=4OV3C6IIjhg&amp;t=1412s" class="tslink">23:32 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">下周三确定发行价、下周四登陆纳斯达克</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">IPO公开发行最多筹集644亿美元加260亿私募</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">11月18日定价、19日纳斯达克开始交易</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">AMD/博通/谷歌/美光/微软/英伟达/台积电7家按发行价认购约260亿美元</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">10月底ARR 810亿美元、月增速14%回升</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">最多募资约885亿美元，历史第一大IPO</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">下周四IPO定价与首日表现</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">办公套件产品迭代与用户数据</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">11月19日前后IPO上市</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">发布Claude办公套件（Sheets、白板等）扩张产品版图</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">11月18日定价、11月19日上市，认购倍数超预期好几倍</span><span class="tag-date">11/11</span></div><div class="tag-item"><span class="tag-fg">科技巨头额外认购260亿美元+15%绿鞋护盘</span><span class="tag-date">11/11</span></div><div class="tag-item"><span class="tag-fg">6个季度营收暴增45倍、12000家企业客户年付费超10万美元</span><span class="tag-date">11/11</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">折价上市（估值远低于此前2万亿美元）打击AI板块情绪</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">Claude需求放缓、模型效率改善或客户转向更便宜竞品导致算力容量闲置</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">华尔街或借利空抛售为Anthropic上市腾挪资金</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">AI交易质疑升温，近期明星企业上市后普遍杀估值（Cerebrus、Quantinum破发三成以上）</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">实际发行可能低于78美元顶格测算的1.4万亿估值，按70美元下限完全稀释市值约1.26万亿美元</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">新工具与微软Office竞争引发对手反制</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">新产品仍属基础版本，商业化验证不足</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">估值定价过高风险</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">与微软既竞争又合作的复杂关系</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">估值从2万亿降至1.4万亿，大模型公司自由现金流紧张</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">与微软、谷歌正面争夺企业办公市场，竞争激烈</span><span class="tag-date">11/10</span></div><div class="tag-item"><span class="tag-fg">1.8万亿对应市销率22倍，估值透支未来增长</span><span class="tag-date">11/11</span></div><div class="tag-item"><span class="tag-fg">未来几年需支付9000亿美元算力租赁费，成本刚性</span><span class="tag-date">11/11</span></div><div class="tag-item"><span class="tag-fg">OpenAI 即将上市、谷歌与 Meta 竞争激烈，模型迭代落后即被超越</span><span class="tag-date">11/11</span></div><div class="tag-item"><span class="tag-fg">普通股无投票权，控制权集中在7人创始人团队</span><span class="tag-date">11/11</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日</span></div>
+  <div class="day">
+      <div class="day-h">11/10</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性/观望·短期</span></div>
+          <div class="op-lv"><span class="lv lv-e">买点 <b class="num">70-78</b>（IPO发行价区间）</span></div>
+          <div class="op-d">顶住AI板块抛售压力折价推进IPO，发行价70-78美元，估值约1.02万亿美元远低于此前2万亿；算力租赁承诺约9000亿美元既是保障也是风险，下周四上市将直接测试市场对AI资产的风险偏好与承接能力。</div>
+          <div class="op-q">「公司计划以每股70至78美元发行股票……公司估值约1.02万亿美元……此次Anthropic的大规模上市将直接测试市场对AI资产的风险偏好与承接能力。」</div>
+          <div class="op-tag"><b>催化：</b>下周三确定发行价、下周四登陆纳斯达克、IPO公开发行最多筹集644亿美元加260亿私募</div>
+          <div class="op-tag"><b>风险：</b>折价上市（估值远低于此前2万亿美元）打击AI板块情绪、Claude需求放缓、模型效率改善或客户转向更便宜竞品导致算力容量闲置、华尔街或借利空抛售为Anthropic上市腾挪资金</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=L9qouu123Kk&amp;t=522s" class="tslink">8:42 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/观望·短期</span></div>
+          <div class="op-lv"><span class="lv lv-e">买点 IPO发行价区间 <b class="num">70-78</b>美元（<b class="num">11</b>月<b class="num">18</b>日定价，<b class="num">19</b>日挂牌，按低开高走逻辑发行）</span></div>
+          <div class="op-d">Anthropic更新招股书：发行价区间70-78美元、11月19日挂牌，上限对应估值约1.02万亿美元、完全稀释约1.4万亿美元，ARR达810亿美元。投行按低开高走压低发行价是好事，能避开糟糕IPO秀，对Anthropic与AI交易都是情绪提振，上市后可关注低吸机会。</div>
+          <div class="op-q">「而这对Anthropic对整个AI交易来说 效果都要比高开低走好上很多」</div>
+          <div class="op-tag"><b>催化：</b>11月18日定价、19日纳斯达克开始交易、AMD/博通/谷歌/美光/微软/英伟达/台积电7家按发行价认购约260亿美元、10月底ARR 810亿美元、月增速14%回升、最多募资约885亿美元，历史第一大IPO</div>
+          <div class="op-tag"><b>风险：</b>AI交易质疑升温，近期明星企业上市后普遍杀估值（Cerebrus、Quantinum破发三成以上）、实际发行可能低于78美元顶格测算的1.4万亿估值，按70美元下限完全稀释市值约1.26万亿美元、新工具与微软Office竞争引发对手反制</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=srSfWTmXrKs&amp;t=393s" class="tslink">6:33 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性/观望·短期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 等IPO定价与他下周的公开概述出来后再评估，上市首日不追</span></div>
+          <div class="op-d">Anthropic已确定IPO时间表，下周四上市交易；上市前推出一系列办公软件套件直接对标微软，产品负责人承认目前版本还相当基础、不适合复杂财务建模等深度企业应用。他本周会在会员节目做完整IPO财务分析，公开视频下周上市前给简要概述，在此之前不给估值结论。</div>
+          <div class="op-q">「Anthropic的IPO已经是确定了，下个星期会上市交易，应该是星期四吧……他在IPO之前是发布了一系列的办公软件，是准备与微软展开竞争，导致微软瞬间跌了3个点，然后瞬间又被买回来。」</div>
+          <div class="op-tag"><b>催化：</b>下周四IPO定价与首日表现、办公套件产品迭代与用户数据</div>
+          <div class="op-tag"><b>风险：</b>新产品仍属基础版本，商业化验证不足、估值定价过高风险、与微软既竞争又合作的复杂关系</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=4OV3C6IIjhg&amp;t=1412s" class="tslink">23:32 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st flat">中性/观望·短期</span></div>
+          <div class="op-lv"><span class="lv lv-e">买点 <b class="num">70 - 78</b> 美元（IPO发行价区间）</span></div>
+          <div class="op-d">Anthropic提交IPO，估值从2万亿降至1.4万亿，拟发行8.25亿股、发行价70-78美元、代码AMT，或11月19日上市，融资超643亿美元；上市后融资能力大增，博主语气偏调侃观望，同时警惕其办公产品冲击巨头。</div>
+          <div class="op-q">「将发行8.25亿股的股票,发行价70-78美元,股票代码AMT,发行日期可能在11月19日 IPO融资的规模预计将超过643亿美元」</div>
+          <div class="op-tag"><b>催化：</b>11月19日前后IPO上市、发布Claude办公套件（Sheets、白板等）扩张产品版图</div>
+          <div class="op-tag"><b>风险：</b>估值从2万亿降至1.4万亿，大模型公司自由现金流紧张、与微软、谷歌正面争夺企业办公市场，竞争激烈</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=B0dOGilruyg&amp;t=527s" class="tslink">8:47 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/11</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st flat">中性/观望·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">70-78</b>美元发行价区间（绿鞋机制护盘，上市初期难跌破）</span><span class="lv lv-e">买点 发行价<b class="num">70-78</b>美元区间（仅限券商开放认购且有闲置资金时参与打新）</span><span class="lv lv-t">触发 上市初期冲高可短线参与；热度退去后不追高，等大幅回落再考虑从市场买入</span></div>
+          <div class="op-d">她把 Anthropic 的 IPO 拆成「打新」和「长期」两件事。打新层面：11 月 18 日定价、19 日以 ANT 上市，发行价 70-78 美元、融资 643.5 亿美元、完全稀释市值 1.4 万亿，比上月 2 万亿估值打七折，认购超预期好几倍，英伟达、微软、谷歌、台积电、博通、AMD、美光额外认购 260 亿美元，加 15% 绿鞋护盘，上市初期难跌破发行价、短线有冲高机会。但长期她非常谨慎：涨 30% 就到 1.8 万亿、市销率 22 倍，等于提前透支增长故事；公司仍亏损，未来几年要付 9000 亿美元算力租赁费，成本刚性而收入可能不及预期。结论：短线炒新可参与，追高要克制。</div>
+          <div class="op-q">「AMT上市初期可能难以跌破发行价，短线有冲高上涨的机会，毕竟炒新股炒概念……但是市场热闹过去之后，有可能就快速回落，长期看有很多不确定性，风险较大……以1.4万亿上市，哪怕上涨30%，也到了1.8万亿的水平，估值已经透支了未来的增长故事」</div>
+          <div class="op-tag"><b>催化：</b>11月18日定价、11月19日上市，认购倍数超预期好几倍、科技巨头额外认购260亿美元+15%绿鞋护盘、6个季度营收暴增45倍、12000家企业客户年付费超10万美元</div>
+          <div class="op-tag"><b>风险：</b>1.8万亿对应市销率22倍，估值透支未来增长、未来几年需支付9000亿美元算力租赁费，成本刚性、OpenAI 即将上市、谷歌与 Meta 竞争激烈，模型迭代落后即被超越、普通股无投票权，控制权集中在7人创始人团队</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=WImcdPu4xGs&amp;t=181s" class="tslink">3:01 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-13 11:48（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
