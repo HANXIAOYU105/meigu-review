@@ -108,6 +108,22 @@
   .chg-new{display:inline-block;font-size:10px;font-weight:700;color:var(--warn);background:var(--warn-bg);border-radius:5px;padding:1px 6px;white-space:nowrap;}
   .g-drop{background:var(--card);border:1px dashed var(--border);border-radius:12px;padding:10px 13px;margin:2px 0 10px;font-size:12.5px;color:var(--muted);line-height:1.9;}
   .g-drop b{color:var(--text-strong);font-family:ui-monospace,Menlo,monospace;}
+  /* 本季调仓摘要 + 历史调仓区（2026-11-17）：过去 4 期快照持仓组成 */
+  .g-sum{display:flex;gap:6px;flex-wrap:wrap;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:9px 13px;margin:0 0 10px;font-size:12.5px;color:var(--muted);}
+  .g-sum b{color:var(--text-strong);}
+  .g-hist{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin:0 0 10px;}
+  .g-hist-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:13.5px;font-weight:800;color:var(--text-strong);}
+  .g-hist-q{font-size:11px;font-weight:700;color:var(--link);background:var(--accent-soft);border-radius:20px;padding:2px 8px;white-space:nowrap;}
+  .g-hist-sub{font-size:11.5px;color:var(--muted-2);font-weight:400;}
+  .g-hist-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px;font-size:11.5px;}
+  .g-hist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:1px 16px;margin-top:8px;}
+  .g-hist-row{display:flex;align-items:center;gap:6px;font-size:12px;padding:3.5px 0;border-bottom:1px dashed var(--border-soft);min-width:0;}
+  .g-hist-row .g-tk{margin-right:0;font-size:10.5px;padding:1px 5px;min-width:24px;}
+  .g-hist-n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text);}
+  .g-hist-w{flex:none;font-family:ui-monospace,Menlo,monospace;font-weight:700;color:var(--text-strong);font-variant-numeric:tabular-nums;}
+  .g-hist-bar{flex:none;width:34px;height:4px;border-radius:3px;background:var(--accent-soft);overflow:hidden;}
+  .g-hist-bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--link),#7aa7ff);}
+  .g-hist-out{margin-top:7px;font-size:11.5px;color:var(--muted-2);line-height:1.7;}
   .g-issuer{color:var(--text);font-size:12.5px;}
   .g-dim{color:var(--muted-2);font-size:11.5px;}
   .g-note{font-size:12px;color:var(--muted);line-height:1.75;margin:10px 0 0;}
@@ -222,5 +238,5 @@
     <div class="b-sec"><div class="b-lab">🔭 未来走势研判</div><p class="b-fwd">流动性不扩张的前提下，横盘时间越长，周线动能衰竭越严重，破位后的下行空间越大。</p><p class="b-fwd">猫姐用 BTCUSD 15 分钟图复盘：最近三个交易日价格一直围绕她 2024 年标出的「重心点位」上下，一触即反弹，说明该位置仍有多头防守。</p></div>
     <div class="b-sec"><div class="b-lab">🧭 最新大盘综述</div><p class="b-sum">猫姐用 BTCUSD 15 分钟图复盘：最近三个交易日价格一直围绕她 2024 年标出的「重心点位」上下，一触即反弹，说明该位置仍有多头防守。但她同时指出更关键的问题——币圈总流动性从 2024 年至今几乎没有变化，三年…</p></div><div class="b-traj">近 5 日态度 <span class="tj"><i class="dot d-up"></i>11.10 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-fl"></i>11.11 中性</span><span class="arr">→</span><span class="tj"><i class="dot d-up"></i>11.12 偏多</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.13 偏空</span><span class="arr">→</span><span class="tj"><i class="dot d-dn"></i>11.16 偏空</span></div>
   </div>
-<footer>生成于 11.17 11:51 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
+<footer>生成于 11.17 22:11 · 仅供学习研究，不构成投资建议 · <a href="/masters-qa/" style="color:var(--link)">🧙 问问大师</a> · <a href="/" style="color:var(--link)">首页</a></footer>
 </div></body></html>
