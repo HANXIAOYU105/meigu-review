@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-gowcSnPCTEPl8tnB4OUtOYpTwNuhEscdVMm6dE9Mlb8='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>美股复盘日报 2026-11-20</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --text:#1a1a1a; --text-strong:#111111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --accent-soft:#eef2ff;
+    --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#ffffff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --accent-soft:#1e2a44;
+      --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.6;}
+  .wrap{max-width:640px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:18px 16px;margin-bottom:12px;}
+  .hero h1{margin:0 0 6px;font-size:19px;font-weight:700;color:#fff;}
+  .hero .sub{font-size:12.5px;color:#dbe4f0;}
+  .mkt{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:12px;}
+  .mkt-h{font-size:13px;font-weight:700;color:var(--text-strong);margin:0 0 8px;}
+  .mkt-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .mkt-grid{display:flex;gap:8px;flex-wrap:nowrap;}
+  .mkt-item{flex:1 1 0;min-width:0;background:var(--bg);border:1px solid var(--border-soft);border-radius:8px;padding:8px 10px;}
+  .mkt-name{font-size:11.5px;color:var(--muted);font-weight:600;white-space:nowrap;}
+  .mkt-val{font-size:16px;font-weight:800;color:var(--text-strong);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:2px;white-space:nowrap;}
+  .mkt-pct{font-size:13px;font-weight:700;margin-top:1px;white-space:nowrap;}
+  .mkt-dd{font-size:11px;color:var(--muted);margin-top:3px;white-space:nowrap;}
+  .mkt-dd b{color:var(--down-fg);font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  @media (max-width:420px){
+    .mkt-item{padding:7px 7px;}
+    .mkt-name{font-size:10.5px;}
+    .mkt-val{font-size:13px;}
+    .mkt-pct{font-size:11.5px;}
+    .mkt-dd{font-size:10px;}
+  }
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .toc{display:flex;gap:6px;overflow-x:auto;margin:0 0 12px;padding:2px 0 4px;scrollbar-width:none;}
+  .toc::-webkit-scrollbar{display:none;}
+  .toc a{flex:none;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:20px;padding:4px 11px;text-decoration:none;white-space:nowrap;transition:.15s;}
+  .toc a:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-soft);}
+  .sec{scroll-margin-top:58px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .tone{display:inline-block;padding:1px 9px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .tone.up{background:var(--up-bg);color:var(--up-fg);}
+  .tone.down{background:var(--down-bg);color:var(--down-fg);}
+  .tone.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .hd{padding:12px 0;border-bottom:1px dashed var(--border);}
+  .hd:last-child{border-bottom:none;padding-bottom:0;}
+  .hd-key{background:linear-gradient(90deg,var(--accent-soft),transparent);border-left:3px solid var(--accent);padding-left:10px;border-radius:6px;margin:6px 0;}
+  .hd-h{display:flex;align-items:baseline;gap:8px;margin-bottom:3px;flex-wrap:wrap;}
+  .hd-name{font-weight:700;font-size:16px;color:var(--text-strong);}
+  .hd-tk{color:var(--muted);font-size:12px;font-weight:500;}
+  .lean{font-weight:600;font-size:12px;padding:1px 9px;border-radius:20px;margin-left:auto;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .hd-meta{font-size:12px;color:var(--muted);margin-bottom:6px;}
+  .op{padding:9px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-title{font-size:12.5px;color:var(--muted);margin-top:3px;font-style:italic;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .c-up{color:var(--up-fg);font-weight:600;}
+  .c-down{color:var(--down-fg);font-weight:600;}
+  .c-flat{color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;margin:2px 4px 2px 0;background:var(--accent-soft);color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器，
+     杜绝手机端内容把表格撑出卡片边框（此前「关键价位一览」时间列溢出即此问题） */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  tr:last-child td{border-bottom:none;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 关键价位表：标的/博主/时间窄列 + 价位宽列，全部竖向居中（2026-11-03 用户反馈可读性） */
+  .lv-tbl td, .lv-tbl th{vertical-align:middle;}
+  .lv-tbl td, .lv-tbl th{padding-left:4px;padding-right:4px;}
+  .lv-tbl td:nth-child(1){font-size:12px;}
+  .lv-tbl td:nth-child(1) b{font-size:12.5px;}
+  .lv-tbl td:nth-child(2){font-size:11px;color:var(--muted);}
+  .lv-tbl td:nth-child(4){white-space:nowrap;text-align:right;padding-right:8px;}
+  .tk{color:var(--muted-2);font-size:11.5px;font-weight:400;}
+  .ch{margin-bottom:10px;}
+  .ch-name{font-weight:700;font-size:14px;color:var(--text-strong);margin-bottom:4px;}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">美股复盘日报 · 11.20</span><span class="rt"><a href="/reports/2026-11-19.html" title="更早一期">11.19 →</a></span></nav>
+<div class="hero">
+  <h1>美股复盘日报</h1>
+  <div class="sub">2026年11月20日 · 8 位博主 · 94 条观点 · 大盘<span class="tone down">偏空</span></div>
+</div>
+
+<div class="mkt">
+    <div class="mkt-h">📈 前一日美股指数<span class="asof">截至 2026-11-20 美东收盘</span></div>
+    <div class="mkt-grid"><div class="mkt-item">
+        <div class="mkt-name">道琼斯</div>
+        <div class="mkt-val">48,147.33</div>
+        <div class="mkt-pct c-down">▼ -1.93%</div>
+        <div class="mkt-dd">距高点 <b>-12.05%</b></div>
+      </div><div class="mkt-item">
+        <div class="mkt-name">标普500</div>
+        <div class="mkt-val">6,910.39</div>
+        <div class="mkt-pct c-down">▼ -3.70%</div>
+        <div class="mkt-dd">距高点 <b>-11.91%</b></div>
+      </div><div class="mkt-item">
+        <div class="mkt-name">纳斯达克</div>
+        <div class="mkt-val">22,617.73</div>
+        <div class="mkt-pct c-down">▼ -5.28%</div>
+        <div class="mkt-dd">距高点 <b>-18.41%</b></div>
+      </div></div>
+  </div>
+<nav class="toc"><a href="#s1">📌 持仓</a><a href="#s2">🌐 大盘</a><a href="#s3">📊 其他标的</a><a href="#s4">🎬 博主要点</a><a href="#s5">🎯 关键价位</a><a href="#s6">⚠️ 分歧</a></nav>
+
+<div class="sec" id="s1">
+  <div class="sec-h">📌 一、我的持仓</div>
+  <div class="hd">
+        <div class="hd-h"><span class="hd-name">标普500ETF</span>
+        <span class="hd-tk">SPY</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">7 次提及 · 看多 1 / 看空 4</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/回避·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">733.98</b>（本周关键线/多方最后防线，周三已失守）</span><span class="lv lv-r">阻力 <b class="num">748-750</b>（<b class="num">11</b>/<b class="num">15</b> 期预警的牛熊程序线，已跌破转为压力）</span><span class="lv lv-t">触发 程序性触发线：<b class="num">733.98</b> 失守即确认程序性卖盘延续，反弹视为弱势反抽不参与；重新站回并守住 <b class="num">733.98</b> 之前保持回避/空头对冲思路</span></div>
+    <div class="op-d">上周预告的 748（748.62）线本周如期跌破并引发程序性卖盘，733.98 关键线周三失守，多方无钱、流动性糟糕，程序性低点触发后的反弹幅度可忽略不计且次日继续下杀。短线反弹不做，等关键位修复；防御板块与老钱股的新高只是分化，不改大盘弱势。</div>
+    <div class="op-q">「我们 11 月 15 号那期就跟大家讲这个748这个地方有条线，就是750这个附近，那条线不能跌破，跌破的话，它下面会跌得很惨，会引发程序性卖盘。那么非常的可惜，这周就发生了……这周其实733.98这条线是比较重要的，因为这条线如果守住的话，其实还能够立晚款栏（力挽狂澜）」</div>
+    <div class="op-tag"><b>催化：</b>空头回补力量恢复，尾盘出现空头回补引发的暴力反弹（90% 历史底部特征）、程序性卖盘释放完毕后流动性回补<br><b>风险：</b>733.98 失守后程序性卖盘持续触发，下方空间打开、主动性卖盘与程序性卖盘双重叠加，常规反弹策略失效</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=81s" class="tslink">1:21 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">20</b> 月均线（当前所在）/ VRVP 成交控制点即 <b class="num">2025</b> 年 <b class="num">11</b> 月前高区域 / 日线超卖区（RSI 与均值回归）</span><span class="lv lv-r">阻力 <b class="num">200</b> 日均线（反弹首个拒绝区，现为价格上方压力）/ 周线 RSI 下降趋势线被跌破后的反抽位（前支撑转阻力）</span><span class="lv lv-e">买点 不追反弹；等待反弹至 <b class="num">200</b> 日均线附近的失败信号</span><span class="lv lv-t">触发 反弹触及 <b class="num">200</b> 日均线下方即转弱、形成更低的高点后再度下破 → 确认下行延续，目标指向 <b class="num">5</b>,<b class="num">700</b></span><span class="lv">目标 <b class="num">5</b>,<b class="num">700</b>（上升楔形量出目标，对应 <b class="num">2025</b> 年低点的 <b class="num">382</b> 斐波那契位）/ <b class="num">236</b> 位（以 COVID 低点为基准的更深目标）/ 黄金口袋（以今年 <b class="num">4</b> 月低点为基准）</span></div>
+    <div class="op-d">标普自 2025 年低点以来的上升楔形已破位，量出目标落在 382 斐波那契位，约 5,700 点，且用 COVID 低点（236 位）、今年 4 月低点（黄金口袋）分别测量都落在同一带，形成合流，是他眼中“很合乎逻辑”的最终目标。短期确实超卖，并正好踩在 20 月均线与 2025 年 11 月前高的 VRVP 成交控制点上，理应出现反趋势反弹；但价格已在 200 日均线之下，反弹到 200 日均线附近更可能被拒绝，随后重演 2022 年那种长时间研磨下行。他强调这是“反趋势”反弹而非反转，因为结构已被破坏。</div>
+    <div class="op-q">「“标普 500 自 2025 年那波下跌以来一直处在一个上升楔形中……测量下来正好落在 382 位，作为最终目标非常合理，大约对应标普 5,700 点。”（原文：We have a rising wedge on the S&amp;P 500 going all the way back to the 2025 drop... it lands right around the 382... This would be at around 5700 on the S&amp;P 500.）」</div>
+    <div class="op-tag"><b>催化：</b>日线 RSI 与均值回归指标超卖，历史上容易出现反趋势反弹、20 月均线与 VRVP 成交控制点（2025 年 11 月前高）提供支撑合流、VIX 冲高至 35-36 后回落，历史上该区域常见快速回落、10 年/30 年期收益率大幅回落，短端亦下行，收益率曲线端出现见顶回落的更低高点、感恩节前后成交量低迷可能带来技术性喘息<br><b>风险：</b>反弹若站回 200 日均线上方并形成更高的低点，看空情景失效、加密若守住前低、AI 信用利差收窄，风险偏好可能快速修复、月底/季末资金再平衡与低流动性可能放大向上脉冲、形态目标 5,700 需要较长时间，途中反复震荡容易被打止损</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=420s" class="tslink">7:00 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 超卖比例触及<b class="num">88</b>%触发反向买入信号；观察初请失业金是否超<b class="num">25</b>万、投资级利差是否破<b class="num">100</b>个基点、<b class="num">10</b>年期美债收益率是否跌破<b class="num">4.5</b>%</span></div>
+    <div class="op-d">标普连续7个交易日下跌创2020年2月以来最长连跌并进入技术性调整，Hartnet预计感恩节后大概率技术性反弹（超卖比例68%逼近88%反向买入信号），但机构现金水位3.6%远低于5%目标、资金仍在流入，卖压未释放完毕，反弹只是死猫跳，需等三大宏观条件确认。</div>
+    <div class="op-q">「在感恩节后每股大概率会迎来一波技术性反弹，但这只是短期喘息……因为机构手里仍有不少股票，卖压没有释放完毕，所以到下轮力空时卖压还可能继续。」</div>
+    <div class="op-tag"><b>催化：</b>Hartnet：全球股指超卖比例达68%，未来几天可能触及88%反向买入信号线，卖压减轻或空头回补后感恩节后反弹或更多、资金流：上周全球股票基金仍流入666亿美元，美国成长型基金流入91亿美元为近两年最多、11月基金经理调查现金水位仅3.6%，距Hartnet想看到的5%有距离<br><b>风险：</b>反弹延续需三条件：10年期美债收益率跌破4.5%、WTI原油跌破70美元、美元在就业通胀数据转弱后确认见顶、硬着陆风险被低估：明年民意GDP增长5%-6%、每股收益增长超15%的共识预测偏高，家庭股票财富缩水+AI资本开支降温、衰退双信号：初请失业金超25万人、投资级债券利差突破100个基点，两线都破则估值修复被盈利下调抵消</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=363s" class="tslink">6:03 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">6900</b>（今日低点，若能完成探底确认则下周易走出缩量反弹修复）</span><span class="lv lv-r">阻力 <b class="num">7250</b>（<b class="num">50</b>周均线与上升趋势线，反抽验证阻力）</span><span class="lv lv-t">触发 若<b class="num">6900</b>附近完成探底确认，下周感恩节当周易有反弹窗口；反弹站不上<b class="num">5</b>周均线则一切反弹都只是死猫跳</span><span class="lv">目标 <b class="num">6550</b>（<b class="num">120</b>周均线，反弹失败后的下探目标）</span></div>
+    <div class="op-d">标普连续7日下跌，较峰值回撤约12%进入技术性回调，经验上常在此后拉出剧烈反弹甚至V反创新高，但博主怀疑这次真的走熊。周K破位，反弹失败后将下探120周均线6550，策略上等恐慌释放，反弹不追。</div>
+    <div class="op-q">「我怀疑这次可能要真的走熊了……下周若出现反抽，最多验证50周均线与上升趋势线7250点阻力有效后，就会再次掉头向120周均线6550点下探。」</div>
+    <div class="op-tag"><b>催化：</b>感恩节当周VIX通常显著回落引发空头回补、月度期权到期后负gamma压力解除、10%-12%回撤后历史上多有剧烈反弹<br><b>风险：</b>周K确认破位，若走熊则反弹后创新低、12月美联储加息再度压制市场、长线资金持续卖出反弹</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=134s" class="tslink">2:14 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·11/20</span></span>
+    <span class="st c-up">看多/增持·中期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">200</b> 日均线（本次偏离的关键位）</span><span class="lv lv-t">触发 约 <b class="num">7-8</b>% 的反弹确认卖方耗尽；或收盘重新站回 <b class="num">200</b> 日均线且均线翻多（稳健型确认信号）；当前区域分批累积/定投；横盘整理期正是累积窗口</span></div>
+    <div class="op-d">日线图回溯 2022 年、约四年半视角：SPY 约 99% 的时间运行在 200 日均线上方，历史上仅因关税、伊朗战争、去杠杆等原因 4 次跌破——当 99% 时间的规律突然偏离时，恰恰不是该恐惧的时刻，而是赚钱的时刻（these deviations is where the money is made）。本周成交量略有放大但非纪录级别，这类时刻容易出现反转。策略分两类：退休/已赚够的人，等待收盘重新站上 200 日均线且均线翻多；进取者可在当前区域累积——横盘整理（消化政治风险、Jensen 风险）反而是最好的累积机会，之后迎来下一波上行。短期市场没有上涨的好理由，唯一理由是卖方耗尽（K 线已显示一定程度的 exhaustion），预计约 7-8% 的反弹后'再度起航'。博主重申：系统性抛售创造世代级买入机会，市场下跌快，恢复也可能同样快。</div>
+    <div class="op-q">「这些偏离（200 日均线下方）正是赚钱的地方……你想在试图累积的时候市场横盘——把政治风险、Jensen Wong 风险都排除掉，在此时累积，然后迎来下一波上行。（原文：These deviations is where the money is made... You accumulate in these moments and then you get your next leg higher.）」</div>
+    <div class="op-tag"><b>催化：</b>卖方力量耗尽（K 线显示 exhaustion 信号）后的技术性反转、感恩节短交易周若再大跌即是 flush out，随后约 7-8% 反弹、系统性抛售的世代级买入机会（2008、疫情、关税均验证）<br><b>风险：</b>短期市场没有上涨的好理由、政治风险（民主党调查攻势 60-90 天）与 Jensen/英伟达风险尚未出清、若收盘持续低于 200 日均线且均线翻空，退休型投资者应继续等待</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=1950s" class="tslink">32:30 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">7000</b>点（今日已跌破，整数关口失守）</span><span class="lv lv-r">阻力 年线（失守后已成重大压力线）</span><span class="lv lv-t">触发 恐慌指数跌到三五个点的极限位置、且出现V型反转信号才是抄底机会；仅跌破<b class="num">7000</b>点不构成买点</span><span class="lv">目标 <b class="num">8000</b>点（华尔街上涨时喊出的目标，博主明确表示今年不可能实现）</span></div>
+    <div class="op-d">标普大跌265.16点、跌幅3.7%，一根大阴线跌破7000点，年线失守后反成重大压力线，华尔街喊的8000点今年不可能实现。三大指数全面破位说明资金整体流出而非调仓，但暴跌之后下周反弹的希望仍大。</div>
+    <div class="op-q">「标不指数今天大跌265.16点，跌幅3.7%，一根大阴线，跌势不止，年限成了重大压力线。指数今天跌破7000点，华尔街在上涨时喊的那个8000点，今年是不可能实现了。」</div>
+    <div class="op-tag"><b>催化：</b>恐慌贪婪指数跌至10点接近极限，超跌反弹条件积累、感恩节后圣诞行情预期、历史单日暴跌后次日反弹概率偏高<br><b>风险：</b>年线失守转为压力，反弹属技术性修复、三大指数同步破位，资金系统性流出、2022年4月破位后曾从4400跌到3500、约20%</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=37s" class="tslink">0:37 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 SPY <b class="num">648-667</b>（接近今年<b class="num">4</b>月低点，二次寻底区）；标普指数<b class="num">6800-7000</b>（前瞻估值合理区间下限，今天收<b class="num">6901</b>）</span><span class="lv lv-r">阻力 <b class="num">728-753</b>（SPY重要分水岭，接近<b class="num">200</b>日均线，今天<b class="num">200</b>日线在<b class="num">730</b>且每天移动）</span><span class="lv lv-t">触发 SPY <b class="num">671</b>为结构关键位：以收盘/开盘价为准（盘中不算），守住<b class="num">671-694</b>则原地反弹看<b class="num">728</b>；收盘跌破<b class="num">671</b>则四月以来上行结构被破坏，需全面转熊式看待；反弹至<b class="num">728-753</b>分水岭，仓位重者可考虑减仓</span><span class="lv lv-t">触发 标普跌破<b class="num">7000</b>并跌穿高点回撤<b class="num">10</b>%修正…</span></div>
+    <div class="op-d">标普跌破7000并跌穿高点回撤10%修正区（SPY 702），连续7日下跌。当前正逼近斐波那契61.8关键回撤位（SPY 671）：守住则原地反弹、保住上行结构；跌破（以收盘/开盘价为准）则四月以来上涨结构破坏，转入反弹防御思维、二次寻底概率大。6800-7000已是合理估值区间下限，再跌涉嫌低估，逢低配置资金会进场。等待止跌形态出现再布局。</div>
+    <div class="op-q">「标普跌破7000点,跌破了高点回撤10%的修正区域。已经是连续下跌了7个交易日,创下了自2020年2月以来最长的连跌记录」</div>
+    <div class="op-tag"><b>催化：</b>Gamma重置后机械抛压风险大幅降低、空头回补平仓带来反弹、6800-7000为合理估值区间下限，逢低配置资金潜在买入、12月美联储若软化措辞可提振多头信心<br><b>风险：</b>SPY收盘跌破671则上行结构破坏、转入反弹防御思维、若反弹后消费品与科技一起跌，防御失效为危险信号、美联储12月若维持鹰派对AI信贷融资雪上加霜</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=752s" class="tslink">12:32 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">纳指100ETF</span>
+        <span class="hd-tk">QQQ</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">8 次提及 · 看多 1 / 看空 4</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/回避·中期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">603.45</b>（底线/中期牛熊分界线），<b class="num">605</b>（下周必须收复的程序性反弹确认线）</span><span class="lv lv-r">阻力 <b class="num">605</b>（收复线），<b class="num">706.58</b>（已跌破的中线定海神针，上方强压）</span><span class="lv lv-t">触发 程序性触发线：<b class="num">605</b> 收复前不做多；<b class="num">603.45</b> 有效跌破则中期熊市开启全面防守；若先假跌破 <b class="num">603.45</b> 后快速收回并出确认买点，才可考虑左侧试探</span></div>
+    <div class="op-d">本轮抛售源于 706.58 绿线（中线定海神针，9/20 期原话预告 Q3/Q4 仍起定海作用）有效跌破，触发中线资金离场；她 9/27 期即预告跌破后直奔 605 附近，实际跌得更深。下周核心是 605 能否收复：收复不了就继续引发程序性下跌，空头回补已无法挽救；603.45 是从 650 下方下来的最后底线，跌破即开启中期熊市。同时警惕该位置假突破骗线、把最后的多头和杠杆舱位洗出去后再拉回。</div>
+    <div class="op-q">「下周最重要的就是605能不能收复……但是如果650不收复的话，它还是会继续引发程序性下跌……603.45是它的一个特征线……这根线在跌破，我觉得就会中期雄势（熊势）的开启……它这个地方比较容易骗线，一定要小心」</div>
+    <div class="op-tag"><b>催化：</b>605 收复则程序性下跌链条中断、空头回补机制恢复威力形成反向推升<br><b>风险：</b>603.45 跌破开启中期熊市、605 一带假突破骗线，诱导最后多头与杠杆舱位接盘后再下杀</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=268s" class="tslink">4:28 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 日线 VRVP 成交密集区 / 周线 RSI 趋势线三次反弹位（已失守，转为参考）/ <b class="num">2025</b> 年前高被跌破处</span><span class="lv lv-r">阻力 <b class="num">26</b>,<b class="num">200</b>（水平阻力兼通道下沿反抽）/ <b class="num">20</b> 月均线（当前价格上方）</span><span class="lv lv-e">买点 不追空；等待反弹至 <b class="num">26</b>,<b class="num">200</b> 或 <b class="num">20</b> 月均线附近的拒绝</span><span class="lv lv-t">触发 反弹在 <b class="num">26</b>,<b class="num">200</b> 一线受阻并形成更低的高点 → 确认向 <b class="num">20</b>,<b class="num">000</b> 的通道目标推进</span><span class="lv lv-s">支撑 <b class="num">20</b>,<b class="num">000</b>（上升通道下破测量目标，略高于 <b class="num">2025</b> 年低点；相当于再跌约 <b class="num">20</b>%、自顶部累计约 <b class="num">35</b>%）/ <b class="num">786</b> 位与 <b class="num">50</b>% 位（以 <b class="num">2022</b> 年熊市底部、<b class="num">2025</b> 年 <b class="num">4</b> 月低点、COVID 低点分别测量，落在 <b class="num">50</b>% 上下的小区间）</span></div>
+    <div class="op-d">纳指日线上原本可能是双重底/三重底的结构今日破位，跌穿 2025 年那批前高；周线 RSI 趋势线在三次成功反弹后第四次失守，与标普同步。以 2025 年见底以来的上升平行通道测量，破位目标指向 20,000，仅略高于 2025 年低点，等于在已跌 20% 的基础上再跌 20%，累计约 35%，接近历史上多数熊市的平均跌幅。反弹阻力先看 26,200 的水平线，同时也是通道下沿反抽位，且指数已在 20 月均线之下。</div>
+    <div class="op-q">「“这条水平线会是一个合理的阻力区，26,200，或者说是这个上升通道的下沿……通道测量显示我们有可能一路回到 20,000，刚好在 2025 年低点上方。”（原文：This horizontal line would be one logical zone of resistance at 26,200 or the back end of this ascending channel... suggesting that we could go all the way back down to 20,000, which would be just above the 2025 lows.）」</div>
+    <div class="op-tag"><b>催化：</b>日线超卖与 VRVP 密集区支持反弹、周线 RSI 前三次在该趋势线获得支撑，存在短线反抽惯性、利率回落对长久期成长股的估值支撑、英伟达财报整体偏正面，AI 主线情绪可能短暂修复<br><b>风险：</b>若反弹收复 20 月均线并站上 26,200，破位目标作废、AI 资本开支叙事重新升温可能带来逼空、20,000 是极远目标，中途路径反复，做空持有成本高</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=616s" class="tslink">10:16 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/减仓·短期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 感恩节后技术性反弹作为减仓窗口；若下轮利空出现且机构现金水位仍低于<b class="num">5</b>%，卖压或再度释放</span></div>
+    <div class="op-d">纳指单日大跌5%抹去今年全部涨幅，AI交易为重灾区。大空头Burry在平调一半NVDA与半导体ETF看跌期权获利后，反手把纳指看跌期权仓位翻倍加码押注科技股继续下跌，且此前再度警告英伟达、小云和半导体行业投资者，机构卖压未释放完毕前纳指二次探底风险高。</div>
+    <div class="op-q">「同时他还把纳指的看跌期权仓位翻倍，来加码压住科技股继续下跌……Burray质疑英伟达和小云之间的互相依赖关系，不确定小云的扩张还能持续多久。」</div>
+    <div class="op-tag"><b>催化：</b>Burry将纳指看跌期权仓位翻倍，加码押注科技股继续下跌、Burry检仓前一天再次在社交媒体警告AI基础设施股（英伟达、小云、半导体行业）、本周AI板块被资金与监管限制担忧持续压制，英伟达财报与Anthropic上市均未能扭转局面<br><b>风险：</b>超卖比例若触及88%触发反向买入信号，感恩节后技术性反弹可能超预期、若10年期美债收益率跌破4.5%、WTI跌破70美元、美元见顶三条件兑现，纳指估值压力将缓解</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=613s" class="tslink">10:13 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/减仓·中期</span></div>
+    <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">0.5</b>斐波那契分割线（死猫跳反抽测试位，过不了月均线）</span><span class="lv lv-t">触发 死猫跳反抽测试<b class="num">0.5</b>分割线失败即机构再度卖出反弹的触发点；待仓位转为净低配时才是更好的科技股入场机会</span></div>
+    <div class="op-d">纳指100回吐年内全部涨幅，本周累跌10.43%，从峰值回撤超20%跌入技术性熊市，日线破位并跌穿0.618回调支撑。高度集中于AI巨头，受AI叙事拖累跌幅远超标普。超卖后短期或有暴力死猫跳，但过不了月均线，机构会再卖反弹。</div>
+    <div class="op-q">「下周某个时候可能会出现暴力死猫跳，反抽测试0.5分割线，但过不了月均线，机构们就会再次卖出反弹。」</div>
+    <div class="op-tag"><b>催化：</b>系统性策略两周抛售约1160亿美元、风险敞口降至历史第10百分位，抛压接近衰竭、超卖状况为潜在短期反弹创造条件<br><b>风险：</b>基金经理科技股超配从净37%降至净12%仍有减仓空间，转为净低配才是入场机会、高度集中于少数AI相关巨头，AI叙事破裂冲击更大、每一次反弹都被卖出</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=335s" class="tslink">5:35 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/20</span></span>
+    <span class="st c-up">看多/买入·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">580</b>（下方大缺口回补位，博主担心的 further 下行目标）</span><span class="lv lv-e">买点 <b class="num">625-635</b>（博主原设定的低点买入区间，今日已被长黑跌破，今日为最后一次买入）</span><span class="lv lv-t">触发 下周感恩节反弹即出掉（获利了结触发条件）</span></div>
+    <div class="op-d">QQQ一根长黑掼破博主原本设定的625-635低点买入区间，博主今天做了最后一次买入，之后彻底躺平；下周感恩节若反弹就出掉。担心后面砸到580回补大缺口，属于短炒抄底而非中线持仓思路。</div>
+    <div class="op-q">「QQQ一根长黑棍掼破了原本我设定的低点625-635区间，今天我最后买入一次，接下来就彻底躺平了。下周感恩节反弹了就出掉，我怕后面QQQ会砸到580回补掉这个大缺口。」</div>
+    <div class="op-tag"><b>催化：</b>感恩节当周VIX回落引发空头回补、历史上美股感恩节当周易上涨、超卖后下周可能出现暴力死猫跳<br><b>风险：</b>可能继续下砸至580回补大缺口、12月美联储加息后市场再度下跌、反弹窗口很短只有几天</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=451s" class="tslink">7:31 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 周线通道底部（约 <b class="num">3</b> 年多未破，历史仅触及约 <b class="num">3</b> 次）</span><span class="lv lv-e">买点 反弹交易者可在 flush out 后博弈 <b class="num">3-4</b>% 反弹；趋势者等待企稳</span><span class="lv lv-t">触发 再出现一周大跌=flush out 信号；否则预期 <b class="num">3-4</b>% 技术性反弹</span></div>
+    <div class="op-d">周线图回溯十年以上（近二十年）：趋势虽不稳固，但这条周线通道已守住 3 年多，目前处于通道底部——历史上仅测试过 3 次左右，QQQ 盘后已接近该位置。下周展望：感恩节短交易周，若再出现一周大跌，那就是博主'等待中的 flush out（最后的洗盘）'；否则预期一波不错的小反弹、一点喘息——不是回到历史新高的反弹，而是 3-4% 的技术性反弹，'给你孩子买节日礼物前捡 3-4% 也挺好'。</div>
+    <div class="op-q">「如果下周再来一个大跌周，那就是你等待中的洗盘。但我预期会是一波不错的小反弹……我们是说 3% 或 4% 的反弹。（原文：If you have another big down week next week, that's the flush out. I think you're waiting for. But what I would expect is a nice little bounce... we're talking about a three or 4% bounce.）」</div>
+    <div class="op-tag"><b>催化：</b>周线通道底部（十余年仅测试约 3 次）构成关键支撑、感恩节短交易周卖压通常减轻，易出反弹<br><b>风险：</b>若短周再录得一周大跌，即为 flush out，短期仍有下探风险、周线趋势'不算坚如磐石'（not rock solid）</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=2124s" class="tslink">35:24 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 单日跌<b class="num">5.28</b>%后看次日能否止跌，反弹概率<b class="num">55</b>%但不代表趋势反转</span></div>
+    <div class="op-d">纳指暴跌1261.47点、跌幅5.28%。1971年以来50次单日跌超5%，次日与之后5日的反弹概率都是55%，所以下周反弹希望大；但1987、2000、2008的案例说明，一天跌5%也挡不住之后更大的下跌。</div>
+    <div class="op-q">「纳斯达克指数今天暴跌1261.47点，跌幅达到了5.28%，这个是一个巨大的跌幅，显示出科技股的大崩溃……从1971年以来，纳斯达克指数有50次单日暴跌5%以上，次日反弹的概率为55%。」</div>
+    <div class="op-tag"><b>催化：</b>单日跌超5%后次日反弹概率55%（1971年以来50次样本）、下周最多跌四天，超跌后有修复窗口<br><b>风险：</b>系统性崩盘事件中暴跌只是开始（1987/2000/2008）、科技股是本轮杀跌核心，AI泡沫质疑未消、假期缩量，杠杆账户易被强平</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=95s" class="tslink">1:35 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 QQQ <b class="num">585</b>（最后一个结构上重要防守位，以开盘/收盘价为准）</span><span class="lv lv-t">触发 QQQ <b class="num">585</b>（以开盘价或收盘价为准，盘中不算）：跌破则空头有进一步想象空间；未破则关注空头回补反弹</span></div>
+    <div class="op-d">纳指今天一口气大跌（约5%），已跌到最后一个结构上重要的防守位（QQQ 585）。以开盘价或收盘价为准（盘中不算），一旦穿585空头才有进一步想象空间。空头最容易的部分已走完，部分回补平仓会在今天或下周一出现，回补反弹后愿意再空的会等反弹加仓。前瞻估值角度标普区间同样适用，等止跌形态。</div>
+    <div class="op-q">「已经来到了最后一个在结构上重要的防守位置，一旦穿585这个地方，我们以开盘价或者收盘价为主，盘中不算，一旦穿这个地方，空头才有更进一步的想象空间」</div>
+    <div class="op-tag"><b>催化：</b>空头最容易的下跌部分已走完、空头回补平仓会在今天或下周一出现<br><b>风险：</b>QQQ收盘跌破585则空头打开进一步下行空间</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=562s" class="tslink">9:22 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">费城半导体ETF</span>
+        <span class="hd-tk">SMH</span>
+        <span class="lean down">偏空</span></div>
+        <div class="hd-meta">4 次提及 · 看多 0 / 看空 4</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/观望·中期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">50</b>% 斐波那契位（已收盘跌破）/ 黄金口袋 / 日线 VRVP 密集区</span><span class="lv lv-r">阻力 <b class="num">480</b> 一带（反弹阻力）/ 缺口回补处</span><span class="lv lv-t">触发 反弹至 <b class="num">480</b> 附近受阻转跌 → 确认还有一段下行；反之若放量收复 <b class="num">480</b> 并站上 <b class="num">50</b>% 位，看空逻辑需重估；等待黄金口袋附近出现止跌信号再考虑，不在超卖中追空</span><span class="lv lv-s">支撑 <b class="num">50</b>% 斐波那契下方目标（已达成）/ 黄金口袋（下一档下探目标）/ 反弹阻力 <b class="num">480</b> 一带</span></div>
+    <div class="op-d">SMH 已向下破位，此前给出的“略低于 50% 斐波那契”的目标已达成，并且如预期延伸去回补了日线缺口，日线现在极度超卖，理论上到了该转向的位置。但收盘落在 50% 之下，他认为更可能还要去下一档斐波那契（黄金口袋）才真正转向；若出现反弹，480 一带将成为阻力，之后仍可能再下探。他明确判定半导体自 6 月高点以来已进入技术性熊市（回撤逾 41%），并引用统计：SMH 在 20% 以上回撤后平均需要 230 天才回到历史新高，对应大约明年 5 月 20 日，目前只走了一半，因此“调整还没结束”。</div>
+    <div class="op-q">「“价格收在 50% 之下，即便已经极度超卖……看起来我们要先到黄金口袋这类下一档斐波那契位才会转向……若反弹回到 480 一带，那里现在大概会构成阻力。”（原文：because we closed below the 50%, even though we're very oversold... it just seems like we might get into one of these next-fit levels like the golden pocket before turning around... a rally back into the 480s which would probably act as a bit of resistance now.）」</div>
+    <div class="op-tag"><b>催化：</b>日线极度超卖叠加缺口已回补，技术性反弹条件具备、英伟达财报偏正面，可能带动板块短线情绪、AI 资本开支仍强，长期需求逻辑未破坏<br><b>风险：</b>存储与设备链集体创新低（LRCX/AMAT/KLAC/MRVL/ARM），板块内部无领涨、反弹在 480 受阻后可能再下一档，超卖可以更超卖、230 天的历史修复周期意味着中期难以快速回到前高</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=866s" class="tslink">14:26 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/回避·短期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 <b class="num">12</b>月<b class="num">1</b>日黄仁勋听证会与SEC调查进展明朗前回避；对华新规及后续出口限制执行细节落地情况</span></div>
+    <div class="op-d">费半是本轮AI重定价的核心灾区：单日跌超10%，本周大跌17%为过去7周里第6周下跌，存储同样大跌21%；英伟达、台积电周跌超20%。SEC调查、对华出口新规堵算力漏洞、做空报告冲击AMD、循环融资质疑多重利空叠加，Burry保留一半半导体ETF看跌期权仓位，反弹只是死猫跳。</div>
+    <div class="op-q">「废半大跌17%，是过去7周里的第6周下跌，存储同样大跌21%，大科技全面走低，英伟达台积电跌超20%……Burray平调了一半的英伟达和半导体ETF看跌期权。」</div>
+    <div class="op-tag"><b>催化：</b>SEC调查英伟达会计问题，费半存储单日跌超10%、美国通过新规堵上中国经部分亚洲国家租用先进AI芯片算力的出口漏洞，限制向这些国家出口半导体和算力、周四做空报告指AMD在中国业务和供应链长口使其更易受美国新限制冲击、Burry平调一半但未清空半导体ETF看跌期权，仍保留空头敞口<br><b>风险：</b>英伟达业绩和指引超预期、FY28收入增速指引上调至约75%，若SEC调查定性轻微且听证会平稳，超跌反弹弹性大、Hartnet超卖信号触发后空头回补可能带来急反弹</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=10s" class="tslink">0:10 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/20</span></span>
+    <span class="st c-down">强烈看空/回避·中期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 今年年初前高水平（正在测试的支撑）</span></div>
+    <div class="op-d">费城半导体指数今天重挫10.73%，从峰值回撤接近43%几乎腰斩，正在测试今年年初前高水平。半导体板块流动性退潮、AI交易信心瓦解，博主明确表示半导体已处于真正的熊市，是本周全球股灾的重灾区。</div>
+    <div class="op-q">「费城半导体指数今天重挫10.73%……从峰值回撤幅度接近43%，几乎腰斩。毋庸置疑，半导体已经处于真正的熊市了。」</div>
+    <div class="op-tag"><b>催化：</b>日韩台市场血洗显示半导体供应链抛压仍在蔓延、半导体监管收紧持续压制板块<br><b>风险：</b>AI交易信心瓦解后资金持续抽离、流动性退潮、对冲基金与长线经理接连减仓降杠杆、技术形态上几乎腰斩且仍在寻底</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=471s" class="tslink">7:51 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/观望·中期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 看明年资本支出同比增速是否放缓，增速掉档即是半导体估值下修的信号</span></div>
+    <div class="op-d">即使明年数据中心仍有巨大需求，股市讲的是增长速度：若明年资本支出同比增长率放缓，半导体公司收入增速也会放缓。营收还在增长、只是没以前快，股价同样要跌，这是AI涨四年后的核心问题。</div>
+    <div class="op-q">「即使明年数据中心仍有巨大需求，但是股市讲的是增长速度……如果明年资本支出比今年同比增长率放缓，那么半导体公司的收入增长率也就放缓，营收是增长的，增长没有以前快了，股价同样是要下跌的。」</div>
+    <div class="op-tag"><b>催化：</b>明年数据中心需求仍在，营收继续增长<br><b>风险：</b>资本支出同比增速见顶，估值需要下修、云厂商现金流吃紧、融资成本高、英伟达事件冲击整个半导体链条情绪</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=525s" class="tslink">8:45 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">谷歌</span>
+        <span class="hd-tk">GOOGL</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">2 次提及 · 看多 0 / 看空 1</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/观望·中期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">190</b>（约 <b class="num">190</b> 一带才有支撑）/ <b class="num">200</b>（破位后的大概率下跌目标）；<b class="num">260-207</b> 之间无需求</span><span class="lv lv-r">阻力 <b class="num">270</b>（已跌破的前支撑） / <b class="num">200</b> 日均线（反弹即受阻）</span><span class="lv lv-e">买点 当前不宜接飞刀；等待 <b class="num">190-200</b> 区域企稳信号</span><span class="lv lv-t">触发 若继续向下破位，大概率下探 <b class="num">200</b>；等待止跌企稳后再评估买入</span></div>
+    <div class="op-d">周初 286 美元，全周跌近 8%，收于 264 的 52 周新低。博主虽在理念上强调 52 周新低正是该兴奋、该抄底的时刻，但对谷歌的技术面明确示警：270 一带的原支撑本周被收盘跌破，形成两次更低的低点和更低的高点；固定区间成交量分布显示从收盘价 260 一路到 207 之间没有任何需求支撑，直到约 190 一带才有承接——'谷歌正站在悬崖边上'，若继续向下破位，大概率跌到 200。反弹则意义不大，只会回到 200 日均线附近再度受阻。消息面：YouTube 就社交媒体成瘾诉讼达成 30 亿美元和解；2027 年 AI 芯片订单部分从博通转向联发科（更低成本版本），博主认为这反映谷歌垂直整合后发现自己用自有数据中心+自有大模型调优芯片，可能不需要最昂贵的大芯片。</div>
+    <div class="op-q">「谷歌正站在悬崖边上。一旦向下破位，大概率会跌到 200，这虽然疯狂，但图表就是这么说的。（原文：You're on a cliff with Google. Break lower, high probability that you're coming down to 200.）」</div>
+    <div class="op-tag"><b>催化：</b>垂直整合（自研 TPU+自有数据中心+自有模型）持续降低算力成本、若系统性抛售结束，52 周新低本身符合博主的逆向买入哲学<br><b>风险：</b>270 支撑已收盘跌破，结构上两次更低低点+更低高点、260→207 区间无成交需求支撑，直到约 190 才有承接、YouTube 30 亿美元和解金；芯片订单转单对联发科利好、对博通利空、反弹只会触及 200 日均线压力，缺乏持续性</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=1191s" class="tslink">19:51 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/持有·中期</span></div>
+    
+    <div class="op-d">今天跌两个多点。自身消息面不算利空：将2027年博通设计的TPU芯片出货量削减20%（约100万颗），但同步增加其他芯片出货——因数据中心与电力短缺，对芯片性能做了调整；同时因英特尔性能未达预期，向台积电询问TPU转回CoWoS。消息对博通、英特尔是坏消息，对台积电是好消息。早盘谷歌一度撑得非常好，盘中才被砸下来。</div>
+    <div class="op-q">「谷歌呢是将2027年博通设计的tpu8i系列芯片的出货量削减20%，差不多是100万颗，但是他增加了其他的芯片的出货量……英特尔的性能没有达到谷歌的预期，所以谷歌已经向台积电询问将TPU转回Coworks的问题」</div>
+    <div class="op-tag"><b>催化：</b>TPU供应链调整显示谷歌AI芯片布局主动权在手、早盘一度表现坚挺<br><b>风险：</b>AI板块关联度高，板块性下跌难独善其身、数据中心与电力短缺制约扩张节奏</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=316s" class="tslink">5:16 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">微软</span>
+        <span class="hd-tk">MSFT</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">3 次提及 · 看多 1 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·11/20</span></span>
+    <span class="st c-up">看多/增持·中期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">200</b> 日均线（本周收盘勉强守住） / <b class="num">410</b>（下方支撑，较现价约低 <b class="num">20</b>%）</span><span class="lv lv-r">阻力 <b class="num">521</b>（本周初价位/回落前高位区域）</span><span class="lv lv-e">买点 <b class="num">200</b> 日均线回测处；若跌破则 <b class="num">410</b> 一带为更好的买点</span><span class="lv lv-t">触发 回测 <b class="num">200</b> 日均线企稳即买入；跌破 <b class="num">200</b> 日均线则等 <b class="num">410</b> 支撑区承接</span></div>
+    <div class="op-d">周初 521 美元（博主特意纠正：478 是一年前的价位），全周跌超 7% 收于 484，但图表只是从高位小幅回落，收盘仍站在 200 日均线上方，'没有什么需要过度担心的'。利好：英特尔代工业务本周拿下大客户——微软扩大与英特尔 Azure 基础设施合作（含英特尔独家专利工艺技术），博主认为若微软全力推进，Google、Amazon 可能跟进，是英特尔代工的重大信号。上周全球宕机事件源于 7 月更新的一个 bug，博主认为是正常的系统升级问题、不过度担心。另有报道：微软目睹对英伟达替代方案的需求增长——Jensen 缺位后，AMD、博通乃至英特尔、Marvell 的大门被打开。技术面策略明确：200 日均线的回测是很有意思的位置，下方 410 还有一处支撑（比现价低约 20%），若跌破 200 日均线，下方有充足承接，'那反而会是很好的买入机会'。</div>
+    <div class="op-q">「200 日均线的回测会是一个很有意思的位置……如果你真的跌破 200 日均线，下方有很多承接微软的区域，我实际上认为那会是一个很好的买入机会。（原文：A retest of the 200 day could be an interesting spot... If you do break through the 200 day moving average, there's plenty of areas to catch Microsoft lower. I actually think that would be a good buy an opportunity.）」</div>
+    <div class="op-tag"><b>催化：</b>扩大与英特尔代工的 Azure 合作，可能带动 Google/Amazon 跟进、对英伟达替代方案（AMD/博通/Marvell）的需求增长，Jensen 缺位打开竞争空间、200 日均线回测处构成有吸引力的买点<br><b>风险：</b>全球宕机事件引发的网络攻击阴谋论与 elevated 网络攻击风险、本周已跌超 7%，短期情绪脆弱</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=1347s" class="tslink">22:27 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/持有·中期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 现金流优势使其成为AI退潮期的相对避风港，等板块企稳再看相对强度</span></div>
+    <div class="op-d">四大云巨头里只有微软的自由现金流还算充裕，其他几家现金流吃紧，新云服务商要靠核心厂商担保和GPU抵押高息融资，CDS暴涨暴露脆弱性。在AI资本开支退潮中，微软是相对占优的一家。</div>
+    <div class="op-q">「四大云巨头只有微软的自由现金流还算充裕，其他的几家现金流吃紧，新的云服务商融资压力越来越大，要靠工业链核心厂商担保和GPU的抵押来融资，利率还非常高。」</div>
+    <div class="op-tag"><b>催化：</b>自由现金流在四大云巨头中最充裕、AI资本开支退潮中相对抗跌<br><b>风险：</b>数据中心投资增速见顶，云业务增速同步放缓、科技股系统性杀跌中难以独立</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=479s" class="tslink">7:59 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/持有·中期</span></div>
+    <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">490</b>（已跌破，转为震荡行情的分界）</span><span class="lv lv-t">触发 跌破<b class="num">490</b>后回到震荡行情，暂按震荡对待</span></div>
+    <div class="op-d">个人第一大持仓。今天跌幅算是比较小的，算正常走势：跌破490之后回到了一个震荡行情。相比其他持仓，今天主要损失不在微软。490失守后进入震荡区间，等待大盘流动性危机解除后再看方向。</div>
+    <div class="op-q">「微软的跌幅还算是比较小的，第一大持仓算是一个正常的走势，因为跌破490之后是回到了一个震荡行情」</div>
+    <div class="op-tag"><b>催化：</b>跌幅小于大盘，走势相对抗跌<br><b>风险：</b>跌破490后转入震荡，方向待定、AI信贷融资压力若持续，软件板块估值承压</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=290s" class="tslink">4:50 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">英伟达</span>
+        <span class="hd-tk">NVDA</span>
+        <span class="lean down">偏空</span></div>
+        <div class="hd-meta">7 次提及 · 看多 1 / 看空 5</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/回避·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">128.48</b>（下周生死线）</span><span class="lv lv-r">阻力 <b class="num">148.84-150</b>（上周警戒线，已跌破转为压力）</span><span class="lv lv-t">触发 止损/观察线：<b class="num">128.48</b> 若不能快速拉回，直接放弃观察不再参与；拉回站稳 <b class="num">128.48</b> 之上才重新纳入观察名单</span><span class="lv lv-t">触发 …上周提示的 <b class="num">150</b> 界限/<b class="num">148.84</b> 警…</span><span class="lv lv-e">买点 …者推荐买入、<b class="num">120</b> 出掉后一路错过），但认…</span></div>
+    <div class="op-d">三条线全部跌破：上周提示的 150 界限/148.84 警戒线失守后，下周关键位是 128.48，拉不回来就不用看了。她虽高度认可黄仁勋个人（自述 160 美元时被湾区无人驾驶创业者推荐买入、120 出掉后一路错过），但认为若黄仁勋离任，职业经理人能否保持全局把控存疑，市场共识亦如此；同时英伟达走弱会直接拖累整个半导体板块与 SOXL。半导体自 9 月起被她反复标注为最弱板块、壁垒要小心。</div>
+    <div class="op-q">「我上一期是不是跟大家讲过，150这个界限，148.84，我说跌破要完，这个下来三条线跌，下周就是128.48，如果不拉回来也不用看了。那关键问题是会拖累半导体……它会拖累三倍半导体」</div>
+    <div class="op-tag"><b>催化：</b>128.48 快速拉回收复则恢复观察价值、黄仁勋去向明朗且市场重新认可管理层<br><b>风险：</b>128.48 不拉回则继续下探、技术面无支撑参考、作为大盘第一指标拖累半导体板块与 SOXL，连带打压大盘</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1120s" class="tslink">18:40 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 未给出具体点位（参考 SMH 的 <b class="num">50</b>% 位与黄金口袋）</span><span class="lv lv-r">阻力 未给出具体点位（参考 SMH 反弹阻力 <b class="num">480</b> 一带）</span><span class="lv lv-t">触发 板块（SMH）在 <b class="num">480</b> 附近受阻转跌 → 龙头同样承压；若 SMH 放量收复 <b class="num">50</b>% 位，则重新评估；未给出具体目标价（以指数与板块目标为准）；不新建仓位，等价格行为给出方向</span></div>
+    <div class="op-d">英伟达财报整体算正面，但市场并未因此转向，这本身就是他担忧的地方：如果连不错的英伟达财报（加上市场在等的 Anthropic IPO）都无法缓解紧张情绪，那还有什么利好能成为转折催化剂？他因此把“证明责任”交给价格行为，而不是基本面。AMD 也曾因英伟达的消息（黄仁勋）出现一波补涨，但未能守住。</div>
+    <div class="op-q">「“我们熬过了整体偏正面的英伟达财报……如果这些都不能缓解紧张、让市场转向，那还能是什么催化剂让你因为好消息而转向呢？我没有答案。”（原文：we got through pretty positive Nvidia earnings, all things considered, the market was waiting on the anthropic IPO. If those can't relieve the tension to cause us to turn, what is going to be the catalyst...?）」</div>
+    <div class="op-tag"><b>催化：</b>AI 资本开支持续超预期、Anthropic IPO 等 AI 一级市场事件带来的情绪提振<br><b>风险：</b>利好出尽：财报正面却无法带动股价，说明抛压来自更高层面（信用/流动性）、板块内部设备与存储链集体创新低，龙头难以独善其身、AI 相关垃圾级信用利差走阔</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1103s" class="tslink">18:23 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/回避·短期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 <b class="num">12</b>月<b class="num">1</b>日黄仁勋听证会结果；SEC调查定性（仅披露问题 vs 财务造假/国家安全问题）</span></div>
+    <div class="op-d">SEC调查会计问题（改收入地区口径、新加坡销售消失）叠加循环融资收入质量疑虑，披露瑕疵罚款不重，但若触碰国家安全线后果严重；黄仁勋12月1日听证会前不确定性无法驱散，公司价值已大打折扣，财报超预期也未能扭转跌势。</div>
+    <div class="op-q">「在黄人勋事件发布的那一刻，这家公司的价值就大打折扣了。如果只是披露问题，那影响有限，真正的风险在于国家安全这条线。在12月1日出席听证会之前，鬼故事恐怕还无法驱散。」</div>
+    <div class="op-tag"><b>催化：</b>路透独家报道SEC调查英伟达会计处理问题，股价从跌6%多扩大到14%、去年收入地区口径改为按客户总部地址归类，新加坡销售额从地区收入中消失（调整前新加坡销售额已接近英伟达全球收入的一半）、黄仁勋12月1日出席听证会、业绩和指引超预期，FY28财年收入增速指引上调到75%左右，但董事会明确不让黄仁勋复职<br><b>风险：</b>若调查发现改口径是为遮掩芯片流向甚至明知转运仍销售，牵涉最高层级的国家安全（2023年希捷因违规卖硬盘给华为被商务部罚3亿美元先例）、市场对AI产业循环融资的担忧：一边卖芯片一边投资AI公司和云服务商并提供担保，投资人难以判断收入质量与实际承担风险、SEC执法主管正检查AI公司信息披露，确保投资人看到完整风险</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=168s" class="tslink">2:48 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">200</b>周均线（当前正在测试的长期支撑）</span><span class="lv lv-t">触发 风险彻底出清之前观望（<b class="num">12</b>月初参议院作证为关键事件节点）</span></div>
+    <div class="op-d">英伟达股价已经快腰斩，跌到200周均线；12月初黄仁勋将赴美国参议院作证，风险未彻底出清前未来几周仍可能承压。更令市场担忧的是英伟达对整个AI产业链的融资敞口，AI投资热潮降温时风险可能通过担保、投资承诺及租赁义务传导至英伟达自身。博主感叹美股AI信仰都建立在老黄身上。</div>
+    <div class="op-q">「英伟达股价已经快腰斩了，跌到了200周均线。12月初黄仁勋将赴美国参议院作证，在风险没有彻底出清之前，未来几周该股仍可能临压力。」</div>
+    <div class="op-tag"><b>催化：</b>跌至200周均线这一长期技术支撑位<br><b>风险：</b>12月初黄仁勋赴参议院作证的不确定性、对AI产业链融资敞口：担保、投资承诺及租赁义务可能传导风险、AI投资热潮降温致相关企业融资能力与项目回报承压</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=683s" class="tslink">11:23 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/回避·中期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">170-180</b>（原支撑区，<b class="num">170</b> 下方已无支撑）；当前位置下方为 <b class="num">2024-2025</b> 横盘买盘密集区；极端情形看 <b class="num">50-60</b>（mid-double digits）</span><span class="lv lv-r">阻力 <b class="num">170</b>（上方失守的前支撑转为压力）</span><span class="lv lv-t">触发 两个前提条件同时满足（新 CEO + 人才留任）才考虑买入；在此之前回避；暂不抄底；至少等待新 CEO 上任，并确认足够多核心员工留任后再评估</span></div>
+    <div class="op-d">周初还在 160 美元上方，自周一起暴跌 22%，收于 52 周新低 125 84。利空密集：盘后 SEC 探索会计问题调查、加州总检察长就中国问题送达传票、Jensen 慈善向 CoreWeave 承诺 3.5 亿美元引发的循环融资质疑（'新云厂商到底是不是英伟达维持算力/半导体高价的延伸？'）、民主党追查其对中国公司出租算力的 MegaSpeed 影响、Jensen 同意赴参议院作证、Muddy Waters 将英伟达列为新做空标的。尽管业绩 beat and raise（明年营收增速指引从 70% 上调至 75%），股价纹丝不动——情绪太差、公司没有正式 CEO。博主明确：新闻在变好之前会先变得更糟；抄底的两个前提是（1）新 CEO 到位、（2）核心人才留任，在此之前'请远离英伟达'。技术面：170 下方曾无支撑（订阅服务在 170-180 区域已提示离场），但 2024-2025 年的横盘区在当前位置下方形成买盘密集区，若再破位可能下探'中段两位数'（50-60 区域）。</div>
+    <div class="op-q">「在这些问题明朗之前，请远离英伟达。（原文：I think you steer clear of NVIDIA）以及：英伟达的新闻在变好之前会先变得更坏。（原文：The news is going to get worse with NVIDIA before it can get better）」</div>
+    <div class="op-tag"><b>催化：</b>业绩 beat and raise：明年营收增速指引由 70% 上调至 75%、新 CEO 到位且核心人才留任（博主认为大概率会请到称职 CEO）、若算力/半导体价格开始下降，行业格局重塑后的相对赢家出现<br><b>风险：</b>SEC 会计调查 + 加州总检察长就中国问题传票 + 参议院听证，调查将持续数月甚至数年、Jensen 慈善向 CoreWeave 承诺 3.5 亿美元，循环融资质疑发酵、Muddy Waters 新增做空；员工（因 Jensen 而来）可能流失、无正式 CEO 状态下，强劲指引也无法推动股价、技术面若跌破当前横盘支撑区，可能下探 50-60 的中段两位数区域</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=808s" class="tslink">13:28 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/20</span></span>
+    <span class="st c-up">看多/持有·中期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 成交量<b class="num">824</b>亿美元放量暴跌后等缩量止跌；老黄复职（董事会凑够<b class="num">6</b>票）是估值暴力修正的触发点</span></div>
+    <div class="op-d">英伟达市值损失2万亿，拖累标普。今天成交824亿美元放量暴跌，远期市盈率13倍以下、最低预测9倍，估值便宜，我认为很快见底；但老黄复职需董事会6票、概率不高，人才流失是最大变数。</div>
+    <div class="op-q">「我觉得英伟达很快要见底了……今天放量暴跌，远期适应率在13倍以下，最低的预测是9倍，股价相当便宜。如果老皇回归，这个估值必须会暴力修正，出现绝地反弹。」</div>
+    <div class="op-tag"><b>催化：</b>远期市盈率13倍以下、最低预测9倍，估值处于低位、川普第三次公开背书力挺老黄复职、若老黄回归，估值暴力修正、绝地反弹<br><b>风险：</b>SEC调查新加坡入账与会计口径调整、穆迪下调评级、董事会10人中需6票才能复职，目前仅3票支持、核心工程师离职潮、人才大规模流失、数据中心资本支出增速见顶</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=598s" class="tslink">9:58 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/回避·短期</span></div>
+    <div class="op-lv"><span class="lv lv-r">阻力 <b class="num">132</b>（已跌穿的位置，上方压力）</span><span class="lv lv-t">触发 今天跌穿<b class="num">132</b>；从最高<b class="num">243</b>跌到<b class="num">120</b>，接近腰斩；本周跌<b class="num">22.92</b>%，走势极差，无止跌形态前回避</span></div>
+    <div class="op-d">双重利空打击：路透社援引消息人士称SEC正对英伟达进行会计调查，且至少两家服务器合作伙伴因美国最新出口管制停止向东南亚客户发货。今天一口气又跌14%，跌穿132，走得非常差；本周已跌22.92%，市值跌到只剩3万亿（蒸发接近2万亿），从最高243跌到120接近腰斩。走势一路阴跌下来，暂无止跌形态，回避观望。</div>
+    <div class="op-q">「美国证券交易委员会SEC正在对英伟达进行会计调查。另外，至少两家英伟达服务器的合作伙伴因为美国最新的出口管制而停止向东南亚的客户发货。那么今天英伟达是一口气又跌了14%，已经是跌穿了上方的132的位置」</div>
+    <div class="op-tag"><b>催化：</b>SEC会计调查结果落地前不确定性压制股价<br><b>风险：</b>出口管制进一步收紧、AI板块整体流动性挤压下继续补跌</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=94s" class="tslink">1:34 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">台积电</span>
+        <span class="hd-tk">TSM</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">2 次提及 · 看多 0 / 看空 1</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·11/20</span></span>
+    <span class="st c-down">看空/观望·短期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">290-300</b>（<b class="num">50</b>% 位与此前高点共振区）</span><span class="lv lv-e">买点 等 <b class="num">290-300</b> 区间是否出现承接</span><span class="lv lv-t">触发 在 <b class="num">290-300</b> 放量止跌并收回 <b class="num">50</b>% 位 → 可视为板块见底信号；直接失守 → 下行延续；双顶颈线（已跌破，转为阻力）</span><span class="lv">目标 <b class="num">290-300</b>（<b class="num">50</b>% 斐波那契位兼双顶量出目标）</span></div>
+    <div class="op-d">TSM 早就在破位下行，目标位与 50% 斐波那契落在 290-300 一带，同时也是双顶形态的量出目标。他认为如果能在 50% 位（对应此前高点）守住会好得多，但现在已经很接近该区域，只能等结果。</div>
+    <div class="op-q">「“TSM 早就在破位了，我们的目标位和 50% 位大约在 300，290 到 300。这也是双顶的量出目标。如果它能守住 50% 位、守住这些前高，那会好得多，但我们只能等着看，已经很接近了。”（原文：TSM has already been breaking down and our price target and 50% is coming in at around 300, 290 to 300. Here's the double top price target. So it'd be much better if this did hold the 50% level these previous highs, but we'll have to wait and see. It's getting very close.）」</div>
+    <div class="op-tag"><b>催化：</b>AI 代工订单能见度高，基本面强于股价、跌至 50% 位与前高共振区易出现技术性买盘<br><b>风险：</b>双顶量出目标指向 290-300，仍有下行空间、费城半导体与 SMH 同步走弱、地缘政治风险溢价</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=2051s" class="tslink">34:11 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/观望·中期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 等待见底/止跌形态出现（开盘或收盘确认），不挂单接飞刀；买入计划不变</span></div>
+    <div class="op-d">今天没有给任何见底形态的机会，昨天就讲过不要挂单去接飞刀——这些位置是可以等止跌形态出现后长线买的，但在流动性挤压下需要等待。买入计划没有改变，等的是明确的止跌形态。基本面有额外支撑：英特尔性能未达谷歌预期，谷歌已向台积电询问将TPU转回CoWoS代工的问题。个人今天仓位损失主要在台积电。</div>
+    <div class="op-q">「台积电今天是没有给任何的见底形态的机会。我们昨天节目跟大家讲过，不要挂单去接飞刀，这些地方是可以止跌长线买的，但是没有这种形态，在流动性的挤压下现在需要等待，买入计划我没有改变」</div>
+    <div class="op-tag"><b>催化：</b>谷歌因英特尔性能不达标，询问将TPU转回台积电CoWoS代工、止跌形态出现后可长线布局<br><b>风险：</b>流动性挤压下短期继续下跌、暂无见底形态、半导体板块整体受SEC调查英伟达等利空拖累</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=302s" class="tslink">5:02 回看</a></div>
+    
+  </div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">特斯拉</span>
+        <span class="hd-tk">TSLA</span>
+        <span class="lean flat">分歧</span></div>
+        <div class="hd-meta">3 次提及 · 看多 0 / 看空 0</div>
+        <div class="op">
+    <div class="op-h"><span class="op-c">The Investor Channel<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/持有·中期</span></div>
+    <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">340-350</b>（跌破后下滑较快，但下方仍有累积买盘支撑）</span><span class="lv lv-r">阻力 <b class="num">388</b>（本周初价位/跌破前平台）</span><span class="lv lv-t">触发 关注 <b class="num">340-350</b> 一带得失；SpaceX 合并消息或成催化剂；博主未给出具体买点，仅指出当前区域有累积买盘</span></div>
+    <div class="op-d">周初 388 美元，全周暴跌超 11% 收于 345。马斯克宣布将提升上海工厂产量，自称'中国超级粉丝'；博主调侃高管政治立场反复，但作为股东认为这不是坏事，并预期马斯克正试图回到政治中间地带、但很难成功。马斯克还说'Jensen Wong 是不可替代的'，博主猜测若 Jensen 重新出山，可能与马斯克合作。Cybercab 开放预订：税前 2.9 万-3 万美元、1000 美元不可退订金、强制每月 300 美元（另一处提及 299 美元）自动驾驶订阅费、只能在获批区域（目前基本只有德州奥斯汀）行驶——博主直斥'这是笔糟糕的交易，不如租台 Model 3'。技术面：特斯拉的成交量画像显示当前价位存在广泛的累积买盘，跌破 340-350 时下滑会比较快，但下方仍有支撑；股价下方仿佛有一张'看不见的看跌期权'保护，SpaceX 合并传闻可能使其兑现。</div>
+    <div class="op-q">「特斯拉的成交量画像很有意思——当前价位存在广泛的基础性累积买盘。这就是为什么当它跌破 340-350 一带时，下滑会很快，但下面甚至还有一些支撑。（原文：There's just broad-based accumulation where the stock is right now... when you slip below kind of the 340 350 level with Tesla, it can be a quick slip, but there's even some support down there.）」</div>
+    <div class="op-tag"><b>催化：</b>上海工厂扩产（马斯克亲自在中国宣布）、与 Jensen/SpaceX 的潜在合作想象；SpaceX 合并预期如'隐形看跌期权'托底、当前价位下方有成交量画像显示的累积买盘<br><b>风险：</b>Cybercab 商业模式被博主否定：2.9-3 万美元车价+每月 300 美元强制订阅+限区域行驶，不如租 Model 3、马斯克政治立场反复带来的品牌与监管风险、跌破 340-350 后下滑速度快</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=1614s" class="tslink">26:54 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/持有·短期</span></div>
+    <div class="op-lv"><span class="lv lv-t">触发 未给具体价位，等大盘（标普/纳指）止跌信号确认后再看持仓修复</span></div>
+    <div class="op-d">今天是什么股都跌，特斯拉是账户里亏损最多的一只，亏损甚至超过英伟达和美光。高估值成长股在流动性收缩、杠杆盘被迫平仓时回撤更大，博主没有给出价位，仍选择持有等反弹。</div>
+    <div class="op-q">「英伟达和美光跌幅最大，但是亏损多的还得是特斯拉，今天是什么股都跌，再这么搞下去这两年的盈利可快亏没了。」</div>
+    <div class="op-tag"><b>催化：</b>普跌后的超跌反弹窗口<br><b>风险：</b>高beta成长股在流动性收缩中回撤更大、杠杆账户平仓压力、纳指科技股整体崩溃</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=843s" class="tslink">14:03 回看</a></div>
+    
+  </div><div class="op">
+    <div class="op-h"><span class="op-c">⭐ 视野环球财经<span class="op-date">·11/20</span></span>
+    <span class="st c-flat">中性/观望·短期</span></div>
+    
+    <div class="op-d">今天接了7个多点的大跌，跌幅在持仓中较大。暴跌日无止跌形态，按纪律不接飞刀，等待形态明确。</div>
+    <div class="op-q">「谷歌这边昨天也讲了，今天跌了两个多点，特斯拉接了7个多点」</div>
+    <div class="op-tag"><b>风险：</b>单日大跌7个多点，高Beta属性在流动性挤压中放大回撤</div>
+    <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=336s" class="tslink">5:36 回看</a></div>
+    
+  </div>
+      </div>
+</div>
+
+<div class="sec" id="s2">
+  <div class="sec-h">🌐 二、大盘情况</div>
+  <p style="margin:0 0 8px;"><span class="tone down" style="margin-left:0;">偏空</span>
+  <span style="font-size:12.5px;color:var(--muted);margin-left:8px;">中性 1 · 偏空 6 · 偏多 1</span></p>
+  <div class="op"><div class="op-h"><span class="op-c">视野环球财经</span><span class="st flat">中性</span></div><div class="op-d">四大指数大跌：纳指暴跌约5%、费城半导体狂跌10%，标普跌破7000点并跌穿自高点回撤10%的修正区，已连续下跌7个交易日（2020年2月以来最长连跌），创解放日以来最糟糕单周。但今天广度比昨天好（下跌家数376只 vs 昨天400多只），防御型消费品还在上涨——跌幅最大的都是与AI产业关联最直接的科技/非必需消费/通讯板块。本轮下跌推动力：CTA系统资金机械性抛压（标普砸穿7084触发线）+ 期权到期结算，标普创纪录的空头Gamma在巨量抛压下被迫平仓，是完美的日内流动性踩踏。三个好消息：①Gamma已被重置，机械抛压继续暴跌的风险大幅降低；②纳指(QQQ)已到结构上最后一个重要防守位585，空头最容易的部分已走完，空头回补平仓会在今天或下周一出现；③标普已回到前瞻估值合理区间（6800-7000）下限。坏消息：SPY从高点回撤已穿702（10%修正区），当前正逼近斐波那契61.8回撤位671——跌破则4月以来上行结构被破坏。</div></div><div class="op"><div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">偏空</span></div><div class="op-d">本周全球股灾：标普500跌3.7%连续第7个交易日下跌，纳指收跌5.28%，费城半导体指数重挫10.73%，日韩股市暴跌逾5%、KOSPI触发熔断，台股单周暴跌17.5%创1991年来最惨纪录。VIX日内最高飙到40，CNN恐慌贪婪指标跌到10，市场接近投降水平。博主怀疑这次可能真的走熊，但认为暴跌后会有暴力反抽的死猫跳，反弹窗口只有感恩节当周几天，12月美联储加息后市场还会再跌。今天低点6900很可能只是阶段低点而非真正底部。</div></div><div class="op"><div class="op-h"><span class="op-c">阳光财经</span><span class="st down">偏空</span></div><div class="op-d">今天是真的崩盘：标普大跌265.16点、跌幅3.7%，一根大阴线跌破7000点，年线失守后反而成为重大压力线；纳指暴跌1261.47点、跌幅5.28%，是科技股的大崩溃；道指跌949.73点、跌幅1.93%，不到1000点，是三大指数里最好的一个。三大指数全部破位、各路资金都在跑，说明不是调仓换股而是资金快速流出。CNN恐慌贪婪指数读数只有10点，接近极限但历史上出现过3点，所以还不是绝境。历史上纳指单日跌超5%后次日反弹概率55%，下周有反弹希望；但1987、2000、2008的案例说明暴跌也可能只是更大下跌的开端。下周四感恩节全天休市、周五只交易上午，缩量环境下杠杆账户最容易被收割，会不会演变成AI泡沫崩盘行情暂时不能下定论。</div></div><div class="op"><div class="op-h"><span class="op-c">美投侃新闻</span><span class="st down">偏空</span></div><div class="op-d">11月20日美股遭系统性抛售：纳指大跌5%抹去今年全部涨幅，标普、道指进入技术性调整，VIX大涨26%站上35。AI交易是重灾区，费半单日跌超10%（周跌17%），英伟达因SEC调查会计问题单日大跌14%、市值低于谷歌，博通跌超12%；苹果、谷歌、微软相对扛跌（跌幅3%以内）。避险资产走强：美债收益率下行（2年期降12个基点、10年期降10个基点），美元指数涨0.4%收2025年3月以来高点；黄金跌4.5%破3600美元、白银跌8.1%、比特币跌5.7%破6万美元创7月以来新低。标普连续第7个交易日下跌，为2020年2月以来最长连跌。博主引用Hartnet观点：超卖比例达68%，未来几天若触及88%可能触发反向买入信号，感恩节后或有技术性反弹，但机构现金水位仅3.6%（目标5%）、上周全球股票基金仍流入666亿美元，卖压未释放完毕，反弹大概率只是死猫跳。</div></div><div class="op"><div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">偏空</span></div><div class="op-d">11 月 20 日当周是极其惨烈的一周，周三视频里提示的警讯最终演变成进一步抛售：标普 500 与纳斯达克双双跌破上升楔形，周线 RSI 趋势线支撑同日失守，纳指此前的双重/三重底也被击穿。指数目前处于日线超卖（RSI 与均值回归指标），并正好压在标普的成交量密集区（VRVP 成交控制点，对应 2025 年 11 月前高）与 20 月均线上，因此技术性反弹（反趋势反弹）概率很高；但结构已被破坏，反弹更可能形成更低的高点，并在 200 日均线下方被拒绝。形态测量目标为标普约 5,700、纳指约 20,000（纳指相当于再跌约 20%，自顶部累计约 35%）。当日唯一亮点是尾盘出现一点承接，资金转向医疗（XLV）、消费必需（XLP）与能源（XLE）做防御性轮动，但除 XLP 外板块全线收跌。加密处于临界点：比特币几乎精确回踩 6 月 30 日的前低后小幅反弹，是双底还是破位下探新低将在下周见分晓。</div></div><div class="op"><div class="op-h"><span class="op-c">The Investor Channel</span><span class="st up">偏多</span></div><div class="op-d">美股刚结束一个史诗级的下跌周，几乎全线录得历史级跌幅，没有板块幸免：半导体在英伟达暴跌带动下录得史上最差周之一，连黄金、白银等避险资产也在下跌，属于系统性抛售。META 全周跌超 12% 收于 561 美元，AAPL 跌超 3.5% 收 342，AMZN 跌 5.6% 收 247，GOOGL 跌近 8% 收 264（52 周新低），MSFT 跌超 7% 收 484，TSLA 跌超 11% 收 345，NVDA 自周一起跌 22% 收于 52 周新低 125.84。博主以 25 年投资经验判断：系统性抛售往往创造世代级的买入机会，下周感恩节短交易周若再出现一周大跌就是最后的 flush out（洗盘），随后大概率出现 3%-4% 的技术性反弹；当前市场没有上涨的充分理由，需要等待卖方力量耗尽。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股</span><span class="st down">偏空</span></div><div class="op-d">猫姐判断本周为「情绪主导+程序性卖盘叠加主动抛售」的非常规市场：SPY 跌破 748/750 关键线后引发程序性卖盘，733.98 一线周中失守；QQQ 跌破中线定海神针 706.58 后按其 9 月预告奔向 605 一带。本周两大新特征是「空头回补失效」和「主动性卖盘增加」，她认为这意味着市场尚未真正见底（底部概率约七八成但还差最后一口气的恐慌释放），程序性低点触发后反弹无力、多方缺钱、流动性糟糕。她保持空头对冲仓位纪律操作（周三周四做空获利、周四周五因市场失灵几乎原价/更贵拿回），强调止损毫不犹豫、不裸空、只做符合其体系原则的波段。中期格局上她认为现在才跌回 26 年 4 月份水平，2027 年尤其下半年到 2028 年初值得期待。</div></div><div class="op"><div class="op-h"><span class="op-c">XTrader猫姐美股<span class="src-x">X</span></span><span class="st down">偏空</span></div><div class="op-d">猫姐复盘自己 club 的禅动买卖点指标，发现 10 月底 11 月初比特币还在 8 万附近时，指标已连续触发三个确认卖点。她强调自己的方法论：确认买点后面通常跟卖点，卖点也一样；若连续出现同方向的买点或卖点，就是强确认信号。接下来要特别关注 5.8 万是否跌破，这关系到周线目标价。</div></div>
+</div>
+
+<div class="sec" id="s3"><div class="sec-h">📊 三、其他标的共识</div><div class="tbl-wrap"><table>
+      <colgroup><col style="width:36%"><col style="width:16%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup>
+      <tr><th>标的</th><th style="text-align:center">提及</th><th style="text-align:center">看多</th><th style="text-align:center">看空</th><th style="text-align:right">倾向</th></tr>
+      <tr><td>三倍做多半导体 <span class="tk">SOXL</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="flat">分歧</td></tr><tr><td>西部数据 Western Digital <span class="tk">WDC</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">1</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="up">偏多</td></tr><tr><td>比特币 <span class="tk">BTC</span></td>
+        <td style="text-align:center">4</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">3</td>
+        <td style="text-align:right" class="down">偏空</td></tr><tr><td>Coinbase <span class="tk">COIN</span></td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">1</td>
+        <td style="text-align:right" class="down">偏空</td></tr><tr><td>Anthropic（IPO） <span class="tk">ANT</span></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center" class="c-up">0</td>
+        <td style="text-align:center" class="c-down">1</td>
+        <td style="text-align:right" class="flat">分歧</td></tr><tr><td>SPDR 必需消费精选板块 ETF（含 XLV 及防御/老钱股） <span class="tk">XLP</span></td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center" class="c-up">1</td>
+        <td style="text-align:center" class="c-down">0</td>
+        <td style="text-align:right" class="flat">分歧</td></tr>
+    </table></div></div>
+
+<div class="sec" id="s4">
+  <div class="sec-h">🎬 四、各博主视频要点</div>
+  <div class="hd hd-key">
+        <div class="hd-h"><span class="hd-name">⭐ 视野环球财经</span><span class="hd-tk">11/20</span><span class="st flat">中性</span></div>
+        <div class="op-title">美股 踩踏暴跌一步到位！好消息、坏消息！后市重要判断！</div>
+        <div class="op-d">四大指数大跌：纳指暴跌约5%、费城半导体狂跌10%，标普跌破7000点并跌穿自高点回撤10%的修正区，已连续下跌7个交易日（2020年2月以来最长连跌），创解放日以来最糟糕单周。但今天广度比昨天好（下跌家数376只 vs 昨天400多只），防御型消费品还在上涨——跌幅最大的都是与AI产业关联最直接的科技/非必需消费/通讯板块。本轮下跌推动力：CTA系统资金机械性抛压（标普砸穿7084触发线）+ 期权到期结算，标普创纪录的空头Gamma在巨量抛压下被迫平仓，是完美的日内流动性踩踏。三个好消息：①Gamma已被重置，机械抛压继续暴跌的风险大幅降低；②纳指(QQQ)已到结构上最后一个重要防守位585，空头最容易的部分已走完，空头回补平仓会在今天或下周一出现；③标普已回到前瞻估值合理区间（6800-7000）下限。坏消息：SPY从高点回撤已穿702（10%修正区），当前正逼近斐波那契61.8回撤位671——跌破则4月以来上行结构被破坏。</div>
+        <div class="op-tag"><b>宏观：</b>后市关键看两点：一是SPY 671得失（以收盘/开盘价为准，盘中不算）——守住则原地反弹、形成底部区，保住上涨结构；跌破则4月以来上行结构破坏，即便648-667止跌也只能视为反弹结构，反弹后大概率向下二次寻底，抄底要慎重、不见兔子不撒鹰。二是12月美联储态度：若把AI融资/投资放缓、经济可能放缓纳入考量、措辞软化，相当于部分救市、提振多头信心；若继续强调通胀高、经济旺盛、可承受更多加息，对AI信贷与数据中心融资雪上加霜。另注意危险信号：若反弹后（尤其到了728之后）消费品板块与科技板块一起跌，说明防御失效、资金全面流出，属广度级别的下杀。</div>
+        <div class="op-tag"><b>热点：</b>防御型消费品（当前仍在上涨）、AI/半导体关联板块（跌幅最深）、科技、非必需消费、通讯</div>
+        <div class="op-tag"><b>要点：</b>SEC正对英伟达进行会计调查（路透社援引消息人士），且至少两家英伟达服务器合作伙伴因美国最新出口管制停止向东南亚客户发货；英伟达今天一口气又跌14%，跌穿132，本周跌22.92%，市值跌到只剩3万亿（蒸发接近2万亿），从最高243跌到120，接近腰斩；谷歌将2027年博通设计的TPU芯片出货量削减20%（约100万颗），增加其他芯片出货（数据中心与电力短缺下的性能调整）；英特尔性能未达谷歌预期，谷歌已向台积电询问TPU转回CoWoS——利空博通/英特尔、利好台积电；苹果宣布构建自己的AI代理（设备控制、应用程序、浏览和编码），与OpenAI等竞争；从软件层面切入，没有大幅投入数据中心基建，不算耗钱；CTA机械抛压：当时标普还在7273点时离下方7084触发线很远，今天被快速砸穿触发机械性抛压，盘中反弹继续被卖；今天属于完美的日内流动性踩踏：CTA抛压+期权到期结算互为助力，标普创纪录空头Gamma被迫平仓；好消息①：SPX Gamma今天已被重置，机械抛压导致继续暴跌的风险大幅降低；好消息②：QQQ已跌到最后一个结构上重要防守位585（以开盘价或收盘价为准，盘中不算），跌破空头才有进一步想象空间；空头最容易的部分已走完，空头回补平仓会在今天或下周一出现，之后愿空的等反弹再空；好消息③：标普回到前瞻估值合理区间下限（6800-7000），今天收6901；再跌到接近4月低点属涉嫌低估，是逢低配置指数资金的难得好机会；坏消息：SPY正逼近4月低点以来上行结构的斐波那契61.8回撤位671（给余量后以此为准，比SPX指数点位更低更明确）；跌破（收盘/开盘价为准）则上行结构被破坏，只能按反弹防御思维对待；最顺畅走势：守住671-694原地反弹，反弹目标先看728附近（或更高但未突破753），接近200日均线（今天200日线在730，每天移动）；728-753是重要分水岭，反弹到那里多头也没赢、只是拉回震荡格局，必须回到753上方才增加反转看新高的几率；今天尾盘不能抄底：绝大多数股票没有止跌形态，收盘价新低使止跌信号有效性很低；盘后反弹忽略不计（隔周末变数大）；止跌形态可能在下周三个交易日内出现，但反弹目标仍只看728附近，一段一段看，不要跳着看；仓位重且一路没动的人：反弹到728-753分水岭是再一次降低仓位的选择机会；下周为感恩节短周（三个半交易日），看市场能否走出让人重新眼前一亮的反弹；个人持仓：今天损失主要在台积电仓位；微软（第一大持仓）跌破490后回到震荡行情、跌幅较小；谷歌跌两个多点、特斯拉跌7个多点；ISRG离买入位置还差很远；Netflix还有一半仓位没加等形态；TRV加仓位置非常远；台积电今天没有给任何见底形态的机会——昨天就说过不要挂单接飞刀，这些位置可以等止跌形态长线买，但流动性挤压下需要等待，买入计划不变；投资体系：该买的会去买，破位了走差了该止损/离场也果断离场；现阶段看多看空都没错，关键是制定自己的交易计划并执行</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">NaNa说美股</span><span class="hd-tk">11/20</span><span class="st down">偏空</span></div>
+        <div class="op-title">每天活在爆仓中！NaNa说美股(2026.11.20)</div>
+        <div class="op-d">本周全球股灾：标普500跌3.7%连续第7个交易日下跌，纳指收跌5.28%，费城半导体指数重挫10.73%，日韩股市暴跌逾5%、KOSPI触发熔断，台股单周暴跌17.5%创1991年来最惨纪录。VIX日内最高飙到40，CNN恐慌贪婪指标跌到10，市场接近投降水平。博主怀疑这次可能真的走熊，但认为暴跌后会有暴力反抽的死猫跳，反弹窗口只有感恩节当周几天，12月美联储加息后市场还会再跌。今天低点6900很可能只是阶段低点而非真正底部。</div>
+        <div class="op-tag"><b>宏观：</b>宏观面偏空：AI交易信心瓦解，资金抽离引发流动性退潮；月度期权到期叠加做市商极端负gamma是多头踩踏推手。Anthropic强行上市抽干流动性被博主视为本次崩盘祸首。美联储12月加息压制反弹空间，参考2018年底和2022年加息期走势。美银调查显示基金经理科技股超配从净37%降至净12%，仍有减仓空间；野村估算系统性策略两周抛售约1160亿美元，风险敞口降至历史第10百分位。中期选举后川总沉默救市，民主党乐见股市下跌压通胀。仓位转为净低配时才是更好的科技股入场机会。</div>
+        <div class="op-tag"><b>热点：</b>半导体（真熊市，回撤近43%）、AI算力与AI基建（融资压力暴露）、光通信、半导体存储、债券避险（TLT上涨、花旗建议增持）</div>
+        <div class="op-tag"><b>要点：</b>标普500较峰值回撤约12%进入技术性回调，经验上10%-12%回撤后常有剧烈反弹甚至V反创新高，但博主怀疑这次真走熊；周K确认破位：反抽最多验证7250阻力（50周均线与上升趋势线）后掉头向120周均线6550下探，站不上5周均线一切反弹都是死猫跳；纳指100回吐年内全部涨幅，周跌10.43%，从峰值回撤超20%跌入技术性熊市，跌破0.618回调支撑；QQQ掼破博主预设的625-635买入区间，博主今天最后一次买入后躺平，感恩节反弹就出，怕砸到580回补大缺口；VIX最高到40，仍低于25年4月关税解放日和24年8月套利平仓时的60，若下周一再冲高则恐慌盘彻底释放，恐慌贪婪指标到个位数可抄底；Anthropic盘中最低83.05美元差0.05美元破发，靠绿鞋机制由高盛和大摩护盘守住，天价估值不被买账，做空危险最好别碰；SNDK跌超16%且完成1拆8，自6月峰值回撤近73%，基本面和财报仍强劲但估值被杀到像要破产；SpaceX完成约320亿美元债券发行，票据收益率8.26%远超投资级平均5.95%，加剧AI基建融资压力担忧；英伟达快腰斩跌到200周均线，12月初黄仁勋赴参议院作证，对AI产业链的融资敞口是更大隐患；TLT上涨避险资金涌入债券，花旗建议增持债券，但美联储加息利率上行且流动性危机下任何资产都可能被抛，手持现金更安心；LITE CEO为与迈威尔合并计划辩护，称合并后公司更强，股价从峰值回撤超60%；软银崩14%，孙正义all in AI累计向OpenAI投资646亿美元，市场对AI前景担忧令其承压</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">阳光财经</span><span class="hd-tk">11/20</span><span class="st down">偏空</span></div>
+        <div class="op-title">这次真的崩盘，再也不敢造次。【2026-11-20】</div>
+        <div class="op-d">今天是真的崩盘：标普大跌265.16点、跌幅3.7%，一根大阴线跌破7000点，年线失守后反而成为重大压力线；纳指暴跌1261.47点、跌幅5.28%，是科技股的大崩溃；道指跌949.73点、跌幅1.93%，不到1000点，是三大指数里最好的一个。三大指数全部破位、各路资金都在跑，说明不是调仓换股而是资金快速流出。CNN恐慌贪婪指数读数只有10点，接近极限但历史上出现过3点，所以还不是绝境。历史上纳指单日跌超5%后次日反弹概率55%，下周有反弹希望；但1987、2000、2008的案例说明暴跌也可能只是更大下跌的开端。下周四感恩节全天休市、周五只交易上午，缩量环境下杠杆账户最容易被收割，会不会演变成AI泡沫崩盘行情暂时不能下定论。</div>
+        <div class="op-tag"><b>宏观：</b>这轮崩盘的原因是系统性的：加息预期升温，民主党控制国会后可能对数据中心审批不利；川普新政策要对在其他国家建设数据中心的公司处以巨额罚款，逼迫巨头把数据中心建在美国。真正的黑天鹅是英伟达——市值损失2万亿，拖累标普市值大跌40%，老黄辞职后公司群龙无首，川普第三次公开背书力挺、建议董事会接受道歉让他复职，但董事会10人里3人支持、3人反对、4人摇摆，复职需要6票，短期概率不高；同时SEC开始调查英伟达通过新加坡入账的销售数据与会计口径调整，穆迪也下调其评级。更深层的问题是AI行情已上涨四年，数据中心投资增长可能见顶：四大云巨头只有微软自由现金流还算充裕，其他几家现金流吃紧，新云服务商要靠核心厂商担保、GPU抵押来融资且利率很高，CDS信用违约互换时常暴涨；连SpaceX融资买GPU都让贷款人担心抵押物。明年资本支出同比增长一旦放缓，半导体公司收入增速随之放缓，营收还在增长但没以前快，股价同样要跌。季节性上，下周最多跌四天且假期缩量，杠杆盘面临被强平风险。</div>
+        <div class="op-tag"><b>热点：</b>半导体/AI算力（英伟达市值损失2万亿、穆迪降级、SEC调查会计口径，是本次崩盘核心）、AI大模型（Anthropic 上市首日靠绿鞋护盘，股东人均减持2.8亿美元，模式与股权结构受质疑）、云服务与数据中心（资本支出同比增速见顶、新云厂商融资难、CDS暴涨）、大盘指数（三大指数全部破位，标普跌破7000点、年线失守转压力）、软件/云计算（四大云巨头中仅微软自由现金流还算充裕，相对占优）</div>
+        <div class="op-tag"><b>要点：</b>标普大跌265.16点、跌幅3.7%，跌破7000点，年线失守后成为重大压力线，华尔街喊的8000点今年不可能实现；纳指暴跌1261.47点、跌幅5.28%；1971年以来50次单日跌超5%，次日反弹概率55%、之后5个交易日上涨概率也是55%；道指跌949.73点、跌幅1.93%，不到1000点，是三大指数中最好的，但同样在跑，只是跑得相对从容；CNN恐慌贪婪指数读数10点，接近极限，历史上曾低至3个点，恐慌到极限时V型反转完全可能发生；英伟达市值损失2万亿、拖累标普市值大跌40%；今天成交824亿美元放量暴跌，远期市盈率13倍以下、最低预测9倍；老黄复职需董事会10人中6票，目前3人支持、3人反对、4人摇摆；川普第三次公开背书，SEC同时调查其新加坡入账与会计口径，穆迪降级；AI行情已涨四年，真正的隐忧是数据中心投资增速见顶：四大云巨头仅微软自由现金流充裕，新云厂商靠GPU抵押高息融资，CDS暴涨；Anthropic 上市首日7位股东人均减持2.8亿美元；承销商绿鞋多卖15%、成本83美元，今日最低83.05险守83美元发行价；川普新政策：对在其他国家建设数据中心的公司处以巨额罚款，数据中心必须建在美国；历史类比：2022年4月标普跌破年线后并未立即见底，一路跌到10月，从约4400点跌到3500点、约20%，破位是真正的破位</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">美投侃新闻</span><span class="hd-tk">11/20</span><span class="st down">偏空</span></div>
+        <div class="op-title">The Age of AI Protectionism Is Here? Nvidia Targeted by the SEC! Is the Rebound Just a Dead Cat B...</div>
+        <div class="op-d">11月20日美股遭系统性抛售：纳指大跌5%抹去今年全部涨幅，标普、道指进入技术性调整，VIX大涨26%站上35。AI交易是重灾区，费半单日跌超10%（周跌17%），英伟达因SEC调查会计问题单日大跌14%、市值低于谷歌，博通跌超12%；苹果、谷歌、微软相对扛跌（跌幅3%以内）。避险资产走强：美债收益率下行（2年期降12个基点、10年期降10个基点），美元指数涨0.4%收2025年3月以来高点；黄金跌4.5%破3600美元、白银跌8.1%、比特币跌5.7%破6万美元创7月以来新低。标普连续第7个交易日下跌，为2020年2月以来最长连跌。博主引用Hartnet观点：超卖比例达68%，未来几天若触及88%可能触发反向买入信号，感恩节后或有技术性反弹，但机构现金水位仅3.6%（目标5%）、上周全球股票基金仍流入666亿美元，卖压未释放完毕，反弹大概率只是死猫跳。</div>
+        <div class="op-tag"><b>宏观：</b>本周核心叙事是AI交易的重新定价，叠加三条宏观压力线：1）政策面：川普突然宣布禁止美国公司在海外建数据中心、违者课以巨额税，博主认为阻力很大、政策大概率不了了之，但短期冲击情绪；同时美国正通过新规堵住中国经第三国租用先进AI算力的出口漏洞，SEC执法主管表示正在检查AI公司的信息披露。2）利率面：美联储官员密集放鹰，沃勒暗示12月可能加息50个基点，10月FOMC纪要显示几乎所有与会者认为进一步加息可能合适。3）衰退风险：Hartnet认为市场低估硬着陆风险，明年民意GDP增长5%-6%、每股收益增长超15%的共识预测偏高，家庭股票财富缩水与AI资本开支降温双引擎减速；他维持反弹延续三条件：10年期美债收益率跌破4.5%、WTI原油跌破70美元、美元在就业和通胀数据转弱后确认见顶；衰退双信号为初请失业金超25万人、投资级债券利差突破100个基点。美投自己的框架：关键变量是美联储利率政策与AI需求变化，利率下降或转向则美元美债问题迎刃而解，AI需求企稳则企业债与市场信心修复。</div>
+        <div class="op-tag"><b>热点：</b>半导体/AI算力、AI云计算（新云）、网络安全、避险资产（美债/美元）、加密货币、贵金属</div>
+        <div class="op-tag"><b>要点：</b>川普突然宣布禁止美企海外建数据中心并拟课重税，博主判断阻力大、税难落地，政策大概率不了了之，但短期加剧AI板块恐慌（[00:01:12]-[00:02:42]）；路透独家：SEC调查英伟达会计处理问题，焦点指向去年按客户总部地址改收入地区口径、新加坡销售额消失一事，及AI循环融资模式下的收入质量疑虑（[00:02:48]-[00:04:26]）；博主观点：若只是披露瑕疵影响有限（2022年英伟达550万美元和解先例），真正风险是若查实遮掩芯片流向、明知转运仍销售则触碰国家安全线（2023年希捷因卖硬盘给华为被商务部罚3亿美元先例），黄仁勋12月1日听证会前鬼故事难驱散，公司价值已大打折扣（[00:04:50]-[00:05:56]）；Hartnet：全球股指超卖比例68%，升到88%触发反向买入信号，未来几天可能触及，感恩节后或有技术性反弹，但现金水位3.6%偏低、上周全球股基仍流入666亿美元（美国成长型基金流入91亿美元为两年最多），卖压未释放完毕，反弹只是死猫跳（[00:06:03]-[00:07:28]）；大空头Burry平调一半NVDA和半导体ETF看跌期权获利了结，但同时把纳指看跌期权仓位翻倍加码押注科技股续跌，并继续质疑NVDA与新云互相依赖的商业模式（[00:09:43]-[00:10:47]）；新云模式风险获博主认同：CoreWeave较10月初高点跌超50%且跌破发行价、Nebius跌超60%，其风险取决于债市与金融条件等外部环境而非经营能力（[00:10:50]-[00:12:02]）；本周个股事件：英伟达周跌22.7%但业绩指引超预期（FY28收入增速指引上调至约75%）、董事会明确不让黄仁勋复职；AMD因做空报告跌20.6%；Anthropic以83美元上市募资超1000亿美元创史上最大IPO、开盘冲至111.5美元后涨幅全部回吐（[00:14:23]-[00:16:54]）；下周前瞻：周三三季度GDP修正值+10月核心PCE、周四感恩节休市、周五提前收盘；财报关注周二戴尔、Best Buy（[00:18:11]-[00:18:32]）</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">The Trading Apologist</span><span class="hd-tk">11/20</span><span class="st down">偏空</span></div>
+        <div class="op-title">标普与纳指破位形态指向 5,700 与 20,000：反弹应该在哪里先被拒绝</div>
+        <div class="op-d">11 月 20 日当周是极其惨烈的一周，周三视频里提示的警讯最终演变成进一步抛售：标普 500 与纳斯达克双双跌破上升楔形，周线 RSI 趋势线支撑同日失守，纳指此前的双重/三重底也被击穿。指数目前处于日线超卖（RSI 与均值回归指标），并正好压在标普的成交量密集区（VRVP 成交控制点，对应 2025 年 11 月前高）与 20 月均线上，因此技术性反弹（反趋势反弹）概率很高；但结构已被破坏，反弹更可能形成更低的高点，并在 200 日均线下方被拒绝。形态测量目标为标普约 5,700、纳指约 20,000（纳指相当于再跌约 20%，自顶部累计约 35%）。当日唯一亮点是尾盘出现一点承接，资金转向医疗（XLV）、消费必需（XLP）与能源（XLE）做防御性轮动，但除 XLP 外板块全线收跌。加密处于临界点：比特币几乎精确回踩 6 月 30 日的前低后小幅反弹，是双底还是破位下探新低将在下周见分晓。</div>
+        <div class="op-tag"><b>宏观：</b>他指出的宏观压力链条是：信用利差走阔，AI 相关的垃圾级信用与优质信用之间的利差在扩大，是本轮下跌最实质的警讯。利率端 10 年、2 年、30 年期当日均大幅回落，但这并非政策干预，而是资金为了获得回报而避险买入债券，从而自然压低收益率，因此出现了收益率与股指同步下跌的“反常”负相关——这类下行不能简单当作股市的顺风。美元当日几乎没动，但已极度拉伸，若回落对风险资产是顺风。波动率 VIX 冲上 35-36 后收在该位置附近，历史上该区域往往快速回落，支持“反弹将至”的判断。催化剂方面，英伟达财报整体偏好、市场还在等 Anthropic 的 IPO，若这些都无法让市场转向，他也不确定还有什么利好能扭转趋势；他提到可能只剩感恩节前后成交量低迷带来的技术性喘息、或者通胀出现实质性缓解以降低再加息概率。此外他提示本轮周期被监管（加密）、供应链瓶颈、信用收紧等因素拉长，节奏上是典型的晚周期特征——涨跌都被加速。</div>
+        <div class="op-tag"><b>热点：</b>消费必需（XLP）：当日唯一收正的板块，防御性资金流入、医疗保健（XLV）：获得小幅防御性轮动，居板块涨幅前列、能源（XLE）：小幅上涨，同样属于防御性轮动受益方、半导体（SMH/SOXX 成分）：自 6 月高点回撤逾 41%，已进入技术性熊市，超卖但下行目标未走完、加密（BTC/SOL/ZEC）：比特币回踩前低，处于双底与破位的临界点、美债：避险买盘推动 10 年/2 年/30 年期收益率大幅回落</div>
+        <div class="op-tag"><b>要点：</b>标普 500 自 2025 年低点起的上升楔形已向下破位，测量目标落在 382 斐波那契位，约 5,700 点；用 COVID 低点测量则落在 236 位，用今年 4 月低点测量落在黄金口袋，多个低点测算均指向同一区域，构成“合流”目标。；周线 RSI 上升趋势线在标普与纳指上同日失守，价格破位得到动能指标确认，这是他转向看空情景的关键证据。；标普目前处于 20 月均线与 VRVP 成交控制点（2025 年 11 月前高区域）之上，日线 RSI 与均值回归指标超卖，历史上这类组合多数会引出反弹；一旦反弹，200 日均线是第一个拒绝区，重演 2022 年“从 200 日均线下方反复被压”的研磨走势是主要风险。；纳指日线此前的双重/三重底今日破位，月线上升通道（2025 年见底以来）被向下测量后指向 20,000，略高于 2025 年低点；反弹阻力先看 26,200（水平线兼通道下沿反抽），且指数已在 20 月均线之下。；纳指若到 20,000，相当于在已跌 20% 的基础上再跌 20%，累计约 35%——正好接近标普历史上多数熊市的平均跌幅，因此这个目标“很合理”。；VIX 冲至 35-36 后收在该位置，历史上该区域往往是快速回落起点；他的经验是 VIX 上到 40 甚至 50 以上，做空波动率几乎是“稳赢”的赌注，这也支持反趋势反弹会出现。；半导体已确认技术性熊市：SMH 自 6 月高点回撤逾 41%；历史统计显示 SMH 在 20% 以上回撤后平均需要 230 天才创出新高，按此推算大约到明年 5 月 20 日，目前只走完一半。；SMH 已跌破 50% 斐波那契并回补日线缺口、日线极度超卖，但收盘在 50% 之下意味着可能还要去黄金口袋才开始转向；反弹到 480 一带会遇到阻力，半导体调整尚未结束。；比特币几乎“分毫不差”回踩 6 月 30 日的前低后反弹，正处在黄金口袋（2022 年熊市低点到历史高点）上；若守住则仍有一次恢复机会，若破位下方直到约 39,000 才有支撑（市场常引用的 37,000/40,000 是密集底部区）。；加密若破位，将意味着四年周期可能失效、比特币进入长时间不趋势、来回震荡的状态；三月线级别上，历次熊市回撤都止步于上一轮牛市峰值区，跌破该区将是史上第一次“无人区”。；他的操作是“清空仓位换清晰头脑”：已按规则砍掉 iBit 的看涨期权（承担了不小的亏损）以及 DRAM 的看涨期权（因为已超跌穿两个顶部形态共同指向的 36 目标），现货冷钱包的比特币与 Solana 未卖；并明确表示即便反弹也不会像往常那样激进追多。；个股层面半导体设备与存储链集体创新低：LRCX、AMAT、KLAC、MRVL、ARM 均破新低，TXN 跌破 55 与 200 日均线，HPE 跌破 200 日均线，只有 ALAB 相对抗跌并在盘后反弹。</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">The Investor Channel</span><span class="hd-tk">11/20</span><span class="st up">偏多</span></div>
+        <div class="op-title">FAANG Stocks CRASH ... Now What?</div>
+        <div class="op-d">美股刚结束一个史诗级的下跌周，几乎全线录得历史级跌幅，没有板块幸免：半导体在英伟达暴跌带动下录得史上最差周之一，连黄金、白银等避险资产也在下跌，属于系统性抛售。META 全周跌超 12% 收于 561 美元，AAPL 跌超 3.5% 收 342，AMZN 跌 5.6% 收 247，GOOGL 跌近 8% 收 264（52 周新低），MSFT 跌超 7% 收 484，TSLA 跌超 11% 收 345，NVDA 自周一起跌 22% 收于 52 周新低 125.84。博主以 25 年投资经验判断：系统性抛售往往创造世代级的买入机会，下周感恩节短交易周若再出现一周大跌就是最后的 flush out（洗盘），随后大概率出现 3%-4% 的技术性反弹；当前市场没有上涨的充分理由，需要等待卖方力量耗尽。</div>
+        <div class="op-tag"><b>宏观：</b>宏观层面出现系统性去杠杆式抛售，股、金、银全线下跌。博主认为 AI 交易已进入新阶段：过去闭眼买任何 AI/半导体相关资产的日子结束了，未来必须更加精细、灵活地择股。算力成本不可持续：英伟达 75%-80% 的毛利率'税'加上美光 80%-90% 的内存毛利，叠加 SpaceX 以 8% 以上收益率发行 320 亿美元 AI 芯片债券，高利率下的算力定价难以延续到明年，这就是近期半导体和内存被洗出的原因。政治面：民主党擅长政治操作，未来 60-90 天会借此对英伟达等发起调查攻势（SEC 会计调查、加州总检察长传票、参议院听证），数据中心的电力、税收、监管诉求最终会得到满足，但过程颠簸。Anthropic IPO（发行价 83 美元、募资超 935 亿美元）被博主视为'向散户倾倒'，代币价格下行+算力供给收紧+内存成本高企三重挤压，未来 60-90 天前景艰难。</div>
+        <div class="op-tag"><b>热点：</b>半导体：本周领跌板块，英伟达单日暴跌带动整个板块录得史上最差周之一；博主认为英伟达 75-80% 毛利'税'不可持续，行业进入精细化定价阶段、AI/算力：AI 交易仍在但需更灵活择股；无 CEO 的英伟达为 AMD、博通、Marvell 等竞争对手打开大门，但不建议追买二、三线替代品、内存/存储：美光 80-90% 毛利率被博主称为'美光税'，与高利率算力定价一样不可持续，近两周已被市场洗出、流媒体/体育直播：Netflix 处于公司历史通道底部，正转型进入直播体育领域，与电视台及 Google、Amazon、Apple 展开烧钱竞争；2030 世界杯版权是潜在催化剂、自动驾驶/出行：亚马逊 Zoox 无人出租车将接入 Uber 应用，Uber 有机会成为自动驾驶聚合平台，但 Tesla、Google 等强品牌无需依赖它，格局或碎片化、云/数据中心电力：微软扩大与英特尔代工的 Azure 合作是重要信号；德州数据中心与电厂许可恢复存在反复，民主党将在电力、税收、监管上要价</div>
+        <div class="op-tag"><b>要点：</b>系统性抛售=世代级机会：博主强调 25 年经验中，全市场抛售（2008-09、疫情、关税）都是改变人生级别的买入窗口，本周正是'该上班干活'的时刻；SPY 技术面：约 99% 的时间运行在 200 日均线上方，本次偏离即赚钱时刻；退休人士应等待收盘站回；短期约 7-8% 的反弹后可能再度起航，横盘整理反而利于逢低累积；QQQ 周线：十年以上的上升通道已守住 3 年多，目前处于通道底部（历史上仅测试过 3 次左右）；感恩节短周若再大跌即是等待中的 flush out，否则预期 3-4% 反弹；英伟达'祸不单行'：SEC 会计调查、加州总检察长就中国问题传票、Muddy Waters 新增做空、Jensen 慈善向 CoreWeave 承诺 3.5 亿美元的循环融资质疑、参议院听证——尽管业绩 beat and raise（明年指引从 70% 上调至 75% 增长），股价纹丝不动；无 Jensen 的英伟达=竞争者之窗：Jensen Wong 对行业的'钳制'将大幅松动，AMD、博通甚至英特尔、Marvell 受益，但博主不建议立刻追买二三线标的；Anthropic 上市即巅峰：IPO 价 83 美元、首日冲上 115 美元上方被定性为'向散户倾倒'；募资超 935 亿美元但未来 12-24 个月现金将大量流出、利润率承压，分析师预期上市后 60-90 天颠簸，等待洗盘后再看机会；算力定价不可持续：SpaceX 以 8%+ 收益率发 320 亿美元 AI 芯片债，高利率+英伟达/美光高毛利叠加，Anthropic 式客户无向上定价权，利润率压缩是明年主线；Netflix 历史通道底部：月线级别通道（2012 年 10 月、2022 年 7 月两次触及底部），当前约 60 美元构成'低风险高回报'配置：下行风险 5-15%，上行空间约 100%；但务必设止损，勿让其变成 Nike 式破位；微软-英特尔代工深化：Azure 扩大使用英特尔代工（含专利工艺技术），若微软全力推进，Google、Amazon 可能跟进，对英特尔代工业务是重大利好信号；周末作业：制定明确策略——立即定投抄底、等待基本面事件（利率/立法）、还是等待技术面转强，任何策略都行，唯独'心存侥幸'不行</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">XTrader猫姐美股</span><span class="hd-tk">11/20</span><span class="st down">偏空</span></div>
+        <div class="op-title">11/26/22 US Stock Market Recap: Continued Crash Next Week? SOXL Reversal Imminent? ANT Epic IPO L...</div>
+        <div class="op-d">猫姐判断本周为「情绪主导+程序性卖盘叠加主动抛售」的非常规市场：SPY 跌破 748/750 关键线后引发程序性卖盘，733.98 一线周中失守；QQQ 跌破中线定海神针 706.58 后按其 9 月预告奔向 605 一带。本周两大新特征是「空头回补失效」和「主动性卖盘增加」，她认为这意味着市场尚未真正见底（底部概率约七八成但还差最后一口气的恐慌释放），程序性低点触发后反弹无力、多方缺钱、流动性糟糕。她保持空头对冲仓位纪律操作（周三周四做空获利、周四周五因市场失灵几乎原价/更贵拿回），强调止损毫不犹豫、不裸空、只做符合其体系原则的波段。中期格局上她认为现在才跌回 26 年 4 月份水平，2027 年尤其下半年到 2028 年初值得期待。</div>
+        <div class="op-tag"><b>宏观：</b>流动性是当前核心矛盾：利率高、国债收益率高、美元强势叠加地缘政治扰动，多头捉襟见肘；美股由情绪与量化程序交易主导，常规技术指标与系统指标短期全部失灵（其空头对冲仓位周四周五无法按惯例在日内低点/下午盘低溢价拿回，为多年罕见）。判断底部需盯四件事：1) 空头回补是否恢复威力（90% 的历史底部都伴随尾盘空头回补引发的暴力反弹）；2) 散户指标（三倍半导体 SOXL）是否完成最后投降——韩国散户杠杆处历史高位且仍在抄底，情绪未到极端；3) SPY 733.98、QQQ 605/603.45、SOXL 30、BTC 58000 等程序性/牛熊关键位的得失；4) 缠动买卖点是否出现连续确认买点。若 QQQ 跌破 603.45 或 BTC 跌破 58000，则开启中期熊市级别调整，需全面下调目标价与周期。</div>
+        <div class="op-tag"><b>热点：</b>半导体（当前最弱板块，大盘第一指标，9 月起反复提示壁垒要小心）、存储芯片（比半导体整体走得要好，出现左侧机会窗口）、防御性板块（XLP/XLV 创新高、麦当劳/好市多等老钱股走强）、加密货币（流动性枯竭导致杀杠杆，64K 重心失守）、AI/IPO（Anthropic 1.5 万亿估值 IPO 抽血，机构卖 AI/半导体个股主动承接）</div>
+        <div class="op-tag"><b>要点：</b>SPY：11/15 期预警的 748/750 线本周跌破并触发程序性卖盘，733.98 为本周关键线，周三失守后下方空间打开；QQQ：706.58 中线定海神针有效跌破（9/20 期原话预告 Q3/Q4 起定海作用），触发中线资金离场；下周看 605 能否收复，603.45 为底线，跌破即开启中期熊市，但要提防该位置的假突破骗线；本周新特征：空头回补失效+主动性卖盘增加，双重叠加下常规指标全部失灵，说明市场还没到底；其系统程序性低点指标本周触发一次，历史成功率 80%-90%，但本次反弹幅度极小、次日继续下跌，为多年罕见信号；SOXL（三倍半导体）：52.25 牛熊分界线已破，历史最佳介入区 20 以下，下周看 30 整数关口能否企稳，30 跌破则去 20 分分钟；等连续第三个确认买点（B3）再考虑进场；WDC（存储代表）：缠动指标处日线下降通道末端，202-204 区间寻找左侧机会，205 不破亦符合左侧标准，关注 B2 二次确认买点；比特币：64K 重心失守、61000 点位告破，周五当天直奔 58000 重测；58000 前低不破则维持冲破 80000 的目标价（时间拖到明年中旬），跌破则周线趋势推倒重算；NVDA：三条线全破，上周 148.84 警戒线失守后下周看 128.48，拉不回来就不用看了，并将拖累整个半导体板块与 SOXL；ANT（Anthropic）：1.5 万亿美元估值 IPO，首日一度突破 100 多块；green shoe 已被承销商行使，83 发行价失去自动保护，跌破发行价是重要转弱信号；守住 83 则中期前景不错，寻找中期介入机会，IPO 首日不交易；交易纪律：Coinbase 137 止损毫不犹豫执行（含底仓）；比特币相关个股不左侧抄底、不报复性交易；只做符合导手原则的波段、不裸空</div>
+      </div><div class="hd">
+        <div class="hd-h"><span class="hd-name">XTrader猫姐美股<span class="src-x">X</span></span><span class="hd-tk">11/20</span><span class="st down">偏空</span></div>
+        <div class="op-title">BTC 在 8 万附近连续触发三个确认卖点，接下来关注 5.8 万支撑</div>
+        <div class="op-d">猫姐复盘自己 club 的禅动买卖点指标，发现 10 月底 11 月初比特币还在 8 万附近时，指标已连续触发三个确认卖点。她强调自己的方法论：确认买点后面通常跟卖点，卖点也一样；若连续出现同方向的买点或卖点，就是强确认信号。接下来要特别关注 5.8 万是否跌破，这关系到周线目标价。</div>
+        <div class="op-tag"><b>宏观：</b>以指标信号回看 BTC 顶部形态：8 万附近的连续三卖是强确认的顶部信号，当时只做定投买入没有及时注意到；后市关键在 5.8 万支撑的得失。</div>
+        <div class="op-tag"><b>热点：</b>加密货币</div>
+        <div class="op-tag"><b>要点：</b>禅动买卖点指标在 10 月底 11 月初 BTC 还在 8 万附近时连续触发三个确认卖点；连续出现同方向的买点或卖点 = 强确认信号；接下来特别关注 5.8 万是否跌破，这关系到周线目标价</div>
+      </div>
+</div>
+
+<div class="sec" id="s5"><div class="sec-h">🎯 五、关键价位一览</div><div class="tbl-wrap"><table class="lv-tbl">
+      <colgroup><col style="width:20%"><col style="width:16.5%"><col style="width:50.5%"><col style="width:13%"></colgroup>
+      <tr><th>标的</th><th>博主</th><th>价位</th><th>时间</th></tr>
+      <tr><td><b>标普500ETF</b>⭐ <span class="tk">SPY</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>支撑 <b class="num">733.98</b>（本周关键线/多方最后防线，周三已失守）<br>阻力 <b class="num">748-750</b>（<b class="num">11</b>/<b class="num">15</b> 期预警的牛熊程序线，已跌破转为压力）<br>触发 程序性触发线：<b class="num">733.98</b> 失守即确认程序性卖盘延续，反弹视为弱势反抽不参与；重新站回并守住 <b class="num">733.98</b> 之前保持回避/空头对冲思路</td>
+          <td><a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=81s" class="tslink">1:21</a></td></tr><tr><td><b>纳指100ETF</b>⭐ <span class="tk">QQQ</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>支撑 <b class="num">603.45</b>（底线/中期牛熊分界线），<b class="num">605</b>（下周必须收复的程序性反弹确认线）<br>阻力 <b class="num">605</b>（收复线），<b class="num">706.58</b>（已跌破的中线定海神针，上方强压）<br>触发 程序性触发线：<b class="num">605</b> 收复前不做多；<b class="num">603.45</b> 有效跌破则中期熊市开启全面防守；若先假跌破 <b class="num">603.45</b> 后快速收回并出确认买点，才可考虑左侧试探</td>
+          <td><a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=268s" class="tslink">4:28</a></td></tr><tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>支撑 <b class="num">128.48</b>（下周生死线）<br>阻力 <b class="num">148.84-150</b>（上周警戒线，已跌破转为压力）<br>触发 止损/观察线：<b class="num">128.48</b> 若不能快速拉回，直接放弃观察不再参与；拉回站稳 <b class="num">128.48</b> 之上才重新纳入观察名单<br>触发 …上周提示的 <b class="num">150</b> 界限/<b class="num">148.84</b> 警…<br>买点 …者推荐买入、<b class="num">120</b> 出掉后一路错过），但认…</td>
+          <td><a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1120s" class="tslink">18:40</a></td></tr><tr><td><b>三倍做多半导体</b> <span class="tk">SOXL</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>支撑 <b class="num">30</b>（整数关口/短线企稳与止损参考线），<b class="num">20</b>（历史最佳安全介入区）<br>阻力 <b class="num">52.25</b>（牛熊分界线，已跌破转为强压），<b class="num">100</b>（前期韩国散户大举介入被套区，原文提及）<br>买点 左侧：<b class="num">30</b> 企稳可小仓试探；理想介入区 <b class="num">20</b> 以下；或等缠动 B<b class="num">1</b>/B<b class="num">2</b>/B<b class="num">3</b> 连续买点中第三个买点出现再进场<br>触发 进场触发：<b class="num">30</b> 整数区间企稳（可设持仓止盈/止损参考点在此）或第三个确认买点出现→考虑进场；止损线：<b class="num">30</b> 有效跌破立即离场，勿接飞刀</td>
+          <td><a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=596s" class="tslink">9:56</a></td></tr><tr><td><b>西部数据 Western…</b> <span class="tk">WDC</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>支撑 <b class="num">200-204</b>（左侧机会区间，核心 <b class="num">202-204</b>），<b class="num">205</b>（短线标志线）<br>阻力 <b class="num">205</b>（短线标志线，站稳其上为左侧标准成立）<br>买点 <b class="num">202-204</b> 区间分批左侧建仓；备选：<b class="num">205</b> 之上不跌破亦可按左侧标准介入<br>触发 进场触发：出现 B<b class="num">2</b> 第二次确认买点或价格进入 <b class="num">202-204</b> 区间→左侧分批买入；纪律：<b class="num">205</b> 跌破或再次出现确认卖点则离场</td>
+          <td><a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=435s" class="tslink">7:15</a></td></tr><tr><td><b>比特币</b> <span class="tk">BTC</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>支撑 <b class="num">5</b>万<b class="num">8</b>（前低/生死线，周五跌破<b class="num">6</b>万<b class="num">1</b>后当天重测）<br>阻力 <b class="num">64</b>K（重要重心点位，已跌破）；<b class="num">6</b>万<b class="num">1</b>（失守位转压力）<br>触发 程序性触发线：<b class="num">5</b>万<b class="num">8</b> 前低为多空总开关——不破则维持看多目标框架、等待底部数据出来后再核算介入；有效跌破则全面回避、目标价与周期重算<br>目标 <b class="num">80000</b>（前提：<b class="num">58000</b> 守住；达成时间预计拖到明年中旬之后）</td>
+          <td><a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=868s" class="tslink">14:28</a></td></tr><tr><td><b>Coinbase</b> <span class="tk">COIN</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>阻力 <b class="num">137</b>（她的止损离场价，上方套牢区）<br>触发 纪律性触发：比特币+美股双双企稳之前，任何反弹都不左侧介入、不报复性交易</td>
+          <td><a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1081s" class="tslink">18:01</a></td></tr><tr><td><b>Anthropic</b> <span class="tk">ANT</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>支撑 <b class="num">83</b>（发行价/生死线，green shoe 失效后仅靠市场承接）<br>阻力 <b class="num">100</b>（首日冲高区，原文「一度突破了<b class="num">100</b>多块钱」）<br>买点 <b class="num">83</b> 发行价附近企稳后寻找中期介入机会；跌破 <b class="num">83</b> 则放弃，等供求关系重新确认<br>触发 观察触发：IPO 首日不交易；<b class="num">83</b> 守住→列入中期关注并择机介入；<b class="num">83</b> 有效跌破→IPO 转弱信号，转回避（参照 Coinbase <b class="num">2021</b> 教训）</td>
+          <td><a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1273s" class="tslink">21:13</a></td></tr><tr><td><b>SPDR 必需消费精选板…</b> <span class="tk">XLP</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>触发 纪律触发：创新高后部分止盈、保留底仓；若大盘企稳转多则评估防御仓位向成长切换</td>
+          <td><a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=666s" class="tslink">11:06</a></td></tr><tr><td><b>标普500ETF</b>⭐ <span class="tk">SPY</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">20</b> 月均线（当前所在）/ VRVP 成交控制点即 <b class="num">2025</b> 年 <b class="num">11</b> 月前高区域 / 日线超卖区（RSI 与均值回归）<br>阻力 <b class="num">200</b> 日均线（反弹首个拒绝区，现为价格上方压力）/ 周线 RSI 下降趋势线被跌破后的反抽位（前支撑转阻力）<br>买点 不追反弹；等待反弹至 <b class="num">200</b> 日均线附近的失败信号<br>触发 反弹触及 <b class="num">200</b> 日均线下方即转弱、形成更低的高点后再度下破 → 确认下行延续，目标指向 <b class="num">5</b>,<b class="num">700</b><br>目标 <b class="num">5</b>,<b class="num">700</b>（上升楔形量出目标，对应 <b class="num">2025</b> 年低点的 <b class="num">382</b> 斐波那契位）/ <b class="num">236</b> 位（以 COVID 低点为基准的更深目标）/ 黄金口袋（以今年 <b class="num">4</b> 月低点为基准）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=420s" class="tslink">7:00</a></td></tr><tr><td><b>纳指100ETF</b>⭐ <span class="tk">QQQ</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 日线 VRVP 成交密集区 / 周线 RSI 趋势线三次反弹位（已失守，转为参考）/ <b class="num">2025</b> 年前高被跌破处<br>阻力 <b class="num">26</b>,<b class="num">200</b>（水平阻力兼通道下沿反抽）/ <b class="num">20</b> 月均线（当前价格上方）<br>买点 不追空；等待反弹至 <b class="num">26</b>,<b class="num">200</b> 或 <b class="num">20</b> 月均线附近的拒绝<br>触发 反弹在 <b class="num">26</b>,<b class="num">200</b> 一线受阻并形成更低的高点 → 确认向 <b class="num">20</b>,<b class="num">000</b> 的通道目标推进<br>支撑 <b class="num">20</b>,<b class="num">000</b>（上升通道下破测量目标，略高于 <b class="num">2025</b> 年低点；相当于再跌约 <b class="num">20</b>%、自顶部累计约 <b class="num">35</b>%）/ <b class="num">786</b> 位与 <b class="num">50</b>% 位（以 <b class="num">2022</b> 年熊市底部、<b class="num">2025</b> 年 <b class="num">4</b> 月低点、COVID 低点分别测量，落在 <b class="num">50</b>% 上下的小区间）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=616s" class="tslink">10:16</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SMH</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">50</b>% 斐波那契位（已收盘跌破）/ 黄金口袋 / 日线 VRVP 密集区<br>阻力 <b class="num">480</b> 一带（反弹阻力）/ 缺口回补处<br>触发 反弹至 <b class="num">480</b> 附近受阻转跌 → 确认还有一段下行；反之若放量收复 <b class="num">480</b> 并站上 <b class="num">50</b>% 位，看空逻辑需重估；等待黄金口袋附近出现止跌信号再考虑，不在超卖中追空<br>支撑 <b class="num">50</b>% 斐波那契下方目标（已达成）/ 黄金口袋（下一档下探目标）/ 反弹阻力 <b class="num">480</b> 一带</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=866s" class="tslink">14:26</a></td></tr><tr><td><b>VIX恐慌指数</b> <span class="tk">^VIX</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">35</b> 一线（历史上多次从此回落）<br>阻力 <b class="num">40</b> / <b class="num">50</b>（极端恐慌区，做空性价比最高）<br>买点 VIX 上冲 <b class="num">40</b> 以上分批做空波动率<br>触发 VIX 冲上 <b class="num">40-50</b> 后出现回落的第一根反转 K 线 → 建立空波动率头寸<br>目标 <b class="num">35</b>（历史回落起点，当前所在）/ <b class="num">40-50</b> 以上（做空波动率的更优区间）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=758s" class="tslink">12:38</a></td></tr><tr><td><b>比特币</b> <span class="tk">BTC</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">6</b> 月 <b class="num">30</b> 日前低（今日精确回踩）/ 黄金口袋（<b class="num">2022</b> 年低点至历史高点）/ 约 <b class="num">52</b>,<b class="num">000</b>（周线枢轴位）/ 约 <b class="num">39</b>,<b class="num">000</b>（下一档实质支撑）<br>阻力 <b class="num">63</b>,<b class="num">000-64</b>,<b class="num">000</b>（周线趋势线反抽）/ <b class="num">42-43</b> 的周线 RSI 水平对应价格区 / <b class="num">70</b>,<b class="num">000-71</b>,<b class="num">000</b>（多时间框架大阻力）<br>触发 日线反弹后回踩不破 <b class="num">6</b> 月 <b class="num">30</b> 日前低 → 双底成立可做多；若收盘跌破前低 → 转为看空，目标 <b class="num">52</b>,<b class="num">000</b> 以下的 <b class="num">39</b>,<b class="num">000</b>；不在此处加仓；等双底确认（回踩不破前低并收回趋势线）<br>支撑 反弹目标 <b class="num">63</b>,<b class="num">000-64</b>,<b class="num">000</b>（收复周线 RSI 趋势线处）/ 破位下方支撑 <b class="num">52</b>,<b class="num">000</b> → <b class="num">39</b>,<b class="num">000</b>（<b class="num">786</b> 位）/ 市场常引用的底部区 <b class="num">37</b>,<b class="num">000-40</b>,<b class="num">000</b><br>支撑 …I 已跌破 <b class="num">43</b> 这一带、并且跌破了周线…</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1174s" class="tslink">19:34</a></td></tr><tr><td><b>Solana</b> <span class="tk">SOL</span></td>
+          <td>The Trading Apologist</td>
+          <td>触发 周线支撑若被收盘跌破 → 跟随比特币转空；若周线守住并出现放量阳线 → 可视为相对强势；无明确量出目标（等待周线支撑有效性确认）；周线支撑（当前仍在之上）/ 日线新低处；前一波反弹高点（未给出具体数值）；持有现货，不新增方向性仓位</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1572s" class="tslink">26:12</a></td></tr><tr><td><b>Zcash</b> <span class="tk">ZEC</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">630-650</b>（此前密集成交区，回踩目标）<br>阻力 被跌破的上升趋势线与 <b class="num">200</b> 日线（前支撑转阻力）<br>买点 不参与；等回踩 <b class="num">630-650</b> 是否止跌<br>触发 反抽至 <b class="num">200</b> 日线未能收复并再度转跌 → 确认破位有效<br>支撑 <b class="num">630-650</b>（回抽目标兼前高支撑区）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1600s" class="tslink">26:40</a></td></tr><tr><td><b>比特币ETF</b> <span class="tk">IBIT</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 对应比特币 <b class="num">6</b> 月 <b class="num">30</b> 日前低与黄金口袋<br>阻力 对应比特币 <b class="num">70</b>,<b class="num">000-71</b>,<b class="num">000</b> 的多时间框架大阻力<br>触发 比特币双底确认（不破前低并收回周线趋势线）→ 可重新考虑建立看涨期权；等尘埃落定、结构重新确认后再重建仓位<br>支撑 对应比特币 <b class="num">63</b>,<b class="num">000-64</b>,<b class="num">000</b> 的反弹目标；下方看 <b class="num">52</b>,<b class="num">000</b> 与 <b class="num">39</b>,<b class="num">000</b></td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1546s" class="tslink">25:46</a></td></tr><tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 未给出具体点位（参考 SMH 的 <b class="num">50</b>% 位与黄金口袋）<br>阻力 未给出具体点位（参考 SMH 反弹阻力 <b class="num">480</b> 一带）<br>触发 板块（SMH）在 <b class="num">480</b> 附近受阻转跌 → 龙头同样承压；若 SMH 放量收复 <b class="num">50</b>% 位，则重新评估；未给出具体目标价（以指数与板块目标为准）；不新建仓位，等价格行为给出方向</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1103s" class="tslink">18:23</a></td></tr><tr><td><b>美光</b> <span class="tk">MU</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">520</b>（黄金口袋）<br>买点 等 <b class="num">520</b> 附近出现止跌信号<br>触发 触及 <b class="num">520</b> 并出现反转 K 线 → 可考虑短线做多；若 <b class="num">520</b> 直接失守，则下行延续；未给出具体数值（以前高与被跌破的支撑为参考）<br>目标 <b class="num">520</b>（黄金口袋下行目标）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1665s" class="tslink">27:45</a></td></tr><tr><td><b>闪迪</b> <span class="tk">SNDK</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 VRVP 成交密集区（当前所在）/ <b class="num">65</b>（区间底部）<br>买点 等 <b class="num">65</b> 或 VRVP 区出现明确止跌<br>触发 <b class="num">65</b> 收盘失守 → 打开向 <b class="num">26</b> 的空间；VRVP 区放量长下影 → 短线反弹机会；被跌破的下行目标位（转为阻力）<br>支撑 <b class="num">65</b>（区间底部）/ <b class="num">26</b>（更深的下一档目标）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1669s" class="tslink">27:49</a></td></tr><tr><td><b>AppLovin</b> <span class="tk">APP</span></td>
+          <td>The Trading Apologist</td>
+          <td>触发 出现放量止跌并收复前一日高点 → 才考虑短线参与；未给出新目标（已越过原下行目标）；未给出具体点位（VRVP 与前低为参考）；不参与，等结构重建</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1733s" class="tslink">28:53</a></td></tr><tr><td><b>Sivers Semic…</b> <span class="tk">SIVE</span></td>
+          <td>The Trading Apologist</td>
+          <td>触发 无（不参与）；未给出目标（已远超下行目标）；未给出具体点位；回避<br>目标 …标：曾到过 <b class="num">109</b>，现在只剩 <b class="num">11</b> 左右，…</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1738s" class="tslink">28:58</a></td></tr><tr><td><b>阿斯麦</b> <span class="tk">ASML</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">50</b>% 斐波那契位（已跌破）/ <b class="num">1</b>,<b class="num">100</b> 黄金口袋<br>阻力 被跌破的收敛区间下沿与 <b class="num">50</b>% 位<br>买点 等 <b class="num">1</b>,<b class="num">100</b> 附近<br>触发 跌至 <b class="num">1</b>,<b class="num">100</b> 出现止跌反转 → 短线机会；反抽 <b class="num">50</b>% 位失败 → 继续下探<br>目标 <b class="num">1</b>,<b class="num">100</b>（黄金口袋下探目标）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1760s" class="tslink">29:20</a></td></tr><tr><td><b>泛林集团</b> <span class="tk">LRCX</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">144</b><br>买点 等 <b class="num">144</b> 附近<br>触发 <b class="num">144</b> 附近放量止跌 → 短线；跌破 <b class="num">144</b> → 下行延续；今日跌破的前低（转为阻力）<br>支撑 <b class="num">144</b>（下一档支撑兼目标）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1792s" class="tslink">29:52</a></td></tr><tr><td><b>应用材料</b> <span class="tk">AMAT</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">250</b> 附近<br>买点 等 <b class="num">250</b> 附近观察<br>触发 <b class="num">250</b> 附近止跌并收回 → 短线；跌破则继续下行；今日跌破的前低<br>支撑 <b class="num">250</b>（下一档支撑参考）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1796s" class="tslink">29:56</a></td></tr><tr><td><b>科磊</b> <span class="tk">KLAC</span></td>
+          <td>The Trading Apologist</td>
+          <td>触发 反抽趋势线失败 → 确认头肩顶破位有效；头肩顶量出目标（视频未给出具体数值，建议以对数坐标自行测量）；未给出具体点位（前低为参考）；被跌破的长期趋势线（前支撑转阻力）；不新建仓位</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1812s" class="tslink">30:12</a></td></tr><tr><td><b>Nebius</b> <span class="tk">NBIS</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">75</b>（<b class="num">786</b> 位与区间下沿）/ <b class="num">50</b>（<b class="num">2025</b> 年 <b class="num">2</b> 月前高与盘整区）<br>阻力 被跌破的 VRVP 成交控制点（他删掉的那条黄色线）/ <b class="num">786</b> 位上沿<br>买点 等 <b class="num">75</b> 附近是否止跌<br>触发 <b class="num">75</b> 收盘失守 → 打开至 <b class="num">50</b> 的空间；<b class="num">75</b> 放量反包 → 短线反弹<br>支撑 <b class="num">50</b>（次一档区间下沿，较 <b class="num">75</b> 再跌约 <b class="num">30</b>%）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1838s" class="tslink">30:38</a></td></tr><tr><td><b>德州仪器</b> <span class="tk">TXN</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">230</b>（缺口回补位）<br>阻力 <b class="num">55</b>（今日跌破的支撑，转为阻力）/ <b class="num">200</b> 日均线（已收盘跌破）<br>买点 等 <b class="num">230</b> 附近<br>触发 跌破 <b class="num">55</b> 后反抽 <b class="num">55</b> 失败 → 确认向 <b class="num">230</b> 推进<br>目标 <b class="num">230</b>（缺口回补目标，自 <b class="num">330</b> 的高点约 <b class="num">30</b>% 回撤）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1882s" class="tslink">31:22</a></td></tr><tr><td><b>惠普企业</b> <span class="tk">HPE</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">50</b>% 斐波那契位（已跌破，转为参考）<br>阻力 <b class="num">200</b> 日均线（已跌破）/ <b class="num">50</b>% 位<br>触发 反抽 <b class="num">200</b> 日均线失败 → 确认弱势；站回 <b class="num">50</b>% 位 → 结构改善；未给出具体目标；不参与，等待结构明朗</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1920s" class="tslink">32:00</a></td></tr><tr><td><b>迈威尔</b> <span class="tk">MRVL</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">100</b>（整数心理关口）/ <b class="num">97</b>（预警位）/ <b class="num">95</b>（VRVP 密集区起点）<br>阻力 被跌破的多年支撑区（<b class="num">2025</b> 年前高，转为阻力）<br>买点 等 <b class="num">97-100</b> 区间是否承接<br>触发 <b class="num">95</b> 失守 → 确认破位下行；<b class="num">97-100</b> 区间放量止跌 → 短线反弹<br>目标 <b class="num">95</b>（VRVP 密集区起点，跌破后的下一目标区）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1934s" class="tslink">32:14</a></td></tr><tr><td><b>Astera Labs</b> <span class="tk">ALAB</span></td>
+          <td>The Trading Apologist</td>
+          <td>触发 若能在板块继续下跌时守住前低 → 相对强势，可列入观察名单；未给出具体目标；未给出具体点位；观察，不追</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1969s" class="tslink">32:49</a></td></tr><tr><td><b>Arm</b> <span class="tk">ARM</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">140</b>（下一档观察）/ <b class="num">134</b>（目标）<br>阻力 <b class="num">179</b>（原突破区，已失守，转为阻力）<br>买点 等 <b class="num">140-134</b> 区间<br>触发 跌破 <b class="num">140</b> → 直奔 <b class="num">134</b>；<b class="num">134</b> 附近止跌 → 短线反弹<br>目标 <b class="num">134</b>（量出下行目标）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=1986s" class="tslink">33:06</a></td></tr><tr><td><b>AMD</b> <span class="tk">AMD</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">786</b> 斐波那契位（当前附近）/ <b class="num">300</b>（极端情形目标）<br>阻力 <b class="num">200</b> 日均线（已收盘跌破）/ 收敛区间下沿（反抽阻力）<br>触发 反抽 <b class="num">200</b> 日均线失败 → 确认弱势；若放量收复 <b class="num">200</b> 日均线，破位逻辑失效；不新建仓位<br>目标 <b class="num">300</b>（上升三角形失败量出的极端目标）/ <b class="num">786</b> 斐波那契位（近期参考）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=2001s" class="tslink">33:21</a></td></tr><tr><td><b>台积电</b>⭐ <span class="tk">TSM</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">290-300</b>（<b class="num">50</b>% 位与此前高点共振区）<br>买点 等 <b class="num">290-300</b> 区间是否出现承接<br>触发 在 <b class="num">290-300</b> 放量止跌并收回 <b class="num">50</b>% 位 → 可视为板块见底信号；直接失守 → 下行延续；双顶颈线（已跌破，转为阻力）<br>目标 <b class="num">290-300</b>（<b class="num">50</b>% 斐波那契位兼双顶量出目标）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=2051s" class="tslink">34:11</a></td></tr><tr><td><b>博通</b> <span class="tk">AVGO</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">290</b>（历史低点密集区）<br>阻力 <b class="num">200</b> 日均线（反抽被拒绝处）<br>买点 等 <b class="num">290</b> 附近<br>触发 <b class="num">290</b> 失守 → 下行延续；<b class="num">290</b> 放量反包 → 短线反弹<br>支撑 <b class="num">290</b>（左侧低点密集区支撑）/ <b class="num">4</b> 小时双顶量出目标（回到双顶前的低点）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=2075s" class="tslink">34:35</a></td></tr><tr><td><b>Tempus AI</b> <span class="tk">TEM</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">30</b> 出头至 <b class="num">30</b> 多中段（突破区回踩）/ <b class="num">53-61</b>（历史密集支撑，若当前区失败）<br>买点 <b class="num">30</b> 出头至中段分批观察止跌<br>触发 在该区间形成更高的低点并放量收回 → 视为回踩成功；若收盘跌破 <b class="num">30</b> 出头，则结构失败；未给出上行目标（以突破区回踩为交易结构）；此前高点（完整回吐的起点）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=2137s" class="tslink">35:37</a></td></tr><tr><td><b>高盛</b> <span class="tk">GS</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">24</b> 附近（此前高点）/ <b class="num">26</b>（当前价）<br>阻力 <b class="num">114</b> 至 <b class="num">26</b> 之间的下跌趋势线（未量化）<br>买点 等 <b class="num">24</b> 附近<br>触发 <b class="num">24</b> 附近放量止跌 → 短线；跌破 <b class="num">24</b> → 继续下探<br>支撑 <b class="num">24</b>（前高支撑区）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=2174s" class="tslink">36:14</a></td></tr><tr><td><b>DRAM 存储 ETF</b> <span class="tk">DRAM</span></td>
+          <td>The Trading Apologist</td>
+          <td>支撑 <b class="num">36</b>（形态目标，现为参考）<br>触发 若重新站回 <b class="num">36</b> 上方并确认，可重新评估；否则保持离场；顶部形态颈线（已跌破，转为阻力）；已清仓，等待新结构<br>阻力 <b class="num">36</b>（两个顶部形态共同指向的目标，已跌破/已达）</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=2235s" class="tslink">37:15</a></td></tr><tr><td><b>消费必需板块 ETF</b> <span class="tk">XLP</span></td>
+          <td>The Trading Apologist</td>
+          <td>触发 若指数继续下跌而 XLP 持续跑赢 → 确认防御轮动，可作为对冲；未给出具体目标；未给出具体点位；作为防御配置可小幅参与，非主攻方向</td>
+          <td><a href="https://www.youtube.com/watch?v=aR_YNlJHqZk&amp;t=64s" class="tslink">1:04</a></td></tr><tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
+          <td>美投侃新闻</td>
+          <td>触发 <b class="num">12</b>月<b class="num">1</b>日黄仁勋听证会结果；SEC调查定性（仅披露问题 vs 财务造假/国家安全问题）</td>
+          <td><a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=168s" class="tslink">2:48</a></td></tr><tr><td><b>标普500指数</b>⭐ <span class="tk">^GSPC</span></td>
+          <td>美投侃新闻</td>
+          <td>触发 超卖比例触及<b class="num">88</b>%触发反向买入信号；观察初请失业金是否超<b class="num">25</b>万、投资级利差是否破<b class="num">100</b>个基点、<b class="num">10</b>年期美债收益率是否跌破<b class="num">4.5</b>%</td>
+          <td><a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=363s" class="tslink">6:03</a></td></tr><tr><td><b>纳斯达克综合指数</b>⭐ <span class="tk">^IXIC</span></td>
+          <td>美投侃新闻</td>
+          <td>触发 感恩节后技术性反弹作为减仓窗口；若下轮利空出现且机构现金水位仍低于<b class="num">5</b>%，卖压或再度释放</td>
+          <td><a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=613s" class="tslink">10:13</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SMH</span></td>
+          <td>美投侃新闻</td>
+          <td>触发 <b class="num">12</b>月<b class="num">1</b>日黄仁勋听证会与SEC调查进展明朗前回避；对华新规及后续出口限制执行细节落地情况</td>
+          <td><a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=10s" class="tslink">0:10</a></td></tr><tr><td><b>CoreWeave</b> <span class="tk">CRWV</span></td>
+          <td>美投侃新闻</td>
+          <td>支撑 跌破发行价（原文：CoreWave今天甚至跌破了发行价）<br>触发 观察债市与金融条件变化；若AI资本开支预期进一步降温或企业债利差突破<b class="num">100</b>个基点，风险继续放大</td>
+          <td><a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=656s" class="tslink">10:56</a></td></tr><tr><td><b>Nebius</b> <span class="tk">NBIS</span></td>
+          <td>美投侃新闻</td>
+          <td>触发 观察债市与金融条件及AI资本开支预期变化；英伟达对小云客户支持策略的后续表态</td>
+          <td><a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=656s" class="tslink">10:56</a></td></tr><tr><td><b>比特币</b> <span class="tk">BTC</span></td>
+          <td>美投侃新闻</td>
+          <td>支撑 <b class="num">6</b>万美元关口（原文：跌破<b class="num">6</b>万美元，创下<b class="num">7</b>月以来的新低）<br>触发 美元指数确认见顶（就业与通胀数据转弱后）作为比特币触底的前置信号</td>
+          <td><a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=49s" class="tslink">0:49</a></td></tr><tr><td><b>美元指数</b> <span class="tk">DXY</span></td>
+          <td>美投侃新闻</td>
+          <td>触发 就业和通胀数据转弱后确认见顶（Hartnet反弹三条件之三）</td>
+          <td><a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=834s" class="tslink">13:54</a></td></tr><tr><td><b>10年期美债收益率</b> <span class="tk">^TNX</span></td>
+          <td>美投侃新闻</td>
+          <td>阻力 <b class="num">4.5</b>%（Hartnet条件：跌破此位减轻估值压力）<br>触发 <b class="num">10</b>年期美债收益率跌破<b class="num">4.5</b>%（Hartnet反弹三条件之首）；下周三核心PCE数据<br>阻力 …提醒若初请超<b class="num">25</b>万、投资级利差破<b class="num">100</b>个…</td>
+          <td><a href="https://www.youtube.com/watch?v=e0RH1kblZ9k&amp;t=453s" class="tslink">7:33</a></td></tr><tr><td><b>标普500指数</b>⭐ <span class="tk">^GSPC</span></td>
+          <td>NaNa说美股</td>
+          <td>支撑 <b class="num">6900</b>（今日低点，若能完成探底确认则下周易走出缩量反弹修复）<br>阻力 <b class="num">7250</b>（<b class="num">50</b>周均线与上升趋势线，反抽验证阻力）<br>触发 若<b class="num">6900</b>附近完成探底确认，下周感恩节当周易有反弹窗口；反弹站不上<b class="num">5</b>周均线则一切反弹都只是死猫跳<br>目标 <b class="num">6550</b>（<b class="num">120</b>周均线，反弹失败后的下探目标）</td>
+          <td><a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=134s" class="tslink">2:14</a></td></tr><tr><td><b>纳斯达克综合指数</b>⭐ <span class="tk">^IXIC</span></td>
+          <td>NaNa说美股</td>
+          <td>阻力 <b class="num">0.5</b>斐波那契分割线（死猫跳反抽测试位，过不了月均线）<br>触发 死猫跳反抽测试<b class="num">0.5</b>分割线失败即机构再度卖出反弹的触发点；待仓位转为净低配时才是更好的科技股入场机会</td>
+          <td><a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=335s" class="tslink">5:35</a></td></tr><tr><td><b>纳指100ETF</b>⭐ <span class="tk">QQQ</span></td>
+          <td>NaNa说美股</td>
+          <td>支撑 <b class="num">580</b>（下方大缺口回补位，博主担心的 further 下行目标）<br>买点 <b class="num">625-635</b>（博主原设定的低点买入区间，今日已被长黑跌破，今日为最后一次买入）<br>触发 下周感恩节反弹即出掉（获利了结触发条件）</td>
+          <td><a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=451s" class="tslink">7:31</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SOXX</span></td>
+          <td>NaNa说美股</td>
+          <td>触发 今年年初前高水平（正在测试的支撑）</td>
+          <td><a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=471s" class="tslink">7:51</a></td></tr><tr><td><b>VIX恐慌指数</b> <span class="tk">^VIX</span></td>
+          <td>NaNa说美股</td>
+          <td>阻力 <b class="num">60</b>（<b class="num">2025</b>年<b class="num">4</b>月关税解放日与<b class="num">2024</b>年<b class="num">8</b>月套利平仓时的历史极值）<br>触发 CNN恐慌贪婪指标跌到个位数即可抄底；VIX若下周一再度冲高则恐慌盘彻底释放</td>
+          <td><a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=97s" class="tslink">1:37</a></td></tr><tr><td><b>Anthropic</b> <span class="tk">ANTHROPIC</span></td>
+          <td>NaNa说美股</td>
+          <td>支撑 <b class="num">83.05</b>美元（今日盘中低点）/ <b class="num">83.10</b>美元（IPO价格，绿鞋护盘防线）</td>
+          <td><a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=526s" class="tslink">8:46</a></td></tr><tr><td><b>SpaceX</b> <span class="tk">SPACEX</span></td>
+          <td>NaNa说美股</td>
+          <td></td>
+          <td><a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=653s" class="tslink">10:53</a></td></tr><tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
+          <td>NaNa说美股</td>
+          <td>支撑 <b class="num">200</b>周均线（当前正在测试的长期支撑）<br>触发 风险彻底出清之前观望（<b class="num">12</b>月初参议院作证为关键事件节点）</td>
+          <td><a href="https://www.youtube.com/watch?v=jJ1Oirhggg8&amp;t=683s" class="tslink">11:23</a></td></tr><tr><td><b>Meta</b> <span class="tk">META</span></td>
+          <td>The Investor Channel</td>
+          <td>支撑 <b class="num">470</b>（区间下沿/止损参考位）<br>阻力 <b class="num">750</b> / <b class="num">800</b>（交易区间上沿）<br>买点 当前 <b class="num">561</b> 附近水平可持有，区间思路操作<br>触发 跌破 <b class="num">470</b> 一带止损离场；区间内持有</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=172s" class="tslink">2:52</a></td></tr><tr><td><b>苹果</b> <span class="tk">AAPL</span></td>
+          <td>The Investor Channel</td>
+          <td>触发 博主未给出具体点位，仅表示图表健康、无需操作</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=244s" class="tslink">4:04</a></td></tr><tr><td><b>亚马逊</b> <span class="tk">AMZN</span></td>
+          <td>The Investor Channel</td>
+          <td>支撑 <b class="num">200</b> 日均线（本周收盘正好收在该线）<br>触发 关注 <b class="num">200</b> 日均线得失；跌破则需警惕；博主未给出具体买点，当前图表无警报</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=361s" class="tslink">6:01</a></td></tr><tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
+          <td>The Investor Channel</td>
+          <td>支撑 <b class="num">170-180</b>（原支撑区，<b class="num">170</b> 下方已无支撑）；当前位置下方为 <b class="num">2024-2025</b> 横盘买盘密集区；极端情形看 <b class="num">50-60</b>（mid-double digits）<br>阻力 <b class="num">170</b>（上方失守的前支撑转为压力）<br>触发 两个前提条件同时满足（新 CEO + 人才留任）才考虑买入；在此之前回避；暂不抄底；至少等待新 CEO 上任，并确认足够多核心员工留任后再评估</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=808s" class="tslink">13:28</a></td></tr><tr><td><b>谷歌</b>⭐ <span class="tk">GOOGL</span></td>
+          <td>The Investor Channel</td>
+          <td>支撑 <b class="num">190</b>（约 <b class="num">190</b> 一带才有支撑）/ <b class="num">200</b>（破位后的大概率下跌目标）；<b class="num">260-207</b> 之间无需求<br>阻力 <b class="num">270</b>（已跌破的前支撑） / <b class="num">200</b> 日均线（反弹即受阻）<br>买点 当前不宜接飞刀；等待 <b class="num">190-200</b> 区域企稳信号<br>触发 若继续向下破位，大概率下探 <b class="num">200</b>；等待止跌企稳后再评估买入</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=1191s" class="tslink">19:51</a></td></tr><tr><td><b>微软</b>⭐ <span class="tk">MSFT</span></td>
+          <td>The Investor Channel</td>
+          <td>支撑 <b class="num">200</b> 日均线（本周收盘勉强守住） / <b class="num">410</b>（下方支撑，较现价约低 <b class="num">20</b>%）<br>阻力 <b class="num">521</b>（本周初价位/回落前高位区域）<br>买点 <b class="num">200</b> 日均线回测处；若跌破则 <b class="num">410</b> 一带为更好的买点<br>触发 回测 <b class="num">200</b> 日均线企稳即买入；跌破 <b class="num">200</b> 日均线则等 <b class="num">410</b> 支撑区承接</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=1347s" class="tslink">22:27</a></td></tr><tr><td><b>特斯拉</b>⭐ <span class="tk">TSLA</span></td>
+          <td>The Investor Channel</td>
+          <td>支撑 <b class="num">340-350</b>（跌破后下滑较快，但下方仍有累积买盘支撑）<br>阻力 <b class="num">388</b>（本周初价位/跌破前平台）<br>触发 关注 <b class="num">340-350</b> 一带得失；SpaceX 合并消息或成催化剂；博主未给出具体买点，仅指出当前区域有累积买盘</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=1614s" class="tslink">26:54</a></td></tr><tr><td><b>奈飞</b> <span class="tk">NFLX</span></td>
+          <td>The Investor Channel</td>
+          <td>支撑 通道底部（现价约 <b class="num">60</b> 附近；止损设于通道下沿之下）<br>买点 约 <b class="num">60</b> 美元的通道底部区域，按风险承受度分批买入<br>触发 博主未给具体目标价：若通道不破，即便不创历史新高股价也可能翻倍（would double）；买入则按风险偏好把止损设在通道下沿之下<br>触发 …破位（约 <b class="num">70</b> 美元）后一路向下，Ne…</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=706s" class="tslink">11:46</a></td></tr><tr><td><b>博通</b> <span class="tk">AVGO</span></td>
+          <td>The Investor Channel</td>
+          <td>触发 跌破自设止损位即离场；博主未给出具体点位，强调自选止损位</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=1322s" class="tslink">22:02</a></td></tr><tr><td><b>标普500ETF</b>⭐ <span class="tk">SPY</span></td>
+          <td>The Investor Channel</td>
+          <td>支撑 <b class="num">200</b> 日均线（本次偏离的关键位）<br>触发 约 <b class="num">7-8</b>% 的反弹确认卖方耗尽；或收盘重新站回 <b class="num">200</b> 日均线且均线翻多（稳健型确认信号）；当前区域分批累积/定投；横盘整理期正是累积窗口</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=1950s" class="tslink">32:30</a></td></tr><tr><td><b>纳指100ETF</b>⭐ <span class="tk">QQQ</span></td>
+          <td>The Investor Channel</td>
+          <td>支撑 周线通道底部（约 <b class="num">3</b> 年多未破，历史仅触及约 <b class="num">3</b> 次）<br>买点 反弹交易者可在 flush out 后博弈 <b class="num">3-4</b>% 反弹；趋势者等待企稳<br>触发 再出现一周大跌=flush out 信号；否则预期 <b class="num">3-4</b>% 技术性反弹</td>
+          <td><a href="https://www.youtube.com/watch?v=jZJiIIo74E8&amp;t=2124s" class="tslink">35:24</a></td></tr><tr><td><b>标普500指数</b>⭐ <span class="tk">^GSPC</span></td>
+          <td>阳光财经</td>
+          <td>支撑 <b class="num">7000</b>点（今日已跌破，整数关口失守）<br>阻力 年线（失守后已成重大压力线）<br>触发 恐慌指数跌到三五个点的极限位置、且出现V型反转信号才是抄底机会；仅跌破<b class="num">7000</b>点不构成买点<br>目标 <b class="num">8000</b>点（华尔街上涨时喊出的目标，博主明确表示今年不可能实现）</td>
+          <td><a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=37s" class="tslink">0:37</a></td></tr><tr><td><b>纳斯达克综合指数</b>⭐ <span class="tk">^IXIC</span></td>
+          <td>阳光财经</td>
+          <td>触发 单日跌<b class="num">5.28</b>%后看次日能否止跌，反弹概率<b class="num">55</b>%但不代表趋势反转</td>
+          <td><a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=95s" class="tslink">1:35</a></td></tr><tr><td><b>道琼斯指数</b> <span class="tk">^DJI</span></td>
+          <td>阳光财经</td>
+          <td>触发 相对抗跌只说明跑得从容，需等三大指数同步止跌才谈反弹</td>
+          <td><a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=192s" class="tslink">3:12</a></td></tr><tr><td><b>VIX恐慌指数</b> <span class="tk">^VIX</span></td>
+          <td>阳光财经</td>
+          <td>支撑 <b class="num">10</b>点（今日读数，接近极限）/ <b class="num">3</b>点（历史极值，恐慌极限参考）<br>触发 恐慌指数跌到三五个点的极限位置，才是博主心中真正的抄底信号</td>
+          <td><a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=223s" class="tslink">3:43</a></td></tr><tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
+          <td>阳光财经</td>
+          <td>触发 成交量<b class="num">824</b>亿美元放量暴跌后等缩量止跌；老黄复职（董事会凑够<b class="num">6</b>票）是估值暴力修正的触发点</td>
+          <td><a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=598s" class="tslink">9:58</a></td></tr><tr><td><b>微软</b>⭐ <span class="tk">MSFT</span></td>
+          <td>阳光财经</td>
+          <td>触发 现金流优势使其成为AI退潮期的相对避风港，等板块企稳再看相对强度</td>
+          <td><a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=479s" class="tslink">7:59</a></td></tr><tr><td><b>Anthropic</b> <span class="tk">ANT</span></td>
+          <td>阳光财经</td>
+          <td>支撑 <b class="num">83</b>美元（发行价，今日最低<b class="num">83.05</b>险守）<br>触发 上市后几天有绿鞋不易破发，但护盘期结束后、AI行情修整则大概率跟随下跌</td>
+          <td><a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=658s" class="tslink">10:58</a></td></tr><tr><td><b>费城半导体ETF</b>⭐ <span class="tk">SMH</span></td>
+          <td>阳光财经</td>
+          <td>触发 看明年资本支出同比增速是否放缓，增速掉档即是半导体估值下修的信号</td>
+          <td><a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=525s" class="tslink">8:45</a></td></tr><tr><td><b>特斯拉</b>⭐ <span class="tk">TSLA</span></td>
+          <td>阳光财经</td>
+          <td>触发 未给具体价位，等大盘（标普/纳指）止跌信号确认后再看持仓修复</td>
+          <td><a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=843s" class="tslink">14:03</a></td></tr><tr><td><b>标普500指数</b>⭐ <span class="tk">^GSPC</span></td>
+          <td>视野环球财经</td>
+          <td>支撑 SPY <b class="num">648-667</b>（接近今年<b class="num">4</b>月低点，二次寻底区）；标普指数<b class="num">6800-7000</b>（前瞻估值合理区间下限，今天收<b class="num">6901</b>）<br>阻力 <b class="num">728-753</b>（SPY重要分水岭，接近<b class="num">200</b>日均线，今天<b class="num">200</b>日线在<b class="num">730</b>且每天移动）<br>触发 SPY <b class="num">671</b>为结构关键位：以收盘/开盘价为准（盘中不算），守住<b class="num">671-694</b>则原地反弹看<b class="num">728</b>；收盘跌破<b class="num">671</b>则四月以来上行结构被破坏，需全面转熊式看待；反弹至<b class="num">728-753</b>分水岭，仓位重者可考虑减仓<br>触发 标普跌破<b class="num">7000</b>并跌穿高点回撤<b class="num">10</b>%修正…</td>
+          <td><a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=752s" class="tslink">12:32</a></td></tr><tr><td><b>纳斯达克综合指数</b>⭐ <span class="tk">^IXIC</span></td>
+          <td>视野环球财经</td>
+          <td>支撑 QQQ <b class="num">585</b>（最后一个结构上重要防守位，以开盘/收盘价为准）<br>触发 QQQ <b class="num">585</b>（以开盘价或收盘价为准，盘中不算）：跌破则空头有进一步想象空间；未破则关注空头回补反弹</td>
+          <td><a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=562s" class="tslink">9:22</a></td></tr><tr><td><b>英伟达</b>⭐ <span class="tk">NVDA</span></td>
+          <td>视野环球财经</td>
+          <td>阻力 <b class="num">132</b>（已跌穿的位置，上方压力）<br>触发 今天跌穿<b class="num">132</b>；从最高<b class="num">243</b>跌到<b class="num">120</b>，接近腰斩；本周跌<b class="num">22.92</b>%，走势极差，无止跌形态前回避</td>
+          <td><a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=94s" class="tslink">1:34</a></td></tr><tr><td><b>台积电</b>⭐ <span class="tk">TSM</span></td>
+          <td>视野环球财经</td>
+          <td>触发 等待见底/止跌形态出现（开盘或收盘确认），不挂单接飞刀；买入计划不变</td>
+          <td><a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=302s" class="tslink">5:02</a></td></tr><tr><td><b>微软</b>⭐ <span class="tk">MSFT</span></td>
+          <td>视野环球财经</td>
+          <td>阻力 <b class="num">490</b>（已跌破，转为震荡行情的分界）<br>触发 跌破<b class="num">490</b>后回到震荡行情，暂按震荡对待</td>
+          <td><a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=290s" class="tslink">4:50</a></td></tr><tr><td><b>奈飞</b> <span class="tk">NFLX</span></td>
+          <td>视野环球财经</td>
+          <td>触发 等待止跌形态出现后加余下的一半仓位</td>
+          <td><a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=345s" class="tslink">5:45</a></td></tr><tr><td><b>直觉外科</b> <span class="tk">ISRG</span></td>
+          <td>视野环球财经</td>
+          <td>触发 回落至买入区再出手；尚远（当前价格离买入位置还差很远）</td>
+          <td><a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=338s" class="tslink">5:38</a></td></tr><tr><td><b>旅行者保险</b> <span class="tk">TRV</span></td>
+          <td>视野环球财经</td>
+          <td>触发 回落至加仓区再出手；尚远（加仓位置非常远）</td>
+          <td><a href="https://www.youtube.com/watch?v=v2KyRWv3SHc&amp;t=350s" class="tslink">5:50</a></td></tr><tr><td><b>比特币</b> <span class="tk">BTC</span></td>
+          <td>XTrader猫姐美股</td>
+          <td>支撑 <b class="num">5.8</b>w（约 <b class="num">5.8</b> 万，跌破则关系到周线目标价，重点关注）<br>触发 <b class="num">5.8</b>w 是否跌破为关键观察线；<b class="num">8</b>w 附近曾连续出现三个确认卖点</td>
+          <td>—</td></tr>
+    </table></div></div>
+
+<div class="sec" id="s6"><div class="sec-h">⚠️ 六、分歧标的</div><div class="ch"><div class="ch-name">标普500ETF <span class="tk">SPY</span></div>
+      <div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">XTrader猫姐美股<span class="op-date">·11/20</span></span></div><div class="op-d">上周预告的 748（748.62）线本周如期跌破并引发程序性卖盘，733.98 关键线周三失守，多方无钱、流动性糟糕，程序性低点触发后的反弹幅度可忽略不计且次日继续下杀。短线反弹不做，等关键位修复；防御板块与老钱股的新高只是分化，不改大盘弱势。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">The Trading Apologist<span class="op-date">·11/20</span></span></div><div class="op-d">标普自 2025 年低点以来的上升楔形已破位，量出目标落在 382 斐波那契位，约 5,700 点，且用 COVID 低点（236 位）、今年 4 月低点（黄金口袋）分别测量都落在同一带，形成合流，是他眼中“很合乎逻辑”的最终目标。短期确实超卖，并正好踩在 20 月均线与 2025 年 11 月前高的 VRVP 成交控制点上，理应出现反趋势反弹；但价格已在 200 日均线之下，反弹到 200 日均线附近更可能被拒绝，随后重演 2022 年那种长时间研磨下行。他强调这是“反趋势”反弹而非反转，因为结构已被破坏。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">美投侃新闻<span class="op-date">·11/20</span></span></div><div class="op-d">标普连续7个交易日下跌创2020年2月以来最长连跌并进入技术性调整，Hartnet预计感恩节后大概率技术性反弹（超卖比例68%逼近88%反向买入信号），但机构现金水位3.6%远低于5%目标、资金仍在流入，卖压未释放完毕，反弹只是死猫跳，需等三大宏观条件确认。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">NaNa说美股<span class="op-date">·11/20</span></span></div><div class="op-d">标普连续7日下跌，较峰值回撤约12%进入技术性回调，经验上常在此后拉出剧烈反弹甚至V反创新高，但博主怀疑这次真的走熊。周K破位，反弹失败后将下探120周均线6550，策略上等恐慌释放，反弹不追。</div></div><div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">The Investor Channel<span class="op-date">·11/20</span></span></div><div class="op-d">日线图回溯 2022 年、约四年半视角：SPY 约 99% 的时间运行在 200 日均线上方，历史上仅因关税、伊朗战争、去杠杆等原因 4 次跌破——当 99% 时间的规律突然偏离时，恰恰不是该恐惧的时刻，而是赚钱的时刻（these deviations is where the money is made）。本周成交量略有放大但非纪录级别，这类时刻容易出现反转。策略分两类：退休/已赚够的人，等待收盘重新站上 200 日均线且均线翻多；进取者可在当前区域累积——横盘整理（消化政治风险、Jensen 风险）反而是最好的累积机会，之后迎来下一波上行。短期市场没有上涨的好理由，唯一理由是卖方耗尽（K 线已显示一定程度的 exhaustion），预计约 7-8% 的反弹后'再度起航'。博主重申：系统性抛售创造世代级买入机会，市场下跌快，恢复也可能同样快。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">阳光财经<span class="op-date">·11/20</span></span></div><div class="op-d">标普大跌265.16点、跌幅3.7%，一根大阴线跌破7000点，年线失守后反成重大压力线，华尔街喊的8000点今年不可能实现。三大指数全面破位说明资金整体流出而非调仓，但暴跌之后下周反弹的希望仍大。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">视野环球财经<span class="op-date">·11/20</span></span></div><div class="op-d">标普跌破7000并跌穿高点回撤10%修正区（SPY 702），连续7日下跌。当前正逼近斐波那契61.8关键回撤位（SPY 671）：守住则原地反弹、保住上行结构；跌破（以收盘/开盘价为准）则四月以来上涨结构破坏，转入反弹防御思维、二次寻底概率大。6800-7000已是合理估值区间下限，再跌涉嫌低估，逢低配置资金会进场。等待止跌形态出现再布局。</div></div>
+    </div><div class="ch"><div class="ch-name">纳指100ETF <span class="tk">QQQ</span></div>
+      <div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">XTrader猫姐美股<span class="op-date">·11/20</span></span></div><div class="op-d">本轮抛售源于 706.58 绿线（中线定海神针，9/20 期原话预告 Q3/Q4 仍起定海作用）有效跌破，触发中线资金离场；她 9/27 期即预告跌破后直奔 605 附近，实际跌得更深。下周核心是 605 能否收复：收复不了就继续引发程序性下跌，空头回补已无法挽救；603.45 是从 650 下方下来的最后底线，跌破即开启中期熊市。同时警惕该位置假突破骗线、把最后的多头和杠杆舱位洗出去后再拉回。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">The Trading Apologist<span class="op-date">·11/20</span></span></div><div class="op-d">纳指日线上原本可能是双重底/三重底的结构今日破位，跌穿 2025 年那批前高；周线 RSI 趋势线在三次成功反弹后第四次失守，与标普同步。以 2025 年见底以来的上升平行通道测量，破位目标指向 20,000，仅略高于 2025 年低点，等于在已跌 20% 的基础上再跌 20%，累计约 35%，接近历史上多数熊市的平均跌幅。反弹阻力先看 26,200 的水平线，同时也是通道下沿反抽位，且指数已在 20 月均线之下。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">美投侃新闻<span class="op-date">·11/20</span></span></div><div class="op-d">纳指单日大跌5%抹去今年全部涨幅，AI交易为重灾区。大空头Burry在平调一半NVDA与半导体ETF看跌期权获利后，反手把纳指看跌期权仓位翻倍加码押注科技股继续下跌，且此前再度警告英伟达、小云和半导体行业投资者，机构卖压未释放完毕前纳指二次探底风险高。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">NaNa说美股<span class="op-date">·11/20</span></span></div><div class="op-d">纳指100回吐年内全部涨幅，本周累跌10.43%，从峰值回撤超20%跌入技术性熊市，日线破位并跌穿0.618回调支撑。高度集中于AI巨头，受AI叙事拖累跌幅远超标普。超卖后短期或有暴力死猫跳，但过不了月均线，机构会再卖反弹。</div></div><div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">NaNa说美股<span class="op-date">·11/20</span></span></div><div class="op-d">QQQ一根长黑掼破博主原本设定的625-635低点买入区间，博主今天做了最后一次买入，之后彻底躺平；下周感恩节若反弹就出掉。担心后面砸到580回补大缺口，属于短炒抄底而非中线持仓思路。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">The Investor Channel<span class="op-date">·11/20</span></span></div><div class="op-d">周线图回溯十年以上（近二十年）：趋势虽不稳固，但这条周线通道已守住 3 年多，目前处于通道底部——历史上仅测试过 3 次左右，QQQ 盘后已接近该位置。下周展望：感恩节短交易周，若再出现一周大跌，那就是博主'等待中的 flush out（最后的洗盘）'；否则预期一波不错的小反弹、一点喘息——不是回到历史新高的反弹，而是 3-4% 的技术性反弹，'给你孩子买节日礼物前捡 3-4% 也挺好'。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">阳光财经<span class="op-date">·11/20</span></span></div><div class="op-d">纳指暴跌1261.47点、跌幅5.28%。1971年以来50次单日跌超5%，次日与之后5日的反弹概率都是55%，所以下周反弹希望大；但1987、2000、2008的案例说明，一天跌5%也挡不住之后更大的下跌。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">视野环球财经<span class="op-date">·11/20</span></span></div><div class="op-d">纳指今天一口气大跌（约5%），已跌到最后一个结构上重要的防守位（QQQ 585）。以开盘价或收盘价为准（盘中不算），一旦穿585空头才有进一步想象空间。空头最容易的部分已走完，部分回补平仓会在今天或下周一出现，回补反弹后愿意再空的会等反弹加仓。前瞻估值角度标普区间同样适用，等止跌形态。</div></div>
+    </div><div class="ch"><div class="ch-name">英伟达 <span class="tk">NVDA</span></div>
+      <div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">XTrader猫姐美股<span class="op-date">·11/20</span></span></div><div class="op-d">三条线全部跌破：上周提示的 150 界限/148.84 警戒线失守后，下周关键位是 128.48，拉不回来就不用看了。她虽高度认可黄仁勋个人（自述 160 美元时被湾区无人驾驶创业者推荐买入、120 出掉后一路错过），但认为若黄仁勋离任，职业经理人能否保持全局把控存疑，市场共识亦如此；同时英伟达走弱会直接拖累整个半导体板块与 SOXL。半导体自 9 月起被她反复标注为最弱板块、壁垒要小心。</div></div><div class="op"><div class="op-h"><span class="st c-flat">中性</span><span class="op-c">The Trading Apologist<span class="op-date">·11/20</span></span></div><div class="op-d">英伟达财报整体算正面，但市场并未因此转向，这本身就是他担忧的地方：如果连不错的英伟达财报（加上市场在等的 Anthropic IPO）都无法缓解紧张情绪，那还有什么利好能成为转折催化剂？他因此把“证明责任”交给价格行为，而不是基本面。AMD 也曾因英伟达的消息（黄仁勋）出现一波补涨，但未能守住。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">美投侃新闻<span class="op-date">·11/20</span></span></div><div class="op-d">SEC调查会计问题（改收入地区口径、新加坡销售消失）叠加循环融资收入质量疑虑，披露瑕疵罚款不重，但若触碰国家安全线后果严重；黄仁勋12月1日听证会前不确定性无法驱散，公司价值已大打折扣，财报超预期也未能扭转跌势。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">NaNa说美股<span class="op-date">·11/20</span></span></div><div class="op-d">英伟达股价已经快腰斩，跌到200周均线；12月初黄仁勋将赴美国参议院作证，风险未彻底出清前未来几周仍可能承压。更令市场担忧的是英伟达对整个AI产业链的融资敞口，AI投资热潮降温时风险可能通过担保、投资承诺及租赁义务传导至英伟达自身。博主感叹美股AI信仰都建立在老黄身上。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">The Investor Channel<span class="op-date">·11/20</span></span></div><div class="op-d">周初还在 160 美元上方，自周一起暴跌 22%，收于 52 周新低 125 84。利空密集：盘后 SEC 探索会计问题调查、加州总检察长就中国问题送达传票、Jensen 慈善向 CoreWeave 承诺 3.5 亿美元引发的循环融资质疑（'新云厂商到底是不是英伟达维持算力/半导体高价的延伸？'）、民主党追查其对中国公司出租算力的 MegaSpeed 影响、Jensen 同意赴参议院作证、Muddy Waters 将英伟达列为新做空标的。尽管业绩 beat and raise（明年营收增速指引从 70% 上调至 75%），股价纹丝不动——情绪太差、公司没有正式 CEO。博主明确：新闻在变好之前会先变得更糟；抄底的两个前提是（1）新 CEO 到位、（2）核心人才留任，在此之前'请远离英伟达'。技术面：170 下方曾无支撑（订阅服务在 170-180 区域已提示离场），但 2024-2025 年的横盘区在当前位置下方形成买盘密集区，若再破位可能下探'中段两位数'（50-60 区域）。</div></div><div class="op"><div class="op-h"><span class="st c-up">看多</span><span class="op-c">阳光财经<span class="op-date">·11/20</span></span></div><div class="op-d">英伟达市值损失2万亿，拖累标普。今天成交824亿美元放量暴跌，远期市盈率13倍以下、最低预测9倍，估值便宜，我认为很快见底；但老黄复职需董事会6票、概率不高，人才流失是最大变数。</div></div><div class="op"><div class="op-h"><span class="st c-down">看空</span><span class="op-c">视野环球财经<span class="op-date">·11/20</span></span></div><div class="op-d">双重利空打击：路透社援引消息人士称SEC正对英伟达进行会计调查，且至少两家服务器合作伙伴因美国最新出口管制停止向东南亚客户发货。今天一口气又跌14%，跌穿132，走得非常差；本周已跌22.92%，市值跌到只剩3万亿（蒸发接近2万亿），从最高243跌到120接近腰斩。走势一路阴跌下来，暂无止跌形态，回避观望。</div></div>
+    </div></div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 价位数字已高亮标注 · 时间戳可点击回看 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-21 12:15（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
