@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-gowcSnPCTEPl8tnB4OUtOYpTwNuhEscdVMm6dE9Mlb8='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>个股档案 · Anthropic (ANT)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#1a1a1a; --text-strong:#111;
+    --muted:#5b6472; --muted-2:#6b7280; --border:#e5e8ee; --border-soft:#f0f2f5;
+    --accent:#1e3a5f; --link:#2c5282;
+    --up-bg:#fde8e8; --up-fg:#c53030; --down-bg:#e6f6ec; --down-fg:#1e7d43; --flat-bg:#eef1f5; --flat-fg:#4a5568;
+    --lv-fg:#3730a3; --lv-s-bg:#e6f6ec; --lv-s-fg:#1e7d43; --lv-r-bg:#fde8e8; --lv-r-fg:#c53030; --lv-e-bg:#fef3e2; --lv-e-fg:#b45309; --lv-t-bg:#f3e8ff; --lv-t-fg:#6b21a8;
+    --warn:#b45309; --warn-bg:#fef3e2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --card:#171a21; --text:#e8eaf0; --text-strong:#fff;
+      --muted:#a7aebc; --muted-2:#8b93a3; --border:#2a2f3a; --border-soft:#232833;
+      --accent:#7fa3d9; --link:#7fb0ff;
+      --up-bg:#3a1d1d; --up-fg:#ff8f8f; --down-bg:#123526; --down-fg:#5fd08a; --flat-bg:#232833; --flat-fg:#a7aebc;
+      --lv-fg:#b4b8ff; --lv-s-bg:#123526; --lv-s-fg:#5fd08a; --lv-r-bg:#3a1d1d; --lv-r-fg:#ff8f8f; --lv-e-bg:#3a2a16; --lv-e-fg:#e8b06a; --lv-t-bg:#2a1f3a; --lv-t-fg:#c99bff;
+      --warn:#e8b06a; --warn-bg:#3a2a16;
+    }
+  }
+  body{margin:0;padding:12px;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);font-size:15px;line-height:1.65;}
+  .wrap{max-width:680px;margin:0 auto;}
+  .hero{background:#1e3a5f;color:#fff;border-radius:12px;padding:20px 18px;margin-bottom:12px;}
+  .hero .nm{font-size:21px;font-weight:700;color:#fff;margin:0;}
+  .hero .tk{color:#9db8dd;font-size:13px;margin:2px 0 0;}
+  .hero .meta{font-size:12.5px;color:#dbe4f0;margin-top:8px;}
+  .sec{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+  .sec-h{font-size:15.5px;font-weight:700;color:var(--accent);margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--accent);}
+  .sec-h .asof{font-weight:400;font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .ch{margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--border);}
+  .ch:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .ch-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px;}
+  .ch-name{font-weight:700;font-size:14.5px;color:var(--text-strong);}
+  .ch-meta{font-size:12px;color:var(--muted);}
+  .stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+  .stat-box{flex:1;min-width:88px;background:var(--flat-bg);border-radius:8px;padding:8px 10px;text-align:center;}
+  .stat-box .n{font-size:18px;font-weight:700;color:var(--text-strong);}
+  .stat-box .l{font-size:11.5px;color:var(--muted);margin-top:1px;}
+  .stat-box.up .n{color:var(--up-fg);}
+  /* 关键指标卡（K线上方，2026-11-05）：紧凑网格，窄屏不溢出 */
+  .fm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:5px;}
+  .fm{background:var(--flat-bg);border-radius:7px;padding:5px 7px;min-width:0;overflow:hidden;}
+  .fm-wide{grid-column:1 / -1;}
+  .fm-l{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .fm-v{font-size:12.5px;font-weight:700;color:var(--text-strong);margin-top:1px;font-variant-numeric:tabular-nums;overflow-wrap:break-word;word-break:break-word;}
+  .fm-v .rng{font-size:11px;letter-spacing:-0.3px;white-space:nowrap;}
+  .fm-chg{font-size:11px;font-weight:600;}
+  @media (max-width:480px){ .fm-grid{grid-template-columns:repeat(4,1fr);} }
+  .fm-up{color:var(--up-fg);}
+  .fm-down{color:var(--down-fg);}
+  /* Gamma 市场状态（2026-11-11）：正 gamma=压制波动（蓝），负 gamma=放大波动（橙警示） */
+  .fm-pos{color:var(--link);}
+  .fm-neg{color:var(--warn);}
+  /* 期权墙区块（2026-11-06）：口径说明小字 + 到期分档 GEX 红绿 */
+  .ow-note{font-size:11.5px;color:var(--muted-2);margin-top:8px;line-height:1.5;}
+  .ow-gex-up{color:var(--up-fg);font-weight:700;}
+  .ow-gex-dn{color:var(--down-fg);font-weight:700;}
+  /* 期权墙到期分档选项卡（2026-11-06）：纯 CSS radio 切换，零 JS */
+  .ow-tabs{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:10px;}
+  .ow-tabs input{display:none;}
+  .ow-tabs label{cursor:pointer;padding:3px 12px;border-radius:14px;font-size:12px;background:var(--flat-bg);color:var(--text);user-select:none;}
+  .ow-tabs input:checked+label{background:var(--accent);color:#fff;font-weight:600;}
+  .ow-pane{display:none;flex-basis:100%;min-width:0;}
+  #owt0:checked~.p0,#owt1:checked~.p1,#owt2:checked~.p2,#owt3:checked~.p3,#owt4:checked~.p4,#owt5:checked~.p5{display:block;}
+  .ow-sum{font-size:12px;color:var(--muted);margin:4px 0 6px;}
+  .ow-pane p.empty{margin:6px 0;}
+  /* 折叠区（2026-11-06）：关键指标/期权墙次要内容默认收起，原生 details 零 JS */
+  details.fold{margin-top:8px;}
+  details.fold>summary{list-style:none;cursor:pointer;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;user-select:none;padding:4px 2px;border-radius:6px;}
+  details.fold>summary::-webkit-details-marker{display:none;}
+  details.fold>summary::before{content:'▸';display:inline-block;font-size:11px;color:var(--muted-2);transition:transform .15s;}
+  details.fold[open]>summary::before{transform:rotate(90deg);}
+  details.fold[open]>summary{margin-bottom:8px;}
+  .stat-box.down .n{color:var(--down-fg);}
+  .lean{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-left:6px;}
+  .lean.up{background:var(--up-bg);color:var(--up-fg);}
+  .lean.down{background:var(--down-bg);color:var(--down-fg);}
+  .lean.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .chip{background:var(--flat-bg);color:var(--text);padding:2px 9px;border-radius:14px;font-size:12px;}
+  .tag-item{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border-soft);}
+  .tag-item:last-child{border-bottom:none;}
+  .tag-fg{font-size:13px;color:var(--text);}
+  .tag-date{font-size:11.5px;color:var(--muted-2);white-space:nowrap;margin-left:8px;}
+  .day{padding:10px 0;border-bottom:1px dashed var(--border);}
+  .day:last-child{border-bottom:none;}
+  .day-h{font-weight:700;font-size:14px;color:var(--accent);margin-bottom:6px;}
+  .op{padding:8px 0;border-bottom:1px solid var(--border-soft);}
+  .op:last-child{border-bottom:none;}
+  .op-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .op-c{font-weight:600;font-size:13.5px;color:var(--text-strong);}
+  .op-date{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px;}
+  .src-x{display:inline-block;font-size:9.5px;font-weight:800;line-height:1.5;padding:0 4px;margin-left:5px;border-radius:4px;background:var(--text-strong);color:var(--card);vertical-align:1px;letter-spacing:.5px;}
+  .op-d{font-size:13.5px;color:var(--text);margin-top:2px;}
+  .op-q{font-size:13px;color:var(--muted);margin-top:4px;padding:6px 8px;background:var(--flat-bg);border-radius:6px;border-left:3px solid var(--muted-2);}
+  .op-tag{font-size:12px;color:var(--text);margin-top:4px;}
+  .op-tag b{color:var(--muted);font-weight:600;}
+  .op-lv{margin:3px 0;}
+  .op-ts{margin-top:3px;font-size:12px;}
+  .tslink{color:var(--link);text-decoration:none;font-weight:600;}
+  .st{display:inline-block;padding:1px 7px;border-radius:6px;font-size:12px;font-weight:600;}
+  .st.up{background:var(--up-bg);color:var(--up-fg);}
+  .st.down{background:var(--down-bg);color:var(--down-fg);}
+  .st.flat{background:var(--flat-bg);color:var(--flat-fg);}
+  .lv{display:inline-block;padding:1px 7px;border-radius:6px;font-size:11.5px;font-weight:600;margin:2px 4px 2px 0;background:#eef2ff;color:var(--lv-fg);}
+  .lv-s{background:var(--lv-s-bg);color:var(--lv-s-fg);}
+  .lv-r{background:var(--lv-r-bg);color:var(--lv-r-fg);}
+  .lv-e{background:var(--lv-e-bg);color:var(--lv-e-fg);}
+  .lv-t{background:var(--lv-t-bg);color:var(--lv-t-fg);}
+  .lvg{margin-bottom:10px;}
+  .lvg-h{font-size:13.5px;font-weight:700;color:var(--text-strong);margin:6px 0 2px;}
+  .lv b.num{color:var(--text-strong);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  /* 表格防溢出（2026-11-03）：fixed 布局 + colgroup 定宽 + 换行兜底 + 横向滚动容器 */
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;}
+  th{text-align:left;padding:7px 5px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);font-size:12px;overflow-wrap:break-word;word-break:break-word;}
+  td{padding:8px 5px;border-bottom:1px solid var(--border-soft);vertical-align:top;color:var(--text);overflow-wrap:break-word;word-break:break-word;}
+  td b.num{color:var(--lv-fg);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+  tr:last-child td{border-bottom:none;}
+  td.vfy{text-align:center;font-size:14px;width:44px;cursor:help;}
+  .vfy-ok{filter:none;}
+  .vfy-bad{filter:none;}
+  .vfy-pending{opacity:.75;}
+  .vfy-none{color:var(--muted-2);}
+  .empty{color:var(--muted);font-size:13px;}
+  .foot{text-align:center;color:var(--muted-2);font-size:11.5px;padding:8px 0 16px;}
+</style><style>
+  .snav{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:7px 12px;margin:0 0 10px;font-size:13px;box-shadow:0 2px 10px rgba(15,23,42,.06);}
+  .snav a{color:var(--link);text-decoration:none;font-weight:600;white-space:nowrap;}
+  .snav a:hover{text-decoration:underline;}
+  .snav .sp{color:var(--muted-2);font-weight:400;white-space:nowrap;}
+  .snav .rt{margin-left:auto;display:flex;gap:10px;align-items:center;}
+  .snav2{position:static;box-shadow:none;margin:14px 0 0;justify-content:space-between;}
+  .bstamp{text-align:center;font-size:10.5px;color:var(--muted-2);padding:0 0 16px;}
+  #toTop{position:fixed;right:16px;bottom:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--card);color:var(--link);font-size:17px;line-height:1;box-shadow:0 6px 18px rgba(15,23,42,.16);cursor:pointer;display:none;z-index:30;font-family:inherit;}
+  #toTop.show{display:block;}
+  @media (max-width:420px){ .snav{font-size:12px;gap:7px;} .snav .sp{display:none;} }
+</style></head><body><div class="wrap"><nav class="snav"><a href="/">← 首页</a><span class="sp">个股档案 · ANT</span><span class="rt"></span></nav>
+<div class="hero">
+  <p class="nm">Anthropic</p>
+  <div class="tk">ANT · AI大模型</div>
+  <div class="meta">近5日 9 条观点 · 2026-11-20 ~ 2026-11-24 · 5 位博主</div>
+</div>
+
+
+
+<div class="sec">
+      <div class="sec-h">📈 近期日K走势 <span class="asof">ANT · 最近 4 个交易日 · 红涨绿跌</span></div>
+      <svg viewBox="0 0 640 220" style="width:100%;height:auto;display:block" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ANT 日K"><line x1="8" y1="12.0" x2="600" y2="12.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="15.0" font-size="9" fill="rgba(140,150,165,0.9)">117</text><line x1="8" y1="58.5" x2="600" y2="58.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="61.5" font-size="9" fill="rgba(140,150,165,0.9)">106</text><line x1="8" y1="105.0" x2="600" y2="105.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="108.0" font-size="9" fill="rgba(140,150,165,0.9)">95.35</text><line x1="8" y1="151.5" x2="600" y2="151.5" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="154.5" font-size="9" fill="rgba(140,150,165,0.9)">84.69</text><line x1="8" y1="198.0" x2="600" y2="198.0" stroke="rgba(128,128,128,0.14)" stroke-width="1"/><text x="604" y="201.0" font-size="9" fill="rgba(140,150,165,0.9)">74.03</text><line x1="82.0" y1="18.9" x2="82.0" y2="116.5" stroke="#1fbf75" stroke-width="1"/><rect x="37.6" y="34.6" width="88.8" height="62.5" fill="#1fbf75"/><line x1="230.0" y1="117.2" x2="230.0" y2="158.7" stroke="#1fbf75" stroke-width="1"/><rect x="185.6" y="129.0" width="88.8" height="4.1" fill="#1fbf75"/><line x1="378.0" y1="109.9" x2="378.0" y2="151.9" stroke="#1fbf75" stroke-width="1"/><rect x="333.6" y="112.4" width="88.8" height="26.2" fill="#1fbf75"/><line x1="526.0" y1="156.7" x2="526.0" y2="191.1" stroke="#1fbf75" stroke-width="1"/><rect x="481.6" y="157.1" width="88.8" height="6.5" fill="#1fbf75"/><polyline points="82.0,97.1 230.0,133.1 378.0,138.6 526.0,163.6" fill="none" stroke="#4d8dff" stroke-width="1.4" stroke-opacity="0.85"/><text x="82.0" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/19</text><text x="230.0" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/20</text><text x="378.0" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/23</text><text x="526.0" y="214" font-size="8.5" fill="rgba(140,150,165,0.9)" text-anchor="middle">11/24</text></svg>
+    </div>
+
+
+
+<div class="sec">
+  <div class="sec-h">多空总览 <span class="asof">近5日口径</span></div>
+  <div class="stat">
+    <div class="stat-box"><div class="n">9</div><div class="l">提及次数</div></div>
+    <div class="stat-box up"><div class="n">1</div><div class="l">看多</div></div>
+    <div class="stat-box down"><div class="n">5</div><div class="l">看空</div></div>
+    <div class="stat-box"><div class="n">3</div><div class="l">中性</div></div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13.5px;">综合倾向：<span class="lean flat">分歧/中性</span>（均分 -0.44）</p>
+  <div class="chips"><span class="chip">XTrader猫姐美股</span><span class="chip">阳光财经</span><span class="chip">NaNa说美股</span><span class="chip">美投侃新闻</span><span class="chip">The Trading Apologist</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">🎯 关注点位汇总 <span class="asof">近5日</span></div>
+  <div class="lvg"><div class="lvg-h">🔺 压力位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>11/20</td><td><b class="num">100</b>（首日冲高区，原文「一度突破了<b class="num">100</b>多块钱」） <a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1273s" class="tslink">⏱21:13</a></td><td class="vfy vfy-pending" title="最高 94.23999786376953，未到 100（已过 2/5 日）">⏳</td></tr><tr><td>NaNa说美股</td><td>11/24</td><td><b class="num">83</b>美元（发行价，已跌穿） <a href="https://www.youtube.com/watch?v=ecG7k1bvu-w&amp;t=652s" class="tslink">⏱10:52</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>The Trading Apologist</td><td>11/24</td><td><b class="num">83</b>（IPO价，已转阻力） <a href="https://www.youtube.com/watch?v=TbMxvGzGtGk&amp;t=978s" class="tslink">⏱16:18</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>美投侃新闻</td><td>11/24</td><td><b class="num">111.5</b>美元（上周四开盘高点） <a href="https://www.youtube.com/watch?v=KsJGq74LX00&amp;t=1064s" class="tslink">⏱17:44</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🟢 支撑位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>11/20</td><td><b class="num">83</b>（发行价/生死线，green shoe 失效后仅靠市场承接） <a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1273s" class="tslink">⏱21:13</a></td><td class="vfy vfy-bad" title="跌破 83，最低 75.61000061035156">❌</td></tr><tr><td>阳光财经</td><td>11/20</td><td><b class="num">83</b>美元（发行价，今日最低<b class="num">83.05</b>险守） <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=658s" class="tslink">⏱10:58</a></td><td class="vfy vfy-bad" title="跌破 83，最低 75.61000061035156">❌</td></tr><tr><td>阳光财经</td><td>11/23</td><td><b class="num">83</b>（发行价，绿鞋机制短期托底）/ <b class="num">84.61</b>（盘中最低价，距发行价仅一块多） <a href="https://www.youtube.com/watch?v=1ehzr10qCoM&amp;t=731s" class="tslink">⏱12:11</a></td><td class="vfy vfy-bad" title="跌破 83，最低 75.61000061035156">❌</td></tr><tr><td>NaNa说美股</td><td>11/24</td><td><b class="num">75.6</b>美元（已跌穿的最低点） <a href="https://www.youtube.com/watch?v=ecG7k1bvu-w&amp;t=652s" class="tslink">⏱10:52</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>The Trading Apologist</td><td>11/24</td><td><b class="num">80</b>（新生支撑）/ <b class="num">75</b>（<b class="num">0.618</b>，曾有买盘）/ <b class="num">0.786-100</b>%延伸（强支撑）/ <b class="num">44</b>（<b class="num">1.618</b>延伸） <a href="https://www.youtube.com/watch?v=TbMxvGzGtGk&amp;t=978s" class="tslink">⏱16:18</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>美投侃新闻</td><td>11/24</td><td><b class="num">80</b>左右（现价）/ <b class="num">83</b>美元发行价已跌破 <a href="https://www.youtube.com/watch?v=KsJGq74LX00&amp;t=1064s" class="tslink">⏱17:44</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr><tr><td>阳光财经</td><td>11/24</td><td><b class="num">75</b>美元（今日下探低点，疑似承销商护盘位） <a href="https://www.youtube.com/watch?v=U-ayeDVFG-4&amp;t=604s" class="tslink">⏱10:04</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">🎯 建议买入点</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>11/20</td><td><b class="num">83</b> 发行价附近企稳后寻找中期介入机会；跌破 <b class="num">83</b> 则放弃，等供求关系重新确认 <a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1273s" class="tslink">⏱21:13</a></td><td class="vfy vfy-ok" title="观察期触及 83（已过 2/5 日）">🎯</td></tr>
+        </table></div></div><div class="lvg"><div class="lvg-h">⚡ 其他关注点位</div>
+          <div class="tbl-wrap"><table><colgroup><col style="width:24%"><col style="width:17%"><col style="width:48%"><col style="width:11%"></colgroup><tr><th>博主</th><th>日期</th><th>点位</th><th title="该点位提出后 5 个交易日的实际走势验证（悬停看详情）">验证</th></tr>
+          <tr><td>XTrader猫姐美股</td><td>11/20</td><td>观察触发：IPO 首日不交易；<b class="num">83</b> 守住→列入中期关注并择机介入；<b class="num">83</b> 有效跌破→IPO 转弱信号，转回避（参照 Coinbase <b class="num">2021</b> 教训） <a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1273s" class="tslink">⏱21:13</a></td><td class="vfy vfy-ok" title="观察期触及 83（已过 2/5 日）">⚡</td></tr><tr><td>阳光财经</td><td>11/20</td><td>上市后几天有绿鞋不易破发，但护盘期结束后、AI行情修整则大概率跟随下跌 <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=658s" class="tslink">⏱10:58</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>NaNa说美股</td><td>11/23</td><td>以是否跌破发行价作为强弱分水岭：若破发则回避，守住发行价再看上市满一个月后的表现 <a href="https://www.youtube.com/watch?v=Y0a2Pe1OhNI&amp;t=916s" class="tslink">⏱15:16</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>美投侃新闻</td><td>11/23</td><td>AI 板块普涨时仍逆势下跌，属逻辑瑕疵类，回避 <a href="https://www.youtube.com/watch?v=Gg7O5BZNdj0&amp;t=412s" class="tslink">⏱6:52</a></td><td class="vfy vfy-none" title="无可验证数字">·</td></tr><tr><td>阳光财经</td><td>11/23</td><td>上市满 <b class="num">30</b> 天绿鞋退出后再看是否破发，在此之前不参与 <a href="https://www.youtube.com/watch?v=1ehzr10qCoM&amp;t=731s" class="tslink">⏱12:11</a></td><td class="vfy vfy-ok" title="观察期触及 30（已过 1/5 日）">⚡</td></tr><tr><td>The Trading Apologist</td><td>11/24</td><td>跌破<b class="num">83</b>→大概率下探<b class="num">0.618</b>（<b class="num">75</b>）及更深斐波那契支撑 <a href="https://www.youtube.com/watch?v=TbMxvGzGtGk&amp;t=978s" class="tslink">⏱16:18</a></td><td class="vfy vfy-pending" title="观察期尚未开始">⏳</td></tr>
+        </table></div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">各博主分析 <span class="asof">近5日复盘记录</span></div>
+  <div class="ch">
+      <div class="ch-h"><span class="ch-name">美投侃新闻</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 1 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/23</span></span><span class="st down">看空/回避·短期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 AI 板块普涨时仍逆势下跌，属逻辑瑕疵类，回避</span></div>
+      <div class="op-d">整个 AI 板块普涨中它逆势跌 1.4%，属于「逻辑瑕疵比较大」的那一类。两个原因：一是此前有阴谋论说英伟达这件事是被 Anthropic 捅出来的，这会影响市场的抄底情绪；二是它是闭源模型的代表，本身就和开源阵营站在对立面，而且在议价权上可说是苦英伟达税久矣——英伟达代表的正是通用开发环境与开源模型阵营。</div>
+      <div class="op-q">「这里面anthropic比较特殊，一个是之前有阴谋论说，英伟达这件事是被anthropic捅出来的，这或许会影响市场的抄底情绪；另一个是anthropic是闭源模型的代表，本身就和开源站在对立面，而且在一价权上，可以说是苦英伟达税久矣。」</div>
+      
+      <div class="op-tag"><b>风险：</b>与开源阵营对立，生态位不利、长期承受英伟达议价权压力、上市初期市场情绪受阴谋论干扰</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Gg7O5BZNdj0&amp;t=412s" class="tslink">6:52 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">美投侃新闻<span class="op-date">·11/24</span></span><span class="st up">看多/观望·长期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">80</b>左右（现价）/ <b class="num">83</b>美元发行价已跌破</span><span class="lv lv-r">阻力 <b class="num">111.5</b>美元（上周四开盘高点）</span></div>
+      <div class="op-d">上市第四个交易日跌破83美元发行价：上周四开盘曾跳到111.5美元（高出发行价34%），今天盘中最多跌13%、收盘跌幅收窄至约7%。担忧一是AI基建资本开支靠融资撑、模式可持续性存疑，二是民主党中期选举获胜或放慢数据中心建设；叠加创始人各卖338万股套现2.8亿美元（仅占持股约1.4%、招股书提前定好）。短期破发不决定未来表现（Facebook当年第二日就破发），只要聚焦企业信任与产品改进（CloudShip、企业前沿安全防护、富国银行/Stripe等100多家客户），长期判断仍积极。</div>
+      <div class="op-q">「所以对我们来说，跌破发行价反映更多的是短期担忧，但只要anthropic没去乱搞什么视频、樱化之类的东西，把经历都聚焦在企业信任和产品改进上，那我对他的长期判断就还是很积极的。」</div>
+      <div class="op-tag"><b>催化：</b>推出CloudShip团队/企业版代码工具（AI审计和修代码、按公司规则自动批准）、企业前沿安全防护开放公测（100多家客户内测，含富国银行和Stripe）、企业市场份额继续扩张</div>
+      <div class="op-tag"><b>风险：</b>AI基建融资模式可持续性存疑、数据中心建设速度或因选举结果放慢、隐含波动率96、多空分歧大、美投分析师自己买在110/100/95，按80左右算已亏14%-25%</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KsJGq74LX00&amp;t=1064s" class="tslink">17:44 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">XTrader猫姐美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">1 条 · 看多 0 / 看空 0</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">XTrader猫姐美股<span class="op-date">·11/20</span></span><span class="st flat">中性/观望·中期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">83</b>（发行价/生死线，green shoe 失效后仅靠市场承接）</span><span class="lv lv-r">阻力 <b class="num">100</b>（首日冲高区，原文「一度突破了<b class="num">100</b>多块钱」）</span><span class="lv lv-e">买点 <b class="num">83</b> 发行价附近企稳后寻找中期介入机会；跌破 <b class="num">83</b> 则放弃，等供求关系重新确认</span><span class="lv lv-t">触发 观察触发：IPO 首日不交易；<b class="num">83</b> 守住→列入中期关注并择机介入；<b class="num">83</b> 有效跌破→IPO 转弱信号，转回避（参照 Coinbase <b class="num">2021</b> 教训）</span></div>
+      <div class="op-d">1.5 万亿美元估值的「吸血大牛」IPO，属美股历史级体量，机构与大户主动卖出 AI/半导体持仓去承接它——前期主动性卖盘很大一部分正是为了承接它。她坚守老规矩：IPO 上市第一天不交易（情绪主导）；首日一度突破 100 多块。green shoe 绿鞋机制已被承销商行使，83 美元发行价失去自动保护，只能靠市场供求承接；跌破发行价是 IPO 的重要转弱信号（类比 Coinbase 2021）。若 83 守住，则中期前景不错，目前 AI 能力较强，值得寻找中期介入机会。</div>
+      <div class="op-q">「下周密切注意就是83块钱的发行价，不要跌破……它有一个green shoe机制……现在手里承销商他已经行使了这个green shoe，这就意味着他发行价已经失去了保护……跌破发行价是一个IPO比较重要的一个信号……那么我们等到83，如果守住的话，我觉得他的中期前景是不错的」</div>
+      <div class="op-tag"><b>催化：</b>83 发行价守住，市场供求有效承接、AI 业务竞争力强，机构承接资金沉淀</div>
+      <div class="op-tag"><b>风险：</b>green shoe 已行使、83 无自动保护，跌破发行价即转弱信号、IPO 抽血效应持续压制 AI/半导体板块流动性、首日情绪定价（一度突破 100 多块）回吐风险</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1273s" class="tslink">21:13 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">NaNa说美股</span><span class="lean flat">分歧/中性</span><span class="ch-meta">2 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/23</span></span><span class="st flat">中性/观望·短期</span></div>
+      <div class="op-lv"><span class="lv lv-t">触发 以是否跌破发行价作为强弱分水岭：若破发则回避，守住发行价再看上市满一个月后的表现</span></div>
+      <div class="op-d">在今天整个 AI 板块全线狂欢的背景下，只有刚上市的 Anthropic 逆市下跌，从 NVDA 抽走的钱正在全速倒流回去。它的衍生品工具今天火速登场，每日 2 倍做多和每日 2 倍做空 ETF 都已上市、个股期权同步开启交易，华尔街又多了一个高波动新玩具。她的关注点很明确：看它股价能撑多久不破发。</div>
+      <div class="op-q">「在今天整个AI板块全线狂欢的背景下，只有刚刚上市的Anthropic股价逆市下跌，从NVDA抽走的钱正在全速倒流回去……看看它的股价能撑多久不破发。」</div>
+      <div class="op-tag"><b>催化：</b>2 倍做多/做空 ETF 与个股期权同日上市，交易工具完善可能带来短线资金</div>
+      <div class="op-tag"><b>风险：</b>AI 板块狂欢中逆市下跌，资金回流英伟达、上市即面临破发压力</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Y0a2Pe1OhNI&amp;t=916s" class="tslink">15:16 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">NaNa说美股<span class="op-date">·11/24</span></span><span class="st down">看空/回避·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">75.6</b>美元（已跌穿的最低点）</span><span class="lv lv-r">阻力 <b class="num">83</b>美元（发行价，已跌穿）</span></div>
+      <div class="op-d">上市第4天就破发，股价像热刀切黄油一样轻松跌穿83美元发行价，最低跌到75.6美元，IPO当日高点买入的投资者现在亏损30%。公司不在乎——内部人士已拿到钱、投行大赚，只有散户被迫接盘。有了这个例子，散户对明年OpenAI上市应该没啥激情；且ANT股价跌跌不休、市值缩水也会影响OpenAI融资。</div>
+      <div class="op-q">「股价就像热刀切黄油一样轻松跌穿了 83 美元的发行价 最底跌到75.6美元 在 IPO 当日高点买入的投资者现在亏损 -30%。」</div>
+      
+      <div class="op-tag"><b>风险：</b>股价跌跌不休、市值缩水影响OpenAI融资、AI新股上市情绪持续退潮</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=ecG7k1bvu-w&amp;t=652s" class="tslink">10:52 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">The Trading Apologist</span><span class="lean down">偏空</span><span class="ch-meta">1 条 · 看多 0 / 看空 1</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">The Trading Apologist<span class="op-date">·11/24</span></span><span class="st down">看空/回避·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">80</b>（新生支撑）/ <b class="num">75</b>（<b class="num">0.618</b>，曾有买盘）/ <b class="num">0.786-100</b>%延伸（强支撑）/ <b class="num">44</b>（<b class="num">1.618</b>延伸）</span><span class="lv lv-r">阻力 <b class="num">83</b>（IPO价，已转阻力）</span><span class="lv lv-t">触发 跌破<b class="num">83</b>→大概率下探<b class="num">0.618</b>（<b class="num">75</b>）及更深斐波那契支撑</span></div>
+      <div class="op-d">上市仅一周（上周四起）的新股，斐波那契纪律 remarkably 清晰：0.382恰在IPO价83附近，今日已跌破0.5位79——跌破发行价绝非好事；0.618位75曾有买盘支撑，现又回到可能已是阻力的83。若从83向下破位，大概率依次击穿0.618、再测0.786/100%延伸的强支撑；1.618延伸约44。12月15日Anthropic解禁（12月8日还有SpaceX最后一批）是额外压力点。短线不追。</div>
+      <div class="op-q">「0.382正好在IPO价83那里……今天我们跌破了0.5位79。跌破发行价从来不是好事……如果我们从83向下破位，我认为你应该预期我们有很大机会击穿0.618、然后0.786或100%延伸通常是相当强的支撑。（If we break down at 83... the 786 or the 100% extension are usually where you find pretty darn strong support.）」</div>
+      <div class="op-tag"><b>催化：</b>75与80附近开始积累支撑</div>
+      <div class="op-tag"><b>风险：</b>12月15日解禁抛压、1.618延伸约44（腰斩）</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=TbMxvGzGtGk&amp;t=978s" class="tslink">16:18 回看</a></div>
+      
+    </div>
+    </div><div class="ch">
+      <div class="ch-h"><span class="ch-name">阳光财经</span><span class="lean down">偏空</span><span class="ch-meta">3 条 · 看多 0 / 看空 2</span></div>
+      <div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/20</span></span><span class="st down">看空/回避·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">83</b>美元（发行价，今日最低<b class="num">83.05</b>险守）</span><span class="lv lv-t">触发 上市后几天有绿鞋不易破发，但护盘期结束后、AI行情修整则大概率跟随下跌</span></div>
+      <div class="op-d">上市首日7位股东人均减持2.8亿美元，承销商绿鞋多卖15%、成本83美元，今天最低83.05险守发行价。但公司亏损、模式未成熟、F股绝对控股，普通股没有发言权，AI修整时难独自上涨。</div>
+      <div class="op-q">「本周AMT上市，上市首日，7个串水人就按计划，人均减持2.8亿美元，一天都不能再等了……今天股价最低跌到83.05，正好收入83美元的发行价。」</div>
+      <div class="op-tag"><b>催化：</b>绿鞋机制（多卖15%、成本83美元）短期护盘、大模型上市第一股的身份溢价</div>
+      <div class="op-tag"><b>风险：</b>股东上市首日人均减持2.8亿美元、公司仍亏损、商业模式不成熟、F股绝对控股，普通股没有发言权、AI行情若修整一年半载，难独自上涨</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=658s" class="tslink">10:58 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/23</span></span><span class="st flat">中性/回避·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">83</b>（发行价，绿鞋机制短期托底）/ <b class="num">84.61</b>（盘中最低价，距发行价仅一块多）</span><span class="lv lv-t">触发 上市满 <b class="num">30</b> 天绿鞋退出后再看是否破发，在此之前不参与</span></div>
+      <div class="op-d">上市三天的 Anthropic 完全不跟大盘，别人大涨它下跌，盘中跳水考验发行价，最低价 84.61，离发行价 83 只差一块多钱。因为有绿鞋机制，刚上市几天可能难以破发，但过了 30 天就不好说了。他明确表示不怎么会考虑买这只股：新股还有很多不确定性、估值争议也比较大，很多情况下新股会跌很多；现在就三根阴线，实在看不出市场到底要拉高还是要砸盘，等一等并不会损失什么。</div>
+      <div class="op-q">「刚刚上市三天的Anthropic今年不跟大盘，别人大涨它下跌，盘中跳水考验发行价，最低价是84.61，离发行价差了一块多钱。因为有绿鞋机制，刚上市几天可能难以破发，但是过了30天就不好说了……我不怎么会考虑买这只股，因为新股还有很多不确定性。」</div>
+      <div class="op-tag"><b>催化：</b>绿鞋机制在上市初期托住发行价</div>
+      <div class="op-tag"><b>风险：</b>上市 30 天后绿鞋失效，破发风险上升、新股估值争议大、走势仅三根阴线无法判断倾向</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=1ehzr10qCoM&amp;t=731s" class="tslink">12:11 回看</a></div>
+      
+    </div><div class="op">
+      <div class="op-h"><span class="op-c">阳光财经<span class="op-date">·11/24</span></span><span class="st down">看空/回避·短期</span></div>
+      <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">75</b>美元（今日下探低点，疑似承销商护盘位）</span></div>
+      <div class="op-d">上市四天即破发：绿鞋机制短期可护价，但15%额度用完后承销商就结束买入、不再托价（今日下探75美元后回升疑似承销商护盘）。模型估值难定、竞争激烈；7位创始人IPO当天各自减持2.8亿美元急于套现；未来大几千亿算力合同成本巨大是烧钱生意；上市数日K线无可参考，交易信心不足。</div>
+      <div class="op-q">「今天股价下探75美元后回升 说明可能成销商买入拖市 但他们买完他们绿鞋多发行的那15% 就会结束买入了」</div>
+      
+      <div class="op-tag"><b>风险：</b>绿鞋用完后承销商停止护盘、7位创始人IPO当天各减持2.8亿美元、大几千亿算力合同的烧钱模式、上市定价可能过贵、跌下来形成L型亏损大、K线无参考、定价未稳</div>
+      <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=U-ayeDVFG-4&amp;t=604s" class="tslink">10:04 回看</a></div>
+      
+    </div>
+    </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">催化剂 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">83 发行价守住，市场供求有效承接</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">AI 业务竞争力强，机构承接资金沉淀</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">绿鞋机制（多卖15%、成本83美元）短期护盘</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">大模型上市第一股的身份溢价</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">2 倍做多/做空 ETF 与个股期权同日上市，交易工具完善可能带来短线资金</span><span class="tag-date">11/23</span></div><div class="tag-item"><span class="tag-fg">绿鞋机制在上市初期托住发行价</span><span class="tag-date">11/23</span></div><div class="tag-item"><span class="tag-fg">75与80附近开始积累支撑</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">推出CloudShip团队/企业版代码工具（AI审计和修代码、按公司规则自动批准）</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">企业前沿安全防护开放公测（100多家客户内测，含富国银行和Stripe）</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">企业市场份额继续扩张</span><span class="tag-date">11/24</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">风险因素 <span class="asof">近5日口径</span></div>
+  <div class="tag-item"><span class="tag-fg">green shoe 已行使、83 无自动保护，跌破发行价即转弱信号</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">IPO 抽血效应持续压制 AI/半导体板块流动性</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">首日情绪定价（一度突破 100 多块）回吐风险</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">股东上市首日人均减持2.8亿美元</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">公司仍亏损、商业模式不成熟</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">F股绝对控股，普通股没有发言权</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">AI行情若修整一年半载，难独自上涨</span><span class="tag-date">11/20</span></div><div class="tag-item"><span class="tag-fg">AI 板块狂欢中逆市下跌，资金回流英伟达</span><span class="tag-date">11/23</span></div><div class="tag-item"><span class="tag-fg">上市即面临破发压力</span><span class="tag-date">11/23</span></div><div class="tag-item"><span class="tag-fg">与开源阵营对立，生态位不利</span><span class="tag-date">11/23</span></div><div class="tag-item"><span class="tag-fg">长期承受英伟达议价权压力</span><span class="tag-date">11/23</span></div><div class="tag-item"><span class="tag-fg">上市初期市场情绪受阴谋论干扰</span><span class="tag-date">11/23</span></div><div class="tag-item"><span class="tag-fg">上市 30 天后绿鞋失效，破发风险上升</span><span class="tag-date">11/23</span></div><div class="tag-item"><span class="tag-fg">新股估值争议大、走势仅三根阴线无法判断倾向</span><span class="tag-date">11/23</span></div><div class="tag-item"><span class="tag-fg">股价跌跌不休、市值缩水影响OpenAI融资</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">AI新股上市情绪持续退潮</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">12月15日解禁抛压</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">1.618延伸约44（腰斩）</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">AI基建融资模式可持续性存疑</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">数据中心建设速度或因选举结果放慢</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">隐含波动率96、多空分歧大</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">美投分析师自己买在110/100/95，按80左右算已亏14%-25%</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">绿鞋用完后承销商停止护盘</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">7位创始人IPO当天各减持2.8亿美元</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">大几千亿算力合同的烧钱模式</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">上市定价可能过贵、跌下来形成L型亏损大</span><span class="tag-date">11/24</span></div><div class="tag-item"><span class="tag-fg">K线无参考、定价未稳</span><span class="tag-date">11/24</span></div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">观点时间线 <span class="asof">近5日</span></div>
+  <div class="day">
+      <div class="day-h">11/20</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">XTrader猫姐美股</span><span class="st flat">中性/观望·中期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">83</b>（发行价/生死线，green shoe 失效后仅靠市场承接）</span><span class="lv lv-r">阻力 <b class="num">100</b>（首日冲高区，原文「一度突破了<b class="num">100</b>多块钱」）</span><span class="lv lv-e">买点 <b class="num">83</b> 发行价附近企稳后寻找中期介入机会；跌破 <b class="num">83</b> 则放弃，等供求关系重新确认</span><span class="lv lv-t">触发 观察触发：IPO 首日不交易；<b class="num">83</b> 守住→列入中期关注并择机介入；<b class="num">83</b> 有效跌破→IPO 转弱信号，转回避（参照 Coinbase <b class="num">2021</b> 教训）</span></div>
+          <div class="op-d">1.5 万亿美元估值的「吸血大牛」IPO，属美股历史级体量，机构与大户主动卖出 AI/半导体持仓去承接它——前期主动性卖盘很大一部分正是为了承接它。她坚守老规矩：IPO 上市第一天不交易（情绪主导）；首日一度突破 100 多块。green shoe 绿鞋机制已被承销商行使，83 美元发行价失去自动保护，只能靠市场供求承接；跌破发行价是 IPO 的重要转弱信号（类比 Coinbase 2021）。若 83 守住，则中期前景不错，目前 AI 能力较强，值得寻找中期介入机会。</div>
+          <div class="op-q">「下周密切注意就是83块钱的发行价，不要跌破……它有一个green shoe机制……现在手里承销商他已经行使了这个green shoe，这就意味着他发行价已经失去了保护……跌破发行价是一个IPO比较重要的一个信号……那么我们等到83，如果守住的话，我觉得他的中期前景是不错的」</div>
+          <div class="op-tag"><b>催化：</b>83 发行价守住，市场供求有效承接、AI 业务竞争力强，机构承接资金沉淀</div>
+          <div class="op-tag"><b>风险：</b>green shoe 已行使、83 无自动保护，跌破发行价即转弱信号、IPO 抽血效应持续压制 AI/半导体板块流动性、首日情绪定价（一度突破 100 多块）回吐风险</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=5uuy9bNFifU&amp;t=1273s" class="tslink">21:13 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st down">看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">83</b>美元（发行价，今日最低<b class="num">83.05</b>险守）</span><span class="lv lv-t">触发 上市后几天有绿鞋不易破发，但护盘期结束后、AI行情修整则大概率跟随下跌</span></div>
+          <div class="op-d">上市首日7位股东人均减持2.8亿美元，承销商绿鞋多卖15%、成本83美元，今天最低83.05险守发行价。但公司亏损、模式未成熟、F股绝对控股，普通股没有发言权，AI修整时难独自上涨。</div>
+          <div class="op-q">「本周AMT上市，上市首日，7个串水人就按计划，人均减持2.8亿美元，一天都不能再等了……今天股价最低跌到83.05，正好收入83美元的发行价。」</div>
+          <div class="op-tag"><b>催化：</b>绿鞋机制（多卖15%、成本83美元）短期护盘、大模型上市第一股的身份溢价</div>
+          <div class="op-tag"><b>风险：</b>股东上市首日人均减持2.8亿美元、公司仍亏损、商业模式不成熟、F股绝对控股，普通股没有发言权、AI行情若修整一年半载，难独自上涨</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Sh6XLHs_1LQ&amp;t=658s" class="tslink">10:58 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/23</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st flat">中性/观望·短期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 以是否跌破发行价作为强弱分水岭：若破发则回避，守住发行价再看上市满一个月后的表现</span></div>
+          <div class="op-d">在今天整个 AI 板块全线狂欢的背景下，只有刚上市的 Anthropic 逆市下跌，从 NVDA 抽走的钱正在全速倒流回去。它的衍生品工具今天火速登场，每日 2 倍做多和每日 2 倍做空 ETF 都已上市、个股期权同步开启交易，华尔街又多了一个高波动新玩具。她的关注点很明确：看它股价能撑多久不破发。</div>
+          <div class="op-q">「在今天整个AI板块全线狂欢的背景下，只有刚刚上市的Anthropic股价逆市下跌，从NVDA抽走的钱正在全速倒流回去……看看它的股价能撑多久不破发。」</div>
+          <div class="op-tag"><b>催化：</b>2 倍做多/做空 ETF 与个股期权同日上市，交易工具完善可能带来短线资金</div>
+          <div class="op-tag"><b>风险：</b>AI 板块狂欢中逆市下跌，资金回流英伟达、上市即面临破发压力</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Y0a2Pe1OhNI&amp;t=916s" class="tslink">15:16 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st down">看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv lv-t">触发 AI 板块普涨时仍逆势下跌，属逻辑瑕疵类，回避</span></div>
+          <div class="op-d">整个 AI 板块普涨中它逆势跌 1.4%，属于「逻辑瑕疵比较大」的那一类。两个原因：一是此前有阴谋论说英伟达这件事是被 Anthropic 捅出来的，这会影响市场的抄底情绪；二是它是闭源模型的代表，本身就和开源阵营站在对立面，而且在议价权上可说是苦英伟达税久矣——英伟达代表的正是通用开发环境与开源模型阵营。</div>
+          <div class="op-q">「这里面anthropic比较特殊，一个是之前有阴谋论说，英伟达这件事是被anthropic捅出来的，这或许会影响市场的抄底情绪；另一个是anthropic是闭源模型的代表，本身就和开源站在对立面，而且在一价权上，可以说是苦英伟达税久矣。」</div>
+          
+          <div class="op-tag"><b>风险：</b>与开源阵营对立，生态位不利、长期承受英伟达议价权压力、上市初期市场情绪受阴谋论干扰</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=Gg7O5BZNdj0&amp;t=412s" class="tslink">6:52 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st flat">中性/回避·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">83</b>（发行价，绿鞋机制短期托底）/ <b class="num">84.61</b>（盘中最低价，距发行价仅一块多）</span><span class="lv lv-t">触发 上市满 <b class="num">30</b> 天绿鞋退出后再看是否破发，在此之前不参与</span></div>
+          <div class="op-d">上市三天的 Anthropic 完全不跟大盘，别人大涨它下跌，盘中跳水考验发行价，最低价 84.61，离发行价 83 只差一块多钱。因为有绿鞋机制，刚上市几天可能难以破发，但过了 30 天就不好说了。他明确表示不怎么会考虑买这只股：新股还有很多不确定性、估值争议也比较大，很多情况下新股会跌很多；现在就三根阴线，实在看不出市场到底要拉高还是要砸盘，等一等并不会损失什么。</div>
+          <div class="op-q">「刚刚上市三天的Anthropic今年不跟大盘，别人大涨它下跌，盘中跳水考验发行价，最低价是84.61，离发行价差了一块多钱。因为有绿鞋机制，刚上市几天可能难以破发，但是过了30天就不好说了……我不怎么会考虑买这只股，因为新股还有很多不确定性。」</div>
+          <div class="op-tag"><b>催化：</b>绿鞋机制在上市初期托住发行价</div>
+          <div class="op-tag"><b>风险：</b>上市 30 天后绿鞋失效，破发风险上升、新股估值争议大、走势仅三根阴线无法判断倾向</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=1ehzr10qCoM&amp;t=731s" class="tslink">12:11 回看</a></div>
+        </div>
+    </div><div class="day">
+      <div class="day-h">11/24</div>
+      <div class="op">
+          <div class="op-h"><span class="op-c">NaNa说美股</span><span class="st down">看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">75.6</b>美元（已跌穿的最低点）</span><span class="lv lv-r">阻力 <b class="num">83</b>美元（发行价，已跌穿）</span></div>
+          <div class="op-d">上市第4天就破发，股价像热刀切黄油一样轻松跌穿83美元发行价，最低跌到75.6美元，IPO当日高点买入的投资者现在亏损30%。公司不在乎——内部人士已拿到钱、投行大赚，只有散户被迫接盘。有了这个例子，散户对明年OpenAI上市应该没啥激情；且ANT股价跌跌不休、市值缩水也会影响OpenAI融资。</div>
+          <div class="op-q">「股价就像热刀切黄油一样轻松跌穿了 83 美元的发行价 最底跌到75.6美元 在 IPO 当日高点买入的投资者现在亏损 -30%。」</div>
+          
+          <div class="op-tag"><b>风险：</b>股价跌跌不休、市值缩水影响OpenAI融资、AI新股上市情绪持续退潮</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=ecG7k1bvu-w&amp;t=652s" class="tslink">10:52 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">The Trading Apologist</span><span class="st down">看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">80</b>（新生支撑）/ <b class="num">75</b>（<b class="num">0.618</b>，曾有买盘）/ <b class="num">0.786-100</b>%延伸（强支撑）/ <b class="num">44</b>（<b class="num">1.618</b>延伸）</span><span class="lv lv-r">阻力 <b class="num">83</b>（IPO价，已转阻力）</span><span class="lv lv-t">触发 跌破<b class="num">83</b>→大概率下探<b class="num">0.618</b>（<b class="num">75</b>）及更深斐波那契支撑</span></div>
+          <div class="op-d">上市仅一周（上周四起）的新股，斐波那契纪律 remarkably 清晰：0.382恰在IPO价83附近，今日已跌破0.5位79——跌破发行价绝非好事；0.618位75曾有买盘支撑，现又回到可能已是阻力的83。若从83向下破位，大概率依次击穿0.618、再测0.786/100%延伸的强支撑；1.618延伸约44。12月15日Anthropic解禁（12月8日还有SpaceX最后一批）是额外压力点。短线不追。</div>
+          <div class="op-q">「0.382正好在IPO价83那里……今天我们跌破了0.5位79。跌破发行价从来不是好事……如果我们从83向下破位，我认为你应该预期我们有很大机会击穿0.618、然后0.786或100%延伸通常是相当强的支撑。（If we break down at 83... the 786 or the 100% extension are usually where you find pretty darn strong support.）」</div>
+          <div class="op-tag"><b>催化：</b>75与80附近开始积累支撑</div>
+          <div class="op-tag"><b>风险：</b>12月15日解禁抛压、1.618延伸约44（腰斩）</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=TbMxvGzGtGk&amp;t=978s" class="tslink">16:18 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">美投侃新闻</span><span class="st up">看多/观望·长期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">80</b>左右（现价）/ <b class="num">83</b>美元发行价已跌破</span><span class="lv lv-r">阻力 <b class="num">111.5</b>美元（上周四开盘高点）</span></div>
+          <div class="op-d">上市第四个交易日跌破83美元发行价：上周四开盘曾跳到111.5美元（高出发行价34%），今天盘中最多跌13%、收盘跌幅收窄至约7%。担忧一是AI基建资本开支靠融资撑、模式可持续性存疑，二是民主党中期选举获胜或放慢数据中心建设；叠加创始人各卖338万股套现2.8亿美元（仅占持股约1.4%、招股书提前定好）。短期破发不决定未来表现（Facebook当年第二日就破发），只要聚焦企业信任与产品改进（CloudShip、企业前沿安全防护、富国银行/Stripe等100多家客户），长期判断仍积极。</div>
+          <div class="op-q">「所以对我们来说，跌破发行价反映更多的是短期担忧，但只要anthropic没去乱搞什么视频、樱化之类的东西，把经历都聚焦在企业信任和产品改进上，那我对他的长期判断就还是很积极的。」</div>
+          <div class="op-tag"><b>催化：</b>推出CloudShip团队/企业版代码工具（AI审计和修代码、按公司规则自动批准）、企业前沿安全防护开放公测（100多家客户内测，含富国银行和Stripe）、企业市场份额继续扩张</div>
+          <div class="op-tag"><b>风险：</b>AI基建融资模式可持续性存疑、数据中心建设速度或因选举结果放慢、隐含波动率96、多空分歧大、美投分析师自己买在110/100/95，按80左右算已亏14%-25%</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=KsJGq74LX00&amp;t=1064s" class="tslink">17:44 回看</a></div>
+        </div><div class="op">
+          <div class="op-h"><span class="op-c">阳光财经</span><span class="st down">看空/回避·短期</span></div>
+          <div class="op-lv"><span class="lv lv-s">支撑 <b class="num">75</b>美元（今日下探低点，疑似承销商护盘位）</span></div>
+          <div class="op-d">上市四天即破发：绿鞋机制短期可护价，但15%额度用完后承销商就结束买入、不再托价（今日下探75美元后回升疑似承销商护盘）。模型估值难定、竞争激烈；7位创始人IPO当天各自减持2.8亿美元急于套现；未来大几千亿算力合同成本巨大是烧钱生意；上市数日K线无可参考，交易信心不足。</div>
+          <div class="op-q">「今天股价下探75美元后回升 说明可能成销商买入拖市 但他们买完他们绿鞋多发行的那15% 就会结束买入了」</div>
+          
+          <div class="op-tag"><b>风险：</b>绿鞋用完后承销商停止护盘、7位创始人IPO当天各减持2.8亿美元、大几千亿算力合同的烧钱模式、上市定价可能过贵、跌下来形成L型亏损大、K线无参考、定价未稳</div>
+          <div class="op-ts">⏱ <a href="https://www.youtube.com/watch?v=U-ayeDVFG-4&amp;t=604s" class="tslink">10:04 回看</a></div>
+        </div>
+    </div>
+</div>
+
+<nav class="snav snav2"><a href="/">← 返回首页</a><span class="rt"><a href="#">↑ 回到顶部</a></span></nav><div class="foot">AI 自动整理自 YouTube 公开视频 · 档案随每日数据自动更新 · 不构成投资建议</div>
+<div class="bstamp">页面构建于 11-25 11:59（北京时间）· 若版式异常请强制刷新（浏览器缓存约10分钟）</div></div><button id="toTop" type="button" aria-label="回到顶部">↑</button><script>(function(){var b=document.getElementById('toTop');if(!b)return;var on=false;addEventListener('scroll',function(){var s=window.scrollY>600;if(s!==on){on=s;b.classList.toggle('show',s);}},{passive:true});b.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});})();</script></body></html>
